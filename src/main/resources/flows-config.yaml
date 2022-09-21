@@ -1,0 +1,83 @@
+name: ubi
+flow:
+  howThisWorks:
+    nextScreens:
+      - name: languagePreference
+  languagePreference:
+    nextScreens:
+      - name: gettingToKnowYou
+  gettingToKnowYou:
+    nextScreens:
+      - name: personalInfo
+  personalInfo:
+    nextScreens:
+      - name: eligibility
+  eligibility:
+    nextScreens:
+      - name: housemates
+  housemates:
+    nextScreens:
+      - name: housemateInfo
+        condition: hasHousehold
+      - name: income
+  housemateInfo:
+    subflow: household
+    nextScreens:
+      - name: householdList
+  householdList:
+    nextScreens:
+      - name: income
+  householdDeleteConfirmation:
+    nextScreens: null
+  income:
+    nextScreens:
+      - name: householdMemberIncome
+  householdMemberIncome:
+    subflow: income
+    nextScreens:
+      - name: incomeTypes
+  incomeTypes:
+    subflow: income
+    nextScreens:
+      - name: incomeAmounts
+  incomeAmounts:
+    beforeSave: clearIncomeAmountsBeforeSaving
+    subflow: income
+    nextScreens:
+      - name: annualHouseholdIncome
+  annualHouseholdIncome:
+    nextScreens:
+      - name: incomeComplete
+  incomeDeleteConfirmation:
+    nextScreens: null
+  reportedAnnualHouseholdIncome:
+    nextScreens:
+      - name: incomeComplete
+  incomeComplete:
+    nextScreens:
+      - name: success
+  success:
+    nextScreens: null
+subflows:
+  household:
+    entryScreen: housemates
+    iterationStartScreen: housemateInfo
+    reviewScreen: householdList
+    deleteConfirmationScreen: householdDeleteConfirmation
+  income:
+    entryScreen: income
+    iterationStartScreen: householdMemberIncome
+    reviewScreen: annualHouseholdIncome
+    deleteConfirmationScreen: incomeDeleteConfirmation
+---
+name: flow2
+flow:
+  anotherFirstPage:
+    nextScreens:
+      - name: anotherSecondPage
+  anotherSecondPage:
+    nextScreens:
+      - name: cardPage
+  cardPage:
+    nextScreens: null
+

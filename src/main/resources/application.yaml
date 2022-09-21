@@ -1,0 +1,5 @@
+form-flow:
+  path: 'flows-config.yaml'
+spring:
+  thymeleaf:
+    cache: false
