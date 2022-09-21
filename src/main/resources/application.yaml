@@ -3,3 +3,8 @@ form-flow:
 spring:
   thymeleaf:
     cache: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
