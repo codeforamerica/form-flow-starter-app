@@ -3,6 +3,8 @@ form-flow:
 spring:
   thymeleaf:
     cache: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/formflow
 management:
   endpoints:
     web:
