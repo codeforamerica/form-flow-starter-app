@@ -26,7 +26,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation fileTree(dir: '/Users/<USEYOUROWN>/workspace/form-flow/lib/build/libs', include: '*.jar')
+	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
 }
 
 tasks.named('test') {
