@@ -3,6 +3,8 @@ form-flow:
 spring:
   thymeleaf:
     cache: false
+#    check-template: false
+#    template-resolver-order: 0
   datasource:
     url: jdbc:postgresql://localhost:5432/formflow
 management:

@@ -25,14 +25,21 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.session:spring-session-jdbc'
 	implementation 'com.vladmihalcea:hibernate-types-55:2.19.2'
+	implementation 'javax.persistence:javax.persistence-api:2.2'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
+	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/resources")
+
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.springframework.boot:spring-boot-starter-actuator'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
-	runtimeOnly 'org.postgresql:postgresql'
 
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	runtimeOnly 'org.postgresql:postgresql'
 }
 
 tasks.named('test') {
