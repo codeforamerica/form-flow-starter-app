@@ -21,12 +21,18 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.session:spring-session-jdbc'
+	implementation 'com.vladmihalcea:hibernate-types-55:2.19.2'
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.springframework.boot:spring-boot-starter-actuator'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
+	runtimeOnly 'org.postgresql:postgresql'
+
 }
 
 tasks.named('test') {
