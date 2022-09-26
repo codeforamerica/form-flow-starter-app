@@ -11,10 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("formflow.library")
 public class AppApplication {
 
-	public static void main(String[] args) {
-		System.out.println("\uD83D\uDE80");
-		System.out.println(System.getProperty("java.class.path").replace(':', '\n'));
-		System.out.println("\uD83D\uDE80");
+		public static void main(String[] args) {
 
 		SpringApplication.run(AppApplication.class, args);
 	}
