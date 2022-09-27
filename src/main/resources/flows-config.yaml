@@ -18,7 +18,7 @@ flow:
   housemates:
     nextScreens:
       - name: housemateInfo
-        condition: org.formflowstartertemplate.app.conditions.HasHousehold
+        condition: org.formflowstartertemplate.app.submission.conditions.HasHousehold
       - name: income
   housemateInfo:
     subflow: household
@@ -41,7 +41,7 @@ flow:
     nextScreens:
       - name: incomeAmounts
   incomeAmounts:
-    beforeSave: clearIncomeAmountsBeforeSaving
+    beforeSave: org.formflowstartertemplate.app.submission.actions.ClearIncomeAmountsBeforeSaving
     subflow: income
     nextScreens:
       - name: annualHouseholdIncome
