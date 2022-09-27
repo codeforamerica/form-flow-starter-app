@@ -1,5 +1,7 @@
+#form-flow:
+#  path: 'flows-config.yaml'
 form-flow:
-  path: 'flows-config.yaml'
+  inputs: 'org.formflowstartertemplate.app.inputs.'
 spring:
   thymeleaf:
     cache: false
