@@ -1,13 +1,12 @@
-#form-flow:
-#  path: 'flows-config.yaml'
 form-flow:
   inputs: 'org.formflowstartertemplate.app.inputs.'
+#  path: 'flows-config.yaml'
 spring:
   thymeleaf:
     cache: false
     template-resolver-order: 0
   datasource:
-    url: jdbc:postgresql://localhost:5432/formflow
+    url: jdbc:postgresql://localhost:5432/starter-app
 management:
   endpoints:
     web:
