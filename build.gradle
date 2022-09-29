@@ -21,6 +21,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.flywaydb:flyway-core'
 	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
 	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/resources")
 
@@ -32,6 +33,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.seleniumhq.selenium:selenium-java'
+	testImplementation 'io.percy:percy-java-selenium:1.1.0'
+	testImplementation 'org.awaitility:awaitility'
+	testImplementation 'io.github.bonigarcia:webdrivermanager:5.3.0'
 
 	runtimeOnly 'org.postgresql:postgresql'
 }

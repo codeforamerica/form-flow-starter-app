@@ -18,7 +18,7 @@
       </th:block>
       <th:block th:if="${noEntryToDelete == null}">
         <main
-            th:with="entryToDelete=${T(org.codeforamerica.formflowstarter.app.data.Submission).getSubflowEntryByUuid('household', param.uuid, submission)},
+            th:with="entryToDelete=${T(formflow.library.data.Submission).getSubflowEntryByUuid('household', param.uuid, submission)},
         name=${entryToDelete.householdMemberFirstName + ' ' + entryToDelete.householdMemberLastName}"
             id="content" role="main" class="form-card spacing-above-35">
           <div class="form-card__content">

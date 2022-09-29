@@ -1,4 +1,6 @@
 name: ubi
+conditionsPath: org.formflowstartertemplate.app.submission.conditions
+actionsPath: org.formflowstartertemplate.app.submission.actions
 flow:
   howThisWorks:
     nextScreens:

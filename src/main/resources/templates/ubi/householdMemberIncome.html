@@ -13,14 +13,14 @@
                     content=~{::householdMembers})">
       <th:block
           th:ref="householdMembers"
-          th:with="applicantWasSelected=${T(org.codeforamerica.formflowstarter.app.config.ConditionDefinitions).householdMemberAlreadyHasIncome(submission, 'applicant')}">
+          th:with="applicantWasSelected=${templateManager.runCondition('HouseholdMemberAlreadyHasIncome', submission, 'applicant')}">
         <th:block
             th:replace="'fragments/inputs/radio' :: radio(inputName='householdMember', value='applicant', label=#{general.me}, disabled=${applicantWasSelected})"/>
         <th:block th:if="${inputData.containsKey('household')}">
         <th:block th:each="hm, iter: ${inputData.household}"
                   th:with="
                     fullName=${hm.householdMemberFirstName + ' ' + hm.householdMemberLastName},
-                    householdMemberWasSelected=${T(org.codeforamerica.formflowstarter.app.config.ConditionDefinitions).householdMemberAlreadyHasIncome(submission, fullName)}">
+                    householdMemberWasSelected=${templateManager.runCondition('HouseholdMemberAlreadyHasIncome', submission, fullName)}">
           <th:block
               th:replace="'fragments/inputs/radio' :: radio(inputName='householdMember', value=${fullName}, label=${fullName}, disabled=${householdMemberWasSelected})"/>
         </th:block>
