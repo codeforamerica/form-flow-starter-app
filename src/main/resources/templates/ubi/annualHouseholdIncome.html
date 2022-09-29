@@ -12,7 +12,7 @@
             th:replace="'fragments/cardHeader' :: cardHeader(header=#{annual-household-income.header})"/>
         <div class="form-card__content">
           <div
-              th:with="allHouseholdMembersHaveIncome=${T(org.formflowstartertemplate.app.submission.conditions.AllHouseholdMembersHaveIncome).run(submission)}"
+              th:with="allHouseholdMembersHaveIncome=${templateManager.runCondition('AllHouseholdMembersHaveIncome',submission)}"
               class="boxed-content text--centered">
             <strong th:text="#{annual-household-income.box-header}"></strong>
             <ul class="subflow-list list--bulleted padding-left-25">
@@ -22,7 +22,7 @@
                               <span class="grid">
                                 <span class="grid__item width-one-third">
                                   <span
-                                      th:with="selectedSelf=${T(org.formflowstartertemplate.app.submission.conditions.incomeSelectedSelf).run(submission, personsIncome.uuid)}"
+                                      th:with="selectedSelf=${templateManager.runCondition('IncomeSelectedSelf', submission, personsIncome.uuid)}"
                                       th:text="${selectedSelf ? #messages.msg('general.you') : personsIncome.householdMember.split(' ')[0]}"></span>
                                 </span>
                                 <span

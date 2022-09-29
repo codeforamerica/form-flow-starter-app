@@ -12,9 +12,9 @@ import java.util.Map;
  */
 public class ClearIncomeAmountsBeforeSaving implements Action {
 
-    public void run(Submission submission, String uuid) {
+    public void run(Submission submission, String data) {
         //grab the current household members incometypes
-        var entryByUuid = Submission.getSubflowEntryByUuid("income", uuid, submission);
+        var entryByUuid = Submission.getSubflowEntryByUuid("income", data, submission);
         var incomeAmounts = entryByUuid.entrySet().stream()
                 .filter(e -> e.getKey().matches(".*Amount$"))
                 .map(Map.Entry::getKey)
