@@ -1,0 +1,14 @@
+spring:
+#  datasource:
+#    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:test-schema-init.sql'
+#    username: sa
+#    password: sa
+#    flyway:
+#      enable: false
+  thymeleaf:
+    prefix: classpath:/templates/
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  main:
+    allow-circular-references: true

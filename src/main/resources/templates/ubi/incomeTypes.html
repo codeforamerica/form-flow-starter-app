@@ -1,6 +1,6 @@
 <th:block
-    th:with="selectedSelf=${T(org.codeforamerica.formflowstarter.app.config.ConditionDefinitions).incomeSelectedSelf(submission, uuid)},
-             houseHoldMemberName=${T(org.codeforamerica.formflowstarter.app.data.Submission).getSubflowEntryByUuid('income', uuid, submission).householdMember}">
+    th:with="selectedSelf=${T(org.formflowstartertemplate.app.submission.conditions.incomeSelectedSelf).run(submission, uuid)},
+             houseHoldMemberName=${T(formflow.library.data.Submission).getSubflowEntryByUuid('income', uuid, submission).householdMember}">
   <th:block
       th:replace="fragments/screens/screenWithOneInput ::
   screenWithOneInput(
