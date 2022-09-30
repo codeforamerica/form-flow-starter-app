@@ -7,10 +7,6 @@ jobs:
     name: Run unit tests
     runs-on: ubuntu-latest
     steps:
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: build
       - uses: actions/checkout@v3
       - name: Set up ChromeDriver
         uses: nanasess/setup-chromedriver@v1.0.8
@@ -20,6 +16,8 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
           cache: 'gradle'
+      - name: Build Gradle
+        run: ./gradlew build
       - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
