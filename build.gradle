@@ -23,7 +23,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.flywaydb:flyway-core'
 	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
-	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/resources")
 
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.springframework.boot:spring-boot-starter-actuator'
