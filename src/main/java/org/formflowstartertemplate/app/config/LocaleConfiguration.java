@@ -33,21 +33,4 @@ public class LocaleConfiguration implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
 	}
-
-	@Bean
-	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		// setBasenames() will do three things:
-		// 1) It will override any previous setting of basenames. Only these names/paths exist now.
-		// 2) It will look for messages in sequential order and if something is found in a file, it stops looking there.
-		//    Order matters and if you want to provide overrides, make sure they are in the earlier
-		//    files (like 'messages', rather than 'messages-form-flow').
-		// 3) For i18n this will look for files with the basename + "_[lang]", like messages_en.properties,
-		//    automatically for you.
-		//
-		messageSource.setBasenames("messages", "messages-form-flow");
-		messageSource.setDefaultEncoding("UTF-8");
-
-		return messageSource;
-	}
 }
