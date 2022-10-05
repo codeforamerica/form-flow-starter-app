@@ -18,7 +18,7 @@ jobs:
           cache: 'gradle'
       - name: Build Gradle
         env:
-          USERNAME: ${{ github.actor }}
+          USERNAME: 'codeforamerica'
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew build
       - name: Cache Gradle packages
