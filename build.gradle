@@ -14,7 +14,18 @@ configurations {
 	}
 }
 
+def props = new Properties()
+file(".env").withInputStream { props.load(it) }
+
 repositories {
+	maven {
+		name "GitHubPackages"
+		url("https://maven.pkg.github.com/codeforamerica/form-flow")
+		credentials {
+			username props.getProperty("USERNAME")
+			password props.getProperty("TOKEN")
+		}
+	}
 	mavenCentral()
 	maven {
 		url = uri("https://maven.pkg.github.com/codeforamerica/form-flow")
@@ -31,7 +42,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	implementation 'org.flywaydb:flyway-core'
-	implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
+	implementation 'form-flow:form-flow-library:0.0-SNAPSHOT'
+	//implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
 
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.springframework.boot:spring-boot-starter-actuator'
