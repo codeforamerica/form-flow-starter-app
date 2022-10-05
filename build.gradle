@@ -36,14 +36,22 @@ repositories {
 	}
 }
 
+def profile = props.getProperty('ENVIRONMENT')
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	implementation 'org.flywaydb:flyway-core'
-	implementation 'form-flow:form-flow-library:0.0-SNAPSHOT'
-	//implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
+
+	if (profile == 'dev') {
+		System.out.println("Hello from local")
+		implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
+	} else {
+		System.out.println("Hello from GitHub")
+		implementation 'form-flow:form-flow-library:0.0-SNAPSHOT'
+	}
 
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.springframework.boot:spring-boot-starter-actuator'
