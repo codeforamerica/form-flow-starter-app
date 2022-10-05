@@ -15,7 +15,10 @@ configurations {
 }
 
 def props = new Properties()
-file(".env").withInputStream { props.load(it) }
+if (file(".env").exists()) {
+	file(".env").withInputStream { props.load(it) }
+}
+
 
 repositories {
 	maven {
