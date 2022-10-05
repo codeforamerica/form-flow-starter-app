@@ -17,7 +17,9 @@ jobs:
           java-version: '17'
           cache: 'gradle'
       - name: Build Gradle
-        run: ./gradlew build --args = ["USERNAME=codeforamerica", "TOKEN=${{ secrets.GITHUB_TOKEN }}"]
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew build
       - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
