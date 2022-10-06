@@ -35,15 +35,4 @@ public class StaticPageController {
   String getFaq() {
     return "faq";
   }
-
-  /**
-   * Renders a utility page to show all icons and their names.
-   *
-   * @return the static page template
-   */
-  @GetMapping("/icons")
-  String getIcons() {
-    return "/fragments/icons";
-  }
-
 }

@@ -1,0 +1,245 @@
+<template name="cfa:icons-list" value="&lt;th:block th:replace=&quot;fragments/icons :: icons-list&quot;&gt;&lt;/th:block&gt;" description="Insert a list of all icons from the form flow library" toReformat="false" toShortenFQNames="true">
+  <context>
+    <option name="HTML" value="true" />
+  </context>
+</template>
+<template name="cfa:accordion" value="&lt;th:block th:replace=&quot;'fragments/honeycrisp/accordion' :: accordion(&#10;  buttonLabel=$BUTTON_LABEL$,&#10;  content=~{::$CONTENT_REF$})&quot;&gt;&#10;    &lt;th:block th:ref=&quot;$CONTENT_REF$&quot;&gt;&#10;     $ACCORDION_CONTENT$&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A honeycrisp accordion with buttonLabel and custom content" toReformat="false" toShortenFQNames="true">
+<variable name="BUTTON_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CONTENT_REF" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="ACCORDION_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:cardHeader" value="&lt;th:block th:replace=&quot;'fragments/cardHeader' :: cardHeader(header=$HEADER$, subtext=$OPTIONAL_SUBTEXT$)&quot; /&gt;&#10;" description="Insert a card header, with named title and named optional subtext" toReformat="false" toShortenFQNames="true">
+<variable name="HEADER" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_SUBTEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:conditionMethod" value="public static Boolean $METHOD_NAME$(Submission submission) {&#10;  if (submission.getInputData().containsKey(&quot;$FIELD_NAME$&quot;)) {&#10;    // Change logic to suit your needs&#10;    return submission.getInputData().get(&quot;$FIELD_NAME$&quot;)$CURSOR$;&#10;  }&#10;  return false;&#10;}" description="Create a condition method that first check for db field existance then your conditional logic" toReformat="false" toShortenFQNames="true">
+<variable name="METHOD_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="FIELD_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CURSOR" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="JAVA_CODE" value="true" />
+</context>
+</template>
+<template name="cfa:continueButton" value="&lt;th:block th:replace=&quot;'fragments/continueButton' :: continue&quot; /&gt;&#10;" description="A continue link that looks like a button" toReformat="false" toShortenFQNames="true">
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:demoBanner" value="&lt;th:block th:replace=&quot;fragments/demoBanner :: demoBanner&quot; /&gt;" description="Insert the global demo banner" toReformat="false" toShortenFQNames="true">
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:footer" value="&lt;th:block th:replace=&quot;fragments/footer :: footer&quot; /&gt;" description="Insert global footer" toReformat="false" toShortenFQNames="true">
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:form" value="&lt;th:block th:replace=&quot;'fragments/form' :: form(action=${formAction}, content=~{::$FORM_CONTENT$})&quot;&gt;&#10;  &lt;th:block th:ref=&quot;$FORM_CONTENT$&quot;&gt;&#10;    &lt;div class=&quot;form-card__content&quot;&gt;&#10;      $CARD_CONTENT$&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;form-card__footer&quot;&gt;&#10;      $CARD_FOOTER$&#10;    &lt;/div&gt;&#10;  &lt;/th:block&gt;&#10; &lt;/th:block&gt;" description="A form with an action and custom content" toReformat="false" toShortenFQNames="true">
+<variable name="FORM_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CARD_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CARD_FOOTER" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:formlessScreen" value="&lt;!DOCTYPE html&gt;&#10;&lt;html th:lang=&quot;${#locale.language}&quot;&gt;&#10;&lt;head th:replace=&quot;fragments/head :: head(title=#{$SCREEN_TITLE$})&quot;&gt;&lt;/head&gt;&#10;&lt;body&gt;&#10;&lt;div class=&quot;page-wrapper&quot;&gt;&#10;  &lt;div th:replace=&quot;fragments/toolbar :: toolbar&quot;&gt;&lt;/div&gt;&#10;  &lt;section class=&quot;slab&quot;&gt;&#10;    &lt;div class=&quot;grid&quot;&gt;&#10;      &lt;div th:replace=&quot;fragments/goBack :: goBackLink&quot;&gt;&lt;/div&gt;&#10;      &lt;main id=&quot;content&quot; role=&quot;main&quot; class=&quot;form-card spacing-above-35&quot;&gt;&#10;        &lt;th:block&#10;            th:replace=&quot;'fragments/cardHeader' :: cardHeader(header=#{$SCREEN_HEADER$}, subtext=#{$OPTIONAL_SUB_HEADER$})&quot;/&gt;&#10;        &lt;div class=&quot;form-card__content&quot;&gt;&#10;&#10;        &lt;/div&gt;&#10;        &lt;div class=&quot;form-card__footer&quot;&gt;&#10;              &#10;        &lt;/div&gt;&#10;      &lt;/main&gt;&#10;    &lt;/div&gt;&#10;  &lt;/section&gt;&#10;&lt;/div&gt;&#10;&lt;th:block th:replace=&quot;fragments/footer :: footer&quot;/&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;" description="A card screen page with no form" toReformat="false" toShortenFQNames="true">
+<variable name="SCREEN_TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="SCREEN_HEADER" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_SUB_HEADER" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:fragment" value="&lt;!DOCTYPE html&gt;&#10;&lt;html th:lang=&quot;${#locale.language}&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;&#10;&lt;body&gt;&#10; $CONTENT$&#10;&lt;/body&gt;&#10;&lt;/html&gt;" description="Base Thymeleaf fragment" toReformat="false" toShortenFQNames="true">
+<variable name="CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:head" value="&lt;head th:replace=&quot;fragments/head :: head(title='$TITLE$')&quot;&gt;&lt;/head&gt;" description="Insert global head, define title" toReformat="false" toShortenFQNames="true">
+<variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:html" value="&lt;!DOCTYPE html&gt;&#10;&lt;html th:lang=&quot;${#locale.language}&quot;&gt;&#10;&lt;head th:replace=&quot;fragments/head :: head(title='$TITLE$')&quot;&gt;&lt;/head&gt;&#10;&lt;body&gt;&#10;$CONTENT$&#10;&lt;/body&gt;&#10;&lt;/html&gt;&#10;" description="Create a full HTML document" toReformat="false" toShortenFQNames="true">
+<variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:icon" value="&lt;th:block th:replace=&quot;'fragments/icons' :: $ICON$&quot;&gt;&lt;/th:block&gt;" description="Insert an icon" toReformat="false" toShortenFQNames="true">
+<variable name="ICON" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputDate" value="&lt;th:block th:replace=&quot;'fragments/inputs/date' ::&#10;  date(inputName='$INPUT_NAME$',&#10;  label=#{$LABEL$})&quot;/&gt;" description="A Date input with three separate fields for month [mm], day [dd], year [yyyy]" toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputFieldsetWithCheckbox" value="&lt;th:block th:replace=&quot;'fragments/inputs/checkboxFieldset' ::&#10;  checkboxFieldset(inputName='$INPUT_NAME$',&#10;  label=#{$LABEL$},&#10;  helpText=#{$FIELDSET_HELP_TEXT$},&#10;  content=~{::$REF_CONTENT$})&quot;&gt;&#10;    &lt;th:block th:ref=&quot;$REF_CONTENT$&quot;&gt;&#10;      &lt;!-- Copy the below input if you want to add more --&gt;&#10;      &lt;th:block&#10;        th:replace=&quot;'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='$INPUT_NAME$',value='$VALUE$', label=#{$CHECKBOX_LABEL$})&quot;/&gt;&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A fieldset with label, name, optional help text and a checkbox with label, name, value, optional help text and optional icon" toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="FIELDSET_HELP_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="REF_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CHECKBOX_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputFieldsetWithRadio" value="&lt;th:block th:replace=&quot;'fragments/inputs/radioFieldset' ::&#10;              radioFieldset(inputName='$INPUT_NAME$',&#10;              label=#{$LABEL$},&#10;              helpText=#{$OPTIONAL_HELP_TEXT$},&#10;              content=~{::$CONTENTREF$})&quot;&gt;&#10;              &lt;th:block th:ref=&quot;$CONTENTREF$&quot;&gt;&#10;                &lt;!-- Copy the below input if you want to add more --&gt;&#10;                &lt;th:block&#10;                    th:replace=&quot;'fragments/inputs/radio' :: radio(inputName='$INPUT_NAME$',value='$VALUE$', label=#{$VALUE_LABEL$})&quot;/&gt;&#10;              &lt;/th:block&gt;&#10;            &lt;/th:block&gt;" description="A fieldset with legend and radio input(s) with optional help text." toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_HELP_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CONTENTREF" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="VALUE_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputMoney" value="&lt;th:block&#10;  th:replace=&quot;'fragments/inputs/money' :: money(inputName='$INPUT_NAME$',&#10;  label=#{$LABEL$},&#10;  helpText=#{$OPTIONAL_HELP_TEXT$},&#10;  placeholder=#{$OPTIONAL_PLACEHOLDER$})&quot;/&gt;" description="Money input with optional help text and optional placeholder" toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_HELP_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_PLACEHOLDER" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputNumber" value="&lt;th:block th:replace=&quot;'fragments/inputs/number' ::&#10;  number(inputName='$INPUT_NAME$',&#10;  label=#{$LABEL$},&#10;  helpText=#{$OPTIONAL_HELP_TEXT$},&#10;  placeholder=#{$OPTIONAL_PLACEHOLDER$})&quot; /&gt;" description="A number input with label, name, optional help text, and optional placeholder" toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_HELP_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_PLACEHOLDER" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputPhone" value="&lt;th:block&#10;  th:replace=&quot;'fragments/inputs/phone' :: phone(&#10;  inputName='$INPUT_NAME$',&#10;  label=#{$LABEL$},&#10;  helpText=#{$OPTIONAL_HELP_TEXT$},&#10;  placeholder=#{$OPTIONAL_PLACEHOLDER$})&quot;/&gt;" description="Phone input with optional help text and optional placeholder" toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_HELP_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_PLACEHOLDER" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputSelectWithOption" value="&lt;th:block&#10;  th:replace=&quot;'fragments/inputs/select' :: select(label=#{$LABEL$}, inputName='$INPUT_NAME$', helpText=#{$OPTIONAL_HELP_TEXT$}, content=~{::$REF_CONTENT$})&quot;&gt;&#10;  &lt;th:block th:ref=&quot;$REF_CONTENT$&quot;&gt;&#10;    &lt;!-- Copy the below option if you want more options --&gt;&#10;    &lt;!-- If you want a placeholder option you can use the cfa:selectOptionPlaceholder live template --&gt;&#10;    &lt;th:block th:replace=&quot;'fragments/inputs/selectOption' :: selectOption(value='$VALUE$', optionText=#{$OPTION_TEXT$})&quot;/&gt;&#10;  &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="Select input with optional help text" toReformat="false" toShortenFQNames="true">
+<variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_HELP_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="REF_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTION_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputSSN" value="&lt;th:block&#10;  th:replace=&quot;'fragments/inputs/ssn' :: ssn(&#10;  inputName='$INPUT_NAME$',&#10;  label=#{$LABEL$},&#10;  helpText=#{$OPTIONAL_HELP_TEXT$},&#10;  placeholder=#{$OPTIONAL_PLACEHOLDER$})&quot;/&gt;" description="SSN input with optional help text and optional placeholder" toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_HELP_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTIONAL_PLACEHOLDER" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputSubmitButton" value="&lt;th:block th:replace=&quot;fragments/inputs/submitButton :: submitButton(&#10;  text=#{$TEXT$})&quot; /&gt;" description="A form submit button with text" toReformat="false" toShortenFQNames="true">
+<variable name="TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputText" value="&lt;th:block th:replace=&quot;'fragments/inputs/text' ::&#10;  text(inputName='$INPUT_NAME$',&#10;  label=#{$LABEL_KEY$},&#10;  helpText=#{$HELP_TEXT_KEY$},&#10;  placeholder=#{$PLACEHOLDER_KEY$})&quot; /&gt;" description="A text input with label, name, optional help text and optional placeholder" toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="LABEL_KEY" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="HELP_TEXT_KEY" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="PLACEHOLDER_KEY" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputTextArea" value="&lt;th:block th:replace=&quot;'fragments/inputs/textArea' ::&#10;  textArea(inputName='$INPUT_NAME$',&#10;  label=#{$LABEL$},&#10;  helpText=#{$HELPTEXT$},&#10;  rows=$ROWS$,&#10;  maxLength=$MAXLENGTH$)&quot; /&gt;" description="A textarea input with label, name, optional help text, optional rows [default: 6] and optional maxLength [default: 500]" toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="HELPTEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="ROWS" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="MAXLENGTH" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:inputYesOrNo" value="&lt;th:block th:replace=&quot;fragments/inputs/yesOrNo :: yesOrNo(&#10;  inputName='$INPUT_NAME$',&#10;  helpText=#{$HELP_TEXT$})&quot;/&gt;" description="An input that is a yes or no question with optional help text" toReformat="false" toShortenFQNames="true">
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="HELP_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:screen" value="&lt;!DOCTYPE html&gt;&#10;&lt;html th:lang=&quot;${#locale.language}&quot;&gt;&#10;&lt;head th:replace=&quot;fragments/head :: head(title=#{$TITLE$})&quot;&gt;&lt;/head&gt;&#10;&lt;body&gt;&#10;&lt;div class=&quot;page-wrapper&quot;&gt;&#10;  &lt;div th:replace=&quot;fragments/toolbar :: toolbar&quot;&gt;&lt;/div&gt;&#10;  &lt;section class=&quot;slab&quot;&gt;&#10;    &lt;div class=&quot;grid&quot;&gt;&#10;      &lt;div th:replace=&quot;fragments/goBack :: goBackLink&quot;&gt;&lt;/div&gt;&#10;      &lt;main id=&quot;content&quot; role=&quot;main&quot; class=&quot;form-card spacing-above-35&quot;&gt;&#10;        &lt;th:block&#10;            th:replace=&quot;'fragments/cardHeader' :: cardHeader(header=#{$CARD_HEADER$}, subtext=#{$CARD_SUBTEXT$})&quot;/&gt;&#10;          &lt;th:block th:replace=&quot;'fragments/form' :: form(action=${formAction}, content=~{::$FORM_CONTENT$})&quot;&gt;&#10;            &lt;th:block th:ref=&quot;$FORM_CONTENT$&quot;&gt;&#10;              &lt;div class=&quot;form-card__content&quot;&gt;&#10;                $CARD_CONTENT$&#10;              &lt;/div&gt;&#10;            &lt;div class=&quot;form-card__footer&quot;&gt;&#10;              $CARD_FOOTER$&#10;            &lt;/div&gt;&#10;          &lt;/th:block&gt;&#10;        &lt;/th:block&gt;&#10;      &lt;/main&gt;&#10;    &lt;/div&gt;&#10;  &lt;/section&gt;&#10;&lt;/div&gt;&#10;&lt;th:block th:replace=&quot;fragments/footer :: footer&quot; /&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;&#10;" description="Insert an entire screen template" toReformat="false" toShortenFQNames="true">
+<variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CARD_HEADER" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CARD_SUBTEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="FORM_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CARD_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CARD_FOOTER" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:screenWithOneInput" value="&lt;th:block&#10;  th:replace=&quot;fragments/screens/screenWithOneInput ::&#10;  screenWithOneInput(&#10;    title=#{$TITLE$},&#10;    header=#{$HEADER$},&#10;    subtext=#{$SUBTEXT$},&#10;    formAction=${formAction},&#10;    inputContent=~{::inputContent})&quot;&gt;&#10;  &lt;th:block th:ref=&quot;inputContent&quot;&gt;&#10;    &lt;!-- Be sure to have `ariaLabel='header'` to label the input with the header --&gt;&#10;    &lt;th:block th:replace=&quot;'fragments/inputs/text' ::&#10;      text(inputName='$INPUT_NAME$',&#10;      ariaLabel='header')&quot;/&gt;&#10;  &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="An entire screen that has one input and is labelled by the page header." toReformat="false" toShortenFQNames="true">
+<variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="HEADER" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="SUBTEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:selectOptionPlaceholder" value="&lt;th:block&#10;  th:replace=&quot;'fragments/inputs/selectOptionPlaceholder' :: selectOptionPlaceholder(optionText=#{$PLACEHOLDER_TEXT$})&quot;/&gt;" description="A placeholder select dropdown option that is disabled and selected by default" toReformat="false" toShortenFQNames="true">
+<variable name="PLACEHOLDER_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:staticPage" value="&lt;!DOCTYPE html&gt;&#10;&lt;html th:lang=&quot;${#locale.language}&quot;&gt;&#10;&lt;head th:replace=&quot;fragments/head :: head(title='$TITLE$')&quot;&gt;&lt;/head&gt;&#10;&lt;body&gt;&#10;&lt;div class=&quot;page-wrapper&quot;&gt;&#10;  &lt;th:block th:replace=&quot;fragments/toolbar :: toolbar&quot; /&gt;&#10;  &lt;th:block th:replace=&quot;fragments/demoBanner :: demoBanner&quot; /&gt;&#10;  &lt;section class=&quot;slab&quot;&gt;&#10;    &lt;div class=&quot;grid&quot;&gt;&#10;      &lt;div class=&quot;grid__item&quot;&gt;&#10;        &lt;h1 class=&quot;spacing-below-35&quot;&gt;$HEADER$&lt;/h1&gt;&#10;      &lt;/div&gt;&#10;    &lt;/div&gt;&#10;  &lt;/section&gt;&#10;  &lt;main id=&quot;content&quot; role=&quot;main&quot; class=&quot;slab slab--white&quot;&gt;&#10;    $CONTENT$&#10;  &lt;/main&gt;&#10;&lt;/div&gt;&#10;&lt;th:block th:replace=&quot;fragments/footer :: footer&quot; /&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;&#10;" description="A static page with customizable content" toReformat="false" toShortenFQNames="true">
+<variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="HEADER" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:staticPageWithTOC" value="&lt;!DOCTYPE html&gt;&#10;&lt;html th:lang=&quot;${#locale.language}&quot;&gt;&#10;&lt;head th:replace=&quot;fragments/head :: head(title='$TITLE$')&quot;&gt;&lt;/head&gt;&#10;&lt;body&gt;&#10;&lt;div class=&quot;page-wrapper&quot;&gt;&#10;  &lt;th:block th:replace=&quot;fragments/toolbar :: toolbar&quot; /&gt;&#10;  &lt;th:block th:replace=&quot;fragments/demoBanner :: demoBanner&quot; /&gt;&#10;  &lt;section class=&quot;slab&quot;&gt;&#10;    &lt;div class=&quot;grid&quot;&gt;&#10;      &lt;div class=&quot;grid__item&quot;&gt;&#10;        &lt;h1 class=&quot;spacing-below-35&quot;&gt;$HEADER$&lt;/h1&gt;&#10;      &lt;/div&gt;&#10;    &lt;/div&gt;&#10;  &lt;/section&gt;&#10;  &lt;main id=&quot;content&quot; role=&quot;main&quot; class=&quot;slab slab--white&quot;&gt;&#10;    &lt;div class=&quot;grid&quot;&gt;&#10;      &lt;nav class=&quot;grid__item width-one-third&quot;&gt;&#10;        &lt;h2 class=&quot;h3&quot;&gt;Table of Contents&lt;/h2&gt;&#10;        &lt;div class=&quot;spacing-below-35&quot;&gt;&#10;          &lt;a href=&quot;#anchor1&quot;&gt;Anchor 1&lt;/a&gt;&#10;        &lt;/div&gt;&#10;        &lt;div class=&quot;spacing-below-35&quot;&gt;&#10;          &lt;a href=&quot;#anchor2&quot;&gt;Anchor 2&lt;/a&gt;&#10;        &lt;/div&gt;&#10;      &lt;/nav&gt;&#10;      &lt;div class=&quot;grid__item shift-one-twelfth width-seven-twelfths&quot;&gt;&#10;        &lt;div class=&quot;grid&quot;&gt;&#10;          &lt;h1 class=&quot;h2 spacing-below-35&quot;&gt;Frequently Asked Questions (FAQ)&lt;/h1&gt;&#10;          &lt;div class=&quot;grid__item&quot;&gt;&#10;            &lt;div class=&quot;grid__item spacing-below-35&quot;&gt;&#10;              &lt;h2 id=&quot;anchor1&quot; class=&quot;h3&quot;&gt;Anchor1&lt;/h2&gt;&#10;              &lt;p&gt;Content 1&lt;/p&gt;&#10;              &lt;h2 id=&quot;anchor2&quot; class=&quot;h3 spacing-above-60&quot;&gt;Anchor 2&lt;/h2&gt;&#10;              &lt;p&gt;Content 2&lt;/p&gt;&#10;            &lt;/div&gt;&#10;          &lt;/div&gt;&#10;        &lt;/div&gt;&#10;      &lt;/div&gt;&#10;    &lt;/div&gt;&#10;  &lt;/main&gt;&#10;&lt;/div&gt;&#10;&lt;th:block th:replace=&quot;fragments/footer :: footer&quot; /&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;&#10;" description="A static page with a table of contents for navigation" toReformat="false" toShortenFQNames="true">
+<variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="HEADER" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:toolbar" value="&lt;th:block th:replace=&quot;fragments/toolbar :: toolbar&quot; /&gt;" description="Insert the global toolbar" toReformat="false" toShortenFQNames="true">
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:withCondition" value="th:with=&quot;$VARIABLE$=${T(org.codeforamerica.formflowstarter.app.config.ConditionDefinitions).$METHOD$}&quot;" description="Insert a th:with so that you can use a condition within a template" toReformat="false" toShortenFQNames="true">
+<variable name="VARIABLE" expression="" defaultValue="showCondition" alwaysStopAt="true" />
+<variable name="METHOD" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>

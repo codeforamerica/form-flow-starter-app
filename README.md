@@ -171,8 +171,11 @@ we pass and when they are available.
 
 #### Icon reference
 
-There's `/icons` endpoint to view all available [icon fragments](src/main/resources/templates/fragments/icons.html)
+If you need to see a reference of all icons from the form flow library, you can paste this fragment import into your template to quickly see a preview and names of icons:
 
+```
+<th:block th:replace="fragments/icons :: icons-list"></th:block>
+```
 ## Defining Inputs ##
 
 Inputs are defined in two places - the template in which they are rendered, and in a separate class for validation.
