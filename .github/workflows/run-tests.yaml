@@ -2,9 +2,9 @@ name: Run tests
 
 on: [ push, pull_request ]
 
-#env:
-#  gpr.user: ${{ secrets.GPR_USER }}
-#  gpr.key: ${{ secrets.GPR_KEY }}
+env:
+  user: ${{ secrets.GPR_USER }}
+  key: ${{ secrets.GPR_KEY }}
 #
 #gpr:
 #  user: ${{ secrets.GPR_USER }}

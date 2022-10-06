@@ -29,8 +29,10 @@ repositories {
 			password = project.findProperty("gpr.key") ?: props.getProperty("TOKEN")
 //			username = System.getenv("gpr.user") ?: props.getProperty("GPR_USER")
 //			password = System.getenv("gpr.key") ?: props.getProperty("GPR_KEY")
-			println("Username is " + project.findProperty("gpr.user"))
-			println("Username is " + System.getenv("gpr.user"))
+			println("Username with project is " + project.findProperty("user"))
+			println("Username with System.get is " + System.getenv("user"))
+			println("Key with project is " + project.findProperty("key"))
+			println("Key with System.get is " + System.getenv("key"))
 		}
 	}
 	mavenCentral()
