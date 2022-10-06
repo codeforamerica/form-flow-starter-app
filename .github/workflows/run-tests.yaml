@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: test env vars
-        run: echo "The gpr.user is ${{secrets.GPR_USER }}"
+        run: echo "The gpr.user is ${{secrets.GPR_USER}}"
       - name: Set up ChromeDriver
         uses: nanasess/setup-chromedriver@v1.0.8
       - name: Set up JDK
