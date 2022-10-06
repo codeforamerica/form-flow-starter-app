@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: test env vars
-        run: echo "The gpr.user is ${{secrets.GPR_USER}}"
+        run: echo "The gpr.user is ${{secrets.TEST_TOKEN.user}}"
       - name: Set up ChromeDriver
         uses: nanasess/setup-chromedriver@v1.0.8
       - name: Set up JDK
@@ -47,7 +47,7 @@ jobs:
         with:
           status: ${{ job.status }}
         env:
-          GPR_USER: ${{ secrets.GPR_USER }}
+          gpr: ${{ secrets.TEST_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Cleanup Gradle Cache
         run: |
