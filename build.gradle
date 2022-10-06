@@ -30,7 +30,7 @@ repositories {
 //			username = System.getenv("gpr.user") ?: props.getProperty("GPR_USER")
 //			password = System.getenv("gpr.key") ?: props.getProperty("GPR_KEY")
 
-			println("Username is " + System.getenv("gpr.user"))
+			println("Username is " + System.getenv("gpr.user "))
 		}
 	}
 	mavenCentral()
