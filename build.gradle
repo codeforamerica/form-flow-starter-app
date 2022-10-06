@@ -55,7 +55,6 @@ dependencies {
 		implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
 	} else {
 		System.out.println("Hello from GitHub")
-		System.out.println("Username is: " + project.findProperty("gpr.user"))
 		implementation 'form-flow:form-flow-library:0.0-SNAPSHOT'
 	}
 

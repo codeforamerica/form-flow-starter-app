@@ -47,7 +47,6 @@ jobs:
         with:
           status: ${{ job.status }}
         env:
-          gpr: ${{ secrets.TEST_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Cleanup Gradle Cache
         run: |
