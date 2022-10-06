@@ -2,9 +2,13 @@ name: Run tests
 
 on: [ push, pull_request ]
 
-env:
-  gpr.user: ${{ secrets.GPR_USER }}
-  gpr.key: ${{ secrets.GPR_KEY }}
+#env:
+#  gpr.user: ${{ secrets.GPR_USER }}
+#  gpr.key: ${{ secrets.GPR_KEY }}
+#
+#gpr:
+#  user: ${{ secrets.GPR_USER }}
+#  key: $${{ secrets.GPR_KEY }}
 
 jobs:
   test:
@@ -13,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: test env vars
-        run: echo "The gpr.user is ${{env.gpr.user}}"
+        run: echo "The gpr.user is ${{secrets.GYR_USER}}"
       - name: Set up ChromeDriver
         uses: nanasess/setup-chromedriver@v1.0.8
       - name: Set up JDK
