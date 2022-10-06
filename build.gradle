@@ -25,8 +25,8 @@ repositories {
 		name "GitHubPackages"
 		url("https://maven.pkg.github.com/codeforamerica/form-flow")
 		credentials {
-			username = project.findProperty("GITHUB_ACTOR") ?: props.getProperty("USERNAME")
-			password = project.findProperty("GITHUB_TOKEN") ?: props.getProperty("TOKEN")
+			username = props.getProperty("GITHUB_ACTOR") ?: props.getProperty("USERNAME")
+			password = props.getProperty("GITHUB_TOKEN") ?: props.getProperty("TOKEN")
 //			username = System.getenv("gpr.user") ?: props.getProperty("GPR_USER")
 //			password = System.getenv("gpr.key") ?: props.getProperty("GPR_KEY")
 
