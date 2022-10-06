@@ -2,6 +2,10 @@ name: Run tests
 
 on: [ push, pull_request ]
 
+env:
+  gpr.user: ${{ secrets.GPR_USER }}
+  gpr.key: ${{ secrets.GPR_KEY }}
+
 jobs:
   test:
     name: Run unit tests
@@ -17,9 +21,6 @@ jobs:
           java-version: '17'
           cache: 'gradle'
       - name: Build Gradle
-        env:
-          gpr.user: ${{ secrets.GPR_USER }}
-          gpr.key: ${{ secrets.GPR_KEY }}
         run: ./gradlew build
       - name: Cache Gradle packages
         uses: actions/cache@v3
