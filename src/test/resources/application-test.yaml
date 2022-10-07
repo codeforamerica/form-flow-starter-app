@@ -1,10 +1,10 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:test-schema-init.sql'
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;
     username: sa
     password: sa
     flyway:
-      enable: false
+      enable: true
   thymeleaf:
     prefix: classpath:/templates/
   jpa:

@@ -29,7 +29,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-//DocumentRepositoryTestConfig.class
 @Import({WebDriverConfiguration.class})
 @ActiveProfiles("test")
 public abstract class AbstractBasePageTest {
