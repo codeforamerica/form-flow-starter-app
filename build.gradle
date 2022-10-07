@@ -27,8 +27,6 @@ repositories {
 		credentials {
 			username = System.getenv("user") ?: props.getProperty("USERNAME")
 			password = System.getenv("key") ?: props.getProperty("TOKEN")
-			println("Username with System.get is " + System.getenv("user"))
-			println("Key with System.get is " + System.getenv("key"))
 		}
 	}
 	mavenCentral()
