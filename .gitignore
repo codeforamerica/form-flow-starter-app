@@ -1,3 +1,4 @@
+.env
 HELP.md
 .gradle
 build/
@@ -35,3 +36,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Mac OS ###
+.DS_Store
