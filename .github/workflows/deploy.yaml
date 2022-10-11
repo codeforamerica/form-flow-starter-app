@@ -18,14 +18,16 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.inputs.branch }}
-      - run: git fetch --prune --unshallow
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2.3.1
+          fetch-depth: 0
+      - uses: webfactory/ssh-agent@v0.5.4
         with:
           key: ${{ secrets.APTIBLE_SSH_PRIVATE_KEY }}
           known_hosts: ${{ secrets.APTIBLE_KNOWN_HOSTS }}
       - name: Push to Aptible remote branch and deploy
-        run: git push --force git@beta.aptible.com:form-flow-staging/demo.git ${GITHUB_SHA}:master
+        run: |
+          ssh-keyscan beta.aptible.com >> ~/.ssh/known_hosts
+          git remote add aptible git@beta.aptible.com:form-flow-staging/demo.git
+          git push --force git@beta.aptible.com:form-flow-staging/demo.git ${GITHUB_SHA}:master
       - name: Announce on Slack
         uses: ravsamhq/notify-slack-action@v2
         with:
