@@ -19,10 +19,11 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0
-      - uses: webfactory/ssh-agent@v0.5.4
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2.3.1
         with:
           key: ${{ secrets.APTIBLE_SSH_PRIVATE_KEY }}
-          known_hosts: ${{ secrets.APTIBLE_KNOWN_HOSTS }}
+          known-hosts: ${{ secrets.APTIBLE_KNOWN_HOSTS }}
       - name: Push to Aptible remote branch and deploy
         run: |
           ssh-keyscan beta.aptible.com >> ~/.ssh/known_hosts
