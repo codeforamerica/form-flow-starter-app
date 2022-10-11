@@ -9,6 +9,10 @@ on:
   workflow_dispatch:
     inputs: { }
 
+env:
+  user: ${{ secrets.GPR_USER }}
+  key: ${{ secrets.GPR_KEY }}
+
 jobs:
   deploy:
     name: Deploy to Aptible
