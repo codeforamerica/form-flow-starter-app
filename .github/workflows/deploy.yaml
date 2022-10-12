@@ -1,11 +1,11 @@
 name: Deploy to Aptible
 
 on:
-  workflow_run:
-    workflows: [ "Run tests" ]
-    branches: [ main ]
-    types:
-      - completed
+  push:
+    #    workflows: [ "Run tests" ]
+    branches: [ deploy-testing ]
+  #    types:
+  #      - completed
   workflow_dispatch:
     inputs: { }
 
@@ -16,7 +16,7 @@ env:
 jobs:
   deploy:
     name: Deploy to Aptible
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    #    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -32,7 +32,6 @@ jobs:
         run: |
           ssh-keyscan beta.aptible.com >> ~/.ssh/known_hosts
           git remote add aptible git@beta.aptible.com:form-flow-staging/demo.git
-          aptible config:set --app "demo" user=${{ secrets.GPR_KEY }}
           git push --force git@beta.aptible.com:form-flow-staging/demo.git ${GITHUB_SHA}:master
       - name: Announce on Slack
         uses: ravsamhq/notify-slack-action@v2
