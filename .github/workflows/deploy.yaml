@@ -2,10 +2,10 @@ name: Deploy to Aptible
 
 on:
   push:
-    #    workflows: [ "Run tests" ]
+#    workflows: [ "Run tests" ]
     branches: [ deploy-testing ]
-  #    types:
-  #      - completed
+#    types:
+#      - completed
   workflow_dispatch:
     inputs: { }
 
@@ -16,7 +16,7 @@ env:
 jobs:
   deploy:
     name: Deploy to Aptible
-    #    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
