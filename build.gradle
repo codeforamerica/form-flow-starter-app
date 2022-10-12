@@ -44,6 +44,7 @@ dependencies {
 	if (profile == 'dev') {
 		implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
 	} else {
+		println 'we are pulling the library from Github and the user is ' + System.getenv("user")
 		implementation 'form-flow:form-flow-library:0.0-SNAPSHOT'
 	}
 
