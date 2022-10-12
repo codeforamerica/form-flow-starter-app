@@ -5,6 +5,7 @@ spring:
   thymeleaf:
     cache: false
     template-resolver-order: 0
+    check-template-location: true
 # TODO: move caching 0 to a dev only context?
   web:
     resources:
