@@ -10,8 +10,8 @@ on:
     inputs: { }
 
 env:
-  user: ${{ secrets.GPR_USER }}
-  key: ${{ secrets.GPR_KEY }}
+  USERNAME: ${{ secrets.GPR_USER }}
+  TOKEN: ${{ secrets.GPR_KEY }}
 
 jobs:
   deploy:
