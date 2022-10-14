@@ -44,7 +44,7 @@ dependencies {
 	if (profile == 'dev') {
 		implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
 	} else {
-		implementation 'form-flow:form-flow-library:0.0-SNAPSHOT'
+		implementation 'form-flow:form-flow-library:0.0.1-SNAPSHOT'
 	}
 
 	compileOnly 'org.projectlombok:lombok'

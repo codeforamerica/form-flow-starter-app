@@ -13,7 +13,10 @@ spring:
       cache:
         period: 0
   datasource:
+    #url: jdbc:postgresql://host.docker.internal:5432/starter-app
     url: jdbc:postgresql://localhost:5432/starter-app
+    username: starter-app
+    password:
 management:
   endpoints:
     web:
