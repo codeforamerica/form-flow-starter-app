@@ -2,21 +2,21 @@ name: Deploy to Aptible
 
 on:
   push:
-    #    workflows: [ "Run tests" ]
-    branches: [ deploy-testing ]
-  #    types:
-  #      - completed
+#    workflows: [ "Run tests" ]
+    branches: [ main ]
+#    types:
+#      - completed
   workflow_dispatch:
     inputs: { }
 
 env:
-  user: ${{ secrets.GPR_USER }}
-  key: ${{ secrets.GPR_KEY }}
+  USERNAME: ${{ secrets.GPR_USER }}
+  TOKEN: ${{ secrets.GPR_KEY }}
 
 jobs:
   deploy:
     name: Deploy to Aptible
-    #    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
