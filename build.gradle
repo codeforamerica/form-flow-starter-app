@@ -25,8 +25,12 @@ repositories {
 		name "GitHubPackages"
 		url("https://maven.pkg.github.com/codeforamerica/form-flow")
 		credentials {
-			username = System.getenv("user") ?: props.getProperty("USERNAME")
-			password = System.getenv("key") ?: props.getProperty("TOKEN")
+			/** System.getenv is used in Github Actions because it has no .env file (we set those
+			vars in github actions using env: var: value in the workflow)
+			Local dev and Aptible's Docker container get these from props because they each have a
+		    .env file where these props are set **/
+			username = System.getenv("USERNAME") ?: props.getProperty("USERNAME")
+			password = System.getenv("TOKEN") ?: props.getProperty("TOKEN")
 		}
 	}
 	mavenCentral()
