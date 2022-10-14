@@ -3,7 +3,7 @@ name: Deploy to Aptible
 on:
   push:
 #    workflows: [ "Run tests" ]
-    branches: [ deploy-testing ]
+    branches: [ main ]
 #    types:
 #      - completed
   workflow_dispatch:
