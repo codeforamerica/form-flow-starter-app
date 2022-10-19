@@ -10,7 +10,7 @@ RUN set -a  && \
     if [ -z ${USERNAME+x} ]; then echo "1) username is unset" ; else echo "username IS set" ; fi && \
     ./gradlew assemble
 
-RUN cp build/libs/*SNAPSHOT.jar app.jar
+RUN pwd && cp /opt/form-flow-starter-app/build/libs/*SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "/opt/form-flow-starter-app/app.jar"]
