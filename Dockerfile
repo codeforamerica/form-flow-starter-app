@@ -6,11 +6,12 @@ WORKDIR /opt/form-flow-starter-app
 
 #ARG APTIBLE_ENV=/opt/form-flow-starter-app/.aptible.env
 RUN set -a  && \
-    . /opt/form-flow-starter-app/.aptible.env && \
+    . .aptible.env && \
     if [ -z ${USERNAME+x} ]; then echo "1) username is unset" ; else echo "username IS set" ; fi && \
     ./gradlew assemble
 
-RUN pwd && cp /opt/form-flow-starter-app/build/libs/*SNAPSHOT.jar app.jar
+RUN ls -latr build/libs
+RUN cp build/libs/*SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "/opt/form-flow-starter-app/app.jar"]
