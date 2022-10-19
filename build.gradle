@@ -1,70 +1,74 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.3'
-	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
 }
 
-group = 'org.form-flow-starter-template'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
-
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 def props = new Properties()
 if (file(".env").exists()) {
-	file(".env").withInputStream { props.load(it) }
+    file(".env").withInputStream { props.load(it) }
 }
 
-
 repositories {
-	maven {
-		name "GitHubPackages"
-		url("https://maven.pkg.github.com/codeforamerica/form-flow")
-		credentials {
-			username = System.getenv("user") ?: props.getProperty("USERNAME")
-			password = System.getenv("key") ?: props.getProperty("TOKEN")
-		}
-	}
-	mavenCentral()
+    maven {
+        name "GitHubPackages"
+        url("https://maven.pkg.github.com/codeforamerica/form-flow")
+        credentials {
+            /**
+             * We pull environment variables different based on which environment we're in:
+             * Local:           uses .env file to generate `props`
+             * Local Docker:    uses .env file to generate `props`
+             * GitHub Action:   uses environment variables (System.getenv) injected through the workflow
+             * Aptible Docker:  uses environment variables (System.getenv) injected from a `.aptible.env` file
+             **/
+            username = System.getenv("USERNAME") ?: props.getProperty("USERNAME")
+            password = System.getenv("TOKEN") ?: props.getProperty("TOKEN")
+        }
+    }
+    mavenCentral()
 }
 
 def profile = props.getProperty('ENVIRONMENT')
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-	implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-core'
 
-	if (profile == 'dev') {
-		implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
-	} else {
-		implementation 'form-flow:form-flow-library:0.0-SNAPSHOT'
-	}
+    if (profile == 'dev') {
+        implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
+        println "Using local library 🗼"
+    } else {
+        implementation 'form-flow:form-flow-library:0.0.1-SNAPSHOT'
+        println "Using 0.0.1-SNAPSHOT 💜"
+    }
 
-	compileOnly 'org.projectlombok:lombok'
-	compileOnly 'org.springframework.boot:spring-boot-starter-actuator'
+    compileOnly 'org.projectlombok:lombok'
 
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testImplementation 'org.seleniumhq.selenium:selenium-java'
-	testImplementation 'io.percy:percy-java-selenium:1.1.0'
-	testImplementation 'org.awaitility:awaitility'
-	testImplementation 'io.github.bonigarcia:webdrivermanager:5.3.0'
-	testImplementation 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.seleniumhq.selenium:selenium-java'
+    testImplementation 'io.percy:percy-java-selenium:1.1.0'
+    testImplementation 'org.awaitility:awaitility'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.3.0'
+    testImplementation 'com.h2database:h2'
 
-	runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'org.postgresql:postgresql'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
