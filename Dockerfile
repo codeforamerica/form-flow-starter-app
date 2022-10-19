@@ -5,8 +5,9 @@ COPY . /opt/form-flow-starter-app
 WORKDIR /opt/form-flow-starter-app
 
 #ARG APTIBLE_ENV=/opt/form-flow-starter-app/.aptible.env
-RUN set -a && if [ -e /opt/form-flow-starter-app/.aptible.env ] ; then . /opt/form-flow-starter-app/.aptible.env ; else echo ".aptible.env file not found :(" ; fi
-RUN if [ -z ${USERNAME+x} ]; then echo "username is unset" ; else echo "username IS set" ; fi
+RUN set -a  && . /opt/form-flow-starter-app/.aptible.env && if [ -z ${USERNAME+x} ]; then echo "1) username is unset" ; else echo "username IS set" ; fi
+
+RUN if [ -z ${USERNAME+x} ]; then echo "2) username is unset" ; else echo "username IS set" ; fi
 
 RUN ./gradlew assemble
 
