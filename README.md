@@ -476,6 +476,19 @@ jenv add /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home/
    - `$ createdb starter-app`
    - `$ createuser -s starter-app`
 
+### Authenticating the Library ###
+
+In order to authenticate the library for use with this starter app you must have a GitHub account and
+a GitHub Personal Access Token (PAT). You can register a personal acess token through your user settings panel
+in GitHub via `Profile --> Settings --> Developer Settings --> Personal Access Tokens --> Tokens`.
+Create a token that includes `read:packages`. Once you have done this create a `.env` file in the root
+directory of the starter and add your Username and PAT like below:
+
+```
+USERNAME=Your_GitHub_Username
+TOKEN=Your_GitHub_Personal_Access_Token
+```
+
 ### Setup IntelliJ for the project: ###
 
 - Enable annotation processing in `Preferences -> Build, Execution, Deployment -> Compiler -> Annotation Processor`
@@ -483,9 +496,9 @@ jenv add /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home/
 - Set the Project SDK to Java 17 in `File > Project Structure`
 - Run the application using the `FormflowstarterApplication` configuration
 
-### Test: ###
+### Using a local version of the Form-Flow Library (For Form-Flow Library Developers): ###
 
-To test the [form-flow](https://github.com/codeforamerica/form-flow) library locally:
+To use the [form-flow](https://github.com/codeforamerica/form-flow) library locally:
 1. Clone the form-flow repo in the same directory as the starter app. This line in [build.gradle](build.gradle) depends on it:
     ```
     implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
