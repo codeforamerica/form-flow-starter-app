@@ -6,6 +6,8 @@ WORKDIR /opt/form-flow-starter-app
 
 ARG APTIBLE_ENV=/app/.aptible.env
 RUN if [ -e $APTIBLE_ENV ] ; then set -a && . $APTIBLE_ENV ; fi
+RUN if [ -z ${USERNAME+x} ]; then echo "username is unset" ; else echo "username IS set" ; fi
+
 RUN ./gradlew assemble
 
 RUN cp build/libs/*SNAPSHOT.jar app.jar
