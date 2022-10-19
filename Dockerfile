@@ -5,7 +5,7 @@ COPY . /opt/form-flow-starter-app
 WORKDIR /opt/form-flow-starter-app
 
 ARG APTIBLE_ENV=/app/.aptible.env
-RUN if [test -f $APTIBLE_ENV] ; then set -a && . $APTIBLE_ENV ; fi
+RUN if [ test -f $APTIBLE_ENV ] ; then set -a && . $APTIBLE_ENV ; fi
 RUN ./gradlew assemble
 
 RUN cp build/libs/*SNAPSHOT.jar app.jar
