@@ -1,5 +1,5 @@
 <th:block
-  th:replace="fragments/screens/screenWithOneInput ::
+    th:replace="fragments/screens/screenWithOneInput ::
   screenWithOneInput(
     title=#{household-reported-annual-pre-tax-income.title},
     header=#{household-reported-annual-pre-tax-income.header},
@@ -9,7 +9,7 @@
   <th:block th:ref="inputContent">
     <!-- Be sure to have `ariaLabel='header'` to label the input with the header -->
     <th:block
-      th:replace="'fragments/inputs/money' :: money(inputName='reportedTotalAnnualHouseholdIncome',
+        th:replace="'fragments/inputs/money' :: money(inputName='reportedTotalAnnualHouseholdIncome',
        ariaLabel='header')"/>
   </th:block>
 </th:block>

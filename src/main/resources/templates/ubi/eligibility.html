@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
 <head th:replace="fragments/head :: head(title='Eligibility')"></head>
-<body >
+<body>
 <div class="page-wrapper">
   <div th:replace="fragments/toolbar :: toolbar"></div>
   <section class="slab">
@@ -9,9 +9,10 @@
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
         <div class="text--centered">
-          <th:block th:replace="'fragments/icons' :: household" />
+          <th:block th:replace="'fragments/icons' :: household"/>
           <p class="text--grey-dark" th:text="#{eligibility.step}"></p>
-          <th:block th:replace="'fragments/cardHeader' :: cardHeader(header=#{eligibility.eligibility})" />
+          <th:block
+              th:replace="'fragments/cardHeader' :: cardHeader(header=#{eligibility.eligibility})"/>
         </div>
         <div class="boxed-content">
           <h2 class="text--centered" th:text="#{eligibility.we-will}"></h2>

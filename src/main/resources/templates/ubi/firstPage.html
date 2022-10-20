@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
 <head th:replace="fragments/head :: head(title='First Page')"></head>
-<body >
+<body>
 <div class="page-wrapper">
   <div th:replace="fragments/toolbar :: toolbar"></div>
   <section class="slab">
@@ -9,11 +9,15 @@
       <main id="content" role="main" class="form-card spacing-above-35">
         <th:block
             th:replace="'fragments/cardHeader' :: cardHeader(header=#{first-page.header}, subtext=#{first-page.subheader})"/>
-        <th:block th:replace="'fragments/form' :: form(action=${'/' + flow + '/' + screen}, content=~{::formContent})">
-          <th:block th:ref="formContent" th:with="showCondition=${templateManager.runCondition('ApplicantIsFemale', submission)}">
+        <th:block
+            th:replace="'fragments/form' :: form(action=${'/' + flow + '/' + screen}, content=~{::formContent})">
+          <th:block th:ref="formContent"
+                    th:with="showCondition=${templateManager.runCondition('ApplicantIsFemale', submission)}">
             <div class="form-card__content">
-              <p th:if="${showCondition}">This is a paragraph text that showing on a <code>true</code> condition. 🟢</p>
-              <p th:if="${!showCondition}">This is a paragraph text that showing on a <code>false</code> condition. 🔴</p>
+              <p th:if="${showCondition}">This is a paragraph text that showing on a
+                <code>true</code> condition. 🟢</p>
+              <p th:if="${!showCondition}">This is a paragraph text that showing on a
+                <code>false</code> condition. 🔴</p>
               <th:block
                   th:replace="'fragments/inputs/text' ::
                             text(inputName='firstName',
@@ -92,7 +96,7 @@
 
             </div>
             <div class="form-card__footer">
-              <th:block th:replace="fragments/inputs/submitButton :: submitButton(text='Submit')" />
+              <th:block th:replace="fragments/inputs/submitButton :: submitButton(text='Submit')"/>
             </div>
           </th:block>
         </th:block>
