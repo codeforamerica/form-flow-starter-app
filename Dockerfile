@@ -12,4 +12,4 @@ RUN set -a  && \
     
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/opt/form-flow-starter-app/app.jar"]
+ENTRYPOINT ["java", "-jar", "/opt/form-flow-starter-app/app.jar", "--spring.profiles.active=demo"]
