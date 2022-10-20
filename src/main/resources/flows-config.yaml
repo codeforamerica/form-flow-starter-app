@@ -2,9 +2,6 @@ name: ubi
 conditionsPath: org.formflowstartertemplate.app.submission.conditions
 actionsPath: org.formflowstartertemplate.app.submission.actions
 flow:
-  uploadDocuments:
-    nextScreens:
-      - name: howThisWorks
   howThisWorks:
     nextScreens:
       - name: uploadDocuments
@@ -75,14 +72,8 @@ subflows:
     reviewScreen: annualHouseholdIncome
     deleteConfirmationScreen: incomeDeleteConfirmation
 ---
-name: flow2
+name: docUpload
 flow:
-  anotherFirstPage:
-    nextScreens:
-      - name: anotherSecondPage
-  anotherSecondPage:
-    nextScreens:
-      - name: cardPage
-  cardPage:
+  uploadDocuments:
     nextScreens: null
 
