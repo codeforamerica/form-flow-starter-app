@@ -2,9 +2,12 @@ name: ubi
 conditionsPath: org.formflowstartertemplate.app.submission.conditions
 actionsPath: org.formflowstartertemplate.app.submission.actions
 flow:
+  uploadDocuments:
+    nextScreens:
+      - name: howThisWorks
   howThisWorks:
     nextScreens:
-      - name: languagePreference
+      - name: uploadDocuments
   languagePreference:
     nextScreens:
       - name: gettingToKnowYou
