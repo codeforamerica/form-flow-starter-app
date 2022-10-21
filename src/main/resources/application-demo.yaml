@@ -1,0 +1,5 @@
+spring:
+  thymeleaf:
+    cache: true
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/starter-app
