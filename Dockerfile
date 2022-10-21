@@ -1,4 +1,4 @@
-FROM amazoncorretto:17.0.4
+FROM eclipse-temurin:17.0.4.1_1-jdk
 
 RUN mkdir /opt/form-flow-starter-app
 COPY . /opt/form-flow-starter-app
