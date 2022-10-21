@@ -4,7 +4,7 @@ actionsPath: org.formflowstartertemplate.app.submission.actions
 flow:
   howThisWorks:
     nextScreens:
-      - name: uploadDocuments
+      - name: languagePreference
   languagePreference:
     nextScreens:
       - name: gettingToKnowYou
@@ -76,4 +76,3 @@ name: docUpload
 flow:
   uploadDocuments:
     nextScreens: null
-
