@@ -35,8 +35,8 @@ jobs:
         run: chmod +x gradlew
       - name: Test with Gradle
         run: ./gradlew clean test --stacktrace
-      - name: Announce on Slack
-        if: always()
+      - name: Announce failures on Slack
+        if: failure()
         uses: ravsamhq/notify-slack-action@v2
         with:
           status: ${{ job.status }}

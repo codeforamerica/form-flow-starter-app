@@ -2,10 +2,10 @@ name: Deploy to Aptible
 
 on:
   push:
-#    workflows: [ "Run tests" ]
+    workflows: [ "Run tests" ]
     branches: [ main ]
-#    types:
-#      - completed
+    types:
+      - completed
   workflow_dispatch:
     inputs: { }
 
@@ -16,7 +16,6 @@ env:
 jobs:
   deploy:
     name: Deploy to Aptible
-#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,7 +32,8 @@ jobs:
           ssh-keyscan beta.aptible.com >> ~/.ssh/known_hosts
           git remote add aptible git@beta.aptible.com:form-flow-staging/demo.git
           git push --force git@beta.aptible.com:form-flow-staging/demo.git ${GITHUB_SHA}:master
-      - name: Announce on Slack
+      - name: Announce on Slack when deploy fails
+        if: failure()
         uses: ravsamhq/notify-slack-action@v2
         with:
           status: ${{ job.status }}
