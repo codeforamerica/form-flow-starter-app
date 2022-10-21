@@ -9,7 +9,7 @@
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35"
             th:with="selectedSelf=${templateManager.runCondition('IncomeSelectedSelf', submission, uuid)},
-                     houseHoldMemberName=${T(formflow.library.data.Submission).getSubflowEntryByUuid('income', uuid, submission).householdMember}">
+                     houseHoldMemberName=${submission.getSubflowEntryByUuid('income', uuid).householdMember}">
         <th:block
             th:replace="'fragments/cardHeader' :: cardHeader(header=${selectedSelf ? #messages.msg('income-amounts.header', 'you') : #messages.msg('income-amounts.header', houseHoldMemberName)})"/>
         <th:block
