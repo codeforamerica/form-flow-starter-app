@@ -14,7 +14,7 @@ public class ClearIncomeAmountsBeforeSaving implements Action {
 
   public void run(Submission submission, String data) {
     //grab the current household members incometypes
-    var entryByUuid = Submission.getSubflowEntryByUuid("income", data, submission);
+    var entryByUuid = submission.getSubflowEntryByUuid("income", data);
     var incomeAmounts = entryByUuid.entrySet().stream()
         .filter(e -> e.getKey().matches(".*Amount$"))
         .map(Map.Entry::getKey)
