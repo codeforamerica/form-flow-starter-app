@@ -24,7 +24,7 @@ jobs:
           java-version: '17'
           cache: 'gradle'
       - name: Build Gradle
-        run: ./gradlew build
+        run: ./gradlew build --stacktrace
       - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
@@ -37,7 +37,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Test with Gradle
-        run: ./gradlew clean test --scan
+        run: ./gradlew clean test --stacktrace
       - name: Announce failures on Slack
         if: failure()
         uses: ravsamhq/notify-slack-action@v2
