@@ -17,6 +17,9 @@ public class UbiFlowJourneyTest extends JourneyTest {
 
   @Test
   void fullUbiFlow() {
+    System.out.println("\uD83D\uDE80\uD83D\uDE80\uD83D\uDE80");
+    System.out.println(System.getProperty("java.class.path"));
+    System.out.println("\uD83D\uDE80\uD83D\uDE80\uD83D\uDE80");
     // Landing screen
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     testPage.clickButton("Apply now");
@@ -109,7 +112,6 @@ public class UbiFlowJourneyTest extends JourneyTest {
     testPage.goBack();
     testPage.goBack();
     testPage.goBack();
-
 
     assertThat(testPage.getTitle()).isEqualTo("Income");
 
