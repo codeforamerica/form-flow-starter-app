@@ -1,6 +1,9 @@
 name: Run tests
 
-on: [ push, pull_request ]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
 
 env:
   USERNAME: ${{ secrets.GPR_USER }}
@@ -34,7 +37,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Test with Gradle
-        run: ./gradlew clean test --stacktrace
+        run: ./gradlew clean test --stacktrace --debug
       - name: Announce failures on Slack
         if: failure()
         uses: ravsamhq/notify-slack-action@v2
