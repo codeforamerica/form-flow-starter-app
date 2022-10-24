@@ -9,6 +9,9 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
+configurations.implementation {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+}
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
