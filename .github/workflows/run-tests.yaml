@@ -24,7 +24,7 @@ jobs:
           java-version: '17'
           cache: 'gradle'
       - name: Build Gradle
-        run: ./gradlew build --stacktrace
+        run: ./gradlew build --debug
       - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
