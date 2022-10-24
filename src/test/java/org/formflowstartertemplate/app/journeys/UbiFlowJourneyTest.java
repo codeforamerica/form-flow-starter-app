@@ -110,7 +110,6 @@ public class UbiFlowJourneyTest extends JourneyTest {
     testPage.goBack();
     testPage.goBack();
 
-
     assertThat(testPage.getTitle()).isEqualTo("Income");
 
   }
