@@ -37,7 +37,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Test with Gradle
-        run: ./gradlew clean test --stacktrace --debug
+        run: ./gradlew clean test --scan
       - name: Announce failures on Slack
         if: failure()
         uses: ravsamhq/notify-slack-action@v2

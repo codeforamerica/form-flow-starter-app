@@ -1,0 +1,9 @@
+logging:
+  level:
+    root: OFF
+    org.springframework: OFF
+    formflow:
+      library: OFF
+spring:
+  main:
+    banner-mode: OFF
