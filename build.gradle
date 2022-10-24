@@ -10,6 +10,10 @@ configurations {
     }
 }
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
 def props = new Properties()
 if (file(".env").exists()) {
     file(".env").withInputStream { props.load(it) }
