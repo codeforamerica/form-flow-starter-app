@@ -38,7 +38,8 @@ code, email, file upload). Each input can have zero to many validations.
 
 A flow also has many screens. Each screen can be made up of zero or more inputs. A flow has an
 ordering of screens, and can use defined conditions to control navigation. Conditions use
-submitted inputs to make a logical decision about showing or not showing a screen / part of a screen.
+submitted inputs to make a logical decision about showing or not showing a screen / part of a
+screen.
 
 ```mermaid
 erDiagram      
@@ -55,11 +56,16 @@ To start, create a `flow-config.yaml` in `src/main/resources`.
 
 TODO: define path in `application.yaml`?
 
-You can define multiple flows by [separating them with `---`](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-external-config.html#boot-features-external-config-multi-profile-yaml).
+You can define multiple flows
+by [separating them with `---`](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-external-config.html#boot-features-external-config-multi-profile-yaml)
+.
 
-At it's base a flow as defined in yaml has a name, a flow object, and a collection of screens, their next screens, any conditions for navigation between those screens, and optionally one or more subflows.
+At it's base a flow as defined in yaml has a name, a flow object, and a collection of screens, their
+next screens, any conditions for navigation between those screens, and optionally one or more
+subflows.
 
-A basic  flow configuration could look like this:
+A basic flow configuration could look like this:
+
 ```yaml
 name: exampleFlow
 flow:
@@ -79,7 +85,7 @@ flow:
       - name: success
   success:
     nextScreens: null
-___
+  ___
 name: someOtherFlow
 flow:
   otherFlowScreen:
@@ -89,30 +95,40 @@ flow:
 
 ## Defining Screens ##
 
-All screens must have an entry in the flows-config in order to be rendered. Additionally, each screen
-should have its own template defined in a folder respective to the flow that screen is contained within.
+All screens must have an entry in the flows-config in order to be rendered. Additionally, each
+screen
+should have its own template defined in a folder respective to the flow that screen is contained
+within.
 Example `/src/resources/templates/<flowName>/<templateName>`.
 
-We have provided a number of IntelliJ Live templates to make the creation of screens faster and easier.
+We have provided a number of IntelliJ Live templates to make the creation of screens faster and
+easier.
 [More on Live Templates here](#about-intellij-live-templates).
 
-When setting up a new flow, create a folder in `src/main/resources/templates` to hold all HTML files.
+When setting up a new flow, create a folder in `src/main/resources/templates` to hold all HTML
+files.
 In the starter app, we name the respective template folders after their respective flows.
 
-For example, add an HTML file such as `about-you.html` [in the flow's templates folder](src/main/resources/templates). Here is an example using our [live templates for a form screen](#about-intellij-live-templates):
+For example, add an HTML file such
+as `about-you.html` [in the flow's templates folder](src/main/resources/templates). Here is an
+example using our [live templates for a form screen](#about-intellij-live-templates):
 
 ```html
+
 <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{::formContent})">
   <th:block th:ref="formContent">
     <div class="form-card__content">
       <th:block th:replace="'icons' :: 'clipboard'"></th:block>
       <th:block th:replace="'content' :: cardHeader(header='Tell us about yourself')"/>
-      <th:block th:replace="'inputs' :: textInput(name='firstName', label='What's your first name?')"/>
-      <th:block th:replace="'inputs' :: textInput(name='lastName', label='What's your last name?')"/>
-      <th:block th:replace="'inputs' :: textInput(name='emailAddress', label='What's your email address?')"/>
+      <th:block
+          th:replace="'inputs' :: textInput(name='firstName', label='What's your first name?')"/>
+      <th:block
+          th:replace="'inputs' :: textInput(name='lastName', label='What's your last name?')"/>
+      <th:block
+          th:replace="'inputs' :: textInput(name='emailAddress', label='What's your email address?')"/>
     </div>
     <div class="form-card__footer">
-      <th:block th:replace="'fragments/continueButton' :: continue" />
+      <th:block th:replace="'fragments/continueButton' :: continue"/>
     </div>
   </th:block>
 </th:block>
@@ -120,37 +136,48 @@ For example, add an HTML file such as `about-you.html` [in the flow's templates 
 
 ### Using Thymeleaf
 
-We use Thymeleaf for frontend views. Thymeleaf is a Java based HTML framework for frontend templating.
+We use Thymeleaf for frontend views. Thymeleaf is a Java based HTML framework for frontend
+templating.
 [You can learn more about Thymeleaf here.](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
 
-We use Thymeleaf's concept of  [fragments](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#fragments) to store
+We use Thymeleaf's concept
+of  [fragments](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#fragments) to store
 complex mark up into simple reusable imports.
 
-Fragments  simplify the process of creating more complex HTML pages. Some places we use fragments
-include input types, forms, page headers and footers, error handlers, etc. [You can view these fragments
+Fragments simplify the process of creating more complex HTML pages. Some places we use fragments
+include input types, forms, page headers and footers, error handlers,
+etc. [You can view these fragments
 here.](src/main/resources/templates/fragments)
 
 Thymeleaf is also capable of making direct calls to Java class methods using what is known as the
-Spring Expression Language T operator. This allows you to implement Java code in your Thymeleaf templates.
+Spring Expression Language T operator. This allows you to implement Java code in your Thymeleaf
+templates.
 We provide two classes for this purpose:
-- ConditionDefinitions
-   - Houses methods which should always return Booleans and can be used to conditionally show or hide
-     sections of a Thymeleaf template
-- ViewUtilities
-   - Houses methods for general purpose manipulation of data to display on the frontend in Thymeleaf templates
 
-An example of using the T operator can be found in the `incomeAmounts` template from the starter app.
+- ConditionDefinitions
+    - Houses methods which should always return Booleans and can be used to conditionally show or
+      hide
+      sections of a Thymeleaf template
+- ViewUtilities
+    - Houses methods for general purpose manipulation of data to display on the frontend in
+      Thymeleaf templates
+
+An example of using the T operator can be found in the `incomeAmounts` template from the starter
+app.
+
 ```html
- <main id="content" role="main" class="form-card spacing-above-35"
-            th:with="selectedSelf=${T(org.codeforamerica.formflowstarter.app.config.ConditionDefinitions).incomeSelectedSelf(submission, uuid)},
+
+<main id="content" role="main" class="form-card spacing-above-35"
+      th:with="selectedSelf=${T(org.codeforamerica.formflowstarter.app.config.ConditionDefinitions).incomeSelectedSelf(submission, uuid)},
                      houseHoldMemberName=${T(org.codeforamerica.formflowstarter.app.data.Submission).getSubflowEntryByUuid('income', uuid, submission).householdMember}">
-...
+  ...
 </main>
 ```
 
 #### Thymeleaf Model Data ####
 
-We provide some data to the model for ease of use access in Thymeleaf templates. Below are the data types
+We provide some data to the model for ease of use access in Thymeleaf templates. Below are the data
+types
 we pass and when they are available.
 
 | Name              | Type                    | Availability                                                                     | Description                                                                                                                                                         |
@@ -171,19 +198,23 @@ we pass and when they are available.
 
 #### Icon reference
 
-If you need to see a reference of all icons from the form flow library, you can paste this fragment import into your template to quickly see a preview and names of icons:
+If you need to see a reference of all icons from the form flow library, you can paste this fragment
+import into your template to quickly see a preview and names of icons:
 
 ```
 <th:block th:replace="fragments/icons :: icons-list"></th:block>
 ```
+
 ## Defining Inputs ##
 
-Inputs are defined in two places - the template in which they are rendered, and in a separate class for validation.
+Inputs are defined in two places - the template in which they are rendered, and in a separate class
+for validation.
 The inputs class is defined in `/src/main/java/app/inputs/<nameOfFlowAsNameOfInputsClass>`
 
 [When defining inputs we have provided a suite of input based Live Templates, more on that here.](#about-intellij-live-templates)
 
 Live templates are provided for the following input types:
+
 - `Checkbox`
 - `Date`
 - `Fieldset`
@@ -202,29 +233,32 @@ Live templates are provided for the following input types:
 
 An example inputs class can be seen below, with example validations.
 
-Please note that for single value inputs the type when defining the input is String. However, for input types
+Please note that for single value inputs the type when defining the input is String. However, for
+input types
 that can contain more than one value, the type is ArrayList<String>.
 
 ```java
 class Apply {
 
-    @NotBlank(message = "{personal-info.provide-first-name}")
-    String firstName;
+  @NotBlank(message = "{personal-info.provide-first-name}")
+  String firstName;
 
-    @NotBlank(message = "{personal-info.provide-last-name}")
-    String lastName;
+  @NotBlank(message = "{personal-info.provide-last-name}")
+  String lastName;
 
-    String emailAddress;
+  String emailAddress;
 
-    String phoneNumber;
+  String phoneNumber;
 
-    @NotEmpty(message = "{personal-info.please-make-a-gender-selection}")
-    ArrayList<String> gender;
+  @NotEmpty(message = "{personal-info.please-make-a-gender-selection}")
+  ArrayList<String> gender;
 }
 ```
 
-Validations for inputs use the JSR-303 bean validation paradigm, more specifically, Hibernate validations. For a list of validation
-decorators, see [Hibernate's documentation.](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints)
+Validations for inputs use the JSR-303 bean validation paradigm, more specifically, Hibernate
+validations. For a list of validation
+decorators,
+see [Hibernate's documentation.](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints)
 
 ## About Submissions ##
 
@@ -233,25 +267,25 @@ Submission data is stored in the `Submission` object, persisted to PostgreSQL vi
 ```java
 class Submission {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    private String flow;
+  private String flow;
 
-    @CreationTimestamp
-    @Temporal(TIMESTAMP)
-    private Timestamp createdAt;
+  @CreationTimestamp
+  @Temporal(TIMESTAMP)
+  private Timestamp createdAt;
 
-    @UpdateTimestamp
-    @Temporal(TIMESTAMP)
-    private Timestamp updatedAt;
+  @UpdateTimestamp
+  @Temporal(TIMESTAMP)
+  private Timestamp updatedAt;
 
-    @Temporal(TIMESTAMP)
-    private Timestamp submittedAt;
+  @Temporal(TIMESTAMP)
+  private Timestamp submittedAt;
 
-    @Type(JsonType.class)
-    private Map<String, String> inputData = new HashMap<>();
+  @Type(JsonType.class)
+  private Map<String, String> inputData = new HashMap<>();
 
 }
 ```
@@ -263,14 +297,19 @@ An instance variable `currentSubmission` is available for use in the `ScreenCont
 `inputData` is placed on the Thymeleaf model.
 
 ## Subflows ##
-Subflows are repeating sections of one or more screens within a regular flow. These can be things like household builders
+
+Subflows are repeating sections of one or more screens within a regular flow. These can be things
+like household builders
 that ask a repeating set of questions about members of a household. Subflows represent an array of
-screens and their respective inputs (represented as a HashMap) where each item in the array is one iteration.
+screens and their respective inputs (represented as a HashMap) where each item in the array is one
+iteration.
 
 ### Dedicated Subflow Screens ###
+
 These are screens that every subflow must have.
 
 Here is an example of a *subflow* yaml:
+
 ```yaml
 subflow:
   docs:
@@ -281,49 +320,66 @@ subflow:
 ```
 
 #### Entry Screen ####
+
 This screen represents the entry point to a subflow, it is usually the point at which a user makes a
-decision to enter the subflow or not. Example: a screen that asks "Would you like to add household members?"
+decision to enter the subflow or not. Example: a screen that asks "Would you like to add household
+members?"
 could be the entry screen for a household based subflow.
 
 The entry screen is not part of the repeating
-set of pages internal to the subflow and as such does not need to be demarked with `subflow: subflowName`
+set of pages internal to the subflow and as such does not need to be demarked
+with `subflow: subflowName`
 in the `flows-config.yaml`.
 
 #### Iteration Start Screen ####
-This screen is the first screen in a subflows set of repeating screens. When this screen is submitted,
+
+This screen is the first screen in a subflows set of repeating screens. When this screen is
+submitted,
 it creates a new iteration which is then saved to the subflow array within the Submission object.
 
-Because this screen is part of the repeating screens within the subfow, it **should** be denoted with
+Because this screen is part of the repeating screens within the subfow, it **should** be denoted
+with
 `subflow: subflowName` in the `flows-config.yaml`.
 
 #### Review Screen ####
-This is the last screen in a subflow. This screen lists each iteration completed within a subflow, and provides options to edit or delete
+
+This is the last screen in a subflow. This screen lists each iteration completed within a subflow,
+and provides options to edit or delete
 a single iteration.
 
 This screen does not need to be demarked with `subflow: subflowName`
-in the `flows-config.yaml`. It is not technically part of the repeating screens within a subflow, however,
-you do visit this screen at the end of each iteration to show iterations completed so far and ask the
+in the `flows-config.yaml`. It is not technically part of the repeating screens within a subflow,
+however,
+you do visit this screen at the end of each iteration to show iterations completed so far and ask
+the
 user if they would like to add another?
 
 #### Delete Confirmation Screen ####
+
 This screen appears when a user selects `delete` on a iteration listed on the review screen. It asks
 the user to confirm their deletion before submitting the actual deletion request to the server.
 
-This page is not technically part of the subflow and as such, does not need to be demarked with `subflow: subflowName`
+This page is not technically part of the subflow and as such, does not need to be demarked
+with `subflow: subflowName`
 in the `flows-config.yaml`.
 
 ### Defining Subflows ###
 
 What do you need to do to create a subflow?
+
 - In `flows-config.yaml`:
-   - Define a `subflow` section
-   - Create a name for your subflow in the `subflow` section
-   - Define `entryScreen`, `iterationStartScreen`, `reviewScreen`, and `deleteConfirmationScreen` in
-     the `subflow` section
-   - Add all subflow screens into the `flow`, with `subflow: <subflow-name>` unless otherwise noted above
-     (for dedicated subflow screens)
-   - Note for screens that aren't ever defined in `NextScreens` (delete confirmation screen), they still need to be somewhere in the `flow`
-- Define `fields` that appear in subflow screens just like you would in a `screen`, in your flow Java Class
+    - Define a `subflow` section
+    - Create a name for your subflow in the `subflow` section
+    - Define `entryScreen`, `iterationStartScreen`, `reviewScreen`, and `deleteConfirmationScreen`
+      in
+      the `subflow` section
+    - Add all subflow screens into the `flow`, with `subflow: <subflow-name>` unless otherwise noted
+      above
+      (for dedicated subflow screens)
+    - Note for screens that aren't ever defined in `NextScreens` (delete confirmation screen), they
+      still need to be somewhere in the `flow`
+- Define `fields` that appear in subflow screens just like you would in a `screen`, in your flow
+  Java Class
   (e.g. Ubi.java in the starter app)
 - Define `screen` templates in `resources/templates/<flow-name>`
 
@@ -378,20 +434,23 @@ defining new conditions as methods, the instance variable `inputData` is accessi
 ```java
 public class ApplyConditions extends FlowConditions {
 
-    public boolean isGmailUser() {
-        return inputData.get('emailAddress').contains("gmail.com");
-    }
+  public boolean isGmailUser() {
+    return inputData.get('emailAddress').contains("gmail.com");
+  }
 
 } 
 ```
 
 ### Using conditions in templates
 
-You can pull in conditions into a Thymeleaf with the T operator, then use the variable to define show logic:
+You can pull in conditions into a Thymeleaf with the T operator, then use the variable to define
+show logic:
 
 ```html
-<div th:with="showCondition=${T(org.codeforamerica.formflowstarter.app.config.ConditionDefinitions).<show-method>()}">
-    <h1 th:if="showCondition">Conditionally show this element</h1>
+
+<div
+    th:with="showCondition=${T(org.codeforamerica.formflowstarter.app.config.ConditionDefinitions).<show-method>()}">
+  <h1 th:if="showCondition">Conditionally show this element</h1>
 </div>
 ```
 
@@ -414,18 +473,18 @@ The template HTML can look like:
 <head th:replace="fragments/head :: head(title='')"></head>
 <body>
 <div class="page-wrapper">
-    <th:block th:replace="fragments/toolbar :: toolbar"/>
-    <th:block th:replace="fragments/demoBanner :: demoBanner"/>
-    <section class="slab">
-        <div class="grid">
-            <div class="grid__item">
-                <h1 class="spacing-below-35"></h1>
-            </div>
-        </div>
-    </section>
-    <main id="content" role="main" class="slab slab--white">
+  <th:block th:replace="fragments/toolbar :: toolbar"/>
+  <th:block th:replace="fragments/demoBanner :: demoBanner"/>
+  <section class="slab">
+    <div class="grid">
+      <div class="grid__item">
+        <h1 class="spacing-below-35"></h1>
+      </div>
+    </div>
+  </section>
+  <main id="content" role="main" class="slab slab--white">
 
-    </main>
+  </main>
 </div>
 <th:block th:replace="fragments/footer :: footer"/>
 </body>
@@ -438,12 +497,16 @@ The IntelliJ Live Template for the above example can be generated with `cfa:stat
 
 ### Install the following system dependencies: ###
 
-_Note: these instructions are specific to macOS, but the same dependencies do need to be installed on Windows as well._
+_Note: these instructions are specific to macOS, but the same dependencies do need to be installed
+on Windows as well._
 
 #### Java Development Kit ####
 
+If you do not already have Java 17 installed, we recommend doing this:
+
 ```
-brew install openjdk
+brew tap homebrew/cask-versions
+brew install --cask temurin17
 ```
 
 #### Set up jenv to manage your jdk versions ####
@@ -470,18 +533,23 @@ jenv add /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home/
 ### Start the local databases: ###
 
 - Install PostgreSQL 14 via an [official download](https://www.postgresql.org/download/)
-   - Or on macOS, through homebrew: `brew install postgresql@14`
+    - Or on macOS, through homebrew: `brew install postgresql@14`
+
 <!-- TODO: Is this the right way to create db/user? -->
+
 - Create the database using the command line:
-   - `$ createdb starter-app`
-   - `$ createuser -s starter-app`
+    - `$ createdb starter-app`
+    - `$ createuser -s starter-app`
 
 ### Authenticating the Library ###
 
-In order to authenticate the library for use with this starter app you must have a GitHub account and
-a GitHub Personal Access Token (PAT). You can register a personal acess token through your user settings panel
+In order to authenticate the library for use with this starter app you must have a GitHub account
+and
+a GitHub Personal Access Token (PAT). You can register a personal acess token through your user
+settings panel
 in GitHub via `Profile --> Settings --> Developer Settings --> Personal Access Tokens --> Tokens`.
-Create a token that includes `read:packages`. Once you have done this create a `.env` file in the root
+Create a token that includes `read:packages`. Once you have done this create a `.env` file in the
+root
 directory of the starter and add your Username and PAT like below:
 
 ```
@@ -491,15 +559,19 @@ TOKEN=Your_GitHub_Personal_Access_Token
 
 ### Setup IntelliJ for the project: ###
 
-- Enable annotation processing in `Preferences -> Build, Execution, Deployment -> Compiler -> Annotation Processor`
-- Set the Gradle JVM version to 17 in `Preferences -> Build, Execution, Deployment -> Build Tools -> Gradle`
+- Enable annotation processing
+  in `Preferences -> Build, Execution, Deployment -> Compiler -> Annotation Processor`
+- Set the Gradle JVM version to 17
+  in `Preferences -> Build, Execution, Deployment -> Build Tools -> Gradle`
 - Set the Project SDK to Java 17 in `File > Project Structure`
 - Run the application using the `FormflowstarterApplication` configuration
 
 ### Using a local version of the Form-Flow Library (For Form-Flow Library Developers): ###
 
 To use the [form-flow](https://github.com/codeforamerica/form-flow) library locally:
-1. Clone the form-flow repo in the same directory as the starter app. This line in [build.gradle](build.gradle) depends on it:
+
+1. Clone the form-flow repo in the same directory as the starter app. This line
+   in [build.gradle](build.gradle) depends on it:
     ```
     implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
     ```
@@ -513,25 +585,37 @@ From the project root invoke
 
 #### IntelliJ ####
 
-You can run tests directly in IntelliJ by running tests from test folder (via right click or `ctrl + shift + r`).
+You can run tests directly in IntelliJ by running tests from test folder (via right click
+or `ctrl + shift + r`).
 
 ### Setup Fake Filler (optional, Chrome & Firefox): ###
 
 We use an automatic form filler to make manual test easier.
-- Install [Fake Filler for Chrome](https://chrome.google.com/webstore/detail/fake-filler/bnjjngeaknajbdcgpfkgnonkmififhfo) or [Fake Filler for FireFox](https://addons.mozilla.org/en-US/firefox/addon/fake-filler/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
-- Go to [fakeFillerConfig.txt](fakeFIllerConfig.txt), click on "Raw", then save the file to your computer.
-- Open the Fake Filler Options then click on [Backup and Restore (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/backup)
+
+-
+
+Install [Fake Filler for Chrome](https://chrome.google.com/webstore/detail/fake-filler/bnjjngeaknajbdcgpfkgnonkmififhfo)
+or [Fake Filler for FireFox](https://addons.mozilla.org/en-US/firefox/addon/fake-filler/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+
+- Go to [fakeFillerConfig.txt](fakeFIllerConfig.txt), click on "Raw", then save the file to your
+  computer.
+- Open the Fake Filler Options then click
+  on [Backup and Restore (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/backup)
 - Click on "Import Settings" and upload the config file that you saved above.
-- Click on [Keyboard Shortcuts (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/keyboard-shortcuts) to choose the shortcut you want to use to fill out the page.
+- Click
+  on [Keyboard Shortcuts (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/keyboard-shortcuts)
+  to choose the shortcut you want to use to fill out the page.
 
 ## About IntelliJ Live Templates ##
 
 As a team, we use [IntelliJ](https://www.jetbrains.com/idea/) and can use
-the [Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) feature to quickly build
+the [Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) feature to
+quickly build
 Thymeleaf templates.
 
 Support for importing/exporting these Live Templates is
-a [buggy process](https://youtrack.jetbrains.com/issue/IDEA-184753) that can sometimes wipe away all of your previous
+a [buggy process](https://youtrack.jetbrains.com/issue/IDEA-184753) that can sometimes wipe away all
+of your previous
 settings. So we're going to use a copy/paste approach.
 
 ### Applying Live Templates to your IntelliJ IDE ###
@@ -547,7 +631,8 @@ settings. So we're going to use a copy/paste approach.
 
 ### Using Live Templates ###
 
-Once you have Live Templates installed on your IntelliJ IDE, in (`.html`, `.java`) files you can use our
+Once you have Live Templates installed on your IntelliJ IDE, in (`.html`, `.java`) files you can use
+our
 Live Templates by typing `cfa:` and a list of templates to autofill will show itself.
 
 ### Contribute new Live Templates ###
@@ -564,7 +649,8 @@ Live Templates by typing `cfa:` and a list of templates to autofill will show it
 
 TODO: move schema from library and include in webjar?
 
-We use [JSON schema](https://json-schema.org/understanding-json-schema/index.html) to autocomplete and validate the `flows-config.yaml` file.
+We use [JSON schema](https://json-schema.org/understanding-json-schema/index.html) to autocomplete
+and validate the `flows-config.yaml` file.
 
 You must manually connect the schema to the local file in your instance of IntelliJ IDE.
 
@@ -575,9 +661,10 @@ You must manually connect the schema to the local file in your instance of Intel
 5. "Schema file or URL" needs to be set to the `src/main/resources/flows-config-schema.json`
 6. "Schema version" set to "JSON Schema version 7"
 7. Use the "+" under schema version to add:
-   - a new file and connect to `src/main/resources/flows-config.yaml`
-   - a folder and connect to `src/test/resources/flows-config`
+    - a new file and connect to `src/main/resources/flows-config.yaml`
+    - a folder and connect to `src/test/resources/flows-config`
 
-To confirm that the connection is work, go into `flows-config.yaml` and see if autocomplete is appearing for you.
+To confirm that the connection is work, go into `flows-config.yaml` and see if autocomplete is
+appearing for you.
 
 ![IntelliJ JSON Schema Mappings menu](readme-assets/intellij-json-schema-mappings.png)
