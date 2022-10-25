@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17
+FROM eclipse-temurin:17-jdk-alpine
 
 RUN mkdir /opt/form-flow-starter-app
 COPY . /opt/form-flow-starter-app
