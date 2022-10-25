@@ -10,94 +10,99 @@
       <main id="content" role="main" class="form-card spacing-above-35">
         <th:block
             th:replace="'fragments/cardHeader' :: cardHeader(header=#{upload-documents.title})"/>
-          <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{::contentRef})">
-            <th:block th:ref="contentRef">
-              <div class="form-card__content">
+        <!--  TODO: there can only be ONE form on the screen  -->
+        <!--        <th:block-->
+        <!--            th:replace="'fragments/form' :: form(action=${formAction}, content=~{::contentRef})">-->
+        <th:block th:ref="contentRef">
+          <div class="form-card__content">
 
-                <!--  TODO: this will become our fragment component  -->
-                <div id="dropzone">
-                  <form action="/document-upload" class="dropzone needsclick" id="document-upload"
-                        method="post"
-                        enctype="multipart/form-data">
-                    <div id="max-files-reached">
-                      <div class='max-files spacing-below-35' id="max-files"
-                           th:text='#{upload-documents.maximum-number-of-files}'></div>
-                    </div>
-                    <div id="drag-and-drop-box"
-                         class="drag-and-drop-box spacing-below-35 spacing-above-35 grid"
-                         ondragenter="addDragBorder()" ondrop="removeDragBorder()"
-                         ondragleave="removeDragBorder()">
-                      <h2 id="vertical-header-desktop"
-                          class="blue-label text--centered hide-on-mobile narrow-centered-text"
-                          th:text="#{upload-documents.add-your-files}"></h2>
-                      <h2 id="vertical-header-mobile" class="blue-label text--centered hide-on-desktop"
-                          th:text="#{upload-documents.add-your-files}"></h2>
-                      <div id="upload-button" class="dz-message text--centered">
-                        <button th:aria-label="#{upload-documents.add-your-files}" type="button"
-                                id="upload-button-inner"
-                                class="button dz-button">
-                          <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 0 24 24"
-                               width="60px" fill="#FFFFFF">
-                            <path d="M0 0h24v24H0V0z" fill="none"/>
-                            <path stroke="white" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                          </svg>
-                        </button>
-                      </div>
-                      <div class="grid--item width-two-thirds">
-                        <h2 id="horizontal-header-desktop"
-                            class="blue-label hide-on-mobile hidden spacing-below-5"
-                            th:text="#{upload-documents.add-your-files}"></h2>
-                        <h2 id="horizontal-header-mobile"
-                            class="blue-label hide-on-desktop hidden spacing-below-5 spacing-above-15"
-                            th:text="#{upload-documents.add-your-files}"></h2>
-                        <div id="number-of-uploaded-files" class="body-gray">
-                        </div>
-                      </div>
-                    </div>
-                    <div id="upload-doc-div" class="spacing-below-25 hidden">
-                      <p id="upload-doc-text">Uploaded documents</p>
-                    </div>
-                    <div id="file-preview-template">
-                      <div class="preview-container"></div>
-                    </div>
-
-                    <!--              <div th:replace="fragments/docRecommendations :: docRecommendations"></div>-->
-                  </form>
-
-                  <div class="form-group">
-                    <a type="button" class="button button--secondary hidden text--centered"
-                       id="submit-my-documents"
-                       th:href="'/pages/'+${pageName}+'/navigation?option=0'"
-                       th:text="#{upload-documents.submit-my-documents}"></a>
-                    <p class="text--error" aria-live="assertive" aria-atomic="true" hidden>
-                      <i class="icon-warning"></i>
-                      <span th:text="#{upload-documents.wait-for-upload-warning}"></span>
-                    </p>
-                  </div>
-
+            <!--  TODO: this will become our fragment component  -->
+            <div id="dropzone">
+              <form action="/document-upload" class="dropzone needsclick" id="document-upload"
+                    method="post"
+                    enctype="multipart/form-data">
+                <div id="max-files-reached">
+                  <div class='max-files spacing-below-35' id="max-files"
+                       th:text='#{upload-documents.maximum-number-of-files}'></div>
                 </div>
-                <!-- /end shiba markdown -->
+                <div id="drag-and-drop-box"
+                     class="drag-and-drop-box spacing-below-35 spacing-above-35 grid"
+                     ondragenter="addDragBorder()" ondrop="removeDragBorder()"
+                     ondragleave="removeDragBorder()">
+                  <h2 id="vertical-header-desktop"
+                      class="blue-label text--centered hide-on-mobile narrow-centered-text"
+                      th:text="#{upload-documents.add-your-files}"></h2>
+                  <h2 id="vertical-header-mobile"
+                      class="blue-label text--centered hide-on-desktop"
+                      th:text="#{upload-documents.add-your-files}"></h2>
+                  <div id="upload-button" class="dz-message text--centered">
+                    <button th:aria-label="#{upload-documents.add-your-files}" type="button"
+                            id="upload-button-inner"
+                            class="button dz-button">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 0 24 24"
+                           width="60px" fill="#FFFFFF">
+                        <path d="M0 0h24v24H0V0z" fill="none"/>
+                        <path stroke="white" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="grid--item width-two-thirds">
+                    <h2 id="horizontal-header-desktop"
+                        class="blue-label hide-on-mobile hidden spacing-below-5"
+                        th:text="#{upload-documents.add-your-files}"></h2>
+                    <h2 id="horizontal-header-mobile"
+                        class="blue-label hide-on-desktop hidden spacing-below-5 spacing-above-15"
+                        th:text="#{upload-documents.add-your-files}"></h2>
+                    <div id="number-of-uploaded-files" class="body-gray">
+                    </div>
+                  </div>
+                </div>
+                <div id="upload-doc-div" class="spacing-below-25 hidden">
+                  <p id="upload-doc-text">Uploaded documents</p>
+                </div>
+                <div id="file-preview-template">
+                  <div class="preview-container"></div>
+                </div>
 
+                <!--              <div th:replace="fragments/docRecommendations :: docRecommendations"></div>-->
+              </form>
+
+              <div class="form-group">
+                <a type="button" class="button button--secondary hidden text--centered"
+                   id="submit-my-documents"
+                   th:href="'/pages/'+${pageName}+'/navigation?option=0'"
+                   th:text="#{upload-documents.submit-my-documents}"></a>
+                <p class="text--error" aria-live="assertive" aria-atomic="true" hidden>
+                  <i class="icon-warning"></i>
+                  <span th:text="#{upload-documents.wait-for-upload-warning}"></span>
+                </p>
               </div>
-            <div class="form-card__footer">
 
             </div>
-          </th:block>
+            <!-- /end shiba markdown -->
+
+          </div>
+          <div class="form-card__footer">
+
+          </div>
         </th:block>
+        <!--        </th:block>-->
       </main>
     </div>
   </section>
 </div>
-<th:block th:replace="fragments/footer :: footer" />
+<th:block th:replace="fragments/footer :: footer"/>
 <!--  TODO: move away from dropzone file to useing a webjar  -->
 <script src="/assets/js/dropzone.js"></script>
 <!--  TODO: move this to be included in our fragment component  -->
 <script th:inline="javascript">
+  console.log("Script start 🏁")
   Dropzone.autoDiscover = false;
   var documentIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABGCAYAAACE0Gk0AAAFK0lEQVR4Xu2caVcTSRSG314SyEJQPIAsMucoihDmzJE1BBhnEZ35xzPjmU9ABAR/AThnFBBQQciedLrn3Epaw6Z9OxsTqr7kQ25XVz31VtWt5baSTiYsyOSIgCJhOeIkjCQs56wkLAYrCasusFKpFF5vbmJ/7x1My4KmqZz3VmRr5A3oHh3DI6Po6e2tKC/Ow67GrJOTE7xaX8PB/gG8Xi8URYFl1XNStZDNZtF+4yamIzO42dHBqbNrWzasbDaDtZUV7GxvIxgMNgAUTUsALCCRSKCzsxMzc3Pw+wOuITh9kA3r9dYmNtZforW1FaqiflEUVaDWqUy8pGbTMpGIx3Fn4DtEorPQdb2mJWDDii0t4mB/Dx6Pt85dj8RkQRGyKiYCZhQMpJJJDN5/gPHJKahq7cZONqznf/6BZCLxuRXtAmfS6RK8WknMgq57hKLLk6KqyGbSSKfTGJuYxPBIuGbqqggWtbRlWtB0HT6fT7RqoVCAUgNeiqLCMPLIZDJFVdkKUyDeSw1Ik8zM7JzolrVIbFh/P/8L8ZMTMXWbBRPpdAq9fX2YikTR0tKCXC5X1lGqV2RN17C3t4dX6y9Fg2iq9iVzhbqkKsrl8/sQnZ1HZ1dX9V5ud3vu2vAsrFQqKVoyOjcvxpBapg8f3mM1FoNhGNC0Mlil8YuUTgN+e/sNROfnxW81U0XKskwTyWRRWSR/j8dTzbKdy+vd7i421tdQMArnYJX6JqhMx8fH6OnpxeyPj8+NcZUUsCqw+vr7EIleAVglheXzOcTjcTwYeojpmWglfE5PJpV0Q1tZVwmWGPxphsxmQDP0D4/GEB79virAmk5ZdncUM2QyiVw2i8npiFBZpak5YRV9C+FSHH/6JFyK+cc/487AQEW8mhdWGbCjw0PhB/70yxN03LrlGlhzwyqNX+TRHH78KECRwtra2lwBa3pYREXViisL6pL9dwYQmYmi1edjA7sWsGxg+XweiXgC94eG8GhsnO0XXhtYtkuRz+VAftjDkTBGwqMXO7eXaO5awRLAFEXAorXkcDjMcimuHSzbDyP/K9TejidPf3M8dv2vYO3u7mBjbRXGZWvDr1T77KYgLcYDwQAWnv3enLBo33/1xTILFjmk1PW8Xg9UVfu8u0uw2kIh/LrwtDlhHR0d4p+tLZimKdZ/ThJt5ZDb8P5gX6wVaaOSNg6bHlY5HKdHb+JgwyxgeXFRnEgFAn4Bms4em1pZTpR0kQ2paCW2jO23b8SRGTmpEtYlNMkZXYktYWd7RyrrW4qTsL5FqOx/CUvCYhBgmEplSVgMAgxTqSwJi0GAYSqVJWExCDBMpbIkLAYBhqlUloTFIMAwlcqSsBgEGKZSWRIWgwDDVCpLwmIQYJhKZUlYDAIMU6ksCYtBgGF6pZRVrwgLBp9TpgTrxfISdncaeMhKgU71jN1xC4vuRVCc5Ns3/zbu+L6eUWFuQFHgK8VwUzz12kpMKMvn89fvrkN5cGY94w1dwbIg7ozSFSUK3iwYBhSVLhwVrxwFgkEsPKvhzb/GRbK6wUXPFC+z0VVuXdNPXWarOaxGxki7xXX2OfsSblf3bREn6TSx75Q2NPreaa0usitF7ttR+xQ+PD4xibv3Bh3nyoZ1Jb7r4Lh6pw3tj3XQ9yD6+vsxFYmgpeV0gPrXsmbDoswa/8UQPi0bFMVwd3V3YWxiCqFQiJWRK1j0hkZ+i4ZVw5JxoWBCVRR03+7B3cFB+P1+djauYbHf1AQPSFiMRpSwJCwGAYbpf7oLq5uJEmkZAAAAAElFTkSuQmCC";
   var dataURL = "";
   var isUploadComplete = true;
-  var fileTooBigMsg = [[#{upload-documents.this-file-is-too-large(${uploadDocMaxFileSize})}]];
+  // TODO: pull file size from variable
+  var fileTooBigMsg = [[#{upload-documents.this-file-is-too-large(20)}]];
   var heicFilesNotAccepted = [[#{upload-documents.heic-files-not-accepted}]];
   var myDropZone;
 
@@ -232,6 +237,7 @@
               <p class='text--error spacing-above-0' aria-live="assertive" aria-atomic="true"></p>
             </div>`,
     init: function () {
+      console.log("Init ❤️‍🔥")
       myDropZone = this;
       var documents = [[${uploadedDocs}]];
 
@@ -348,7 +354,10 @@
       } else {
         var message = errorMessage.error ? errorMessage.error : errorMessage;
         // special case error message for unsupported HEIC file type uploads
-        if (message.localeCompare(myDropZone.options.dictInvalidFileType) == 0 && file.name.toLocaleLowerCase().endsWith('.heic')) message = heicFilesNotAccepted;
+        if (message.localeCompare(myDropZone.options.dictInvalidFileType) == 0
+            && file.name.toLocaleLowerCase().endsWith('.heic')) {
+          message = heicFilesNotAccepted;
+        }
         file.previewElement.getElementsByClassName("text--error")[0].innerText = message;
       }
 
@@ -358,7 +367,7 @@
         }
       }
 
-      if (myDropZone.files.length === 0 ) {
+      if (myDropZone.files.length === 0) {
         $('#submit-my-documents').addClass('hidden');
       }
 
