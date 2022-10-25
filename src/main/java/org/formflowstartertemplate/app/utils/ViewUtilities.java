@@ -2,6 +2,7 @@ package org.formflowstartertemplate.app.utils;
 
 import formflow.library.data.Submission;
 import java.math.BigDecimal;
+import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,5 +63,9 @@ public class ViewUtilities {
     }
 
     return null;
+  }
+
+  public static int getUuid() {
+    return Math.abs(new SecureRandom().nextInt());
   }
 }

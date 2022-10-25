@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<body>
+<th:block
+    th:fragment="fileUploader"
+    th:with="fragmentUniqueId=${T(org.formflowstartertemplate.app.utils.ViewUtilities).getUuid}">
+  <div th:id="${'dropzone-' + fragmentUniqueId}">
+    <div class="dropzone needsclick" th:id="${'document-upload-' + fragmentUniqueId}">
+      <div th:id="${'max-files-reached-' + fragmentUniqueId}">
+        <div class='max-files spacing-below-35' id="max-files"
+             th:text='#{upload-documents.maximum-number-of-files}'></div>
+      </div>
+      <div th:id="${'drag-and-drop-box-' + fragmentUniqueId}"
+           class="drag-and-drop-box spacing-below-35 spacing-above-35 grid"
+           ondragenter="addDragBorder()" ondrop="removeDragBorder()"
+           ondragleave="removeDragBorder()">
+        <h2 th:id="${'vertical-header-desktop-' + fragmentUniqueId}"
+            class="blue-label text--centered hide-on-mobile narrow-centered-text"
+            th:text="#{upload-documents.add-your-files}"></h2>
+        <h2 th:id="${'vertical-header-mobile-' + fragmentUniqueId}"
+            class="blue-label text--centered hide-on-desktop"
+            th:text="#{upload-documents.add-your-files}"></h2>
+        <div th:id="${'upload-button-' + fragmentUniqueId}" class="dz-message text--centered">
+          <button th:aria-label="#{upload-documents.add-your-files}" type="button"
+                  th:id="${'upload-button-inner-' + fragmentUniqueId}"
+                  class="button dz-button upload-button-inner">
+            <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 0 24 24"
+                 width="60px" fill="#FFFFFF">
+              <path d="M0 0h24v24H0V0z" fill="none"/>
+              <path stroke="white" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="grid--item width-two-thirds">
+          <h2 th:id="${'horizontal-header-desktop-' + fragmentUniqueId}"
+              class="blue-label hide-on-mobile hidden spacing-below-5"
+              th:text="#{upload-documents.add-your-files}"></h2>
+          <h2 th:id="${'horizontal-header-mobile-' + fragmentUniqueId}"
+              class="blue-label hide-on-desktop hidden spacing-below-5 spacing-above-15"
+              th:text="#{upload-documents.add-your-files}"></h2>
+          <div th:id="${'number-of-uploaded-files-' + fragmentUniqueId}" class="body-gray">
+          </div>
+        </div>
+      </div>
+      <div th:id="${'upload-doc-div-' + fragmentUniqueId}" class="spacing-below-25 hidden">
+        <p th:id="${'upload-doc-text-' + fragmentUniqueId}" class="upload-doc-text">Uploaded
+          documents</p>
+      </div>
+      <div th:id="${'file-preview-template-' + fragmentUniqueId}" class="file-preview-template">
+        <div class="preview-container"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <a type="button" class="button button--secondary hidden text--centered"
+         th:id="${'submit-my-documents-' + fragmentUniqueId}"
+         th:href="'/pages/'+${pageName}+'/navigation?option=0'"
+         th:text="#{upload-documents.submit-my-documents}"></a>
+      <p class="text--error" aria-live="assertive" aria-atomic="true" hidden>
+        <i class="icon-warning"></i>
+        <span th:text="#{upload-documents.wait-for-upload-warning}"></span>
+      </p>
+    </div>
+  </div>
+  <script src="/webjars/dropzone/5.9.3/dist/min/dropzone.min.js"></script>
+  <script th:inline="javascript">
+
+    Dropzone.autoDiscover = false;
+    window['documentIcon'
+    + [[${fragmentUniqueId}]]] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABGCAYAAACE0Gk0AAAFK0lEQVR4Xu2caVcTSRSG314SyEJQPIAsMucoihDmzJE1BBhnEZ35xzPjmU9ABAR/AThnFBBQQciedLrn3Epaw6Z9OxsTqr7kQ25XVz31VtWt5baSTiYsyOSIgCJhOeIkjCQs56wkLAYrCasusFKpFF5vbmJ/7x1My4KmqZz3VmRr5A3oHh3DI6Po6e2tKC/Ow67GrJOTE7xaX8PB/gG8Xi8URYFl1XNStZDNZtF+4yamIzO42dHBqbNrWzasbDaDtZUV7GxvIxgMNgAUTUsALCCRSKCzsxMzc3Pw+wOuITh9kA3r9dYmNtZforW1FaqiflEUVaDWqUy8pGbTMpGIx3Fn4DtEorPQdb2mJWDDii0t4mB/Dx6Pt85dj8RkQRGyKiYCZhQMpJJJDN5/gPHJKahq7cZONqznf/6BZCLxuRXtAmfS6RK8WknMgq57hKLLk6KqyGbSSKfTGJuYxPBIuGbqqggWtbRlWtB0HT6fT7RqoVCAUgNeiqLCMPLIZDJFVdkKUyDeSw1Ik8zM7JzolrVIbFh/P/8L8ZMTMXWbBRPpdAq9fX2YikTR0tKCXC5X1lGqV2RN17C3t4dX6y9Fg2iq9iVzhbqkKsrl8/sQnZ1HZ1dX9V5ud3vu2vAsrFQqKVoyOjcvxpBapg8f3mM1FoNhGNC0Mlil8YuUTgN+e/sNROfnxW81U0XKskwTyWRRWSR/j8dTzbKdy+vd7i421tdQMArnYJX6JqhMx8fH6OnpxeyPj8+NcZUUsCqw+vr7EIleAVglheXzOcTjcTwYeojpmWglfE5PJpV0Q1tZVwmWGPxphsxmQDP0D4/GEB79virAmk5ZdncUM2QyiVw2i8npiFBZpak5YRV9C+FSHH/6JFyK+cc/487AQEW8mhdWGbCjw0PhB/70yxN03LrlGlhzwyqNX+TRHH78KECRwtra2lwBa3pYREXViisL6pL9dwYQmYmi1edjA7sWsGxg+XweiXgC94eG8GhsnO0XXhtYtkuRz+VAftjDkTBGwqMXO7eXaO5awRLAFEXAorXkcDjMcimuHSzbDyP/K9TejidPf3M8dv2vYO3u7mBjbRXGZWvDr1T77KYgLcYDwQAWnv3enLBo33/1xTILFjmk1PW8Xg9UVfu8u0uw2kIh/LrwtDlhHR0d4p+tLZimKdZ/ThJt5ZDb8P5gX6wVaaOSNg6bHlY5HKdHb+JgwyxgeXFRnEgFAn4Bms4em1pZTpR0kQ2paCW2jO23b8SRGTmpEtYlNMkZXYktYWd7RyrrW4qTsL5FqOx/CUvCYhBgmEplSVgMAgxTqSwJi0GAYSqVJWExCDBMpbIkLAYBhqlUloTFIMAwlcqSsBgEGKZSWRIWgwDDVCpLwmIQYJhKZUlYDAIMU6ksCYtBgGF6pZRVrwgLBp9TpgTrxfISdncaeMhKgU71jN1xC4vuRVCc5Ns3/zbu+L6eUWFuQFHgK8VwUzz12kpMKMvn89fvrkN5cGY94w1dwbIg7ozSFSUK3iwYBhSVLhwVrxwFgkEsPKvhzb/GRbK6wUXPFC+z0VVuXdNPXWarOaxGxki7xXX2OfsSblf3bREn6TSx75Q2NPreaa0usitF7ttR+xQ+PD4xibv3Bh3nyoZ1Jb7r4Lh6pw3tj3XQ9yD6+vsxFYmgpeV0gPrXsmbDoswa/8UQPi0bFMVwd3V3YWxiCqFQiJWRK1j0hkZ+i4ZVw5JxoWBCVRR03+7B3cFB+P1+djauYbHf1AQPSFiMRpSwJCwGAYbpf7oLq5uJEmkZAAAAAElFTkSuQmCC";
+    window['isUploadComplete' + [[${fragmentUniqueId}]]] = true;
+    // TODO: pull file size from variable?
+    window['fileTooBigMsg'
+    + [[${fragmentUniqueId}]]] = [[#{upload-documents.this-file-is-too-large(20)}]];
+    window['heicFilesNotAccepted'
+    + [[${fragmentUniqueId}]]] = [[#{upload-documents.heic-files-not-accepted}]];
+    window['myDropZone' + [[${fragmentUniqueId}]]] = null;
+
+    function addDragBorder() {
+      var dragAndDropBox = document.getElementById("drag-and-drop-box-" + [[${fragmentUniqueId}]]);
+      dragAndDropBox.classList.add("drag-over");
+    }
+
+    function removeDragBorder() {
+      var dragAndDropBox = document.getElementById("drag-and-drop-box-" + [[${fragmentUniqueId}]]);
+      dragAndDropBox.classList.remove("drag-over");
+    }
+
+    function getFilenameComponents(element) {
+      var name = element.innerText;
+      var extIdx = name.lastIndexOf('.');
+      if (extIdx === -1) {
+        return [name, ""];
+      }
+
+      var extStr = name.slice(extIdx + 1, name.length);
+      if (element.scrollWidth <= element.clientWidth) {
+        extStr = "." + extStr;
+      }
+      return [name.slice(0, extIdx), extStr];
+    }
+
+    function onSubmit() {
+      if (!window['isUploadComplete' + [[${fragmentUniqueId}]]]) {
+        $('.form-group').addClass('form-group--error');
+        $('.text--error').show();
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function showMaxFileMessage() {
+      var dragBox = document.getElementById("drag-and-drop-box-" + [[${fragmentUniqueId}]]);
+      dragBox.style.display = "none";
+      var maxFilesReached = document.getElementById("max-files-" + [[${fragmentUniqueId}]]);
+      maxFilesReached.style.display = "flex";
+    }
+
+    $('.text--error').hide();
+
+    function destroyerCreator(file) {
+      return function () {
+        window['myDropZone' + [[${fragmentUniqueId}]]].emit('destroy', file);
+      }
+    }
+
+    function processDZQueueAfterThumbnailGeneration() {
+      var allUploadsHaveThumbnails = window['myDropZone'
+      + [[${fragmentUniqueId}]]].getQueuedFiles().every(
+          f => f.dataURL && f.dataURL.length > 0);
+      if (allUploadsHaveThumbnails) {
+        window['myDropZone' + [[${fragmentUniqueId}]]].processQueue();
+      }
+    }
+
+    function showNumberOfAddedFiles() {
+      var numberOfAddedFiles = window['myDropZone' + [[${fragmentUniqueId}]]].files.length;
+      var numberOfAddedFilesDiv = document.getElementById(
+          "number-of-uploaded-files-" + [[${fragmentUniqueId}]]);
+      var numberOfUploadsString = numberOfAddedFiles !== 1 ? `${numberOfAddedFiles} files added`
+          : `${numberOfAddedFiles} file added`;
+      numberOfAddedFilesDiv.innerHTML = numberOfUploadsString;
+    }
+
+    function setDefaultThumbnail(file) {
+      file.dataURL = window['documentIcon' + [[${fragmentUniqueId}]]];
+      window['myDropZone' + [[${fragmentUniqueId}]]].emit("thumbnail", file,
+          window['documentIcon' + [[${fragmentUniqueId}]]]);
+    }
+
+    function prependAddedFile() {
+      var $previewsContainer = $(
+          [[${'#document-upload-' + fragmentUniqueId}]] + ' .preview-container')[0];
+      var $previews = $([[${'#document-upload-' + fragmentUniqueId}]] + ' .dz-preview');
+      var $lastPreviewInList = $previews[$previews.length - 1];
+      $previewsContainer.prepend($lastPreviewInList);
+    }
+
+    function updateUploadBoxLayout() {
+      var $dragAndDropBox = $('#drag-and-drop-box-' + [[${fragmentUniqueId}]]);
+      var $horizontalHeaderDesktop = $('#horizontal-header-desktop-' + [[${fragmentUniqueId}]]);
+      var $horizontalHeaderMobile = $('#horizontal-header-mobile-' + [[${fragmentUniqueId}]]);
+      var $verticalHeaderDesktop = $('#vertical-header-desktop-' + [[${fragmentUniqueId}]]);
+      var $verticalHeaderMobile = $('#vertical-header-mobile-' + [[${fragmentUniqueId}]]);
+      var $uploadButton = $('#upload-button-' + [[${fragmentUniqueId}]]);
+
+      $horizontalHeaderDesktop.removeClass('hidden');
+      $horizontalHeaderMobile.removeClass('hidden');
+      $verticalHeaderDesktop.addClass('hidden');
+      $verticalHeaderMobile.addClass('hidden');
+      $uploadButton.addClass('grid--item width-one-third');
+      $dragAndDropBox.addClass('drag-and-drop-box-compact');
+    }
+
+    function showUploadListHeaderOnUpload() {
+      var $uploadDocHeaderDiv = $('#upload-doc-div-' + [[${fragmentUniqueId}]]);
+      $uploadDocHeaderDiv.removeClass("hidden");
+    }
+
+    $("#document-upload-" + [[${fragmentUniqueId}]]).dropzone({
+      // TODO: use a variable? Use to get it from the id being on the form element
+      url: "/file-upload",
+      uploadMultiple: false,
+      previewsContainer: [[${'#document-upload-' + fragmentUniqueId}]] + " .preview-container",
+      autoProcessQueue: false,
+      thumbnailMethod: "crop",
+      thumbnailWidth: 64,
+      thumbnailHeight: 60,
+      maxFiles: 20,
+      parallelUploads: 1,
+      timeout: 0,
+      maxFilesize: [[${uploadDocMaxFileSize}]],
+      dictFileTooBig: window['fileTooBigMsg' + [[${fragmentUniqueId}]]],
+      acceptedFiles: ".jpeg,.jpg,.png,.tiff,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp",
+      clickable: ".drag-and-drop-box",
+      previewTemplate: `
+            <div class="dz-preview dz-file-preview spacing-below-15">
+              <div class="dz-details grid">
+                <div class="grid__item width-one-sixth mobile-width-one-fourth doc-rectangle">
+                    <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                    <img class="dz-thumb" data-dz-thumbnail aria-hidden="true" />
+                </div>
+                <div class="grid__item width-five-sixths mobile-width-three-fourths">
+                    <div class="dz-filename"><div class="filename-text" data-dz-name></div></div>
+                    <div class="display-flex body-gray file-details">
+                        <div class="dz-size" data-dz-size></div>
+                        <span class="file-details-delimiter" aria-hidden="true">•</span>
+                        <a class="dz-remove" href="javascript:undefined;" ></a>
+                    </div>
+                </div>
+              </div>
+              <p class='text--error spacing-above-0' aria-live="assertive" aria-atomic="true"></p>
+            </div>`,
+      init: function () {
+        console.log("Init ❤️‍🔥" + [[${fragmentUniqueId}]]);
+        window['myDropZone' + [[${fragmentUniqueId}]]] = this;
+        // TODO: how to pull successfully uploaded docs?
+        var documents = [[${uploadedDocs}]];
+
+        // TODO: Verify that documents are found. Make sure uploaded doc logic works.
+
+        if (documents != null && documents.length >= this.options.maxFiles) {
+          showMaxFileMessage();
+        }
+
+        this.on('addedfile', function (file) {
+          if (window['myDropZone' + [[${fragmentUniqueId}]]].files.length >= window['myDropZone'
+          + [[${fragmentUniqueId}]]].options.maxFiles) {
+            showMaxFileMessage();
+          }
+          var fileNameSpan = file.previewElement.getElementsByClassName('filename-text')[0];
+          var fileNameComponents = getFilenameComponents(fileNameSpan);
+          var removeLink = file.previewElement.getElementsByClassName("dz-remove")[0];
+          var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
+
+          fileNameSpan.setAttribute('aria-label', fileNameSpan.innerText);
+          fileNameSpan.innerHTML = "<span class='filename-text-name' aria-hidden='true'>"
+              + fileNameComponents[0] + "</span>" +
+              "<span class='filename-text-ext' aria-hidden='true'>" + fileNameComponents[1]
+              + "</span>";
+
+          removeLink.onclick = destroyerCreator(file);
+          removeLink.innerText = [[#{general.cancel}]].toLowerCase();
+
+          thumbnail.classList.add("hidden");
+
+          window['isUploadComplete' + [[${fragmentUniqueId}]]] = false;
+
+          if (!file.type.includes("image")) {
+            setDefaultThumbnail(file);
+          }
+          $('#submit-my-documents-' + [[${fragmentUniqueId}]]).removeClass('hidden');
+          showNumberOfAddedFiles();
+          prependAddedFile();
+          updateUploadBoxLayout();
+          showUploadListHeaderOnUpload();
+        });
+
+        this.on("thumbnail", function () {
+          setTimeout(function () {
+            processDZQueueAfterThumbnailGeneration()
+          }, 1);
+        });
+
+        this.on("sending", function (file, xhr, formData) {
+          var csrfToken = [[${_csrf.token}]];
+          formData.append("_csrf", csrfToken);
+          formData.append("dataURL", file.dataURL);
+          formData.append("type", file.type);
+        })
+
+        this.on('queuecomplete', function () {
+          window['isUploadComplete' + [[${fragmentUniqueId}]]] = true;
+          if (documents != null && documents.length >= this.options.maxFiles) {
+            showMaxFileMessage();
+          }
+        });
+
+        this.on('maxfilesreached', function () {
+          showMaxFileMessage();
+        });
+
+        this.on('maxfilesexceeded', function () {
+          showMaxFileMessage();
+        });
+
+        this.on('success', function (file) {
+          var removeLink = file.previewElement.getElementsByClassName("dz-remove")[0];
+          var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
+          var fileName = file.name;
+
+          removeLink.onclick = undefined;
+          // TODO: update href
+          removeLink.setAttribute('href',
+              '/pages/uploadDocumentsDeleteWarningPage?filename=' + encodeURIComponent(fileName));
+          removeLink.innerText = [[#{general.delete}]].toLowerCase();
+          thumbnail.classList.remove("hidden");
+          $('#submit-my-documents-' + [[${fragmentUniqueId}]]).removeClass("disabled");
+        });
+
+        // This lets dropzone know to process the queue after each file has completed
+        // Important for uploading multiple files at once
+        this.on("complete", function () {
+          processDZQueueAfterThumbnailGeneration();
+        })
+
+        // `destroy` is a custom event that we have defined, not something built into dropzone.
+        // This event is emitted when the client clicks cancel on a file that has not finished uploading.
+        this.on('destroy', function (file) {
+          window['myDropZone' + [[${fragmentUniqueId}]]].removeFile(file);
+          showNumberOfAddedFiles()
+        });
+
+        this.on('processing', function (file) {
+          $('#submit-my-documents-' + [[${fragmentUniqueId}]]).addClass("disabled");
+          console.log("Test 🦖");
+          console.log("this: ", this);
+          console.log("window['myDropZone' + [[${fragmentUniqueId}]]]",
+              window['myDropZone' + [[${fragmentUniqueId}]]])
+        });
+
+        // Add all previously uploaded files to the list of uploads
+        $.each(documents, function (key, uploadedDocWithThumbnail) {
+          var doc = uploadedDocWithThumbnail.doc;
+          var mockFile = {name: doc.filename, size: doc.size, type: doc.type};
+          window['myDropZone' + [[${fragmentUniqueId}]]].files.push(mockFile);
+          window['myDropZone' + [[${fragmentUniqueId}]]].emit("addedfile", mockFile);
+          window['myDropZone' + [[${fragmentUniqueId}]]].emit("thumbnail", mockFile,
+              uploadedDocWithThumbnail.thumbnail);
+          window['myDropZone' + [[${fragmentUniqueId}]]].emit("success", mockFile);
+          window['myDropZone' + [[${fragmentUniqueId}]]].emit("complete", mockFile);
+        });
+      },
+      error: function (file, errorMessage, xhr) {
+        if (xhr && xhr.response) {
+          file.previewElement.getElementsByClassName("text--error")[0].innerText = xhr.response;
+        } else {
+          var message = errorMessage.error ? errorMessage.error : errorMessage;
+          // special case error message for unsupported HEIC file type uploads
+          if (message.localeCompare(
+                  window['myDropZone' + [[${fragmentUniqueId}]]].options.dictInvalidFileType) == 0
+              && file.name.toLocaleLowerCase().endsWith('.heic')) {
+            message = window['heicFilesNotAccepted' + [[${fragmentUniqueId}]]];
+          }
+          file.previewElement.getElementsByClassName("text--error")[0].innerText = message;
+        }
+
+        for (var i = 0; i < window['myDropZone' + [[${fragmentUniqueId}]]].files.length; i++) {
+          if (window['myDropZone' + [[${fragmentUniqueId}]]].files[i] === file) {
+            window['myDropZone' + [[${fragmentUniqueId}]]].files.splice(i, 1);
+          }
+        }
+
+        if (window['myDropZone' + [[${fragmentUniqueId}]]].files.length === 0) {
+          $('#submit-my-documents-' + [[${fragmentUniqueId}]]).addClass('hidden');
+        }
+
+        showNumberOfAddedFiles();
+
+        file.previewElement.classList.add("form-group--error");
+
+        var removeLink = file.previewElement.getElementsByClassName("dz-remove")[0];
+        removeLink.onclick = destroyerCreator(file);
+        removeLink.innerText = [[#{general.remove}]].toLowerCase();
+        removeLink.classList.add("text--red");
+
+        var filePreview = file.previewElement.getElementsByClassName("doc-rectangle")[0]
+        filePreview.innerHTML = "<svg class=\"margin-auto\" width=\"40\" height=\"47\" viewBox=\"0 0 40 47\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n"
+            +
+            "<path d=\"M6.625 40.125H20.375L13.5 28.25L6.625 40.125ZM14.125 38.25H12.875V37H14.125V38.25ZM14.125 35.75H12.875V33.25H14.125V35.75Z\" fill=\"#D13F00\"/>\n"
+            +
+            "<path d=\"M26.6667 0H4.44444C3.2657 0 2.13524 0.550197 1.30175 1.52955C0.468252 2.50891 0 3.8372 0 5.22222V41.7778C0 43.1628 0.468252 44.4911 1.30175 45.4704C2.13524 46.4498 3.2657 47 4.44444 47H35.5556C36.7343 47 37.8648 46.4498 38.6983 45.4704C39.5317 44.4911 40 43.1628 40 41.7778V15.6667L26.6667 0ZM35.5556 41.7778H4.44444V5.22222H24.4444V18.2778H35.5556V41.7778Z\" fill=\"#D13F00\" fill-opacity=\"0.5\"/>\n"
+            +
+            "</svg>";
+      }
+    });
+  </script>
+</th:block>
+</body>
+</html>

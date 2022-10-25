@@ -1040,6 +1040,18 @@ legend.form-question {
 }
 
 @media screen and (max-width: 600px) {
+  .preview-container .doc-rectangle {
+    max-width: 60px;
+  }
+
+  .preview-container .mobile-width-one-fourth {
+    width: 25%;
+  }
+
+  .preview-container .mobile-width-three-fourths {
+    width: 75%;
+  }
+
   .hide-on-mobile {
     display: none;
   }
@@ -1087,6 +1099,70 @@ legend.form-question {
   .splash {
     max-width: none;
   }
+}
+
+.max-files {
+  height: 100%;
+  background-color: #FFF2D1;
+  border: 2px solid #FFAE00;
+  box-sizing: border-box;
+  padding: 17px;
+  flex-direction: row;
+  align-items: flex-start;
+  display: none;
+}
+
+.upload-button-inner {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.upload-doc-text {
+  color: #5F5854;
+  border-bottom: 2px solid #AAAAAA;
+  padding-bottom: 0.5rem;
+  font-style: normal;
+}
+
+.file-preview-template .dz-success .dz-filename {
+  color: #000;
+}
+
+.drag-and-drop-box-compact {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.blue-label {
+  color: #003865;
+  font-weight: normal;
+}
+
+.narrow-centered-text {
+  max-width: 190px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dz-button {
+  border: none;
+  border-radius: 50%;
+  font-size: 6rem;
+  background-color: #003865;
+  padding: 1rem;
+  color: #FFF;
+  -webkit-box-shadow: 0 3px 0px 0px #7f9bb1;
+  -moz-box-shadow: 0 3px 0px 0px #7f9bb1;
+  box-shadow: 0 3px 0px 0px #7f9bb1;
+  line-height: 6rem;
+  margin-right: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+:not(.dz-complete) .dz-filename {
+  color: #cfc5bf;
 }
 
 /*
