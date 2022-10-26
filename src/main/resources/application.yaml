@@ -16,6 +16,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/starter-app
     username: starter-app
     password:
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
 management:
   endpoints:
     web:
@@ -25,3 +29,6 @@ logging:
   level:
     root: INFO
     org.springframework.web: ERROR
+server:
+  tomcat:
+    max-http-form-post-size: 10MB
