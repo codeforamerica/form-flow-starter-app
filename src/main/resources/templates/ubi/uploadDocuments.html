@@ -270,6 +270,7 @@
         formData.append("_csrf", csrfToken);
         formData.append("dataURL", file.dataURL);
         formData.append("type", file.type);
+        formData.append("flow", [[${flow}]]);
       })
 
       this.on('queuecomplete', function () {
@@ -334,7 +335,10 @@
       } else {
         var message = errorMessage.error ? errorMessage.error : errorMessage;
         // special case error message for unsupported HEIC file type uploads
-        if (message.localeCompare(myDropZone.options.dictInvalidFileType) == 0 && file.name.toLocaleLowerCase().endsWith('.heic')) message = heicFilesNotAccepted;
+        if (message.localeCompare(myDropZone.options.dictInvalidFileType) == 0
+            && file.name.toLocaleLowerCase().endsWith('.heic')) {
+          message = heicFilesNotAccepted;
+        }
         file.previewElement.getElementsByClassName("text--error")[0].innerText = message;
       }
 
@@ -344,7 +348,7 @@
         }
       }
 
-      if (myDropZone.files.length === 0 ) {
+      if (myDropZone.files.length === 0) {
         $('#submit-my-documents').addClass('hidden');
       }
 
