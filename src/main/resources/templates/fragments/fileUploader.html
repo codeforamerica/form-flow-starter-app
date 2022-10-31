@@ -266,6 +266,7 @@
           formData.append("_csrf", csrfToken);
           formData.append("dataURL", file.dataURL);
           formData.append("type", file.type);
+          formData.append("flow", [[${flow}]]);
         })
 
         this.on('queuecomplete', function () {

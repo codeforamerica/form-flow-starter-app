@@ -4,8 +4,8 @@ actionsPath: org.formflowstartertemplate.app.submission.actions
 flow:
   howThisWorks:
     nextScreens:
-      - name: languagePreference
-  languagePreference:
+      - name: uploadDocuments
+  uploadDocuments:
     nextScreens:
       - name: gettingToKnowYou
   gettingToKnowYou:
