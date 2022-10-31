@@ -212,7 +212,6 @@
               <p class='text--error spacing-above-0' aria-live="assertive" aria-atomic="true"></p>
             </div>`,
       init: function () {
-        console.log("Init ❤️‍🔥" + [[${fragmentUniqueId}]]);
         window['myDropZone' + [[${fragmentUniqueId}]]] = this;
         // TODO: how to pull successfully uploaded docs?
         var documents = [[${uploadedDocs}]];
@@ -313,10 +312,6 @@
 
         this.on('processing', function (file) {
           $('#submit-my-documents-' + [[${fragmentUniqueId}]]).addClass("disabled");
-          console.log("Test 🦖");
-          console.log("this: ", this);
-          console.log("window['myDropZone' + [[${fragmentUniqueId}]]]",
-              window['myDropZone' + [[${fragmentUniqueId}]]])
         });
 
         // Add all previously uploaded files to the list of uploads
