@@ -31,7 +31,7 @@ public class StaticPageController {
     // provide a model so that we can pass the git commit hash to the footer, via the index page.
     HashMap<String, Object> model = new HashMap<>();
     model.put("codeCommitHashShort", gitProperties.getShortCommitId());
-    //model.put("codeCommitDateTime", gitProperties.getCommitTime());
+    model.put("codeCommitDateTime", gitProperties.getCommitTime());
 
     return new ModelAndView("index", model);
   }
