@@ -639,7 +639,7 @@ We use an automatic form filler to make manual test easier.
 Install [Fake Filler for Chrome](https://chrome.google.com/webstore/detail/fake-filler/bnjjngeaknajbdcgpfkgnonkmififhfo)
 or [Fake Filler for FireFox](https://addons.mozilla.org/en-US/firefox/addon/fake-filler/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
-- Go to [fakeFillerConfig.txt](fakeFIllerConfig.txt), click on "Raw", then save the file to your
+- Go to [fakeFillerConfig.txt](fakeFillerConfig.txt), click on "Raw", then save the file to your
   computer.
 - Open the Fake Filler Options then click
   on [Backup and Restore (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/backup)
