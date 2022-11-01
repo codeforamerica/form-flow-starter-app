@@ -45,5 +45,4 @@ public class StaticPageController {
   String getFaq() {
     return "faq";
   }
-
 }

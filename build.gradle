@@ -62,7 +62,6 @@ dependencies {
         println "Using 0.0.1-SNAPSHOT 💜"
     }
 
-
     compileOnly 'org.projectlombok:lombok'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
