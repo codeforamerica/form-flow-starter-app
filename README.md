@@ -710,3 +710,9 @@ To confirm that the connection is work, go into `flows-config.yaml` and see if a
 appearing for you.
 
 ![IntelliJ JSON Schema Mappings menu](readme-assets/intellij-json-schema-mappings.png)
+
+## Setup Platform Flavored Google Styles for Java ##
+
+In intelliJ go to `Preferences --> Editor --> Code Style --> Java` and next to Scheme hit the cogwheel 
+and `Import Scheme --> IntelliJ Code Style XML` with this file:
+![PlatformFlavoredGoogleStyle](intellij-settings/PlatformFlavoredGoogleStyle.xml)
