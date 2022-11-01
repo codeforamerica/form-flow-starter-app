@@ -662,7 +662,7 @@ settings. So we're going to use a copy/paste approach.
 
 ### Applying Live Templates to your IntelliJ IDE ###
 
-1. Open the [intellij-settings/CfA.xml](intellij-settings/CfA.xml) from the root of
+1. Open the [intellij-settings/LiveTemplates.xml](intellij-settings/LiveTemplates.xml) from the root of
    this repo
 2. Copy the whole file
 3. Open Preferences (`cmd + ,`), search or find the section "Live Templates"
@@ -682,7 +682,7 @@ Live Templates by typing `cfa:` and a list of templates to autofill will show it
 1. Open Preferences (`cmd + ,`), search or find the section "Live Templates"
 2. Find the Live Template you want to contribute
 3. Right click and "Copy" (this will copy the Live Template in XML form)
-4. Open [intellij-live-templates/LiveTemplates.xml](intellij-live-templates/LiveTemplates.xml) in this repo
+4. Open [intellij-settings/LiveTemplates.xml](intellij-settings/LiveTemplates.xml) in this repo
 5. Paste at the bottom of the file
 6. Commit to GitHub
 7. Now others can copy/paste your Live Templates
@@ -715,4 +715,4 @@ appearing for you.
 
 In intelliJ go to `Preferences --> Editor --> Code Style --> Java` and next to Scheme hit the cogwheel 
 and `Import Scheme --> IntelliJ Code Style XML` with
-![intellij-settings/PlatformFlavoredGoogleStyle.xml](intellij-settings/PlatformFlavoredGoogleStyle.xml)
+[intellij-settings/PlatformFlavoredGoogleStyle.xml](intellij-settings/PlatformFlavoredGoogleStyle.xml)
