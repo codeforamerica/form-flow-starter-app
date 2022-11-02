@@ -189,7 +189,7 @@
       maxFiles: 20,
       parallelUploads: 1,
       timeout: 0,
-      maxFilesize: [[${uploadDocMaxFileSize}]],
+      maxFilesize: Number([[${@environment.getProperty('spring.servlet.multipart.max-request-size')}]].replace("MB", "")),
       dictFileTooBig: window['fileTooBigMsg' + [[${fragmentUniqueId}]]],
       acceptedFiles: ".jpeg,.jpg,.png,.tiff,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp",
       clickable: ".drag-and-drop-box",
@@ -223,6 +223,7 @@
         }
 
         this.on('addedfile', function (file) {
+          debugger;
           if (window['myDropZone' + [[${fragmentUniqueId}]]].files.length >= window['myDropZone'
           + [[${fragmentUniqueId}]]].options.maxFiles) {
             showMaxFileMessage();
@@ -264,7 +265,6 @@
         this.on("sending", function (file, xhr, formData) {
           var csrfToken = [[${_csrf.token}]];
           formData.append("_csrf", csrfToken);
-          formData.append("dataURL", file.dataURL);
           formData.append("type", file.type);
           formData.append("flow", [[${flow}]]);
         })
@@ -281,6 +281,7 @@
         });
 
         this.on('maxfilesexceeded', function () {
+          console.log("bruh");
           showMaxFileMessage();
         });
 
