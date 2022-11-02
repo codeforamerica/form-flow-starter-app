@@ -3,3 +3,6 @@ spring:
     cache: true
   datasource:
     url: jdbc:postgresql://host.docker.internal:5432/starter-app
+form-flow:
+  aws:
+    s3_bucket_name: 'form-flow-demo'
