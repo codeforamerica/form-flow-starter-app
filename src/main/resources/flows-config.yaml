@@ -83,6 +83,9 @@ subflows:
 ---
 name: docUpload
 flow:
+  demo:
+    nextScreens:
+      - name: uploadDocuments
   uploadDocuments:
     nextScreens:
       - name: success

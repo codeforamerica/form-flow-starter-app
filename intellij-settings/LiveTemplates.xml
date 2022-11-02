@@ -1,15 +1,10 @@
-<template name="cfa:icons-list" value="&lt;th:block th:replace=&quot;fragments/icons :: icons-list&quot;&gt;&lt;/th:block&gt;" description="Insert a list of all icons from the form flow library" toReformat="false" toShortenFQNames="true">
+<template name="cfa:accordion" value="&lt;th:block th:replace=&quot;'fragments/honeycrisp/accordion' :: accordion(&#10;  buttonLabel=$BUTTON_LABEL$,&#10;  content=~{::$CONTENT_REF$})&quot;&gt;&#10;    &lt;th:block th:ref=&quot;$CONTENT_REF$&quot;&gt;&#10;     $ACCORDION_CONTENT$&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A honeycrisp accordion with buttonLabel and custom content" toReformat="false" toShortenFQNames="true">
+  <variable name="BUTTON_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+  <variable name="CONTENT_REF" expression="" defaultValue="" alwaysStopAt="true" />
+  <variable name="ACCORDION_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
   <context>
     <option name="HTML" value="true" />
   </context>
-</template>
-<template name="cfa:accordion" value="&lt;th:block th:replace=&quot;'fragments/honeycrisp/accordion' :: accordion(&#10;  buttonLabel=$BUTTON_LABEL$,&#10;  content=~{::$CONTENT_REF$})&quot;&gt;&#10;    &lt;th:block th:ref=&quot;$CONTENT_REF$&quot;&gt;&#10;     $ACCORDION_CONTENT$&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A honeycrisp accordion with buttonLabel and custom content" toReformat="false" toShortenFQNames="true">
-<variable name="BUTTON_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
-<variable name="CONTENT_REF" expression="" defaultValue="" alwaysStopAt="true" />
-<variable name="ACCORDION_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
-<context>
-  <option name="HTML" value="true" />
-</context>
 </template>
 <template name="cfa:cardHeader" value="&lt;th:block th:replace=&quot;'fragments/cardHeader' :: cardHeader(header=$HEADER$, subtext=$OPTIONAL_SUBTEXT$)&quot; /&gt;&#10;" description="Insert a card header, with named title and named optional subtext" toReformat="false" toShortenFQNames="true">
 <variable name="HEADER" expression="" defaultValue="" alwaysStopAt="true" />
@@ -32,6 +27,11 @@
 </context>
 </template>
 <template name="cfa:demoBanner" value="&lt;th:block th:replace=&quot;fragments/demoBanner :: demoBanner&quot; /&gt;" description="Insert the global demo banner" toReformat="false" toShortenFQNames="true">
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:fileUploader" value="&lt;th:block th:replace=&quot;fragments/fileUploader :: fileUploader&quot;&gt;&lt;/th:block&gt;" description="A dropzone file uploader" toReformat="false" toShortenFQNames="true">
 <context>
   <option name="HTML" value="true" />
 </context>
@@ -78,6 +78,11 @@
 </template>
 <template name="cfa:icon" value="&lt;th:block th:replace=&quot;'fragments/icons' :: $ICON$&quot;&gt;&lt;/th:block&gt;" description="Insert an icon" toReformat="false" toShortenFQNames="true">
 <variable name="ICON" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:icons-list" value="&lt;th:block th:replace=&quot;fragments/icons :: icons-list&quot;&gt;&lt;/th:block&gt;" description="Insert a list of all icons from the form flow library" toReformat="false" toShortenFQNames="true">
 <context>
   <option name="HTML" value="true" />
 </context>
