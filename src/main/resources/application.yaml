@@ -37,4 +37,4 @@ logging:
     org.springframework.web: ERROR
 server:
   tomcat:
-    max-http-form-post-size: 10MB
+    max-http-form-post-size: 20MB
