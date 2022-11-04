@@ -3,6 +3,7 @@
 <body>
 <th:block
     th:fragment="fileUploader"
+    th:assert="${!#strings.isEmpty(inputName)}"
     th:with="fragmentUniqueId=${T(org.formflowstartertemplate.app.utils.ViewUtilities).getUuid}">
   <div th:id="${'dropzone-' + fragmentUniqueId}">
     <div class="dropzone needsclick" th:id="${'document-upload-' + fragmentUniqueId}">
@@ -267,6 +268,8 @@
           formData.append("_csrf", csrfToken);
           formData.append("type", file.type);
           formData.append("flow", [[${flow}]]);
+          formData.append("inputName", [[${inputName}]]);
+          formData.append("thumbDataURL", file.dataURL);
         })
 
         this.on('queuecomplete', function () {
