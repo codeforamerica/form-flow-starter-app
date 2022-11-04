@@ -293,6 +293,10 @@
           var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
           var fileName = file.name;
 
+          if (file.type.includes("heic") || file.type.includes("tif")) {
+            setDefaultThumbnail(file);
+          }
+
           removeLink.onclick = undefined;
           // TODO: update href
           removeLink.setAttribute('href',
