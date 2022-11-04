@@ -248,9 +248,6 @@
           if (!file.type.includes("image")) {
             setDefaultThumbnail(file);
           }
-          if (file.type.includes("image/heic")) {
-            setDefaultThumbnail(file);
-          }
           $('#submit-my-documents-' + [[${fragmentUniqueId}]]).removeClass('hidden');
           showNumberOfAddedFiles();
           prependAddedFile();
@@ -291,6 +288,10 @@
           var removeLink = file.previewElement.getElementsByClassName("dz-remove")[0];
           var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
           var fileName = file.name;
+
+          if (file.type.includes("heic") || file.type.includes("tif")) {
+            setDefaultThumbnail(file);
+          }
 
           removeLink.onclick = undefined;
           // TODO: update href
