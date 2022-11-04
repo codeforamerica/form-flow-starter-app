@@ -191,7 +191,7 @@
       timeout: 0,
       maxFilesize: [[${uploadDocMaxFileSize}]],
       dictFileTooBig: window['fileTooBigMsg' + [[${fragmentUniqueId}]]],
-      acceptedFiles: ".jpeg,.jpg,.png,.tiff,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp",
+      acceptedFiles: ".jpeg,.jpg,.png,.tiff,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic",
       clickable: ".drag-and-drop-box",
       previewTemplate: `
             <div class="dz-preview dz-file-preview spacing-below-15">
@@ -246,6 +246,9 @@
           window['isUploadComplete' + [[${fragmentUniqueId}]]] = false;
 
           if (!file.type.includes("image")) {
+            setDefaultThumbnail(file);
+          }
+          if (file.type.includes("image/heic")) {
             setDefaultThumbnail(file);
           }
           $('#submit-my-documents-' + [[${fragmentUniqueId}]]).removeClass('hidden');
