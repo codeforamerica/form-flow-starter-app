@@ -243,3 +243,9 @@
   <option name="HTML" value="true" />
 </context>
 </template>
+<template name="cfa:fileUploader" value="&lt;th:block th:replace=&quot;fragments/fileUploader :: fileUploader(inputName='$files$')&quot;&gt;&lt;/th:block&gt;&#10;" description="A dropzone file upload widget" toReformat="false" toShortenFQNames="true">
+<variable name="files" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
