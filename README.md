@@ -31,6 +31,8 @@ The relevant service keys and other settings are configurable in `application.ya
 A detailed explanation of form flow concepts can be found on in
 the [form flow libraries readme](https://github.com/codeforamerica/form-flow).
 
+This chart below shows the flow created by the `flows-config.yaml` file in this repository.
+
 ```mermaid
 flowchart 
     A[UBI Flow] --> B(howThisWorks)
