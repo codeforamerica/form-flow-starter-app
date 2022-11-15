@@ -191,7 +191,7 @@
       timeout: 0,
       maxFilesize: Number([[${@environment.getProperty('spring.servlet.multipart.max-request-size')}]].replace("MB", "")),
       dictFileTooBig: window['fileTooBigMsg' + [[${fragmentUniqueId}]]],
-      acceptedFiles: ".jpeg,.jpg,.png,.tiff,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic",
+      acceptedFiles: [[${@environment.getProperty('form-flow.uploads.accepted-file-types')}]],
       clickable: ".drag-and-drop-box",
       previewTemplate: `
             <div class="dz-preview dz-file-preview spacing-below-15">
