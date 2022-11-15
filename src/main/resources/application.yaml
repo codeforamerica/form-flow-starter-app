@@ -1,12 +1,12 @@
 form-flow:
   inputs: 'org.formflowstartertemplate.app.inputs.'
+  uploads:
+    accepted_file_types: '.jpeg,.jpg,.png,.tiff,.tif,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic'
   aws:
     region: 'us-west-1'
     s3_bucket_name: 'form-flow'
     access_key: ${AWS_ACCESS_KEY}
     secret_key: ${AWS_SECRET_KEY}
-
-#  path: 'flows-config.yaml'
 spring:
   thymeleaf:
     cache: false
