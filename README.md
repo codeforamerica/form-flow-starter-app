@@ -561,11 +561,20 @@ Add the following to your `~/.bashrc` or `~/.zshrc`:
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 ```
+   
+For m1 macs, if the above snippet doesn't work, try:
+   
+```
+export PATH="$HOME/.jenv/bin:$PATH"
+export JENV_ROOT="/opt/homebrew/Cellar/jenv/"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(jenv init -)"
+```
 
 Reload your terminal, then finally run this from the repo's root directory:
 
 ```
-jenv add /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home/
+jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
 ```
 
 #### Gradle ####
