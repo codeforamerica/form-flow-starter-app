@@ -32,27 +32,25 @@ A detailed explaination of form flow concepts can be found on in
 the [form flow libraries readme](https://github.com/codeforamerica/form-flow).
 
 ```mermaid
-erDiagram      
-
-    Flow ||--|{ howThisWorks : "ordered collection of"
-    howThisWorks ||--|{ languagePreferences : ""
-    languagePreferences ||--|{ gettingToKnowYou : ""
-    gettingToKnowYou ||--|{ personalInfo : ""
-    personalInfo ||--|{ eligibility : ""
-    eligibility ||--|{ housemates : ""
-    housemates ||--|{ houseMateInfo : "subflow"
-    housemates }|--o{ Condition HasHousehold : "determines"
-    housemateInfo ||--|{ householdList : ""
-    householdList ||--|{ income : ""
-```
-
-```mermaid
-erDiagram
-    Flow ||--|{ Screen : "ordered collection of"
-    Flow ||--o{ UBI Object : "collection of"
-    Screen ||--o{ UBI Object : displays
-    UBI Object ||--o{ Validation : "validated by"
-    UBI Object }|--o{ Condition : "determines"
+flowchart 
+    A[UBI Flow] --> B(howThisWorks)
+    B --> C(languagePreferences)
+    C --> D(fa:fa-person gettingToKnowYou)
+    D --> E(fa:fa-pen personalInfo)
+    E --> F(eligibility)
+    F --> G(fa:fa-house housemates)
+    G --> |Add Household Member| I(housemateInfo)
+    G --> |No Members| K(fa:fa-dollar income)
+    I --> J(householdList)
+    J -- Add Another Member --> I
+    J --> K
+    K --> L(householdMemberIncome)
+    L --subflow--> N(incomeTypes)
+    N --> O(incomeAmounts)
+    O --> P(annualHouseholdIncome)
+    P -- Add Member Income --> L
+    P --> Q(incomeComplete)
+    Q --> R(fa:fa-star success)
 ```
 
 ## Defining Flows ##
