@@ -41,7 +41,7 @@ erDiagram
     personalInfo ||--|{ eligibility : ""
     eligibility ||--|{ housemates : ""
     housemates ||--|{ houseMateInfo : "subflow"
-    housemates }|--o{ Condition:HasHousehold : "determines"
+    housemates }|--o{ Condition HasHousehold : "determines"
     housemateInfo ||--|{ householdList : ""
     householdList ||--|{ income : ""
 ```
@@ -49,10 +49,10 @@ erDiagram
 ```mermaid
 erDiagram
     Flow ||--|{ Screen : "ordered collection of"
-    Flow ||--o{ UBI Object: "collection of"
+    Flow ||--o{ UBI Object : "collection of"
     Screen ||--o{ UBI Object : displays
     UBI Object ||--o{ Validation : "validated by"
-    UBI Object }|--o{ Condition: "determines"
+    UBI Object }|--o{ Condition : "determines"
 ```
 
 ## Defining Flows ##
