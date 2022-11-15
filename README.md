@@ -28,7 +28,7 @@ The relevant service keys and other settings are configurable in `application.ya
 
 ## Form Flow Concepts ##
 
-A detailed explaination of form flow concepts can be found on in
+A detailed explanation of form flow concepts can be found on in
 the [form flow libraries readme](https://github.com/codeforamerica/form-flow).
 
 ```mermaid
@@ -52,49 +52,6 @@ flowchart
     P --> Q(incomeComplete)
     Q --> R(fa:fa-star success)
 ```
-
-## Defining Flows ##
-
-To start, create a `flow-config.yaml` in `src/main/resources`.
-
-TODO: define path in `application.yaml`?
-
-You can define multiple flows
-by [separating them with `---`](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-external-config.html#boot-features-external-config-multi-profile-yaml)
-.
-
-At it's base a flow as defined in yaml has a name, a flow object, and a collection of screens, their
-next screens, any conditions for navigation between those screens, and optionally one or more
-subflows.
-
-A basic flow configuration could look like this:
-
-```yaml
-name: exampleFlow
-flow:
-  firstScreen:
-    nextScreens:
-      - name: secondScreen
-  secondScreen:
-    nextScreens:
-      - name: thirdScreen
-      - name: otherScreen
-        condition: userSelectedExample
-  thirdScreen:
-    nextScreens:
-      - name: success
-  otherScreen:
-    nextScreens:
-      - name: success
-  success:
-    nextScreens: null
-  ___
-name: someOtherFlow
-flow:
-  otherFlowScreen:
-```
-
-[You can have autocomplete and validation for flows-config by connecting your intelliJ to the flows-config-schema.json](#connect-flows-config-schema-with-intellij-ide)
 
 ## Defining Screens ##
 
@@ -177,28 +134,6 @@ app.
 </main>
 ```
 
-#### Thymeleaf Model Data ####
-
-We provide some data to the model for ease of use access in Thymeleaf templates. Below are the data
-types
-we pass and when they are available.
-
-| Name              | Type                    | Availability                                                                     | Description                                                                                                                                                         |
-|-------------------|-------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `flow`            | String                  | Always available                                                                 | The name of the flow the screen is contained within.                                                                                                                |
-| `screen`          | String                  | Always available                                                                 | the name of the screen.                                                                                                                                             |
-| `inputData`       | HashMap<String, Object> | Always available                                                                 | `inputData` is a HashMap of user submitted input data. If editing a subflow, `inputData` will only contain the data for that specific iteration within the subflow. |
-| `submission`      | Submission              | Always available                                                                 | `submission` is the entire Submission object that contains a single users submission data.                                                                          |
-| `formAction`      | String                  | Always available                                                                 | Is the correct endpoint for the forms `POST` action if `flows-config` is set up correctly.                                                                          |
-| `errorMessages`   | ArrayList<String>       | On screens that fail validation                                                  | A list of error messages for inputs that failed validation.                                                                                                         |
-| `subflow`         | String                  | On `deleteConfirmationScreen` screens                                            | This is the name of the subflow that the `deleteConfirmationScreen` screen belongs to.                                                                              |
-| `noEntryToDelete` | Boolean                 | On `deleteConfirmationScreen` screens if corresponding `uuid` is no longer there | Indicates that the subflow entry containing a `uuid` is no longer available.                                                                                        |
-| `reviewScreen`    | String                  | On `deleteConfirmationScreen` screens if corresponding `uuid` is no longer there | Name of the review screen for the subflow that the `deleteConfirmationScreen` belongs to.                                                                           |
-| `subflowIsEmpty`  | Boolean                 | On `deleteConfirmationScreen` screens if no entries in a subflow exist           | Indicates that the subflow being accessed no longer has entries.                                                                                                    |
-| `entryScreen`     | String                  | On `deleteConfirmationScreen` screens if no entries in a subflow exist           | Name of the entry screen for the subflow that the `deleteConfirmationScreen` belongs to.                                                                            |
-
-[For more information on the T Operator see section 6.5.8 here.](https://docs.spring.io/spring-framework/docs/3.0.x/reference/expressions.html)
-
 #### Icon reference
 
 If you need to see a reference of all icons from the form flow library, you can paste this fragment
@@ -207,227 +142,6 @@ import into your template to quickly see a preview and names of icons:
 ```
 <th:block th:replace="fragments/icons :: icons-list"></th:block>
 ```
-
-## Defining Inputs ##
-
-Inputs are defined in two places - the template in which they are rendered, and in a separate class
-for validation.
-The inputs class is defined in `/src/main/java/app/inputs/<nameOfFlowAsNameOfInputsClass>`
-
-[When defining inputs we have provided a suite of input based Live Templates, more on that here.](#about-intellij-live-templates)
-
-Live templates are provided for the following input types:
-
-- `Checkbox`
-- `Date`
-- `Fieldset`
-- `Money`
-- `Number`
-- `Radio`
-- `Select`
-- `SelectOption`
-- `Text`
-- `TextArea`
-- `Phone`
-- `Ssn`
-- `YesOrNo`
-- `Submit`
-- `FileUpload` (TBD)
-
-An example inputs class can be seen below, with example validations.
-
-Please note that for single value inputs the type when defining the input is String. However, for
-input types
-that can contain more than one value, the type is ArrayList<String>.
-
-```java
-class Apply {
-
-  @NotBlank(message = "{personal-info.provide-first-name}")
-  String firstName;
-
-  @NotBlank(message = "{personal-info.provide-last-name}")
-  String lastName;
-
-  String emailAddress;
-
-  String phoneNumber;
-
-  @NotEmpty(message = "{personal-info.please-make-a-gender-selection}")
-  ArrayList<String> gender;
-}
-```
-
-Validations for inputs use the JSR-303 bean validation paradigm, more specifically, Hibernate
-validations. For a list of validation
-decorators,
-see [Hibernate's documentation.](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints)
-
-## About Submissions ##
-
-Submission data is stored in the `Submission` object, persisted to PostgreSQL via the Hibernate ORM.
-
-```java
-class Submission {
-
-  @Id
-  @GeneratedValue
-  private Long id;
-
-  private String flow;
-
-  @CreationTimestamp
-  @Temporal(TIMESTAMP)
-  private Timestamp createdAt;
-
-  @UpdateTimestamp
-  @Temporal(TIMESTAMP)
-  private Timestamp updatedAt;
-
-  @Temporal(TIMESTAMP)
-  private Timestamp submittedAt;
-
-  @Type(JsonType.class)
-  private Map<String, String> inputData = new HashMap<>();
-
-}
-```
-
-The `inputData` field is a JSON object that stores input data from the inputs as a given
-flow progresses. It can be used for defining conditions.
-
-An instance variable `currentSubmission` is available for use in the `ScreenController` and
-`inputData` is placed on the Thymeleaf model.
-
-## Subflows ##
-
-Subflows are repeating sections of one or more screens within a regular flow. These can be things
-like household builders
-that ask a repeating set of questions about members of a household. Subflows represent an array of
-screens and their respective inputs (represented as a HashMap) where each item in the array is one
-iteration.
-
-### Dedicated Subflow Screens ###
-
-These are screens that every subflow must have.
-
-Here is an example of a *subflow* yaml:
-
-```yaml
-subflow:
-  docs:
-    entryScreen: docsEntry
-    iterationStartScreen: docsStart
-    reviewScreen: docsReview
-    deleteConfirmationScreen: docsDeleteConfirmation
-```
-
-#### Entry Screen ####
-
-This screen represents the entry point to a subflow, it is usually the point at which a user makes a
-decision to enter the subflow or not. Example: a screen that asks "Would you like to add household
-members?"
-could be the entry screen for a household based subflow.
-
-The entry screen is not part of the repeating
-set of pages internal to the subflow and as such does not need to be demarked
-with `subflow: subflowName`
-in the `flows-config.yaml`.
-
-#### Iteration Start Screen ####
-
-This screen is the first screen in a subflows set of repeating screens. When this screen is
-submitted,
-it creates a new iteration which is then saved to the subflow array within the Submission object.
-
-Because this screen is part of the repeating screens within the subfow, it **should** be denoted
-with
-`subflow: subflowName` in the `flows-config.yaml`.
-
-#### Review Screen ####
-
-This is the last screen in a subflow. This screen lists each iteration completed within a subflow,
-and provides options to edit or delete
-a single iteration.
-
-This screen does not need to be demarked with `subflow: subflowName`
-in the `flows-config.yaml`. It is not technically part of the repeating screens within a subflow,
-however,
-you do visit this screen at the end of each iteration to show iterations completed so far and ask
-the
-user if they would like to add another?
-
-#### Delete Confirmation Screen ####
-
-This screen appears when a user selects `delete` on a iteration listed on the review screen. It asks
-the user to confirm their deletion before submitting the actual deletion request to the server.
-
-This page is not technically part of the subflow and as such, does not need to be demarked
-with `subflow: subflowName`
-in the `flows-config.yaml`.
-
-### Defining Subflows ###
-
-What do you need to do to create a subflow?
-
-- In `flows-config.yaml`:
-    - Define a `subflow` section
-    - Create a name for your subflow in the `subflow` section
-    - Define `entryScreen`, `iterationStartScreen`, `reviewScreen`, and `deleteConfirmationScreen`
-      in
-      the `subflow` section
-    - Add all subflow screens into the `flow`, with `subflow: <subflow-name>` unless otherwise noted
-      above
-      (for dedicated subflow screens)
-    - Note for screens that aren't ever defined in `NextScreens` (delete confirmation screen), they
-      still need to be somewhere in the `flow`
-- Define `fields` that appear in subflow screens just like you would in a `screen`, in your flow
-  Java Class
-  (e.g. Ubi.java in the starter app)
-- Define `screen` templates in `resources/templates/<flow-name>`
-
-### Example `flow-config.yaml` with a docs subflow ###
-
-```yaml
-name: docFlow
-flow:
-  first:
-    nextScreens:
-      - name: second
-  second:
-    nextScreens:
-      - name: docsEntry
-  docsEntry:
-    nextScreens:
-      - name: docsStart
-  docsStart:
-    subflow: docs
-    nextScreens:
-      - name: docsInfo
-  docsInfo:
-    subflow: docs
-    nextScreens:
-      - name: docsReview
-  docsReview:
-    nextScreens:
-      - name: success
-  success:
-    nextScreens:
-  # NOTE: this screen still needs to be defined in `flow` to be rendered even though
-  # it isn't the nextScreen of any other Screen
-  docsDeleteConfirmation:
-    nextScreens:
-subflow:
-  docs:
-    entryScreen: docsEntry
-    iterationStartScreen: docsStart
-    reviewScreen: docsReview
-    deleteConfirmationScreen: docsDeleteConfirmation
-```
-
-### When do you need to define `subflow` on a screen? ###
-
-![Diagram showing screens that are in iteration loops to have the subflow key](readme-assets/subflow-stickies.png)
 
 ## Defining Conditions ##
 
@@ -664,30 +378,6 @@ Live Templates by typing `cfa:` and a list of templates to autofill will show it
 5. Paste at the bottom of the file
 6. Commit to GitHub
 7. Now others can copy/paste your Live Templates
-
-## Connect flows config schema with IntelliJ IDE ##
-
-TODO: move schema from library and include in webjar?
-
-We use [JSON schema](https://json-schema.org/understanding-json-schema/index.html) to autocomplete
-and validate the `flows-config.yaml` file.
-
-You must manually connect the schema to the local file in your instance of IntelliJ IDE.
-
-1. Open IntelliJ preferences (`Cmd + ,` on mac)
-2. Navigate to "JSON Schema Mappings"
-3. Select the "+" in the top left to add a new mapping
-4. Name can be anything (I use "flow config")
-5. "Schema file or URL" needs to be set to the `src/main/resources/flows-config-schema.json`
-6. "Schema version" set to "JSON Schema version 7"
-7. Use the "+" under schema version to add:
-    - a new file and connect to `src/main/resources/flows-config.yaml`
-    - a folder and connect to `src/test/resources/flows-config`
-
-To confirm that the connection is work, go into `flows-config.yaml` and see if autocomplete is
-appearing for you.
-
-![IntelliJ JSON Schema Mappings menu](readme-assets/intellij-json-schema-mappings.png)
 
 ## Setup Platform Flavored Google Styles for Java ##
 
