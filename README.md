@@ -1,46 +1,6 @@
 Table of Contents
 =================
-
-* [Form Flow Starter App](#form-flow-starter-app)
-    * [Form Flow Concepts](#form-flow-concepts)
-    * [Defining Flows](#defining-flows)
-    * [Defining Screens](#defining-screens)
-        * [Using Thymeleaf](#using-thymeleaf)
-            * [Thymeleaf Model Data](#thymeleaf-model-data)
-            * [Icon reference](#icon-reference)
-    * [Defining Inputs](#defining-inputs)
-    * [About Submissions](#about-submissions)
-    * [Subflows](#subflows)
-        * [Dedicated Subflow Screens](#dedicated-subflow-screens)
-            * [Entry Screen](#entry-screen)
-            * [Iteration Start Screen](#iteration-start-screen)
-            * [Review Screen](#review-screen)
-            * [Delete Confirmation Screen](#delete-confirmation-screen)
-        * [Defining Subflows](#defining-subflows)
-        * [Example flow-config.yaml with a docs subflow](#example-flow-configyaml-with-a-docs-subflow)
-        * [When do you need to define subflow on a screen?](#when-do-you-need-to-define-subflow-on-a-screen)
-    * [Defining Conditions](#defining-conditions)
-        * [Using conditions in templates](#using-conditions-in-templates)
-    * [Defining Static Pages](#defining-static-pages)
-    * [Development setup](#development-setup)
-        * [Install the following system dependencies:](#install-the-following-system-dependencies)
-            * [Java Development Kit](#java-development-kit)
-            * [Set up jenv to manage your jdk versions](#set-up-jenv-to-manage-your-jdk-versions)
-            * [Gradle](#gradle)
-        * [Start the local databases:](#start-the-local-databases)
-        * [Authenticating the Library](#authenticating-the-library)
-        * [Setup IntelliJ for the project:](#setup-intellij-for-the-project)
-        * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers):](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
-            * [Terminal](#terminal)
-            * [IntelliJ](#intellij)
-        * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler-optional-chrome--firefox)
-    * [About IntelliJ Live Templates](#about-intellij-live-templates)
-        * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
-        * [Using Live Templates](#using-live-templates)
-        * [Contribute new Live Templates](#contribute-new-live-templates)
-    * [Connect flows config schema with IntelliJ IDE](#connect-flows-config-schema-with-intellij-ide)
-
-# Form Flow Starter App
+WIP
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
@@ -68,28 +28,31 @@ The relevant service keys and other settings are configurable in `application.ya
 
 ## Form Flow Concepts ##
 
-* Flows
-* Inputs
-* Screens
-* Conditions
-* Validations
-
-Flows are the top-level construct that define the navigation between a collection of screens.
-A flow can have many inputs to accept user data (e.g. first name, zip
-code, email, file upload). Each input can have zero to many validations.
-
-A flow also has many screens. Each screen can be made up of zero or more inputs. A flow has an
-ordering of screens, and can use defined conditions to control navigation. Conditions use
-submitted inputs to make a logical decision about showing or not showing a screen / part of a
-screen.
+A detailed explaination of form flow concepts can be found on in
+the [form flow libraries readme](https://github.com/codeforamerica/form-flow).
 
 ```mermaid
 erDiagram      
+
+    Flow ||--|{ howThisWorks : "ordered collection of"
+    howThisWorks ||--|{ languagePreferences : ""
+    languagePreferences ||--|{ gettingToKnowYou : ""
+    gettingToKnowYou ||--|{ personalInfo : ""
+    personalInfo ||--|{ eligibility : ""
+    eligibility ||--|{ housemates : ""
+    housemates ||--|{ houseMateInfo : "subflow"
+    housemates }|--o{ Condition:HasHousehold : "determines"
+    housemateInfo ||--|{ householdList : ""
+    householdList ||--|{ income : ""
+```
+
+```mermaid
+erDiagram
     Flow ||--|{ Screen : "ordered collection of"
-    Flow ||--o{ Input : "collection of"
-    Screen ||--o{ Input : displays
-    Input ||--o{ Validation : "validated by"
-    Input }|--o{ Condition: "determines"
+    Flow ||--o{ UBI Object: "collection of"
+    Screen ||--o{ UBI Object : displays
+    UBI Object ||--o{ Validation : "validated by"
+    UBI Object }|--o{ Condition: "determines"
 ```
 
 ## Defining Flows ##
@@ -678,7 +641,8 @@ settings. So we're going to use a copy/paste approach.
 
 ### Applying Live Templates to your IntelliJ IDE ###
 
-1. Open the [intellij-settings/LiveTemplates.xml](intellij-settings/LiveTemplates.xml) from the root of
+1. Open the [intellij-settings/LiveTemplates.xml](intellij-settings/LiveTemplates.xml) from the root
+   of
    this repo
 2. Copy the whole file
 3. Open Preferences (`cmd + ,`), search or find the section "Live Templates"
@@ -729,6 +693,7 @@ appearing for you.
 
 ## Setup Platform Flavored Google Styles for Java ##
 
-In intelliJ go to `Preferences --> Editor --> Code Style --> Java` and next to Scheme hit the cogwheel 
+In intelliJ go to `Preferences --> Editor --> Code Style --> Java` and next to Scheme hit the
+cogwheel
 and `Import Scheme --> IntelliJ Code Style XML` with
 [intellij-settings/PlatformFlavoredGoogleStyle.xml](intellij-settings/PlatformFlavoredGoogleStyle.xml)
