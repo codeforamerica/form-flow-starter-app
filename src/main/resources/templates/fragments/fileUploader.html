@@ -189,7 +189,9 @@
       maxFiles: 20,
       parallelUploads: 1,
       timeout: 0,
-      maxFilesize: Number([[${@environment.getProperty('spring.servlet.multipart.max-request-size')}]].replace("MB", "")),
+      maxFilesize: Number(
+          [[${@environment.getProperty('spring.servlet.multipart.max-request-size')}]].replace("MB",
+              "")),
       dictFileTooBig: window['fileTooBigMsg' + [[${fragmentUniqueId}]]],
       acceptedFiles: [[${@environment.getProperty('form-flow.uploads.accepted-file-types')}]],
       clickable: ".drag-and-drop-box",
@@ -266,9 +268,11 @@
 
         this.on("sending", function (file, xhr, formData) {
           var csrfToken = [[${_csrf.token}]];
+          console.log("Are you working?? ", [[${subflow}]]);
           formData.append("_csrf", csrfToken);
           formData.append("type", file.type);
           formData.append("flow", [[${flow}]]);
+          formData.append("subflow", [[${subflow}]]);
           formData.append("inputName", [[${inputName}]]);
           formData.append("thumbDataURL", file.dataURL);
         })
