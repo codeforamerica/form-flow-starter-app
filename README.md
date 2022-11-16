@@ -29,7 +29,7 @@ The relevant service keys and other settings are configurable in `application.ya
 ## Form Flow Concepts ##
 
 A detailed explanation of form flow concepts can be found on in
-the [form flow libraries readme](https://github.com/codeforamerica/form-flow).
+the [form flow library's readme](https://github.com/codeforamerica/form-flow).
 
 This chart below shows the flow created by the `flows-config.yaml` file in this repository.
 
@@ -58,18 +58,14 @@ flowchart
 ## Defining Screens ##
 
 All screens must have an entry in the flows-config in order to be rendered. Additionally, each
-screen
-should have its own template defined in a folder respective to the flow that screen is contained
-within.
-Example `/src/resources/templates/<flowName>/<templateName>`.
+screen should have its own template defined in a folder respective to the flow that screen is
+contained within. Example `/src/resources/templates/<flowName>/<templateName>`.
 
 We have provided a number of IntelliJ Live templates to make the creation of screens faster and
-easier.
-[More on Live Templates here](#about-intellij-live-templates).
+easier. [More on Live Templates here](#about-intellij-live-templates).
 
 When setting up a new flow, create a folder in `src/main/resources/templates` to hold all HTML
-files.
-In the starter app, we name the respective template folders after their respective flows.
+files. In the starter app, we name the respective template folders after their respective flows.
 
 For example, add an HTML file such
 as `about-you.html` [in the flow's templates folder](src/main/resources/templates). Here is an
