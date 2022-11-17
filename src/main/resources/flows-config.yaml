@@ -79,4 +79,7 @@ subflows:
 name: docUpload
 flow:
   uploadDocuments:
+    nextScreens:
+      - name: success
+  success:
     nextScreens: null

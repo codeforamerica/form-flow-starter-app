@@ -51,16 +51,6 @@
         <div class="preview-container"></div>
       </div>
     </div>
-    <div class="form-group">
-      <a type="button" class="button button--secondary hidden text--centered"
-         th:id="${'submit-my-documents-' + fragmentUniqueId}"
-         th:href="'/pages/'+${pageName}+'/navigation?option=0'"
-         th:text="#{upload-documents.submit-my-documents}"></a>
-      <p class="text--error" aria-live="assertive" aria-atomic="true" hidden>
-        <i class="icon-warning"></i>
-        <span th:text="#{upload-documents.wait-for-upload-warning}"></span>
-      </p>
-    </div>
   </div>
   <script src="/webjars/dropzone/5.9.3/dist/min/dropzone.min.js"></script>
   <script th:inline="javascript">
@@ -292,10 +282,15 @@
           showMaxFileMessage();
         });
 
-        this.on('success', function (file) {
+        this.on('success', function (file, response) {
           var removeLink = file.previewElement.getElementsByClassName("dz-remove")[0];
           var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
           var fileName = file.name;
+
+          console.log("RESPONSE WAS: ", response);
+          // 1. Concat all saved file id's in a global sense
+          // 2. Take saved id's and put in a hidden input within the screen form
+          // ??? When we press next rn, what are all the inputs in formData? Is there one for file upload inputName?
 
           if (file.type.includes("heic") || file.type.includes("tif")) {
             setDefaultThumbnail(file);
