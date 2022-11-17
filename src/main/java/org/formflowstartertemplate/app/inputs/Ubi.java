@@ -14,7 +14,6 @@ public class Ubi {
   // Needs to be declared since Spring Security inserts _csrf as a hidden field to all forms
   private String _csrf;
 
-  @CheckFileType
   private MultipartFile files;
 
   // Language Preferences Screen

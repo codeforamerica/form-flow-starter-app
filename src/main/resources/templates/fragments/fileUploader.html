@@ -52,6 +52,10 @@
       </div>
     </div>
   </div>
+<!--  TODO: change to hidden  -->
+<!--  TODO: instead of hardcoded values, place array of uploaded files  -->
+<!--  TODO: should handle add/delete so list of files is consistent with list of files shown to the user  -->
+  <input type="text" th:name="${inputName}" value="{ 'userFilesId': [ '7', '8', '9'] }">
   <script src="/webjars/dropzone/5.9.3/dist/min/dropzone.min.js"></script>
   <script th:inline="javascript">
     Dropzone.autoDiscover = false;
