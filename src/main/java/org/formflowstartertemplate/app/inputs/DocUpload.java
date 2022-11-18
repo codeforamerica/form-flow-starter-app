@@ -6,6 +6,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class DocUpload {
-  @CheckFileType
   private MultipartFile files;
 }
