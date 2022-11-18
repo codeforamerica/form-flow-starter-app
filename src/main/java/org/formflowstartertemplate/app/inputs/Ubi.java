@@ -1,16 +1,20 @@
 package org.formflowstartertemplate.app.inputs;
 
+import formflow.library.data.validators.CheckFileType;
 import java.util.ArrayList;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class Ubi {
 
   // Needs to be declared since Spring Security inserts _csrf as a hidden field to all forms
   private String _csrf;
+
+  private MultipartFile files;
 
   // Language Preferences Screen
   private String languageRead;
@@ -43,6 +47,7 @@ public class Ubi {
   private String householdMemberLastName;
   private String householdMemberRelationship;
   private String householdMemberRecentlyMovedToUS;
+  private String householdAddressFile;  // file id
 
   // Household Member Income Screen
   @NotBlank(message = "{household-member-income.failed-to-make-selection}")

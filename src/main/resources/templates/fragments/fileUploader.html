@@ -51,20 +51,12 @@
         <div class="preview-container"></div>
       </div>
     </div>
-    <div class="form-group">
-      <a type="button" class="button button--secondary hidden text--centered"
-         th:id="${'submit-my-documents-' + fragmentUniqueId}"
-         th:href="'/pages/'+${pageName}+'/navigation?option=0'"
-         th:text="#{upload-documents.submit-my-documents}"></a>
-      <p class="text--error" aria-live="assertive" aria-atomic="true" hidden>
-        <i class="icon-warning"></i>
-        <span th:text="#{upload-documents.wait-for-upload-warning}"></span>
-      </p>
-    </div>
   </div>
+  <input type="hidden" th:name="${inputName}">
   <script src="/webjars/dropzone/5.9.3/dist/min/dropzone.min.js"></script>
   <script th:inline="javascript">
     Dropzone.autoDiscover = false;
+
     window['documentIcon'
     + [[${fragmentUniqueId}]]] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABGCAYAAACE0Gk0AAAFK0lEQVR4Xu2caVcTSRSG314SyEJQPIAsMucoihDmzJE1BBhnEZ35xzPjmU9ABAR/AThnFBBQQciedLrn3Epaw6Z9OxsTqr7kQ25XVz31VtWt5baSTiYsyOSIgCJhOeIkjCQs56wkLAYrCasusFKpFF5vbmJ/7x1My4KmqZz3VmRr5A3oHh3DI6Po6e2tKC/Ow67GrJOTE7xaX8PB/gG8Xi8URYFl1XNStZDNZtF+4yamIzO42dHBqbNrWzasbDaDtZUV7GxvIxgMNgAUTUsALCCRSKCzsxMzc3Pw+wOuITh9kA3r9dYmNtZforW1FaqiflEUVaDWqUy8pGbTMpGIx3Fn4DtEorPQdb2mJWDDii0t4mB/Dx6Pt85dj8RkQRGyKiYCZhQMpJJJDN5/gPHJKahq7cZONqznf/6BZCLxuRXtAmfS6RK8WknMgq57hKLLk6KqyGbSSKfTGJuYxPBIuGbqqggWtbRlWtB0HT6fT7RqoVCAUgNeiqLCMPLIZDJFVdkKUyDeSw1Ik8zM7JzolrVIbFh/P/8L8ZMTMXWbBRPpdAq9fX2YikTR0tKCXC5X1lGqV2RN17C3t4dX6y9Fg2iq9iVzhbqkKsrl8/sQnZ1HZ1dX9V5ud3vu2vAsrFQqKVoyOjcvxpBapg8f3mM1FoNhGNC0Mlil8YuUTgN+e/sNROfnxW81U0XKskwTyWRRWSR/j8dTzbKdy+vd7i421tdQMArnYJX6JqhMx8fH6OnpxeyPj8+NcZUUsCqw+vr7EIleAVglheXzOcTjcTwYeojpmWglfE5PJpV0Q1tZVwmWGPxphsxmQDP0D4/GEB79virAmk5ZdncUM2QyiVw2i8npiFBZpak5YRV9C+FSHH/6JFyK+cc/487AQEW8mhdWGbCjw0PhB/70yxN03LrlGlhzwyqNX+TRHH78KECRwtra2lwBa3pYREXViisL6pL9dwYQmYmi1edjA7sWsGxg+XweiXgC94eG8GhsnO0XXhtYtkuRz+VAftjDkTBGwqMXO7eXaO5awRLAFEXAorXkcDjMcimuHSzbDyP/K9TejidPf3M8dv2vYO3u7mBjbRXGZWvDr1T77KYgLcYDwQAWnv3enLBo33/1xTILFjmk1PW8Xg9UVfu8u0uw2kIh/LrwtDlhHR0d4p+tLZimKdZ/ThJt5ZDb8P5gX6wVaaOSNg6bHlY5HKdHb+JgwyxgeXFRnEgFAn4Bms4em1pZTpR0kQ2paCW2jO23b8SRGTmpEtYlNMkZXYktYWd7RyrrW4qTsL5FqOx/CUvCYhBgmEplSVgMAgxTqSwJi0GAYSqVJWExCDBMpbIkLAYBhqlUloTFIMAwlcqSsBgEGKZSWRIWgwDDVCpLwmIQYJhKZUlYDAIMU6ksCYtBgGF6pZRVrwgLBp9TpgTrxfISdncaeMhKgU71jN1xC4vuRVCc5Ns3/zbu+L6eUWFuQFHgK8VwUzz12kpMKMvn89fvrkN5cGY94w1dwbIg7ozSFSUK3iwYBhSVLhwVrxwFgkEsPKvhzb/GRbK6wUXPFC+z0VVuXdNPXWarOaxGxki7xXX2OfsSblf3bREn6TSx75Q2NPreaa0usitF7ttR+xQ+PD4xibv3Bh3nyoZ1Jb7r4Lh6pw3tj3XQ9yD6+vsxFYmgpeV0gPrXsmbDoswa/8UQPi0bFMVwd3V3YWxiCqFQiJWRK1j0hkZ+i4ZVw5JxoWBCVRR03+7B3cFB+P1+djauYbHf1AQPSFiMRpSwJCwGAYbpf7oLq5uJEmkZAAAAAElFTkSuQmCC";
     window['isUploadComplete' + [[${fragmentUniqueId}]]] = true;
@@ -74,6 +66,7 @@
     window['heicFilesNotAccepted'
     + [[${fragmentUniqueId}]]] = [[#{upload-documents.heic-files-not-accepted}]];
     window['myDropZone' + [[${fragmentUniqueId}]]] = null;
+    window['userFileIds' + [[${fragmentUniqueId}]]] = [];
 
     function addDragBorder() {
       var dragAndDropBox = document.getElementById("drag-and-drop-box-" + [[${fragmentUniqueId}]]);
@@ -177,6 +170,14 @@
       $uploadDocHeaderDiv.removeClass("hidden");
     }
 
+    function updateFileInputValue() {
+      var inputEl = document.querySelector('input[name=' + [[${inputName}]] + ']');
+      inputEl.value = JSON.stringify({ userFileIds: window['userFileIds' + [[${fragmentUniqueId}]]] });
+      // TODO: ohh we might not be able to do this object nesting and only have it be an array
+      // If we want it to be an array, use this:
+      inputEl.value = window['userFileIds' + [[${fragmentUniqueId}]]];
+    }
+
     $("#document-upload-" + [[${fragmentUniqueId}]]).dropzone({
       // TODO: use a variable? Use to get it from the id being on the form element
       url: "/file-upload",
@@ -189,7 +190,9 @@
       maxFiles: 20,
       parallelUploads: 1,
       timeout: 0,
-      maxFilesize: Number([[${@environment.getProperty('spring.servlet.multipart.max-request-size')}]].replace("MB", "")),
+      maxFilesize: Number(
+          [[${@environment.getProperty('spring.servlet.multipart.max-request-size')}]].replace("MB",
+              "")),
       dictFileTooBig: window['fileTooBigMsg' + [[${fragmentUniqueId}]]],
       acceptedFiles: [[${@environment.getProperty('form-flow.uploads.accepted-file-types')}]],
       clickable: ".drag-and-drop-box",
@@ -269,6 +272,7 @@
           formData.append("_csrf", csrfToken);
           formData.append("type", file.type);
           formData.append("flow", [[${flow}]]);
+          formData.append("subflow", [[${subflow}]]);
           formData.append("inputName", [[${inputName}]]);
           formData.append("thumbDataURL", file.dataURL);
         })
@@ -288,10 +292,13 @@
           showMaxFileMessage();
         });
 
-        this.on('success', function (file) {
+        this.on('success', function (file, response) {
           var removeLink = file.previewElement.getElementsByClassName("dz-remove")[0];
           var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
           var fileName = file.name;
+
+          window['userFileIds' + [[${fragmentUniqueId}]]].push(response);
+          updateFileInputValue();
 
           if (file.type.includes("heic") || file.type.includes("tif")) {
             setDefaultThumbnail(file);

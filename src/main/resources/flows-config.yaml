@@ -46,6 +46,10 @@ flow:
     beforeSave: org.formflowstartertemplate.app.submission.actions.ClearIncomeAmountsBeforeSaving
     subflow: income
     nextScreens:
+      - name: uploadDocuments
+  uploadDocuments:
+    subflow: income
+    nextScreens:
       - name: annualHouseholdIncome
   annualHouseholdIncome:
     nextScreens:
@@ -75,4 +79,7 @@ subflows:
 name: docUpload
 flow:
   uploadDocuments:
+    nextScreens:
+      - name: success
+  success:
     nextScreens: null
