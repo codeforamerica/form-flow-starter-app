@@ -172,10 +172,12 @@
 
     function updateFileInputValue() {
       var inputEl = document.querySelector('input[name=' + [[${inputName}]] + ']');
-      inputEl.value = JSON.stringify({ userFileIds: window['userFileIds' + [[${fragmentUniqueId}]]] });
+      inputEl.value = JSON.stringify(
+          {userFileIds: window['userFileIds' + [[${fragmentUniqueId}]]]});
       // TODO: ohh we might not be able to do this object nesting and only have it be an array
       // If we want it to be an array, use this:
-      inputEl.value = window['userFileIds' + [[${fragmentUniqueId}]]];
+      // This causes the array to become a string of an array
+      inputEl.value = JSON.stringify(window['userFileIds' + [[${fragmentUniqueId}]]]);
     }
 
     $("#document-upload-" + [[${fragmentUniqueId}]]).dropzone({
