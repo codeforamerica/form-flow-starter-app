@@ -20,7 +20,7 @@ flow:
   housemates:
     nextScreens:
       - name: housemateInfo
-        condition: org.formflowstartertemplate.app.submission.conditions.HasHousehold
+#        condition: org.formflowstartertemplate.app.submission.conditions.HasHousehold
       - name: income
   housemateInfo:
     subflow: household
@@ -82,4 +82,6 @@ flow:
     nextScreens:
       - name: success
   success:
+    nextScreens: null
+  fileDeleteConfirmation:
     nextScreens: null

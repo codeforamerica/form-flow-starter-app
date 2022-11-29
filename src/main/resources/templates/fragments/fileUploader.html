@@ -309,7 +309,7 @@
           removeLink.onclick = undefined;
           // TODO: update href
           removeLink.setAttribute('href',
-              '/pages/uploadDocumentsDeleteWarningPage?filename=' + encodeURIComponent(fileName));
+              '/' + [[${flow}]] + '/fileDeleteConfirmation?filename=' + encodeURIComponent(fileName) + '&id=' + response);
           removeLink.innerText = [[#{general.delete}]].toLowerCase();
           thumbnail.classList.remove("hidden");
           progressBar.classList.add("hidden");
