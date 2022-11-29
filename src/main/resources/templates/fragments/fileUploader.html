@@ -3,27 +3,26 @@
 <body>
 <th:block
     th:fragment="fileUploader"
-    th:assert="${!#strings.isEmpty(inputName)}"
-    th:with="fragmentUniqueId=${T(org.formflowstartertemplate.app.utils.ViewUtilities).getUuid}">
-  <div th:id="${'dropzone-' + fragmentUniqueId}">
-    <div class="dropzone needsclick" th:id="${'document-upload-' + fragmentUniqueId}">
-      <div th:id="${'max-files-reached-' + fragmentUniqueId}">
+    th:assert="${!#strings.isEmpty(inputName)}">
+  <div th:id="${'dropzone-' + inputName}">
+    <div class="dropzone needsclick" th:id="${'document-upload-' + inputName}">
+      <div th:id="${'max-files-reached-' + inputName}">
         <div class='max-files spacing-below-35' id="max-files"
              th:text='#{upload-documents.maximum-number-of-files}'></div>
       </div>
-      <div th:id="${'drag-and-drop-box-' + fragmentUniqueId}"
+      <div th:id="${'drag-and-drop-box-' + inputName}"
            class="drag-and-drop-box spacing-below-35 spacing-above-35 grid"
            ondragenter="addDragBorder()" ondrop="removeDragBorder()"
            ondragleave="removeDragBorder()">
-        <h2 th:id="${'vertical-header-desktop-' + fragmentUniqueId}"
+        <h2 th:id="${'vertical-header-desktop-' + inputName}"
             class="blue-label text--centered hide-on-mobile narrow-centered-text"
             th:text="#{upload-documents.add-your-files}"></h2>
-        <h2 th:id="${'vertical-header-mobile-' + fragmentUniqueId}"
+        <h2 th:id="${'vertical-header-mobile-' + inputName}"
             class="blue-label text--centered hide-on-desktop"
             th:text="#{upload-documents.add-your-files}"></h2>
-        <div th:id="${'upload-button-' + fragmentUniqueId}" class="dz-message text--centered">
+        <div th:id="${'upload-button-' + inputName}" class="dz-message text--centered">
           <button th:aria-label="#{upload-documents.add-your-files}" type="button"
-                  th:id="${'upload-button-inner-' + fragmentUniqueId}"
+                  th:id="${'upload-button-inner-' + inputName}"
                   class="button dz-button upload-button-inner">
             <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 0 24 24"
                  width="60px" fill="#FFFFFF">
@@ -33,21 +32,21 @@
           </button>
         </div>
         <div class="grid--item width-two-thirds">
-          <h2 th:id="${'horizontal-header-desktop-' + fragmentUniqueId}"
+          <h2 th:id="${'horizontal-header-desktop-' + inputName}"
               class="blue-label hide-on-mobile hidden spacing-below-5"
               th:text="#{upload-documents.add-your-files}"></h2>
-          <h2 th:id="${'horizontal-header-mobile-' + fragmentUniqueId}"
+          <h2 th:id="${'horizontal-header-mobile-' + inputName}"
               class="blue-label hide-on-desktop hidden spacing-below-5 spacing-above-15"
               th:text="#{upload-documents.add-your-files}"></h2>
-          <div th:id="${'number-of-uploaded-files-' + fragmentUniqueId}" class="body-gray">
+          <div th:id="${'number-of-uploaded-files-' + inputName}" class="body-gray">
           </div>
         </div>
       </div>
-      <div th:id="${'upload-doc-div-' + fragmentUniqueId}" class="spacing-below-25 hidden">
-        <p th:id="${'upload-doc-text-' + fragmentUniqueId}" class="upload-doc-text">Uploaded
+      <div th:id="${'upload-doc-div-' + inputName}" class="spacing-below-25 hidden">
+        <p th:id="${'upload-doc-text-' + inputName}" class="upload-doc-text">Uploaded
           documents</p>
       </div>
-      <div th:id="${'file-preview-template-' + fragmentUniqueId}" class="file-preview-template">
+      <div th:id="${'file-preview-template-' + inputName}" class="file-preview-template">
         <div class="preview-container"></div>
       </div>
     </div>
@@ -58,23 +57,23 @@
     Dropzone.autoDiscover = false;
 
     window['documentIcon'
-    + [[${fragmentUniqueId}]]] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABGCAYAAACE0Gk0AAAFK0lEQVR4Xu2caVcTSRSG314SyEJQPIAsMucoihDmzJE1BBhnEZ35xzPjmU9ABAR/AThnFBBQQciedLrn3Epaw6Z9OxsTqr7kQ25XVz31VtWt5baSTiYsyOSIgCJhOeIkjCQs56wkLAYrCasusFKpFF5vbmJ/7x1My4KmqZz3VmRr5A3oHh3DI6Po6e2tKC/Ow67GrJOTE7xaX8PB/gG8Xi8URYFl1XNStZDNZtF+4yamIzO42dHBqbNrWzasbDaDtZUV7GxvIxgMNgAUTUsALCCRSKCzsxMzc3Pw+wOuITh9kA3r9dYmNtZforW1FaqiflEUVaDWqUy8pGbTMpGIx3Fn4DtEorPQdb2mJWDDii0t4mB/Dx6Pt85dj8RkQRGyKiYCZhQMpJJJDN5/gPHJKahq7cZONqznf/6BZCLxuRXtAmfS6RK8WknMgq57hKLLk6KqyGbSSKfTGJuYxPBIuGbqqggWtbRlWtB0HT6fT7RqoVCAUgNeiqLCMPLIZDJFVdkKUyDeSw1Ik8zM7JzolrVIbFh/P/8L8ZMTMXWbBRPpdAq9fX2YikTR0tKCXC5X1lGqV2RN17C3t4dX6y9Fg2iq9iVzhbqkKsrl8/sQnZ1HZ1dX9V5ud3vu2vAsrFQqKVoyOjcvxpBapg8f3mM1FoNhGNC0Mlil8YuUTgN+e/sNROfnxW81U0XKskwTyWRRWSR/j8dTzbKdy+vd7i421tdQMArnYJX6JqhMx8fH6OnpxeyPj8+NcZUUsCqw+vr7EIleAVglheXzOcTjcTwYeojpmWglfE5PJpV0Q1tZVwmWGPxphsxmQDP0D4/GEB79virAmk5ZdncUM2QyiVw2i8npiFBZpak5YRV9C+FSHH/6JFyK+cc/487AQEW8mhdWGbCjw0PhB/70yxN03LrlGlhzwyqNX+TRHH78KECRwtra2lwBa3pYREXViisL6pL9dwYQmYmi1edjA7sWsGxg+XweiXgC94eG8GhsnO0XXhtYtkuRz+VAftjDkTBGwqMXO7eXaO5awRLAFEXAorXkcDjMcimuHSzbDyP/K9TejidPf3M8dv2vYO3u7mBjbRXGZWvDr1T77KYgLcYDwQAWnv3enLBo33/1xTILFjmk1PW8Xg9UVfu8u0uw2kIh/LrwtDlhHR0d4p+tLZimKdZ/ThJt5ZDb8P5gX6wVaaOSNg6bHlY5HKdHb+JgwyxgeXFRnEgFAn4Bms4em1pZTpR0kQ2paCW2jO23b8SRGTmpEtYlNMkZXYktYWd7RyrrW4qTsL5FqOx/CUvCYhBgmEplSVgMAgxTqSwJi0GAYSqVJWExCDBMpbIkLAYBhqlUloTFIMAwlcqSsBgEGKZSWRIWgwDDVCpLwmIQYJhKZUlYDAIMU6ksCYtBgGF6pZRVrwgLBp9TpgTrxfISdncaeMhKgU71jN1xC4vuRVCc5Ns3/zbu+L6eUWFuQFHgK8VwUzz12kpMKMvn89fvrkN5cGY94w1dwbIg7ozSFSUK3iwYBhSVLhwVrxwFgkEsPKvhzb/GRbK6wUXPFC+z0VVuXdNPXWarOaxGxki7xXX2OfsSblf3bREn6TSx75Q2NPreaa0usitF7ttR+xQ+PD4xibv3Bh3nyoZ1Jb7r4Lh6pw3tj3XQ9yD6+vsxFYmgpeV0gPrXsmbDoswa/8UQPi0bFMVwd3V3YWxiCqFQiJWRK1j0hkZ+i4ZVw5JxoWBCVRR03+7B3cFB+P1+djauYbHf1AQPSFiMRpSwJCwGAYbpf7oLq5uJEmkZAAAAAElFTkSuQmCC";
-    window['isUploadComplete' + [[${fragmentUniqueId}]]] = true;
+    + [[${inputName}]]] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABGCAYAAACE0Gk0AAAFK0lEQVR4Xu2caVcTSRSG314SyEJQPIAsMucoihDmzJE1BBhnEZ35xzPjmU9ABAR/AThnFBBQQciedLrn3Epaw6Z9OxsTqr7kQ25XVz31VtWt5baSTiYsyOSIgCJhOeIkjCQs56wkLAYrCasusFKpFF5vbmJ/7x1My4KmqZz3VmRr5A3oHh3DI6Po6e2tKC/Ow67GrJOTE7xaX8PB/gG8Xi8URYFl1XNStZDNZtF+4yamIzO42dHBqbNrWzasbDaDtZUV7GxvIxgMNgAUTUsALCCRSKCzsxMzc3Pw+wOuITh9kA3r9dYmNtZforW1FaqiflEUVaDWqUy8pGbTMpGIx3Fn4DtEorPQdb2mJWDDii0t4mB/Dx6Pt85dj8RkQRGyKiYCZhQMpJJJDN5/gPHJKahq7cZONqznf/6BZCLxuRXtAmfS6RK8WknMgq57hKLLk6KqyGbSSKfTGJuYxPBIuGbqqggWtbRlWtB0HT6fT7RqoVCAUgNeiqLCMPLIZDJFVdkKUyDeSw1Ik8zM7JzolrVIbFh/P/8L8ZMTMXWbBRPpdAq9fX2YikTR0tKCXC5X1lGqV2RN17C3t4dX6y9Fg2iq9iVzhbqkKsrl8/sQnZ1HZ1dX9V5ud3vu2vAsrFQqKVoyOjcvxpBapg8f3mM1FoNhGNC0Mlil8YuUTgN+e/sNROfnxW81U0XKskwTyWRRWSR/j8dTzbKdy+vd7i421tdQMArnYJX6JqhMx8fH6OnpxeyPj8+NcZUUsCqw+vr7EIleAVglheXzOcTjcTwYeojpmWglfE5PJpV0Q1tZVwmWGPxphsxmQDP0D4/GEB79virAmk5ZdncUM2QyiVw2i8npiFBZpak5YRV9C+FSHH/6JFyK+cc/487AQEW8mhdWGbCjw0PhB/70yxN03LrlGlhzwyqNX+TRHH78KECRwtra2lwBa3pYREXViisL6pL9dwYQmYmi1edjA7sWsGxg+XweiXgC94eG8GhsnO0XXhtYtkuRz+VAftjDkTBGwqMXO7eXaO5awRLAFEXAorXkcDjMcimuHSzbDyP/K9TejidPf3M8dv2vYO3u7mBjbRXGZWvDr1T77KYgLcYDwQAWnv3enLBo33/1xTILFjmk1PW8Xg9UVfu8u0uw2kIh/LrwtDlhHR0d4p+tLZimKdZ/ThJt5ZDb8P5gX6wVaaOSNg6bHlY5HKdHb+JgwyxgeXFRnEgFAn4Bms4em1pZTpR0kQ2paCW2jO23b8SRGTmpEtYlNMkZXYktYWd7RyrrW4qTsL5FqOx/CUvCYhBgmEplSVgMAgxTqSwJi0GAYSqVJWExCDBMpbIkLAYBhqlUloTFIMAwlcqSsBgEGKZSWRIWgwDDVCpLwmIQYJhKZUlYDAIMU6ksCYtBgGF6pZRVrwgLBp9TpgTrxfISdncaeMhKgU71jN1xC4vuRVCc5Ns3/zbu+L6eUWFuQFHgK8VwUzz12kpMKMvn89fvrkN5cGY94w1dwbIg7ozSFSUK3iwYBhSVLhwVrxwFgkEsPKvhzb/GRbK6wUXPFC+z0VVuXdNPXWarOaxGxki7xXX2OfsSblf3bREn6TSx75Q2NPreaa0usitF7ttR+xQ+PD4xibv3Bh3nyoZ1Jb7r4Lh6pw3tj3XQ9yD6+vsxFYmgpeV0gPrXsmbDoswa/8UQPi0bFMVwd3V3YWxiCqFQiJWRK1j0hkZ+i4ZVw5JxoWBCVRR03+7B3cFB+P1+djauYbHf1AQPSFiMRpSwJCwGAYbpf7oLq5uJEmkZAAAAAElFTkSuQmCC";
+    window['isUploadComplete' + [[${inputName}]]] = true;
     // TODO: pull file size from variable?
     window['fileTooBigMsg'
-    + [[${fragmentUniqueId}]]] = [[#{upload-documents.this-file-is-too-large(20)}]];
+    + [[${inputName}]]] = [[#{upload-documents.this-file-is-too-large(20)}]];
     window['heicFilesNotAccepted'
-    + [[${fragmentUniqueId}]]] = [[#{upload-documents.heic-files-not-accepted}]];
-    window['myDropZone' + [[${fragmentUniqueId}]]] = null;
-    window['userFileIds' + [[${fragmentUniqueId}]]] = [];
+    + [[${inputName}]]] = [[#{upload-documents.heic-files-not-accepted}]];
+    window['myDropZone' + [[${inputName}]]] = null;
+    window['userFileIds' + [[${inputName}]]] = [];
 
     function addDragBorder() {
-      var dragAndDropBox = document.getElementById("drag-and-drop-box-" + [[${fragmentUniqueId}]]);
+      var dragAndDropBox = document.getElementById("drag-and-drop-box-" + [[${inputName}]]);
       dragAndDropBox.classList.add("drag-over");
     }
 
     function removeDragBorder() {
-      var dragAndDropBox = document.getElementById("drag-and-drop-box-" + [[${fragmentUniqueId}]]);
+      var dragAndDropBox = document.getElementById("drag-and-drop-box-" + [[${inputName}]]);
       dragAndDropBox.classList.remove("drag-over");
     }
 
@@ -93,7 +92,7 @@
     }
 
     function onSubmit() {
-      if (!window['isUploadComplete' + [[${fragmentUniqueId}]]]) {
+      if (!window['isUploadComplete' + [[${inputName}]]]) {
         $('.form-group').addClass('form-group--error');
         $('.text--error').show();
         return false;
@@ -103,9 +102,9 @@
     }
 
     function showMaxFileMessage() {
-      var dragBox = document.getElementById("drag-and-drop-box-" + [[${fragmentUniqueId}]]);
+      var dragBox = document.getElementById("drag-and-drop-box-" + [[${inputName}]]);
       dragBox.style.display = "none";
-      var maxFilesReached = document.getElementById("max-files-" + [[${fragmentUniqueId}]]);
+      var maxFilesReached = document.getElementById("max-files-" + [[${inputName}]]);
       maxFilesReached.style.display = "flex";
     }
 
@@ -113,49 +112,49 @@
 
     function destroyerCreator(file) {
       return function () {
-        window['myDropZone' + [[${fragmentUniqueId}]]].emit('destroy', file);
+        window['myDropZone' + [[${inputName}]]].emit('destroy', file);
       }
     }
 
     function processDZQueueAfterThumbnailGeneration() {
       var allUploadsHaveThumbnails = window['myDropZone'
-      + [[${fragmentUniqueId}]]].getQueuedFiles().every(
+      + [[${inputName}]]].getQueuedFiles().every(
           f => f.dataURL && f.dataURL.length > 0);
       if (allUploadsHaveThumbnails) {
-        window['myDropZone' + [[${fragmentUniqueId}]]].processQueue();
+        window['myDropZone' + [[${inputName}]]].processQueue();
       }
     }
 
     function showNumberOfAddedFiles() {
-      var numberOfAddedFiles = window['myDropZone' + [[${fragmentUniqueId}]]].files.length;
+      var numberOfAddedFiles = window['myDropZone' + [[${inputName}]]].files.length;
       var numberOfAddedFilesDiv = document.getElementById(
-          "number-of-uploaded-files-" + [[${fragmentUniqueId}]]);
+          "number-of-uploaded-files-" + [[${inputName}]]);
       var numberOfUploadsString = numberOfAddedFiles !== 1 ? `${numberOfAddedFiles} files added`
           : `${numberOfAddedFiles} file added`;
       numberOfAddedFilesDiv.innerHTML = numberOfUploadsString;
     }
 
     function setDefaultThumbnail(file) {
-      file.dataURL = window['documentIcon' + [[${fragmentUniqueId}]]];
-      window['myDropZone' + [[${fragmentUniqueId}]]].emit("thumbnail", file,
-          window['documentIcon' + [[${fragmentUniqueId}]]]);
+      file.dataURL = window['documentIcon' + [[${inputName}]]];
+      window['myDropZone' + [[${inputName}]]].emit("thumbnail", file,
+          window['documentIcon' + [[${inputName}]]]);
     }
 
     function prependAddedFile() {
       var $previewsContainer = $(
-          [[${'#document-upload-' + fragmentUniqueId}]] + ' .preview-container')[0];
-      var $previews = $([[${'#document-upload-' + fragmentUniqueId}]] + ' .dz-preview');
+          [[${'#document-upload-' + inputName}]] + ' .preview-container')[0];
+      var $previews = $([[${'#document-upload-' + inputName}]] + ' .dz-preview');
       var $lastPreviewInList = $previews[$previews.length - 1];
       $previewsContainer.prepend($lastPreviewInList);
     }
 
     function updateUploadBoxLayout() {
-      var $dragAndDropBox = $('#drag-and-drop-box-' + [[${fragmentUniqueId}]]);
-      var $horizontalHeaderDesktop = $('#horizontal-header-desktop-' + [[${fragmentUniqueId}]]);
-      var $horizontalHeaderMobile = $('#horizontal-header-mobile-' + [[${fragmentUniqueId}]]);
-      var $verticalHeaderDesktop = $('#vertical-header-desktop-' + [[${fragmentUniqueId}]]);
-      var $verticalHeaderMobile = $('#vertical-header-mobile-' + [[${fragmentUniqueId}]]);
-      var $uploadButton = $('#upload-button-' + [[${fragmentUniqueId}]]);
+      var $dragAndDropBox = $('#drag-and-drop-box-' + [[${inputName}]]);
+      var $horizontalHeaderDesktop = $('#horizontal-header-desktop-' + [[${inputName}]]);
+      var $horizontalHeaderMobile = $('#horizontal-header-mobile-' + [[${inputName}]]);
+      var $verticalHeaderDesktop = $('#vertical-header-desktop-' + [[${inputName}]]);
+      var $verticalHeaderMobile = $('#vertical-header-mobile-' + [[${inputName}]]);
+      var $uploadButton = $('#upload-button-' + [[${inputName}]]);
 
       $horizontalHeaderDesktop.removeClass('hidden');
       $horizontalHeaderMobile.removeClass('hidden');
@@ -166,25 +165,25 @@
     }
 
     function showUploadListHeaderOnUpload() {
-      var $uploadDocHeaderDiv = $('#upload-doc-div-' + [[${fragmentUniqueId}]]);
+      var $uploadDocHeaderDiv = $('#upload-doc-div-' + [[${inputName}]]);
       $uploadDocHeaderDiv.removeClass("hidden");
     }
 
     function updateFileInputValue() {
       var inputEl = document.querySelector('input[name=' + [[${inputName}]] + ']');
       inputEl.value = JSON.stringify(
-          {userFileIds: window['userFileIds' + [[${fragmentUniqueId}]]]});
+          {userFileIds: window['userFileIds' + [[${inputName}]]]});
       // TODO: ohh we might not be able to do this object nesting and only have it be an array
       // If we want it to be an array, use this:
       // This causes the array to become a string of an array
-      inputEl.value = JSON.stringify(window['userFileIds' + [[${fragmentUniqueId}]]]);
+      inputEl.value = JSON.stringify(window['userFileIds' + [[${inputName}]]]);
     }
 
-    $("#document-upload-" + [[${fragmentUniqueId}]]).dropzone({
+    $("#document-upload-" + [[${inputName}]]).dropzone({
       // TODO: use a variable? Use to get it from the id being on the form element
       url: "/file-upload",
       uploadMultiple: false,
-      previewsContainer: [[${'#document-upload-' + fragmentUniqueId}]] + " .preview-container",
+      previewsContainer: [[${'#document-upload-' + inputName}]] + " .preview-container",
       autoProcessQueue: false,
       thumbnailMethod: "crop",
       thumbnailWidth: 64,
@@ -195,7 +194,7 @@
       maxFilesize: Number(
           [[${@environment.getProperty('spring.servlet.multipart.max-request-size')}]].replace("MB",
               "")),
-      dictFileTooBig: window['fileTooBigMsg' + [[${fragmentUniqueId}]]],
+      dictFileTooBig: window['fileTooBigMsg' + [[${inputName}]]],
       acceptedFiles: [[${@environment.getProperty('form-flow.uploads.accepted-file-types')}]],
       clickable: ".drag-and-drop-box",
       previewTemplate: `
@@ -217,19 +216,22 @@
               <p class='text--error spacing-above-0' aria-live="assertive" aria-atomic="true"></p>
             </div>`,
       init: function () {
-        window['myDropZone' + [[${fragmentUniqueId}]]] = this;
+        window['myDropZone' + [[${inputName}]]] = this;
+
         // TODO: how to pull successfully uploaded docs?
-        var documents = [[${uploadedDocs}]];
+        var userFiles = [[${session.userFiles}]]
+        var dzInstance = [[${inputName}]]
+        var documents = userFiles !== null ? userFiles[dzInstance] : [];
 
         // TODO: Verify that documents are found. Make sure uploaded doc logic works.
 
-        if (documents != null && documents.length >= this.options.maxFiles) {
+        if (documents != null && Object.entries(documents).length >= this.options.maxFiles) {
           showMaxFileMessage();
         }
 
         this.on('addedfile', function (file) {
-          if (window['myDropZone' + [[${fragmentUniqueId}]]].files.length >= window['myDropZone'
-          + [[${fragmentUniqueId}]]].options.maxFiles) {
+          if (window['myDropZone' + [[${inputName}]]].files.length >= window['myDropZone'
+          + [[${inputName}]]].options.maxFiles) {
             showMaxFileMessage();
           }
           var fileNameSpan = file.previewElement.getElementsByClassName('filename-text')[0];
@@ -248,7 +250,7 @@
 
           thumbnail.classList.add("hidden");
 
-          window['isUploadComplete' + [[${fragmentUniqueId}]]] = false;
+          window['isUploadComplete' + [[${inputName}]]] = false;
 
           if (!file.type.includes("image")) {
             setDefaultThumbnail(file);
@@ -256,7 +258,7 @@
           if (file.type.includes("image/heic")) {
             setDefaultThumbnail(file);
           }
-          $('#submit-my-documents-' + [[${fragmentUniqueId}]]).removeClass('hidden');
+          $('#submit-my-documents-' + [[${inputName}]]).removeClass('hidden');
           showNumberOfAddedFiles();
           prependAddedFile();
           updateUploadBoxLayout();
@@ -280,8 +282,8 @@
         })
 
         this.on('queuecomplete', function () {
-          window['isUploadComplete' + [[${fragmentUniqueId}]]] = true;
-          if (documents != null && documents.length >= this.options.maxFiles) {
+          window['isUploadComplete' + [[${inputName}]]] = true;
+          if (documents != null && Object.entries(documents).length >= this.options.maxFiles) {
             showMaxFileMessage();
           }
         });
@@ -299,7 +301,7 @@
           var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
           var fileName = file.name;
 
-          window['userFileIds' + [[${fragmentUniqueId}]]].push(response);
+          window['userFileIds' + [[${inputName}]]].push(response);
           updateFileInputValue();
 
           if (file.type.includes("heic") || file.type.includes("tif")) {
@@ -312,7 +314,7 @@
               '/pages/uploadDocumentsDeleteWarningPage?filename=' + encodeURIComponent(fileName));
           removeLink.innerText = [[#{general.delete}]].toLowerCase();
           thumbnail.classList.remove("hidden");
-          $('#submit-my-documents-' + [[${fragmentUniqueId}]]).removeClass("disabled");
+          $('#submit-my-documents-' + [[${inputName}]]).removeClass("disabled");
         });
 
         // This lets dropzone know to process the queue after each file has completed
@@ -324,24 +326,25 @@
         // `destroy` is a custom event that we have defined, not something built into dropzone.
         // This event is emitted when the client clicks cancel on a file that has not finished uploading.
         this.on('destroy', function (file) {
-          window['myDropZone' + [[${fragmentUniqueId}]]].removeFile(file);
+          window['myDropZone' + [[${inputName}]]].removeFile(file);
           showNumberOfAddedFiles()
         });
 
         this.on('processing', function (file) {
-          $('#submit-my-documents-' + [[${fragmentUniqueId}]]).addClass("disabled");
+          $('#submit-my-documents-' + [[${inputName}]]).addClass("disabled");
         });
 
         // Add all previously uploaded files to the list of uploads
-        $.each(documents, function (key, uploadedDocWithThumbnail) {
-          var doc = uploadedDocWithThumbnail.doc;
-          var mockFile = {name: doc.filename, size: doc.size, type: doc.type};
-          window['myDropZone' + [[${fragmentUniqueId}]]].files.push(mockFile);
-          window['myDropZone' + [[${fragmentUniqueId}]]].emit("addedfile", mockFile);
-          window['myDropZone' + [[${fragmentUniqueId}]]].emit("thumbnail", mockFile,
-              uploadedDocWithThumbnail.thumbnail);
-          window['myDropZone' + [[${fragmentUniqueId}]]].emit("success", mockFile);
-          window['myDropZone' + [[${fragmentUniqueId}]]].emit("complete", mockFile);
+        $.each(Object.entries(documents), function (key, uploadedDocWithThumbnail) {
+          var doc = uploadedDocWithThumbnail[1];
+          debugger;
+          var mockFile = {name: doc.originalFilename, size: doc.filesize, type: doc.type};
+          window['myDropZone' + [[${inputName}]]].files.push(mockFile);
+          window['myDropZone' + [[${inputName}]]].emit("addedfile", mockFile);
+          window['myDropZone' + [[${inputName}]]].emit("thumbnail", mockFile,
+              uploadedDocWithThumbnail.thumbnailUrl);
+          window['myDropZone' + [[${inputName}]]].emit("success", mockFile);
+          window['myDropZone' + [[${inputName}]]].emit("complete", mockFile);
         });
       },
       error: function (file, errorMessage, xhr) {
@@ -351,21 +354,21 @@
           var message = errorMessage.error ? errorMessage.error : errorMessage;
           // special case error message for unsupported HEIC file type uploads
           if (message.localeCompare(
-                  window['myDropZone' + [[${fragmentUniqueId}]]].options.dictInvalidFileType) == 0
+                  window['myDropZone' + [[${inputName}]]].options.dictInvalidFileType) == 0
               && file.name.toLocaleLowerCase().endsWith('.heic')) {
-            message = window['heicFilesNotAccepted' + [[${fragmentUniqueId}]]];
+            message = window['heicFilesNotAccepted' + [[${inputName}]]];
           }
           file.previewElement.getElementsByClassName("text--error")[0].innerText = message;
         }
 
-        for (var i = 0; i < window['myDropZone' + [[${fragmentUniqueId}]]].files.length; i++) {
-          if (window['myDropZone' + [[${fragmentUniqueId}]]].files[i] === file) {
-            window['myDropZone' + [[${fragmentUniqueId}]]].files.splice(i, 1);
+        for (var i = 0; i < window['myDropZone' + [[${inputName}]]].files.length; i++) {
+          if (window['myDropZone' + [[${inputName}]]].files[i] === file) {
+            window['myDropZone' + [[${inputName}]]].files.splice(i, 1);
           }
         }
 
-        if (window['myDropZone' + [[${fragmentUniqueId}]]].files.length === 0) {
-          $('#submit-my-documents-' + [[${fragmentUniqueId}]]).addClass('hidden');
+        if (window['myDropZone' + [[${inputName}]]].files.length === 0) {
+          $('#submit-my-documents-' + [[${inputName}]]).addClass('hidden');
         }
 
         showNumberOfAddedFiles();
