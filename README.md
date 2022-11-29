@@ -613,6 +613,7 @@ TOKEN=Your_GitHub_Personal_Access_Token
 We use a `.env` file to store secret, we use the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) to connect IntelliJ with the `.env`.
 
 - You will need to go [through their setup](https://plugins.jetbrains.com/plugin/7861-envfile).
+- Follow EnvFile usage process [here](https://github.com/Ashald/EnvFile#usage) to setup Run Configurations with EnvFile.
 
 ### Setup IntelliJ for the project: ###
 
@@ -621,7 +622,7 @@ We use a `.env` file to store secret, we use the [EnvFile plugin](https://plugin
 - Set the Gradle JVM version to `17 Eclipse Temurin version 17.0.5`
   in `Preferences -> Build, Execution, Deployment -> Build Tools -> Gradle`
 - Set the Project SDK to `17 Eclipse Temurin version 17.0.5` in `File > Project Structure`
-- Run the application using the `FormflowstarterApplication` configuration
+- Run the application using the `StarterApplication` configuration (found in `org.formflowstartertemplate.app`)
 
 ### Using a local version of the Form-Flow Library (For Form-Flow Library Developers): ###
 
