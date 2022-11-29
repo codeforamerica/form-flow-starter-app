@@ -265,7 +265,9 @@
           showUploadListHeaderOnUpload();
         });
 
-        this.on("thumbnail", function () {
+        this.on("thumbnail", function (file, dataUrl) {
+          file.dataURL = dataUrl;
+          // debugger;
           setTimeout(function () {
             processDZQueueAfterThumbnailGeneration()
           }, 1);
@@ -337,12 +339,11 @@
         // Add all previously uploaded files to the list of uploads
         $.each(Object.entries(documents), function (key, uploadedDocWithThumbnail) {
           var doc = uploadedDocWithThumbnail[1];
-          debugger;
           var mockFile = {name: doc.originalFilename, size: doc.filesize, type: doc.type};
           window['myDropZone' + [[${inputName}]]].files.push(mockFile);
           window['myDropZone' + [[${inputName}]]].emit("addedfile", mockFile);
           window['myDropZone' + [[${inputName}]]].emit("thumbnail", mockFile,
-              uploadedDocWithThumbnail.thumbnailUrl);
+              doc.thumbnailUrl);
           window['myDropZone' + [[${inputName}]]].emit("success", mockFile);
           window['myDropZone' + [[${inputName}]]].emit("complete", mockFile);
         });
