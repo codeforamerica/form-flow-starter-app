@@ -1075,7 +1075,6 @@ legend.form-question {
     box-shadow: 0 0 0 5px #FFAE00;
     box-sizing: border-box;
     border-radius: 8px;
-
     border: 2px solid #F7F5F4
   }
 
@@ -1165,6 +1164,90 @@ legend.form-question {
   color: #cfc5bf;
 }
 
+.file-details {
+  margin-left: 16px;
+}
+
+.file-details-delimiter, .file-count-delimiter {
+  margin-left: 8px;
+  font-size: small;
+}
+
+.file-count-delimiter {
+  margin-right: 8px;
+}
+
+.dz-remove {
+  margin-left: 8px;
+  text-decoration: underline;
+}
+
+.filename-text-ext {
+  width: 25%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  display: inline-block;
+}
+
+.filename-text-name {
+  max-width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.filename-text {
+  margin-left: 16px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 25px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.doc-rec:last-of-type {
+  margin-bottom: 2.5rem !important;
+}
+
+.doc-rectangle {
+  height: 60px;
+  background: #F7F5F4;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  display: flex !important;
+  justify-content: center;
+}
+
+.upload-doc-text {
+  color: #5F5854;
+  border-bottom: 2px solid #AAAAAA;
+  padding-bottom: 0.5rem;
+  font-style: normal;
+}
+
+.file-preview-template .dz-success .dz-filename {
+  color: #000;
+}
+
+.dz-button:hover {
+  background-color: #00223D;
+  color: #FFF;
+}
+
+form .drag-and-drop-box-compact {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 /*
  * End CSS from dropzone
  */
+
+.display-flex {
+  display: flex;
+}

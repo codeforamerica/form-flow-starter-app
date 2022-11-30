@@ -14,7 +14,6 @@
             th:replace="'fragments/form' :: form(action=${formAction}, enctype='multipart/form-data', content=~{::contentRef})">
           <th:block th:ref="contentRef">
             <div class="form-card__content">
-              <div th:text="${session.userFiles}"></div>
               <th:block
                   th:replace="fragments/fileUploader :: fileUploader(inputName='files')"></th:block>
             </div>

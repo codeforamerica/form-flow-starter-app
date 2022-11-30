@@ -267,7 +267,6 @@
 
         this.on("thumbnail", function (file, dataUrl) {
           file.dataURL = dataUrl;
-          // debugger;
           setTimeout(function () {
             processDZQueueAfterThumbnailGeneration()
           }, 1);
