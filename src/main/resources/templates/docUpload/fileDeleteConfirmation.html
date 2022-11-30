@@ -30,12 +30,12 @@
           <div class="form-card__footer">
             <!--  TODO: figure out delete path -->
             <form method="post"
-                  th:action="'/' + ${flow} + '/' + ${param.id} + '/delete'">
+                  th:action="'/file-delete?id=' + ${param.id} + '&returnPath=' + ${param.returnPath}">
               <th:block th:replace="fragments/inputs/submitButton :: submitButton(
                   text=#{file-delete-confirmation.yes})"/>
             </form>
-            <!--  TODO: figure out back path -->
-            <a class="button spacing-above-35" th:href="'/' + ${flow} + '/householdList'"
+            <a class="button spacing-above-35"
+               th:href="@{ {returnPath}(returnPath=${param.returnPath}) }"
                th:text="#{file-delete-confirmation.no}"></a>
           </div>
         </main>
