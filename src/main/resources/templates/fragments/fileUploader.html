@@ -200,11 +200,11 @@
       previewTemplate: `
             <div class="dz-preview dz-file-preview spacing-below-15">
               <div class="dz-details grid">
-                <div class="grid__item width-one-sixth mobile-width-one-fourth doc-rectangle">
+                <div class="width-one-sixth mobile-width-one-fourth thumbnail-background">
                     <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                     <img class="dz-thumb" data-dz-thumbnail aria-hidden="true" />
                 </div>
-                <div class="grid__item width-five-sixths mobile-width-three-fourths">
+                <div class="width-five-sixths mobile-width-three-fourths">
                     <div class="dz-filename"><div class="filename-text" data-dz-name></div></div>
                     <div class="display-flex body-gray file-details">
                         <div class="dz-size" data-dz-size></div>
@@ -300,6 +300,7 @@
         this.on('success', function (file, response) {
           var removeLink = file.previewElement.getElementsByClassName("dz-remove")[0];
           var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
+          var progressBar = file.previewElement.getElementsByClassName("dz-progress")[0];
           var fileName = file.name;
 
           window['userFileIds' + [[${inputName}]]].push(response);
@@ -315,6 +316,7 @@
               '/pages/uploadDocumentsDeleteWarningPage?filename=' + encodeURIComponent(fileName));
           removeLink.innerText = [[#{general.delete}]].toLowerCase();
           thumbnail.classList.remove("hidden");
+          progressBar.classList.add("hidden");
           $('#submit-my-documents-' + [[${inputName}]]).removeClass("disabled");
         });
 

@@ -773,6 +773,7 @@ body,
 
 .dropzone .dz-thumb {
   border-radius: 8px;
+  min-width: 100%;
 }
 
 .dropzone .dz-preview .dz-progress .dz-upload {
@@ -1040,7 +1041,7 @@ legend.form-question {
 }
 
 @media screen and (max-width: 600px) {
-  .preview-container .doc-rectangle {
+  .preview-container .thumbnail-background {
     max-width: 60px;
   }
 
@@ -1214,12 +1215,12 @@ legend.form-question {
   margin-bottom: 2.5rem !important;
 }
 
-.doc-rectangle {
-  height: 60px;
+.thumbnail-background {
   background: #F7F5F4;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   display: flex !important;
+  min-height: 70.56px;
   justify-content: center;
 }
 

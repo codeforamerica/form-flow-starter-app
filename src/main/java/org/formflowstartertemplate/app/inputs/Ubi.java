@@ -1,6 +1,5 @@
 package org.formflowstartertemplate.app.inputs;
 
-import formflow.library.data.validators.CheckFileType;
 import java.util.ArrayList;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
