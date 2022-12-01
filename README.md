@@ -1,6 +1,37 @@
 Table of Contents
 =================
-WIP
+<!--
+    **  This is not automatically generated. **
+    Update this section when you update sections now.
+    Please don't go more than three layers deep, so we can keep the TOC
+    a reasonable size.
+-->
+
+* [Form Flow Concepts](#form-flow-concepts)
+* [Defining Screens](#defining-screens)
+    * [Using Thymeleaf](#using-thymeleaf)
+        * [Icon reference](#icon-reference)
+* [Defining Conditions](#defining-conditions)
+    * [Using conditions in templates](#using-conditions-in-templates)
+* [Defining Static Pages](#defining-static-pages)
+* [Development setup](#development-setup)
+    * [Install the following system dependencies:](#install-the-following-system-dependencies)
+        * [Java Development Kit](#java-development-kit)
+        * [Set up jenv to manage your jdk versions](#set-up-jenv-to-manage-your-jdk-versions)
+        * [Gradle](#gradle)
+    * [Start the local databases:](#start-the-local-databases)
+    * [Authenticating the Library](#authenticating-the-library)
+    * [Setup EnvFile in IntelliJ](#setup-envfile-in-intellij)
+    * [Setup IntelliJ for the project:](#setup-intellij-for-the-project)
+    * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers):](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
+        * [Terminal](#terminal)
+        * [IntelliJ](#intellij)
+    * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler-optional-chrome--firefox)
+* [About IntelliJ Live Templates](#about-intellij-live-templates)
+    * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
+    * [Using Live Templates](#using-live-templates)
+    * [Contribute new Live Templates](#contribute-new-live-templates)
+* [Setup Platform Flavored Google Styles for Java](#setup-platform-flavored-google-styles-for-java)
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
@@ -234,9 +265,9 @@ Add the following to your `~/.bashrc` or `~/.zshrc`:
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 ```
-   
+
 For m1 macs, if the above snippet doesn't work, try:
-   
+
 ```
 export PATH="$HOME/.jenv/bin:$PATH"
 export JENV_ROOT="/opt/homebrew/Cellar/jenv/"
@@ -280,13 +311,16 @@ directory of the starter and add your Username and PAT like below:
 USERNAME=Your_GitHub_Username
 TOKEN=Your_GitHub_Personal_Access_Token
 ```
-   
+
 ### Setup EnvFile in IntelliJ ###
 
-We use a `.env` file to store secret, we use the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) to connect IntelliJ with the `.env`.
+We use a `.env` file to store secret, we use
+the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) to connect IntelliJ with
+the `.env`.
 
 - You will need to go [through their setup](https://plugins.jetbrains.com/plugin/7861-envfile).
-- Follow EnvFile usage process [here](https://github.com/Ashald/EnvFile#usage) to setup Run Configurations with EnvFile.
+- Follow EnvFile usage process [here](https://github.com/Ashald/EnvFile#usage) to setup Run
+  Configurations with EnvFile.
 
 ### Setup IntelliJ for the project: ###
 
@@ -295,7 +329,8 @@ We use a `.env` file to store secret, we use the [EnvFile plugin](https://plugin
 - Set the Gradle JVM version to `17 Eclipse Temurin version 17.0.5`
   in `Preferences -> Build, Execution, Deployment -> Build Tools -> Gradle`
 - Set the Project SDK to `17 Eclipse Temurin version 17.0.5` in `File > Project Structure`
-- Run the application using the `StarterApplication` configuration (found in `org.formflowstartertemplate.app`)
+- Run the application using the `StarterApplication` configuration (found
+  in `org.formflowstartertemplate.app`)
 
 ### Using a local version of the Form-Flow Library (For Form-Flow Library Developers): ###
 
