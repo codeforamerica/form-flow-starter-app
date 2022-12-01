@@ -1183,19 +1183,19 @@ legend.form-question {
 }
 
 .filename-text-ext {
-  width: 25%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
   display: inline-block;
+  flex: 0 0 auto;
 }
 
 .filename-text-name {
-  max-width: 60%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
+  flex: inherit;
 }
 
 .filename-text {
@@ -1204,10 +1204,10 @@ legend.form-question {
   font-weight: bold;
   font-size: 19px;
   line-height: 25px;
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
+  display: flex;
 }
 
 .doc-rec:last-of-type {
@@ -1220,11 +1220,12 @@ legend.form-question {
   border-radius: 10px;
   justify-content: center;
   display: flex;
-  flex: 1;
+  flex: 0 0 auto;
 }
 
 .file {
-  flex: 7;
+  flex: 1 0 0;
+  min-width: 0;
 }
 
 .upload-doc-text {
