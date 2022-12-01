@@ -84,10 +84,7 @@
         return [name, ""];
       }
 
-      var extStr = name.slice(extIdx + 1, name.length);
-      if (element.scrollWidth <= element.clientWidth) {
-        extStr = "." + extStr;
-      }
+      var extStr = name.slice(extIdx, name.length);
       return [name.slice(0, extIdx), extStr];
     }
 
@@ -231,9 +228,12 @@
             showMaxFileMessage();
           }
           var fileNameSpan = file.previewElement.getElementsByClassName('filename-text')[0];
+          console.log("🐸 ", fileNameSpan.innerText)
           var fileNameComponents = getFilenameComponents(fileNameSpan);
           var removeLink = file.previewElement.getElementsByClassName("dz-remove")[0];
           var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
+
+          console.log("🤯 ", fileNameComponents)
 
           fileNameSpan.setAttribute('aria-label', fileNameSpan.innerText);
           fileNameSpan.innerHTML = "<span class='filename-text-name' aria-hidden='true'>"
