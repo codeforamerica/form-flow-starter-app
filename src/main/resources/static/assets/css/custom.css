@@ -330,7 +330,7 @@ url('/webjars/form-flow/0.0.1/fonts/MaterialIcons-Regular.svg') format('svg');
 }
 
 body,
-.slab--shiba {
+.slab--off-white {
   background-color: #E9F6FF;
 }
 
@@ -399,7 +399,7 @@ body,
   margin-left: 0;
 }
 
-.notice--shiba {
+.notice {
   position: relative;
   background-color: #E9F6FF;
   border: 2px solid #003865;
@@ -407,7 +407,7 @@ body,
   padding: 15px 15px;
 }
 
-.notice--shiba p {
+.notice p {
   margin-bottom: 0;
 }
 
@@ -703,8 +703,7 @@ body,
   border: none;
 }
 
-.dropzone .dz-preview .dz-details .dz-size, .file-count {
-  margin-bottom: 1em;
+.dropzone .dz-preview .dz-details .dz-size {
   font-size: 16px;
   display: inline;
 }
@@ -1041,7 +1040,7 @@ legend.form-question {
 }
 
 @media screen and (max-width: 600px) {
-  .preview-container .thumbnail-background {
+  .preview-container .thumbnail {
     max-width: 60px;
   }
 
@@ -1192,7 +1191,7 @@ legend.form-question {
 }
 
 .filename-text-name {
-  max-width: 75%;
+  max-width: 60%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1215,13 +1214,17 @@ legend.form-question {
   margin-bottom: 2.5rem !important;
 }
 
-.thumbnail-background {
+.thumbnail {
   background: #F7F5F4;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  display: flex !important;
-  min-height: 70.56px;
   justify-content: center;
+  display: flex;
+  flex: 1;
+}
+
+.file {
+  flex: 7;
 }
 
 .upload-doc-text {

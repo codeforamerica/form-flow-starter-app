@@ -171,11 +171,7 @@
 
     function updateFileInputValue() {
       var inputEl = document.querySelector('input[name=' + [[${inputName}]] + ']');
-      inputEl.value = JSON.stringify(
-          {userFileIds: window['userFileIds' + [[${inputName}]]]});
-      // TODO: ohh we might not be able to do this object nesting and only have it be an array
-      // If we want it to be an array, use this:
-      // This causes the array to become a string of an array
+      inputEl.value = JSON.stringify({userFileIds: window['userFileIds' + [[${inputName}]]]});
       inputEl.value = JSON.stringify(window['userFileIds' + [[${inputName}]]]);
     }
 
@@ -199,12 +195,12 @@
       clickable: ".drag-and-drop-box",
       previewTemplate: `
             <div class="dz-preview dz-file-preview spacing-below-15">
-              <div class="dz-details grid">
-                <div class="width-one-sixth mobile-width-one-fourth thumbnail-background">
+              <div class="dz-details display-flex">
+                <div class="thumbnail">
                     <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                     <img class="dz-thumb" data-dz-thumbnail aria-hidden="true" />
                 </div>
-                <div class="width-five-sixths mobile-width-three-fourths">
+                <div class="file">
                     <div class="dz-filename"><div class="filename-text" data-dz-name></div></div>
                     <div class="display-flex body-gray file-details">
                         <div class="dz-size" data-dz-size></div>
