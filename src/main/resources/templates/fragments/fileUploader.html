@@ -344,6 +344,9 @@
           window['myDropZone' + [[${inputName}]]].emit("success", mockFile);
           window['myDropZone' + [[${inputName}]]].emit("complete", mockFile);
         });
+        // this.on('cancelled', function (file) {
+        //   console.log(file);
+        // })
       },
       error: function (file, errorMessage, xhr) {
         if (xhr && xhr.response) {
@@ -378,7 +381,7 @@
         removeLink.innerText = [[#{general.remove}]].toLowerCase();
         removeLink.classList.add("text--red");
 
-        var filePreview = file.previewElement.getElementsByClassName("doc-rectangle")[0]
+        var filePreview = file.previewElement.getElementsByClassName("thumbnail")[0]
         filePreview.innerHTML = "<svg class=\"margin-auto\" width=\"40\" height=\"47\" viewBox=\"0 0 40 47\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n"
             +
             "<path d=\"M6.625 40.125H20.375L13.5 28.25L6.625 40.125ZM14.125 38.25H12.875V37H14.125V38.25ZM14.125 35.75H12.875V33.25H14.125V35.75Z\" fill=\"#D13F00\"/>\n"
