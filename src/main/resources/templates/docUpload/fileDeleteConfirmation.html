@@ -27,10 +27,11 @@
                 th:text="#{file-delete-confirmation.header(${param.filename})}"></h1>
             <h2 th:text="#{file-delete-confirmation.is-that-okay}"></h2>
           </div>
+          <div th:text="${param.entrySet()}"></div>
           <div class="form-card__footer">
             <!--  TODO: figure out delete path -->
             <form method="post"
-                  th:action="'/file-delete?id=' + ${param.id} + '&returnPath=' + ${param.returnPath}">
+                  th:action="'/file-delete?id=' + ${param.id} + '&returnPath=' + ${param.returnPath} + '&inputName=' + ${param.inputName}">
               <th:block th:replace="fragments/inputs/submitButton :: submitButton(
                   text=#{file-delete-confirmation.yes})"/>
             </form>

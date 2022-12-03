@@ -298,7 +298,6 @@
           var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
           var progressBar = file.previewElement.getElementsByClassName("dz-progress")[0];
           var fileName = file.name;
-
           window['userFileIds' + [[${inputName}]]].push(response);
           updateFileInputValue();
 
@@ -311,6 +310,7 @@
           removeLink.setAttribute('href',
               '/' + [[${flow}]] +
               '/fileDeleteConfirmation?filename=' + encodeURIComponent(fileName)
+              + '&inputName=' + [[${inputName}]]
               + '&id=' + response
               + '&returnPath=' + window.location.pathname);
           removeLink.innerText = [[#{general.delete}]].toLowerCase();
@@ -339,7 +339,7 @@
         // Add all previously uploaded files to the list of uploads
         $.each(Object.entries(documents), function (key, uploadedDocWithThumbnail) {
           var doc = uploadedDocWithThumbnail[1];
-          var mockFile = {name: doc.originalFilename, size: doc.filesize, type: doc.type};
+          var mockFile = {name: doc.originalFilename, size: doc.filesize, type: doc.type, id: uploadedDocWithThumbnail[0]};
           window['myDropZone' + [[${inputName}]]].files.push(mockFile);
           window['myDropZone' + [[${inputName}]]].emit("addedfile", mockFile);
           window['myDropZone' + [[${inputName}]]].emit("thumbnail", mockFile,
@@ -347,9 +347,6 @@
           window['myDropZone' + [[${inputName}]]].emit("success", mockFile);
           window['myDropZone' + [[${inputName}]]].emit("complete", mockFile);
         });
-        // this.on('cancelled', function (file) {
-        //   console.log(file);
-        // })
       },
       error: function (file, errorMessage, xhr) {
         if (xhr && xhr.response) {
