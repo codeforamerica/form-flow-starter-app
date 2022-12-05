@@ -24,19 +24,7 @@ if (file(".env").exists()) {
 
 repositories {
     maven {
-        name "GitHubPackages"
-        url("https://maven.pkg.github.com/codeforamerica/form-flow")
-        credentials {
-            /**
-             * We pull environment variables different based on which environment we're in:
-             * Local:           uses .env file to generate `props`
-             * Local Docker:    uses .env file to generate `props`
-             * GitHub Action:   uses environment variables (System.getenv) injected through the workflow
-             * Aptible Docker:  uses environment variables (System.getenv) injected from a `.aptible.env` file
-             **/
-            username = System.getenv("USERNAME") ?: props.getProperty("USERNAME")
-            password = System.getenv("TOKEN") ?: props.getProperty("TOKEN")
-        }
+        url 'https://oss.sonatype.org/content/repositories/snapshots'
     }
     mavenCentral()
 }
@@ -58,7 +46,7 @@ dependencies {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
         println "Using local library 🗼"
     } else {
-        implementation 'form-flow:form-flow-library:0.0.1-SNAPSHOT'
+        implementation 'org.codeforamerica.platform:form-flow:0.0.1-SNAPSHOT'
         println "Using 0.0.1-SNAPSHOT 💜"
     }
 
