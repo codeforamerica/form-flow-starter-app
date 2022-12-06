@@ -83,3 +83,5 @@ flow:
       - name: success
   success:
     nextScreens: null
+  fileDeleteConfirmation:
+    nextScreens: null
