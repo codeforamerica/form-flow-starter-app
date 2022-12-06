@@ -336,22 +336,43 @@
           $('#submit-my-documents-' + [[${inputName}]]).addClass("disabled");
         });
 
-        // Add all previously uploaded files to the list of uploads
-        $.each(Object.entries(documents), function (key, uploadedDocWithThumbnail) {
-          var doc = uploadedDocWithThumbnail[1];
-          var mockFile = {
-            name: doc.originalFilename,
-            size: doc.filesize,
-            type: doc.type,
-            id: uploadedDocWithThumbnail[0]
-          };
-          window['myDropZone' + [[${inputName}]]].files.push(mockFile);
-          window['myDropZone' + [[${inputName}]]].emit("addedfile", mockFile);
-          window['myDropZone' + [[${inputName}]]].emit("thumbnail", mockFile,
-              doc.thumbnailUrl);
-          window['myDropZone' + [[${inputName}]]].emit("success", mockFile, mockFile.id);
-          window['myDropZone' + [[${inputName}]]].emit("complete", mockFile);
-        });
+        if (documents) {
+          $.each(Object.entries(documents), function (key, uploadedDocWithThumbnail) {
+            var doc = uploadedDocWithThumbnail[1];
+            var mockFile = {
+              name: doc.originalFilename,
+              size: doc.filesize,
+              type: doc.type,
+              id: uploadedDocWithThumbnail[0]
+            };
+            window['myDropZone' + [[${inputName}]]].files.push(mockFile);
+            window['myDropZone' + [[${inputName}]]].emit("addedfile", mockFile);
+            window['myDropZone' + [[${inputName}]]].emit("thumbnail", mockFile,
+                doc.thumbnailUrl);
+            window['myDropZone' + [[${inputName}]]].emit("success", mockFile, mockFile.id);
+            window['myDropZone' + [[${inputName}]]].emit("complete", mockFile);
+          });
+        }
+
+        this.on('removedfile', function(file) {
+          console.log('cancelling');
+          var xhrRequest = new XMLHttpRequest();
+          xhrRequest.open('POST', '/file-delete?' + file.id + '&returnPath=' + window.location.pathname + '&inputName=' + [[${inputName}]], true);
+          xhrRequest.withCredentials = !!this.options.withCredentials;
+          xhrRequest.setRequestHeader("Accept", "*/*");
+          // xhrRequest.setRequestHeader("Content-Type", "multipart/form-data");
+          xhrRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+          var csrfToken = [[${_csrf.token}]];
+          var formData = new FormData();
+          formData.append("_csrf", csrfToken);
+          formData.append("id", file.id);
+          xhrRequest.onreadystatechange = function () {
+            if (xhrRequest.readyState === 4) {
+              console.log(xhrRequest.status);
+              console.log(xhrRequest.responseText);
+            }};
+          xhrRequest.send(formData);
+        })
       },
       error: function (file, errorMessage, xhr) {
         if (xhr && xhr.response) {
