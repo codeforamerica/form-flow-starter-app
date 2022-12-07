@@ -39,9 +39,6 @@ dependencies {
 
     implementation 'org.flywaydb:flyway-core'
 
-    // TODO: move to library
-    implementation 'org.webjars.npm:dropzone:5.9.3'
-
     if (profile == 'dev') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
         println "Using local library 🗼"
