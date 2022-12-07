@@ -66,6 +66,8 @@
     + [[${inputName}]]] = [[#{upload-documents.heic-files-not-accepted}]];
     window['myDropZone' + [[${inputName}]]] = null;
     window['userFileIds' + [[${inputName}]]] = [];
+    window['cancelledFiles' + [[${inputName}]]] = [];
+    var userFiles = [[${session.userFiles}]]
 
     function addDragBorder() {
       var dragAndDropBox = document.getElementById("drag-and-drop-box-" + [[${inputName}]]);
@@ -109,7 +111,7 @@
 
     function destroyerCreator(file) {
       return function () {
-        window['myDropZone' + [[${inputName}]]].emit('destroy', file);
+        window['myDropZone' + [[${inputName}]]].emit('addFileToBeDestroyed', file);
       }
     }
 
@@ -171,6 +173,34 @@
       inputEl.value = JSON.stringify({userFileIds: window['userFileIds' + [[${inputName}]]]});
       inputEl.value = JSON.stringify(window['userFileIds' + [[${inputName}]]]);
     }
+    
+    function deleteCancelledFiles(file, response) {
+      let filesToDelete = window['cancelledFiles' + [[${inputName}]]];
+      filesToDelete.forEach(fTD => {
+        if (fTD.name === file.name) {
+          window['myDropZone' + [[${inputName}]]].removeFile(file);
+          let toDeleteIdx = window['userFileIds' + [[${inputName}]]].indexOf(response);
+          if (toDeleteIdx !== -1) {
+            window['userFileIds' + [[${inputName}]]].splice(toDeleteIdx, 1)
+          }
+          showNumberOfAddedFiles();
+          sendDeleteXhrRequest(file, response);
+        };
+      })
+    }
+    
+    function sendDeleteXhrRequest(file, id) {
+      var xhrRequest = new XMLHttpRequest();
+      xhrRequest.open('POST', '/file-delete?' + id + '&returnPath=' + window.location.pathname + '&inputName=' + [[${inputName}]], true);
+      xhrRequest.withCredentials = false;
+      xhrRequest.setRequestHeader("Accept", "*/*");
+      xhrRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      var csrfToken = [[${_csrf.token}]];
+      var formData = new FormData();
+      formData.append("_csrf", csrfToken);
+      formData.append("id", id);
+      xhrRequest.send(formData);
+    }
 
     $("#document-upload-" + [[${inputName}]]).dropzone({
       // TODO: use a variable? Use to get it from the id being on the form element
@@ -210,9 +240,6 @@
             </div>`,
       init: function () {
         window['myDropZone' + [[${inputName}]]] = this;
-
-        // TODO: how to pull successfully uploaded docs?
-        var userFiles = [[${session.userFiles}]]
         var dzInstance = [[${inputName}]]
         var documents = userFiles !== null ? userFiles[dzInstance] : [];
 
@@ -228,13 +255,9 @@
             showMaxFileMessage();
           }
           var fileNameSpan = file.previewElement.getElementsByClassName('filename-text')[0];
-          console.log("🐸 ", fileNameSpan.innerText)
           var fileNameComponents = getFilenameComponents(fileNameSpan);
           var removeLink = file.previewElement.getElementsByClassName("dz-remove")[0];
           var thumbnail = file.previewElement.getElementsByClassName("dz-thumb")[0];
-
-          console.log("🤯 ", fileNameComponents)
-
           fileNameSpan.setAttribute('aria-label', fileNameSpan.innerText);
           fileNameSpan.innerHTML = "<span class='filename-text-name' aria-hidden='true'>"
               + fileNameComponents[0] + "</span>" +
@@ -317,6 +340,7 @@
           thumbnail.classList.remove("hidden");
           progressBar.classList.add("hidden");
           $('#submit-my-documents-' + [[${inputName}]]).removeClass("disabled");
+          deleteCancelledFiles(file, response);
         });
 
         // This lets dropzone know to process the queue after each file has completed
@@ -325,33 +349,33 @@
           processDZQueueAfterThumbnailGeneration();
         })
 
-        // `destroy` is a custom event that we have defined, not something built into dropzone.
+        // `addFileToBeDestroyed` is a custom event that we have defined, not something built into dropzone.
         // This event is emitted when the client clicks cancel on a file that has not finished uploading.
-        this.on('destroy', function (file) {
-          window['myDropZone' + [[${inputName}]]].removeFile(file);
-          showNumberOfAddedFiles()
+        this.on('addFileToBeDestroyed', function (file) {
+          window['cancelledFiles' + [[${inputName}]]].push(file);
         });
 
         this.on('processing', function (file) {
           $('#submit-my-documents-' + [[${inputName}]]).addClass("disabled");
         });
 
-        // Add all previously uploaded files to the list of uploads
-        $.each(Object.entries(documents), function (key, uploadedDocWithThumbnail) {
-          var doc = uploadedDocWithThumbnail[1];
-          var mockFile = {
-            name: doc.originalFilename,
-            size: doc.filesize,
-            type: doc.type,
-            id: uploadedDocWithThumbnail[0]
-          };
-          window['myDropZone' + [[${inputName}]]].files.push(mockFile);
-          window['myDropZone' + [[${inputName}]]].emit("addedfile", mockFile);
-          window['myDropZone' + [[${inputName}]]].emit("thumbnail", mockFile,
-              doc.thumbnailUrl);
-          window['myDropZone' + [[${inputName}]]].emit("success", mockFile, mockFile.id);
-          window['myDropZone' + [[${inputName}]]].emit("complete", mockFile);
-        });
+        if (documents) {
+          $.each(Object.entries(documents), function (key, uploadedDocWithThumbnail) {
+            var doc = uploadedDocWithThumbnail[1];
+            var mockFile = {
+              name: doc.originalFilename,
+              size: doc.filesize,
+              type: doc.type,
+              id: uploadedDocWithThumbnail[0]
+            };
+            window['myDropZone' + [[${inputName}]]].files.push(mockFile);
+            window['myDropZone' + [[${inputName}]]].emit("addedfile", mockFile);
+            window['myDropZone' + [[${inputName}]]].emit("thumbnail", mockFile,
+                doc.thumbnailUrl);
+            window['myDropZone' + [[${inputName}]]].emit("success", mockFile, mockFile.id);
+            window['myDropZone' + [[${inputName}]]].emit("complete", mockFile);
+          });
+        }
       },
       error: function (file, errorMessage, xhr) {
         if (xhr && xhr.response) {
