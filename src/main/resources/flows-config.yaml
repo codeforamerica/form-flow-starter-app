@@ -60,6 +60,9 @@ flow:
       - name: addingDocuments
   addingDocuments:
     nextScreens:
+      - name: howToAddDocuments
+  howToAddDocuments:
+    nextScreens:
       - name: uploadDocuments
   uploadDocuments:
     nextScreens:
