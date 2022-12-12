@@ -1,46 +1,37 @@
 Table of Contents
 =================
+<!--
+    **  This is not automatically generated. **
+    Update this section when you update sections now.
+    Please don't go more than three layers deep, so we can keep the TOC
+    a reasonable size.
+-->
 
-* [Form Flow Starter App](#form-flow-starter-app)
-    * [Form Flow Concepts](#form-flow-concepts)
-    * [Defining Flows](#defining-flows)
-    * [Defining Screens](#defining-screens)
-        * [Using Thymeleaf](#using-thymeleaf)
-            * [Thymeleaf Model Data](#thymeleaf-model-data)
-            * [Icon reference](#icon-reference)
-    * [Defining Inputs](#defining-inputs)
-    * [About Submissions](#about-submissions)
-    * [Subflows](#subflows)
-        * [Dedicated Subflow Screens](#dedicated-subflow-screens)
-            * [Entry Screen](#entry-screen)
-            * [Iteration Start Screen](#iteration-start-screen)
-            * [Review Screen](#review-screen)
-            * [Delete Confirmation Screen](#delete-confirmation-screen)
-        * [Defining Subflows](#defining-subflows)
-        * [Example flow-config.yaml with a docs subflow](#example-flow-configyaml-with-a-docs-subflow)
-        * [When do you need to define subflow on a screen?](#when-do-you-need-to-define-subflow-on-a-screen)
-    * [Defining Conditions](#defining-conditions)
-        * [Using conditions in templates](#using-conditions-in-templates)
-    * [Defining Static Pages](#defining-static-pages)
-    * [Development setup](#development-setup)
-        * [Install the following system dependencies:](#install-the-following-system-dependencies)
-            * [Java Development Kit](#java-development-kit)
-            * [Set up jenv to manage your jdk versions](#set-up-jenv-to-manage-your-jdk-versions)
-            * [Gradle](#gradle)
-        * [Start the local databases:](#start-the-local-databases)
-        * [Authenticating the Library](#authenticating-the-library)
-        * [Setup IntelliJ for the project:](#setup-intellij-for-the-project)
-        * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers):](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
-            * [Terminal](#terminal)
-            * [IntelliJ](#intellij)
-        * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler-optional-chrome--firefox)
-    * [About IntelliJ Live Templates](#about-intellij-live-templates)
-        * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
-        * [Using Live Templates](#using-live-templates)
-        * [Contribute new Live Templates](#contribute-new-live-templates)
-    * [Connect flows config schema with IntelliJ IDE](#connect-flows-config-schema-with-intellij-ide)
-
-# Form Flow Starter App
+* [Form Flow Concepts](#form-flow-concepts)
+* [Defining Screens](#defining-screens)
+    * [Using Thymeleaf](#using-thymeleaf)
+        * [Icon reference](#icon-reference)
+* [Defining Conditions](#defining-conditions)
+    * [Using conditions in templates](#using-conditions-in-templates)
+* [Defining Static Pages](#defining-static-pages)
+* [Development setup](#development-setup)
+    * [Install the following system dependencies:](#install-the-following-system-dependencies)
+        * [Java Development Kit](#java-development-kit)
+        * [Set up jenv to manage your jdk versions](#set-up-jenv-to-manage-your-jdk-versions)
+        * [Gradle](#gradle)
+    * [Start the local databases:](#start-the-local-databases)
+    * [Authenticating the Library](#authenticating-the-library)
+    * [Setup EnvFile in IntelliJ](#setup-envfile-in-intellij)
+    * [Setup IntelliJ for the project:](#setup-intellij-for-the-project)
+    * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers):](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
+        * [Terminal](#terminal)
+        * [IntelliJ](#intellij)
+    * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler-optional-chrome--firefox)
+* [About IntelliJ Live Templates](#about-intellij-live-templates)
+    * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
+    * [Using Live Templates](#using-live-templates)
+    * [Contribute new Live Templates](#contribute-new-live-templates)
+* [Setup Platform Flavored Google Styles for Java](#setup-platform-flavored-google-styles-for-java)
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
@@ -68,88 +59,44 @@ The relevant service keys and other settings are configurable in `application.ya
 
 ## Form Flow Concepts ##
 
-* Flows
-* Inputs
-* Screens
-* Conditions
-* Validations
+A detailed explanation of form flow concepts can be found on in
+the [form flow library's readme](https://github.com/codeforamerica/form-flow).
 
-Flows are the top-level construct that define the navigation between a collection of screens.
-A flow can have many inputs to accept user data (e.g. first name, zip
-code, email, file upload). Each input can have zero to many validations.
-
-A flow also has many screens. Each screen can be made up of zero or more inputs. A flow has an
-ordering of screens, and can use defined conditions to control navigation. Conditions use
-submitted inputs to make a logical decision about showing or not showing a screen / part of a
-screen.
+This chart below shows the flow created by the `flows-config.yaml` file in this repository.
 
 ```mermaid
-erDiagram      
-    Flow ||--|{ Screen : "ordered collection of"
-    Flow ||--o{ Input : "collection of"
-    Screen ||--o{ Input : displays
-    Input ||--o{ Validation : "validated by"
-    Input }|--o{ Condition: "determines"
+flowchart 
+    A[UBI Flow] --> B(howThisWorks)
+    B --> C(languagePreferences)
+    C --> D(fa:fa-person gettingToKnowYou)
+    D --> E(fa:fa-pen personalInfo)
+    E --> F(eligibility)
+    F --> G(fa:fa-house housemates)
+    G --> |Add Household Member| I(housemateInfo)
+    G --> |No Members| K(fa:fa-dollar income)
+    I --> J(householdList)
+    J -- Add Another Member --> I
+    J --> K
+    K --> L(householdMemberIncome)
+    L --subflow--> N(incomeTypes)
+    N --> O(incomeAmounts)
+    O --> P(annualHouseholdIncome)
+    P -- Add Member Income --> L
+    P --> Q(incomeComplete)
+    Q --> R(fa:fa-star success)
 ```
-
-## Defining Flows ##
-
-To start, create a `flow-config.yaml` in `src/main/resources`.
-
-TODO: define path in `application.yaml`?
-
-You can define multiple flows
-by [separating them with `---`](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-external-config.html#boot-features-external-config-multi-profile-yaml)
-.
-
-At it's base a flow as defined in yaml has a name, a flow object, and a collection of screens, their
-next screens, any conditions for navigation between those screens, and optionally one or more
-subflows.
-
-A basic flow configuration could look like this:
-
-```yaml
-name: exampleFlow
-flow:
-  firstScreen:
-    nextScreens:
-      - name: secondScreen
-  secondScreen:
-    nextScreens:
-      - name: thirdScreen
-      - name: otherScreen
-        condition: userSelectedExample
-  thirdScreen:
-    nextScreens:
-      - name: success
-  otherScreen:
-    nextScreens:
-      - name: success
-  success:
-    nextScreens: null
-  ___
-name: someOtherFlow
-flow:
-  otherFlowScreen:
-```
-
-[You can have autocomplete and validation for flows-config by connecting your intelliJ to the flows-config-schema.json](#connect-flows-config-schema-with-intellij-ide)
 
 ## Defining Screens ##
 
 All screens must have an entry in the flows-config in order to be rendered. Additionally, each
-screen
-should have its own template defined in a folder respective to the flow that screen is contained
-within.
-Example `/src/resources/templates/<flowName>/<templateName>`.
+screen should have its own template defined in a folder respective to the flow that screen is
+contained within. Example `/src/resources/templates/<flowName>/<templateName>`.
 
 We have provided a number of IntelliJ Live templates to make the creation of screens faster and
-easier.
-[More on Live Templates here](#about-intellij-live-templates).
+easier. [More on Live Templates here](#about-intellij-live-templates).
 
 When setting up a new flow, create a folder in `src/main/resources/templates` to hold all HTML
-files.
-In the starter app, we name the respective template folders after their respective flows.
+files. In the starter app, we name the respective template folders after their respective flows.
 
 For example, add an HTML file such
 as `about-you.html` [in the flow's templates folder](src/main/resources/templates). Here is an
@@ -216,28 +163,6 @@ app.
 </main>
 ```
 
-#### Thymeleaf Model Data ####
-
-We provide some data to the model for ease of use access in Thymeleaf templates. Below are the data
-types
-we pass and when they are available.
-
-| Name              | Type                    | Availability                                                                     | Description                                                                                                                                                         |
-|-------------------|-------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `flow`            | String                  | Always available                                                                 | The name of the flow the screen is contained within.                                                                                                                |
-| `screen`          | String                  | Always available                                                                 | the name of the screen.                                                                                                                                             |
-| `inputData`       | HashMap<String, Object> | Always available                                                                 | `inputData` is a HashMap of user submitted input data. If editing a subflow, `inputData` will only contain the data for that specific iteration within the subflow. |
-| `submission`      | Submission              | Always available                                                                 | `submission` is the entire Submission object that contains a single users submission data.                                                                          |
-| `formAction`      | String                  | Always available                                                                 | Is the correct endpoint for the forms `POST` action if `flows-config` is set up correctly.                                                                          |
-| `errorMessages`   | ArrayList<String>       | On screens that fail validation                                                  | A list of error messages for inputs that failed validation.                                                                                                         |
-| `subflow`         | String                  | On `deleteConfirmationScreen` screens                                            | This is the name of the subflow that the `deleteConfirmationScreen` screen belongs to.                                                                              |
-| `noEntryToDelete` | Boolean                 | On `deleteConfirmationScreen` screens if corresponding `uuid` is no longer there | Indicates that the subflow entry containing a `uuid` is no longer available.                                                                                        |
-| `reviewScreen`    | String                  | On `deleteConfirmationScreen` screens if corresponding `uuid` is no longer there | Name of the review screen for the subflow that the `deleteConfirmationScreen` belongs to.                                                                           |
-| `subflowIsEmpty`  | Boolean                 | On `deleteConfirmationScreen` screens if no entries in a subflow exist           | Indicates that the subflow being accessed no longer has entries.                                                                                                    |
-| `entryScreen`     | String                  | On `deleteConfirmationScreen` screens if no entries in a subflow exist           | Name of the entry screen for the subflow that the `deleteConfirmationScreen` belongs to.                                                                            |
-
-[For more information on the T Operator see section 6.5.8 here.](https://docs.spring.io/spring-framework/docs/3.0.x/reference/expressions.html)
-
 #### Icon reference
 
 If you need to see a reference of all icons from the form flow library, you can paste this fragment
@@ -246,227 +171,6 @@ import into your template to quickly see a preview and names of icons:
 ```
 <th:block th:replace="fragments/icons :: icons-list"></th:block>
 ```
-
-## Defining Inputs ##
-
-Inputs are defined in two places - the template in which they are rendered, and in a separate class
-for validation.
-The inputs class is defined in `/src/main/java/app/inputs/<nameOfFlowAsNameOfInputsClass>`
-
-[When defining inputs we have provided a suite of input based Live Templates, more on that here.](#about-intellij-live-templates)
-
-Live templates are provided for the following input types:
-
-- `Checkbox`
-- `Date`
-- `Fieldset`
-- `Money`
-- `Number`
-- `Radio`
-- `Select`
-- `SelectOption`
-- `Text`
-- `TextArea`
-- `Phone`
-- `Ssn`
-- `YesOrNo`
-- `Submit`
-- `FileUpload` (TBD)
-
-An example inputs class can be seen below, with example validations.
-
-Please note that for single value inputs the type when defining the input is String. However, for
-input types
-that can contain more than one value, the type is ArrayList<String>.
-
-```java
-class Apply {
-
-  @NotBlank(message = "{personal-info.provide-first-name}")
-  String firstName;
-
-  @NotBlank(message = "{personal-info.provide-last-name}")
-  String lastName;
-
-  String emailAddress;
-
-  String phoneNumber;
-
-  @NotEmpty(message = "{personal-info.please-make-a-gender-selection}")
-  ArrayList<String> gender;
-}
-```
-
-Validations for inputs use the JSR-303 bean validation paradigm, more specifically, Hibernate
-validations. For a list of validation
-decorators,
-see [Hibernate's documentation.](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints)
-
-## About Submissions ##
-
-Submission data is stored in the `Submission` object, persisted to PostgreSQL via the Hibernate ORM.
-
-```java
-class Submission {
-
-  @Id
-  @GeneratedValue
-  private Long id;
-
-  private String flow;
-
-  @CreationTimestamp
-  @Temporal(TIMESTAMP)
-  private Timestamp createdAt;
-
-  @UpdateTimestamp
-  @Temporal(TIMESTAMP)
-  private Timestamp updatedAt;
-
-  @Temporal(TIMESTAMP)
-  private Timestamp submittedAt;
-
-  @Type(JsonType.class)
-  private Map<String, String> inputData = new HashMap<>();
-
-}
-```
-
-The `inputData` field is a JSON object that stores input data from the inputs as a given
-flow progresses. It can be used for defining conditions.
-
-An instance variable `currentSubmission` is available for use in the `ScreenController` and
-`inputData` is placed on the Thymeleaf model.
-
-## Subflows ##
-
-Subflows are repeating sections of one or more screens within a regular flow. These can be things
-like household builders
-that ask a repeating set of questions about members of a household. Subflows represent an array of
-screens and their respective inputs (represented as a HashMap) where each item in the array is one
-iteration.
-
-### Dedicated Subflow Screens ###
-
-These are screens that every subflow must have.
-
-Here is an example of a *subflow* yaml:
-
-```yaml
-subflow:
-  docs:
-    entryScreen: docsEntry
-    iterationStartScreen: docsStart
-    reviewScreen: docsReview
-    deleteConfirmationScreen: docsDeleteConfirmation
-```
-
-#### Entry Screen ####
-
-This screen represents the entry point to a subflow, it is usually the point at which a user makes a
-decision to enter the subflow or not. Example: a screen that asks "Would you like to add household
-members?"
-could be the entry screen for a household based subflow.
-
-The entry screen is not part of the repeating
-set of pages internal to the subflow and as such does not need to be demarked
-with `subflow: subflowName`
-in the `flows-config.yaml`.
-
-#### Iteration Start Screen ####
-
-This screen is the first screen in a subflows set of repeating screens. When this screen is
-submitted,
-it creates a new iteration which is then saved to the subflow array within the Submission object.
-
-Because this screen is part of the repeating screens within the subfow, it **should** be denoted
-with
-`subflow: subflowName` in the `flows-config.yaml`.
-
-#### Review Screen ####
-
-This is the last screen in a subflow. This screen lists each iteration completed within a subflow,
-and provides options to edit or delete
-a single iteration.
-
-This screen does not need to be demarked with `subflow: subflowName`
-in the `flows-config.yaml`. It is not technically part of the repeating screens within a subflow,
-however,
-you do visit this screen at the end of each iteration to show iterations completed so far and ask
-the
-user if they would like to add another?
-
-#### Delete Confirmation Screen ####
-
-This screen appears when a user selects `delete` on a iteration listed on the review screen. It asks
-the user to confirm their deletion before submitting the actual deletion request to the server.
-
-This page is not technically part of the subflow and as such, does not need to be demarked
-with `subflow: subflowName`
-in the `flows-config.yaml`.
-
-### Defining Subflows ###
-
-What do you need to do to create a subflow?
-
-- In `flows-config.yaml`:
-    - Define a `subflow` section
-    - Create a name for your subflow in the `subflow` section
-    - Define `entryScreen`, `iterationStartScreen`, `reviewScreen`, and `deleteConfirmationScreen`
-      in
-      the `subflow` section
-    - Add all subflow screens into the `flow`, with `subflow: <subflow-name>` unless otherwise noted
-      above
-      (for dedicated subflow screens)
-    - Note for screens that aren't ever defined in `NextScreens` (delete confirmation screen), they
-      still need to be somewhere in the `flow`
-- Define `fields` that appear in subflow screens just like you would in a `screen`, in your flow
-  Java Class
-  (e.g. Ubi.java in the starter app)
-- Define `screen` templates in `resources/templates/<flow-name>`
-
-### Example `flow-config.yaml` with a docs subflow ###
-
-```yaml
-name: docFlow
-flow:
-  first:
-    nextScreens:
-      - name: second
-  second:
-    nextScreens:
-      - name: docsEntry
-  docsEntry:
-    nextScreens:
-      - name: docsStart
-  docsStart:
-    subflow: docs
-    nextScreens:
-      - name: docsInfo
-  docsInfo:
-    subflow: docs
-    nextScreens:
-      - name: docsReview
-  docsReview:
-    nextScreens:
-      - name: success
-  success:
-    nextScreens:
-  # NOTE: this screen still needs to be defined in `flow` to be rendered even though
-  # it isn't the nextScreen of any other Screen
-  docsDeleteConfirmation:
-    nextScreens:
-subflow:
-  docs:
-    entryScreen: docsEntry
-    iterationStartScreen: docsStart
-    reviewScreen: docsReview
-    deleteConfirmationScreen: docsDeleteConfirmation
-```
-
-### When do you need to define `subflow` on a screen? ###
-
-![Diagram showing screens that are in iteration loops to have the subflow key](readme-assets/subflow-stickies.png)
 
 ## Defining Conditions ##
 
@@ -561,9 +265,9 @@ Add the following to your `~/.bashrc` or `~/.zshrc`:
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 ```
-   
+
 For m1 macs, if the above snippet doesn't work, try:
-   
+
 ```
 export PATH="$HOME/.jenv/bin:$PATH"
 export JENV_ROOT="/opt/homebrew/Cellar/jenv/"
@@ -607,13 +311,16 @@ directory of the starter and add your Username and PAT like below:
 USERNAME=Your_GitHub_Username
 TOKEN=Your_GitHub_Personal_Access_Token
 ```
-   
+
 ### Setup EnvFile in IntelliJ ###
 
-We use a `.env` file to store secret, we use the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) to connect IntelliJ with the `.env`.
+We use a `.env` file to store secret, we use
+the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) to connect IntelliJ with
+the `.env`.
 
 - You will need to go [through their setup](https://plugins.jetbrains.com/plugin/7861-envfile).
-- Follow EnvFile usage process [here](https://github.com/Ashald/EnvFile#usage) to setup Run Configurations with EnvFile.
+- Follow EnvFile usage process [here](https://github.com/Ashald/EnvFile#usage) to setup Run
+  Configurations with EnvFile.
 
 ### Setup IntelliJ for the project: ###
 
@@ -622,7 +329,8 @@ We use a `.env` file to store secret, we use the [EnvFile plugin](https://plugin
 - Set the Gradle JVM version to `17 Eclipse Temurin version 17.0.5`
   in `Preferences -> Build, Execution, Deployment -> Build Tools -> Gradle`
 - Set the Project SDK to `17 Eclipse Temurin version 17.0.5` in `File > Project Structure`
-- Run the application using the `StarterApplication` configuration (found in `org.formflowstartertemplate.app`)
+- Run the application using the `StarterApplication` configuration (found
+  in `org.formflowstartertemplate.app`)
 
 ### Using a local version of the Form-Flow Library (For Form-Flow Library Developers): ###
 
@@ -678,7 +386,8 @@ settings. So we're going to use a copy/paste approach.
 
 ### Applying Live Templates to your IntelliJ IDE ###
 
-1. Open the [intellij-settings/LiveTemplates.xml](intellij-settings/LiveTemplates.xml) from the root of
+1. Open the [intellij-settings/LiveTemplates.xml](intellij-settings/LiveTemplates.xml) from the root
+   of
    this repo
 2. Copy the whole file
 3. Open Preferences (`cmd + ,`), search or find the section "Live Templates"
@@ -703,32 +412,9 @@ Live Templates by typing `cfa:` and a list of templates to autofill will show it
 6. Commit to GitHub
 7. Now others can copy/paste your Live Templates
 
-## Connect flows config schema with IntelliJ IDE ##
-
-TODO: move schema from library and include in webjar?
-
-We use [JSON schema](https://json-schema.org/understanding-json-schema/index.html) to autocomplete
-and validate the `flows-config.yaml` file.
-
-You must manually connect the schema to the local file in your instance of IntelliJ IDE.
-
-1. Open IntelliJ preferences (`Cmd + ,` on mac)
-2. Navigate to "JSON Schema Mappings"
-3. Select the "+" in the top left to add a new mapping
-4. Name can be anything (I use "flow config")
-5. "Schema file or URL" needs to be set to the `src/main/resources/flows-config-schema.json`
-6. "Schema version" set to "JSON Schema version 7"
-7. Use the "+" under schema version to add:
-    - a new file and connect to `src/main/resources/flows-config.yaml`
-    - a folder and connect to `src/test/resources/flows-config`
-
-To confirm that the connection is work, go into `flows-config.yaml` and see if autocomplete is
-appearing for you.
-
-![IntelliJ JSON Schema Mappings menu](readme-assets/intellij-json-schema-mappings.png)
-
 ## Setup Platform Flavored Google Styles for Java ##
 
-In intelliJ go to `Preferences --> Editor --> Code Style --> Java` and next to Scheme hit the cogwheel 
+In intelliJ go to `Preferences --> Editor --> Code Style --> Java` and next to Scheme hit the
+cogwheel
 and `Import Scheme --> IntelliJ Code Style XML` with
 [intellij-settings/PlatformFlavoredGoogleStyle.xml](intellij-settings/PlatformFlavoredGoogleStyle.xml)
