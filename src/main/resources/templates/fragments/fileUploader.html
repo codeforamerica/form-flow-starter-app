@@ -170,7 +170,6 @@
 
     function updateFileInputValue() {
       var inputEl = document.querySelector('input[name=' + [[${inputName}]] + ']');
-      inputEl.value = JSON.stringify({userFileIds: window['userFileIds' + [[${inputName}]]]});
       inputEl.value = JSON.stringify(window['userFileIds' + [[${inputName}]]]);
     }
     
@@ -366,7 +365,7 @@
               name: doc.originalFilename,
               size: doc.filesize,
               type: doc.type,
-              id: uploadedDocWithThumbnail[0]
+              id: parseInt(uploadedDocWithThumbnail[0])
             };
             window['myDropZone' + [[${inputName}]]].files.push(mockFile);
             window['myDropZone' + [[${inputName}]]].emit("addedfile", mockFile);
