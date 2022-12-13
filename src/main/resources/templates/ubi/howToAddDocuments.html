@@ -14,13 +14,14 @@
 
           <th:block th:replace="'fragments/icons' :: takingPicWithPhone"/>
         </div>
-        <ul class="list--bulleted spacing-below-60">
+        <ul class="list--bulleted spacing-below-60 spacing">
           <li th:text="#{adding-documents-how-to.take-photos-on-phone}"></li>
           <li th:text="#{adding-documents-how-to.select-files-on-device}"></li>
           <li th:text="#{adding-documents-how-to.take-screenshot-on-device}"></li>
         </ul>
-        <th:block th:replace="'fragments/continueButton' :: continue"/>
-
+        <div style="margin-left:30px">
+          <th:block th:replace="'fragments/continueButton' :: continue"/>
+        </div>
       </main>
     </div>
   </section>

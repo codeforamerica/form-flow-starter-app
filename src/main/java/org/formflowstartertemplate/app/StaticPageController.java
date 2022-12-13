@@ -45,4 +45,9 @@ public class StaticPageController {
   String getFaq() {
     return "faq";
   }
+
+  @GetMapping("/icons")
+  String getIcons() {
+    return "fragments/icons";
+  }
 }

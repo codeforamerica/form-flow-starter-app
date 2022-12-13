@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
-<head th:replace="fragments/head :: head(title=#{upload-documents.title})"></head>
+<head th:replace="fragments/head :: head(title=#{adding-documents-upload-doc.title})"></head>
 <body>
 <div class="page-wrapper">
   <div th:replace="fragments/toolbar :: toolbar"></div>
@@ -8,18 +8,46 @@
     <div class="grid">
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
-        <th:block
-            th:replace="'fragments/cardHeader' :: cardHeader(header=#{upload-documents.title})"/>
+        <div class="text--centered">
+          <th:block
+              th:replace="'fragments/cardHeader' :: cardHeader(header=#{adding-documents-upload-doc.header})"/>
+        </div>
         <th:block
             th:replace="'fragments/form' :: form(action=${formAction}, enctype='multipart/form-data', content=~{::contentRef})">
           <th:block th:ref="contentRef">
             <div class="form-card__content">
               <th:block
                   th:replace="fragments/fileUploader :: fileUploader(inputName='ubiFiles')"></th:block>
+
+              <div class="spacing-above-60">
+                <th:block th:replace="'fragments/honeycrisp/accordion' :: accordion(
+                buttonLabel=#{adding-documents-upload-doc.view-document-list},
+                content=~{::accordianOneContent})">
+
+                  <th:block th:ref="accordianOneContent">
+                    <p>
+                      <b th:text="#{adding-documents-upload-doc.proof-of-income-header}"></b>
+                      </br>
+                      <th:block th:text="#{adding-documents-upload-doc.proof-of-income-text}"/>
+                    </p>
+                    <p>
+                      <b th:text="#{adding-documents-upload-doc.proof-of-residency-header}"></b>
+                      </br>
+                      <th:block th:text="#{adding-documents-upload-doc.proof-of-residency-text}"/>
+                    </p>
+                    <p>
+                      <b th:text="#{adding-documents-upload-doc.proof-of-identity-header}"></b>
+                      </br>
+                      <th:block th:text="#{adding-documents-upload-doc.proof-of-identity-text}"/>
+                    </p>
+                  </th:block>
+                </th:block>
+              </div>
             </div>
             <div class="form-card__footer">
-              <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                text=#{general.inputs.continue})" />
+              <a class="button"
+                 th:href="'/' + ${flow} + '/documentSubmitConfirmation'"
+                 th:text="#{upload-documents.im-finished-uploading}"></a>
             </div>
           </th:block>
         </th:block>
