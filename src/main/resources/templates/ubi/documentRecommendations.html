@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}">
+<head th:replace="fragments/head :: head(title=#{how-this-works.how-this-works})"></head>
+<body>
+<div class="page-wrapper">
+  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <section class="slab">
+    <div class="grid">
+      <div th:replace="fragments/goBack :: goBackLink"></div>
+      <main id="content" role="main" class="form-card spacing-above-35">
+        <th:block th:replace="'fragments/icons' :: uploadDocuments"></th:block>
+        <th:block
+            th:replace="'fragments/cardHeader' :: cardHeader(header=#{document-recommendations.header}, subtext=#{document-recommendations.you-have-30-days})"/>
+        <div class="form-card__content">
+          <th:block th:replace="'fragments/honeycrisp/reveal' :: reveal(
+            linkLabel=~{::revealLabel},
+            content=~{::recommendedDocumentsContent})">
+              <th:block th:ref="revealLabel">
+                <p th:text="#{document-recommendations.recommended-documents}"></p>
+              </th:block>
+              <th:block th:ref="recommendedDocumentsContent">
+
+                <p><b th:text="#{document-recommendations.proof-of-income}"></b></p>
+                <p th:text="#{document-recommendations.tax-documents-from-2020-of-2021}"></p>
+                <p><b th:text="#{document-recommendations.proof-of-residency}"></b></p>
+                <p th:text="#{document-recommendations.current-offical-document}"></p>
+                <p><b th:text="#{document-recommendations.proof-of-identity}"></b></p>
+                <p th:text="#{document-recommendations.a-government-issued-photo}"></p>
+              </th:block>
+          </th:block>
+<!--          <th:block th:replace="'fragments/honeycrisp/accordion' :: accordion(-->
+<!--            buttonLabel=#{document-recommendations.recommended-documents},-->
+<!--            content=~{::recommendedDocumentsContent})">-->
+<!--            <div>-->
+
+<!--              <p><b th:text="#{document-recommendations.proof-of-income}"></b></p>-->
+<!--              <p th:text="#{document-recommendations.tax-documents-from-2020-of-2021}"></p>-->
+<!--              <p><b th:text="#{document-recommendations.proof-of-income}"></b></p>-->
+<!--              <p th:text="#{document-recommendations.tax-documents-from-2020-of-2021}"></p>-->
+<!--            </div>-->
+<!--          </th:block>-->
+        </div>
+        <div class="form-card__footer">
+          <th:block th:replace="'fragments/continueButton' :: continue"/>
+          <div>
+            <i class="icon-lock_outline"></i>
+            <span th:utext="#{how-this-works.your-info-is-secure}"></span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+</div>
+<th:block th:replace="fragments/footer :: footer"/>
+</body>
+</html>

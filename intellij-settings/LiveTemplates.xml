@@ -3,6 +3,14 @@
     <option name="HTML" value="true" />
   </context>
 </template>
+<template name="cfa:reveal" value="&lt;th:block th:replace=&quot;'fragments/honeycrisp/reveal' :: reveal(&#10;  linkLabel=~{::$LINK_LABEL$})&quot;&gt;&#10;  content=~{::$CONTENT_REF$})&quot;&gt;&#10;  &lt;th:block th:ref=&quot;$CONTENT_REF$&quot;&gt;&#10;     $REVEAL_CONTENT$&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A honeycrisp reveal with linkLabel and custom content" toReformat="false" toShortenFQNames="true">
+<variable name="LINK_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CONTENT_REF" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="REVEAL_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
 <template name="cfa:accordion" value="&lt;th:block th:replace=&quot;'fragments/honeycrisp/accordion' :: accordion(&#10;  buttonLabel=$BUTTON_LABEL$,&#10;  content=~{::$CONTENT_REF$})&quot;&gt;&#10;    &lt;th:block th:ref=&quot;$CONTENT_REF$&quot;&gt;&#10;     $ACCORDION_CONTENT$&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A honeycrisp accordion with buttonLabel and custom content" toReformat="false" toShortenFQNames="true">
 <variable name="BUTTON_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
 <variable name="CONTENT_REF" expression="" defaultValue="" alwaysStopAt="true" />
