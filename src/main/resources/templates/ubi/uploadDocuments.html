@@ -20,11 +20,13 @@
                   th:replace="fragments/fileUploader :: fileUploader(inputName='ubiFiles')"></th:block>
 
               <div class="spacing-above-60">
-                <th:block th:replace="'fragments/honeycrisp/accordion' :: accordion(
-                buttonLabel=#{adding-documents-upload-doc.view-document-list},
-                content=~{::accordianOneContent})">
-
-                  <th:block th:ref="accordianOneContent">
+                <th:block th:replace="'fragments/honeycrisp/reveal' :: reveal(
+                linkLabel=~{::revealLabel},
+                content=~{::revealContent})">
+                  <th:block th:ref="revealLabel">
+                    View document list
+                  </th:block>
+                  <th:block th:ref="revealContent">
                     <p>
                       <b th:text="#{adding-documents-upload-doc.proof-of-income-header}"></b>
                       </br>
