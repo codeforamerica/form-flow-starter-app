@@ -19,11 +19,15 @@
                 <p th:text="#{document-recommendations.recommended-documents}"></p>
               </th:block>
               <th:block th:ref="recommendedDocumentsContent">
-
+                <th:block th:replace="'fragments/icons' :: smallMoneyIcon"></th:block>
                 <p><b th:text="#{document-recommendations.proof-of-income}"></b></p>
                 <p th:text="#{document-recommendations.tax-documents-from-2020-of-2021}"></p>
+                
+                <th:block th:replace="'fragments/icons' :: smallHouseIcon"></th:block>
                 <p><b th:text="#{document-recommendations.proof-of-residency}"></b></p>
                 <p th:text="#{document-recommendations.current-offical-document}"></p>
+                
+                <th:block th:replace="'fragments/icons' :: smallPersonIcon"></th:block>
                 <p><b th:text="#{document-recommendations.proof-of-identity}"></b></p>
                 <p th:text="#{document-recommendations.a-government-issued-photo}"></p>
               </th:block>
