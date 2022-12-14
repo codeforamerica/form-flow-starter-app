@@ -19,7 +19,7 @@ Table of Contents
         * [Java Development Kit](#java-development-kit)
         * [Set up jenv to manage your jdk versions](#set-up-jenv-to-manage-your-jdk-versions)
         * [Gradle](#gradle)
-    * [Start the local databases:](#start-the-local-databases)
+    * [Start the local databases](#start-the-local-databases)
     * [Authenticating the Library](#authenticating-the-library)
     * [Setup EnvFile in IntelliJ](#setup-envfile-in-intellij)
     * [Setup IntelliJ for the project:](#setup-intellij-for-the-project)
@@ -285,7 +285,7 @@ jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
 
 `brew install gradle`
 
-### Start the local databases: ###
+### Start the local databases ###
 
 - Install PostgreSQL 14 via an [official download](https://www.postgresql.org/download/)
     - Or on macOS, through homebrew: `brew install postgresql@14`
@@ -295,22 +295,6 @@ jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
 - Create the database using the command line:
     - `$ createdb starter-app`
     - `$ createuser -s starter-app`
-
-### Authenticating the Library ###
-
-In order to authenticate the library for use with this starter app you must have a GitHub account
-and
-a GitHub Personal Access Token (PAT). You can register a personal acess token through your user
-settings panel
-in GitHub via `Profile --> Settings --> Developer Settings --> Personal Access Tokens --> Tokens`.
-Create a token that includes `read:packages`. Once you have done this create a `.env` file in the
-root
-directory of the starter and add your Username and PAT like below:
-
-```
-USERNAME=Your_GitHub_Username
-TOKEN=Your_GitHub_Personal_Access_Token
-```
 
 ### Setup EnvFile in IntelliJ ###
 
