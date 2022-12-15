@@ -326,7 +326,7 @@ To use the [form-flow](https://github.com/codeforamerica/form-flow) library loca
     implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
     ```
 1. Ensure you build the jar.
-1. Start the `form-flow-starter`.
+1. Start the `form-flow-starter-app`.
 
 #### Terminal ####
 
