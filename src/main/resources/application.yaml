@@ -1,7 +1,7 @@
 form-flow:
   inputs: 'org.formflowstartertemplate.app.inputs.'
   uploads:
-    accepted-file-types: '.jpeg,.jpg,.png,.tiff,.tif,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic'
+    accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic'
   aws:
     region: 'us-west-1'
     s3_bucket_name: 'form-flow'
