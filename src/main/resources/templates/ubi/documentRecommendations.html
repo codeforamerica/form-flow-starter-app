@@ -41,12 +41,11 @@
           </th:block>
         </div>
         <div class="form-card__footer">
-
           <!-- upload documents -->
-          <a class="button button--primary spacing-above-35" th:href="'/' + ${flow} + '/uploadDocuments'"
+          <a class="button button--primary" th:href="'/' + ${flow} + '/uploadDocuments'"
              th:text="#{document-recommendations.upload-documents-now}"></a>
           <!-- don't upload docs now, do it later -->
-          <a class="button spacing-above-35 spacing-" th:href="'/' + ${flow} + '/success'"
+          <a class="button" style="margin-left: 0;" th:href="'/' + ${flow} + '/success'"
                th:text="#{document-recommendations.ill-do-this-later}"></a>
         </div>
       </main>
