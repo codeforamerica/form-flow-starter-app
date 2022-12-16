@@ -11,7 +11,6 @@
         <th:block
             th:replace="'fragments/cardHeader' :: cardHeader(header=#{how-this-works.how-this-works}, subtext=#{how-this-works.this-application-form})"/>
         <div class="form-card__content">
-
           <th:block th:replace="'fragments/honeycrisp/accordion' :: accordion(
             buttonLabel=#{how-this-works.we-will-ask-you-about},
             content=~{::accordionOneContent})">
