@@ -45,14 +45,4 @@ public class StaticPageController {
   String getFaq() {
     return "faq";
   }
-
-  /**
-   * Renders the website faq page.
-   *
-   * @return the static page template
-   */
-  @GetMapping("/icons")
-  String getIcons() {
-    return "icons.html";
-  }
 }
