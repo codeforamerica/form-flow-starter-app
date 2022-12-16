@@ -45,7 +45,7 @@
           <a class="button button--primary" th:href="'/' + ${flow} + '/uploadDocuments'"
              th:text="#{document-recommendations.upload-documents-now}"></a>
           <!-- don't upload docs now, do it later -->
-          <a class="button" style="margin-left: 0;" th:href="'/' + ${flow} + '/success'"
+          <a class="button button--other"  th:href="'/' + ${flow} + '/success'"
                th:text="#{document-recommendations.ill-do-this-later}"></a>
         </div>
       </main>
