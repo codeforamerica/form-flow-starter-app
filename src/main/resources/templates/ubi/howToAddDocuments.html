@@ -8,20 +8,20 @@
     <div class="grid">
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
-        <div class="text--centered">
-          <th:block
-              th:replace="'fragments/cardHeader' :: cardHeader(header=#{adding-documents-how-to.header})"/>
+        <th:block
+            th:replace="'fragments/cardHeader' :: cardHeader(header=#{adding-documents-how-to.header})"/>
 
+        <div class="text--centered">
           <th:block th:replace="'fragments/icons' :: takingPicWithPhone"/>
         </div>
-        <ul class="list--bulleted spacing-below-60 spacing">
+        <ul class="list--bulleted padding-left-25 spacing-below-60">
           <li th:text="#{adding-documents-how-to.take-photos-on-phone}"></li>
           <li th:text="#{adding-documents-how-to.select-files-on-device}"></li>
           <li th:text="#{adding-documents-how-to.take-screenshot-on-device}"></li>
         </ul>
-        <div style="margin-left:30px">
-          <th:block th:replace="'fragments/continueButton' :: continue"/>
-        </div>
+        <!--<div style="margin-left:30px"> -->
+        <th:block th:replace="'fragments/continueButton' :: continue"/>
+        <!--</div> -->
       </main>
     </div>
   </section>
