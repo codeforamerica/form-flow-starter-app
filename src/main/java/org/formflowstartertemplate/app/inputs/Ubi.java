@@ -2,6 +2,7 @@ package org.formflowstartertemplate.app.inputs;
 
 import java.util.ArrayList;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -25,13 +26,19 @@ public class Ubi {
   private String firstName;
   @NotBlank(message = "{personal-info.provide-last-name}")
   private String lastName;
+  @Digits(integer = 2, fraction = 0, message = "{personal-info.provide-birth-day}")
   private String birthDay;
+  @Digits(integer = 2, fraction = 0, message = "{personal-info.provide-birth-month}")
   private String birthMonth;
+  @Digits(integer = 4, fraction = 0, message = "{personal-info.provide-birth-year}")
   private String birthYear;
   private String genderIdentity;
   private String movedToUSA;
+  @Digits(integer = 2, fraction = 0, message = "{personal-info.provide-moved-to-day}")
   private String movedToUSADay;
+  @Digits(integer = 2, fraction = 0, message = "{personal-info.provide-moved-to-month}")
   private String movedToUSAMonth;
+  @Digits(integer = 4, fraction = 0, message = "{personal-info.provide-moved-to-year}")
   // TODO: figure out how to only have day & month for a date fragment
   private String movedToUSAYear;
   private String movedFromCountry;
