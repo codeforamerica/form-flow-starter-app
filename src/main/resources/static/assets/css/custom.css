@@ -1,1 +1,11 @@
 /* This file is provided for addition of custom CSS styles */
+
+.reveal a {
+  display: flex;
+}
+
+.reveal svg {
+  align-self: center;
+  display: flex;
+  margin-right: 10px;
+}

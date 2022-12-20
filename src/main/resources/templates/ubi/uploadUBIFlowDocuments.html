@@ -24,7 +24,8 @@
                 linkLabel=~{::revealLabel},
                 content=~{::revealContent})">
                   <th:block th:ref="revealLabel">
-                    View document list
+                    <th:block th:replace="'fragments/icons' :: smallDoubleFileIcon"></th:block>
+                    <th:block th:text="#{adding-documents-upload-doc.view-document-list}"></th:block>
                   </th:block>
                   <th:block th:ref="revealContent">
                     <p>
@@ -47,9 +48,8 @@
               </div>
             </div>
             <div class="form-card__footer">
-              <a class="button"
-                 th:href="'/' + ${flow} + '/documentSubmitConfirmation'"
-                 th:text="#{upload-documents.im-finished-uploading}"></a>
+              <th:block
+                  th:replace="'fragments/continueButton' :: continue(text=#{adding-documents-upload-doc.im-finished-uploading})"/>
             </div>
           </th:block>
         </th:block>

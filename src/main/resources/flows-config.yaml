@@ -66,8 +66,8 @@ flow:
       - name: documentRecommendations
   documentRecommendations:
     nextScreens:
-      - name: uploadDocuments
-  uploadDocuments:
+      - name: uploadUBIFlowDocuments
+  uploadUBIFlowDocuments:
     nextScreens:
       - name: success
   success:
