@@ -29,6 +29,9 @@ public class UbiFlowJourneyTest extends JourneyTest {
     // Personal info
     testPage.enter("firstName", "Testy");
     testPage.enter("lastName", "McTesterson");
+    testPage.enter("birthDay", "01");
+    testPage.enter("birthMonth", "01");
+    testPage.enter("birthYear", "2000");
     testPage.clickContinue();
     // Eligibility screen
     testPage.clickContinue();

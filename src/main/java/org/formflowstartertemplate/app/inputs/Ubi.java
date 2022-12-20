@@ -34,11 +34,8 @@ public class Ubi {
   private String birthYear;
   private String genderIdentity;
   private String movedToUSA;
-  @Digits(integer = 2, fraction = 0, message = "{personal-info.provide-moved-to-day}")
   private String movedToUSADay;
-  @Digits(integer = 2, fraction = 0, message = "{personal-info.provide-moved-to-month}")
   private String movedToUSAMonth;
-  @Digits(integer = 4, fraction = 0, message = "{personal-info.provide-moved-to-year}")
   // TODO: figure out how to only have day & month for a date fragment
   private String movedToUSAYear;
   private String movedFromCountry;
