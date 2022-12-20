@@ -2,6 +2,9 @@ package org.formflowstartertemplate.app.inputs;
 
 import java.util.ArrayList;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -25,8 +28,14 @@ public class Ubi {
   private String firstName;
   @NotBlank(message = "{personal-info.provide-last-name}")
   private String lastName;
+  @Min(value = 1, message = "{personal-info.provide-birth-day-min}")
+  @Max(value = 31, message = "{personal-info.provide-birth-day-max}")
   private String birthDay;
+  @Min(value = 1, message = "{personal-info.provide-birth-month-min}")
+  @Max(value = 12, message = "{personal-info.provide-birth-month-max}")
   private String birthMonth;
+  @Min(value = 1850, message = "{personal-info.provide-birth-year-min}")
+  @Max(value = 2100, message = "{personal-info.provide-birth-year-max}")
   private String birthYear;
   private String genderIdentity;
   private String movedToUSA;
