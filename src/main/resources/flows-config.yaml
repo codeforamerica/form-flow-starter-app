@@ -67,6 +67,9 @@ flow:
   documentRecommendations:
     nextScreens:
       - name: uploadUBIFlowDocuments
+  documentOffboarding:
+    nextScreens:
+      - name: success
   uploadUBIFlowDocuments:
     nextScreens:
       - name: docSubmitConfirmation
