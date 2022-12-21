@@ -45,4 +45,7 @@ public class StaticPageController {
   String getFaq() {
     return "faq";
   }
+
+  @GetMapping("/privacy")
+  String getPrivacy() { return "privacy"; }
 }
