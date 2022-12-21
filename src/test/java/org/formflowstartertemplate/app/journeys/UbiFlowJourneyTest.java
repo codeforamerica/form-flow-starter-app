@@ -122,20 +122,19 @@ public class UbiFlowJourneyTest extends JourneyTest {
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     testPage.clickButton("Upload documents");
     assertThat(testPage.getTitle()).isEqualTo("Upload documents");
+//    uploadJpgFile("doc-upload-files");
+    
+    // Test accepted file types
+    // Extension list comes from application.yaml -- form-flow.uploads.accepted-file-types
+    uploadFile("test.tif", "doc-upload-files");
+    assertThat(testPage.findElementsByClass("text--error").get(0).getText())
+        .isEqualTo("We aren't able to upload this type of file. Please try another file that ends in one of the following: .jpeg, .jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic");
+    testPage.clickLink("remove");
+    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("0 files added");
     uploadJpgFile("doc-upload-files");
-    
-    // test upload of invalid file type
-    // ensure we get an error message (update error message in the process)
-    // click on "remove"
-    // ensure file is no longer listed
-    
-    // test upload of valid file type
-    // click on "Upload documents" button 
-    // upload valid file type
-    // wait
-    // ensure file is listed on page and that it has a "delete" link
-    // ensure that the counter of number of files uploaded is 1
-    
+    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("1 file added");
+//  Test that thumb width and height are being set from application-test.yaml (they should be configurable from environment)
+    assertThat(testPage.findElementsByClass("thumbnail").get(0).getAttribute("outerHTML")).contains("width: 54px; height: 50px");
     // test delete of uploaded file
     // click on "delete" link for uploaded file
     // ensure file is no longer listed on page

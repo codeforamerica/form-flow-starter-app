@@ -212,15 +212,15 @@ public abstract class AbstractBasePageTest {
   protected void uploadFile(String filepath, String dzName) {
     testPage.clickElementById("drag-and-drop-box-" + dzName); // is this needed?
     WebElement upload = driver.findElement(By.className("dz-hidden-input"));
-    upload.sendKeys(filepath);
+    upload.sendKeys(TestUtils.getAbsoluteFilepathString(filepath));
     await().until(
         () -> !driver.findElements(By.className("file-details")).get(0).getAttribute("innerHTML")
             .isBlank());
   }
 
   protected void uploadJpgFile(String dzName) {
-    uploadFile(TestUtils.getAbsoluteFilepathString(UPLOADED_JPG_FILE_NAME), dzName);
-    assertThat(driver.findElement(By.id("document-upload")).getText())
+    uploadFile(UPLOADED_JPG_FILE_NAME, dzName);
+    assertThat(driver.findElement(By.id("dropzone-" + dzName)).getText().replace("\n", ""))
         .contains(UPLOADED_JPG_FILE_NAME);
   }
 
