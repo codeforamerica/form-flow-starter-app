@@ -27,6 +27,7 @@ Table of Contents
         * [Terminal](#terminal)
         * [IntelliJ](#intellij)
     * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler-optional-chrome--firefox)
+    * [Spring Profile: `dev`](#spring-profile-dev)
 * [About IntelliJ Live Templates](#about-intellij-live-templates)
     * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
     * [Using Live Templates](#using-live-templates)
@@ -341,8 +342,6 @@ or `ctrl + shift + r`).
 ### Setup Fake Filler (optional, Chrome & Firefox): ###
 
 We use an automatic form filler to make manual test easier.
-
--
 
 Install [Fake Filler for Chrome](https://chrome.google.com/webstore/detail/fake-filler/bnjjngeaknajbdcgpfkgnonkmififhfo)
 or [Fake Filler for FireFox](https://addons.mozilla.org/en-US/firefox/addon/fake-filler/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
