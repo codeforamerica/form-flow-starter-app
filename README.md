@@ -356,6 +356,15 @@ or [Fake Filler for FireFox](https://addons.mozilla.org/en-US/firefox/addon/fake
   on [Keyboard Shortcuts (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/keyboard-shortcuts)
   to choose the shortcut you want to use to fill out the page.
 
+### Spring Profile: `dev`
+
+The Form Flow library has a `dev` Spring Profile that can be used by developers to
+get more information from the library.
+
+Please see
+[Spring Profile: `dev`](https://github.com/codeforamerica/form-flow#spring-profile-dev)
+for more information about what it provides and how to use this profile.
+
 ## About IntelliJ Live Templates ##
 
 As a team, we use [IntelliJ](https://www.jetbrains.com/idea/) and can use
