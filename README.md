@@ -27,6 +27,7 @@ Table of Contents
         * [Terminal](#terminal)
         * [IntelliJ](#intellij)
     * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler-optional-chrome--firefox)
+    * [Spring Profile: `dev`](#spring-profile-dev)
 * [About IntelliJ Live Templates](#about-intellij-live-templates)
     * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
     * [Using Live Templates](#using-live-templates)
@@ -342,8 +343,6 @@ or `ctrl + shift + r`).
 
 We use an automatic form filler to make manual test easier.
 
--
-
 Install [Fake Filler for Chrome](https://chrome.google.com/webstore/detail/fake-filler/bnjjngeaknajbdcgpfkgnonkmififhfo)
 or [Fake Filler for FireFox](https://addons.mozilla.org/en-US/firefox/addon/fake-filler/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
@@ -355,6 +354,15 @@ or [Fake Filler for FireFox](https://addons.mozilla.org/en-US/firefox/addon/fake
 - Click
   on [Keyboard Shortcuts (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/keyboard-shortcuts)
   to choose the shortcut you want to use to fill out the page.
+
+### Spring Profile: `dev`
+
+The Form Flow library has a `dev` Spring Profile that can be used by developers to
+get more information from the library.
+
+Please see
+[Spring Profile: `dev`](https://github.com/codeforamerica/form-flow#spring-profile-dev)
+for more information about what it provides and how to use this profile.
 
 ## About IntelliJ Live Templates ##
 
