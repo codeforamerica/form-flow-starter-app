@@ -4,23 +4,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.YES;
 
-import org.formflowstartertemplate.app.utils.PercyTestPage;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-@Tag("fullFlowJourney")
 public class UbiFlowJourneyTest extends JourneyTest {
-
-  protected void initTestPage() {
-    testPage = new PercyTestPage(driver);
-  }
 
   @Test
   void fullUbiFlow() {
     // Landing screen
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
+    takeSnapShot("what.png");
     testPage.clickButton("Apply now");
     // How this works screen
+    takeSnapShot("uhm.png");
     testPage.clickContinue();
     // Language preference
     testPage.clickContinue();
@@ -122,7 +117,6 @@ public class UbiFlowJourneyTest extends JourneyTest {
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     testPage.clickButton("Upload documents");
     assertThat(testPage.getTitle()).isEqualTo("Upload documents");
-//    uploadJpgFile("doc-upload-files");
     
     // Test accepted file types
     // Extension list comes from application.yaml -- form-flow.uploads.accepted-file-types
@@ -135,15 +129,11 @@ public class UbiFlowJourneyTest extends JourneyTest {
     assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("1 file added");
 //  Test that thumb width and height are being set from application-test.yaml (they should be configurable from environment)
     assertThat(testPage.findElementsByClass("thumbnail").get(0).getAttribute("outerHTML")).contains("width: 54px; height: 50px");
-    // test delete of uploaded file
-    // click on "delete" link for uploaded file
-    // ensure file is no longer listed on page
-    // ensure file counter is 0
-    
-    // test upload of multiple files 
-    // select multiple files to upload
-    // wait
-    // ensure they are all uploaded 
-    // ensure counter in the widget contains the correct number
+    uploadJpgFile("doc-upload-files"); // 2
+    uploadJpgFile("doc-upload-files"); // 3
+    uploadJpgFile("doc-upload-files"); // 4
+    uploadJpgFile("doc-upload-files"); // 5
+    uploadJpgFile("doc-upload-files"); // Can't upload the 6th
+//    assertThat(testPage.findElementById(""))
   }
 }

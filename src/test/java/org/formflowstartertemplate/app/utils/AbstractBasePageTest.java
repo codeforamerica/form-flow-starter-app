@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -138,10 +139,10 @@ public abstract class AbstractBasePageTest {
 //    }
 //  }
 
-//  protected void waitForDocumentUploadToComplete() {
-//    await().atMost(15, TimeUnit.SECONDS)
-//    .until(() -> driver.findElements(By.linkText("cancel")).isEmpty());
-//  }
+  protected void waitForDocumentUploadToComplete() {
+    await().atMost(15, TimeUnit.SECONDS)
+    .until(() -> driver.findElements(By.linkText("cancel")).isEmpty());
+  }
 
   @SuppressWarnings("unused")
   public void takeSnapShot(String fileWithPath) {

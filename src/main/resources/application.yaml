@@ -2,8 +2,9 @@ form-flow:
   inputs: 'org.formflowstartertemplate.app.inputs.'
   uploads:
     accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic'
-    thumbnail-width: '54'
-    thumbnail-height: '50'
+    thumbnail-width: '64'
+    thumbnail-height: '60'
+    max-files: '5'
   aws:
     region: 'us-west-1'
     s3_bucket_name: 'form-flow'
