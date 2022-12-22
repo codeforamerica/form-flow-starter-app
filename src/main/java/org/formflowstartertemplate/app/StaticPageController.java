@@ -42,9 +42,7 @@ public class StaticPageController {
    * @return the static page template
    */
   @GetMapping("/faq")
-  String getFaq() {
-    return "faq";
-  }
+  String getFaq() { return "faq"; }
 
   @GetMapping("/privacy")
   String getPrivacy() { return "privacy"; }

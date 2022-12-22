@@ -31,16 +31,27 @@
       </nav>
       <div class="grid__item shift-one-twelfth width-seven-twelfths">
         <div class="grid">
-          <!-- TODO: added a comment about duplicate titles in Figma -->
-<!--          <h1 class="h2 spacing-below-35" th:text="#{privacy.title}"></h1>-->
           <div class="grid__item">
             <div class="grid__item spacing-below-35">
               <h2 id="overview" class="h3" th:text="#{privacy.overview.title}"></h2>
-              <p th:utext="#{privacy.overview.content}"></p>
+              <p th:text="#{privacy.overview.content.p1}"></p>
+              <p th:text="#{privacy.overview.content.p2}"></p>
+              <p th:text="#{privacy.overview.content.p3}"></p>
+              <p th:text="#{privacy.overview.content.p4}"></p>
+              <p th:text="#{privacy.overview.content.p5}"></p>
               <h2 id="info" class="h3 spacing-above-60" th:text="#{privacy.info.title}"></h2>
-              <p>Content 2</p>
+              <p th:text="#{privacy.info.content.p1}"></p>
+              <ul class="list--bulleted padding-left-25">
+                <li th:text="#{privacy.info.content.li1}"></li>
+                <li th:text="#{privacy.info.content.li2}"></li>
+                <li th:text="#{privacy.info.content.li3}"></li>
+                <li th:text="#{privacy.info.content.li4}"></li>
+              </ul>
               <h2 id="how-we-use" class="h3 spacing-above-60" th:text="#{privacy.how-we-use.title}"></h2>
-              <p>Content 3</p>
+              <p th:text="#{privacy.how-we-use.content.p1}"></p>
+              <p th:text="#{privacy.how-we-use.content.p2}"></p>
+              <p th:text="#{privacy.how-we-use.content.p3}"></p>
+              <p th:text="#{privacy.how-we-use.content.p4}"></p>
             </div>
           </div>
         </div>

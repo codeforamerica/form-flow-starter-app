@@ -9,8 +9,3 @@
   display: flex;
   margin-right: 10px;
 }
-
-/* TODO: move to library PR */
-.slab--grey {
-  background-color: #F7F5F4;
-}
