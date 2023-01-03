@@ -18,9 +18,9 @@
               <th:block
                   th:replace="fragments/fileUploader :: fileUploader(inputName=${dzFormName})"></th:block>
             </div>
-            <div class="form-card__footer">
+            <div id="submit_it" class="form-card__footer display-none">
               <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                text=#{general.inputs.continue})" />
+                text=#{general.inputs.continue})"/>
             </div>
           </th:block>
         </th:block>
@@ -29,5 +29,8 @@
   </section>
 </div>
 <th:block th:replace="fragments/footer :: footer"/>
+<script>
+  FormFlowDZ.hideContinueIfNoFiles('doc-upload-files', 'submit_it');
+</script>
 </body>
 </html>
