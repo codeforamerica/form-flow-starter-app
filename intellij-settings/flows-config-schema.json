@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Flows Configuration",
+  "type": "object",
+  "required": [
+    "name",
+    "flow"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A name for a complete flow."
+    },
+    "flow": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "description": "Identify screens in a flow.",
+          "required": [
+            "nextScreens"
+          ],
+          "properties": {
+            "nextScreens": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "description": "Required, an array of next screens or empty.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "condition": {
+                    "type": "string",
+                    "description": "A method name to determine if a screen is shown next."
+                  }
+                }
+              }
+            },
+            "subflow": {
+              "type": "string",
+              "description": "For screen within a subflow, they need the name of the subflow defined."
+            },
+            "beforeSave": {
+              "type": "string",
+              "description": "A method name to run before a database save."
+            },
+            "callback": {
+              "type": "string",
+              "description": "A method name to run on callback."
+            }
+          }
+        }
+      }
+    },
+    "subflows": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "description": "Identify subflow screens.",
+          "required": [
+            "entryScreen",
+            "iterationStartScreen",
+            "reviewScreen",
+            "deleteConfirmationScreen"
+          ],
+          "properties": {
+            "entryScreen": {
+              "type": "string",
+              "description": "The name of the entry screen for this subflow."
+            },
+            "iterationStartScreen": {
+              "type": "string",
+              "description": "The name of the iteration start screen for this subflow."
+            },
+            "reviewScreen": {
+              "type": "string",
+              "description": "The name of the review screen for this subflow."
+            },
+            "deleteConfirmationScreen": {
+              "type": "string",
+              "description": "The name of the delete confirmation screen for this subflow."
+            }
+          }
+        }
+      }
+    }
+  }
+}

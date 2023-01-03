@@ -15,24 +15,23 @@ Table of Contents
     * [Using conditions in templates](#using-conditions-in-templates)
 * [Defining Static Pages](#defining-static-pages)
 * [Development setup](#development-setup)
-    * [Install the following system dependencies:](#install-the-following-system-dependencies)
+    * [System Dependencies](#system-dependencies)
         * [Java Development Kit](#java-development-kit)
         * [Set up jenv to manage your jdk versions](#set-up-jenv-to-manage-your-jdk-versions)
         * [Gradle](#gradle)
     * [Start the local databases](#start-the-local-databases)
-    * [Authenticating the Library](#authenticating-the-library)
     * [Setup EnvFile in IntelliJ](#setup-envfile-in-intellij)
-    * [Setup IntelliJ for the project:](#setup-intellij-for-the-project)
+    * [Setup Application](#setup-application)
     * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers):](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
         * [Terminal](#terminal)
         * [IntelliJ](#intellij)
     * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler-optional-chrome--firefox)
     * [Spring Profile: `dev`](#spring-profile-dev)
-* [About IntelliJ Live Templates](#about-intellij-live-templates)
-    * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
-    * [Using Live Templates](#using-live-templates)
-    * [Contribute new Live Templates](#contribute-new-live-templates)
-* [Setup Platform Flavored Google Styles for Java](#setup-platform-flavored-google-styles-for-java)
+* [IntelliJ Setup](#intellij-setup)
+  * [Connect Flows Config Schema](#connect-flows-config-schema)
+  * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
+  * [Using Live Templates](#using-live-templates)
+  * [Contribute new Live Templates](#contribute-new-live-templates)
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
@@ -94,14 +93,14 @@ screen should have its own template defined in a folder respective to the flow t
 contained within. Example `/src/resources/templates/<flowName>/<templateName>`.
 
 We have provided a number of IntelliJ Live templates to make the creation of screens faster and
-easier. [More on Live Templates here](#about-intellij-live-templates).
+easier. [More on Live Templates here](#applying-live-templates-to-your-intellij-ide).
 
 When setting up a new flow, create a folder in `src/main/resources/templates` to hold all HTML
 files. In the starter app, we name the respective template folders after their respective flows.
 
 For example, add an HTML file such
 as `about-you.html` [in the flow's templates folder](src/main/resources/templates). Here is an
-example using our [live templates for a form screen](#about-intellij-live-templates):
+example using our [live templates for a form screen](#applying-live-templates-to-your-intellij-ide):
 
 ```html
 
@@ -242,7 +241,7 @@ The IntelliJ Live Template for the above example can be generated with `cfa:stat
 
 ## Development setup ##
 
-### Install the following system dependencies: ###
+### System dependencies ###
 
 _Note: these instructions are specific to macOS, but the same dependencies do need to be installed
 on Windows as well._
@@ -307,13 +306,9 @@ the `.env`.
 - Follow EnvFile usage process [here](https://github.com/Ashald/EnvFile#usage) to setup Run
   Configurations with EnvFile.
 
-### Setup IntelliJ for the project: ###
+### Setup Application  ###
 
-- Enable annotation processing
-  in `Preferences -> Build, Execution, Deployment -> Compiler -> Annotation Processor`
-- Set the Gradle JVM version to `17 Eclipse Temurin version 17.0.5`
-  in `Preferences -> Build, Execution, Deployment -> Build Tools -> Gradle`
-- Set the Project SDK to `17 Eclipse Temurin version 17.0.5` in `File > Project Structure`
+- Use instructions from the [form-flow library here.](https://github.com/codeforamerica/form-flow#intellij-setup)
 - Run the application using the `StarterApplication` configuration (found
   in `org.formflowstartertemplate.app`)
 
@@ -364,7 +359,31 @@ Please see
 [Spring Profile: `dev`](https://github.com/codeforamerica/form-flow#spring-profile-dev)
 for more information about what it provides and how to use this profile.
 
-## About IntelliJ Live Templates ##
+## IntelliJ Setup ##
+
+### Connect flows config schema
+We use [JSON schema](https://json-schema.org/understanding-json-schema/index.html) to autocomplete
+and validate the `flows-config.yaml` file.
+
+Follow the steps below in IntelliJ to connect the schema to your project's version of `flows-config.yaml`:
+
+1. Download [`flows-config-schema.json` here.](intellij-settings/flows-config-schema.json)
+1. Open IntelliJ preferences (`Cmd + ,` on mac)
+1. Navigate to "JSON Schema Mappings"
+1. Select the "+" in the top left to add a new mapping
+1. Name can be anything (i.e. "Flow Config")
+1. "Schema file or URL" needs to be set to the `flows-config-schema.json` file you just downloaded
+1. "Schema version" set to "JSON Schema version 7"
+1. Use the "+" under schema version to add:
+    - a new file and connect to `src/main/resources/flows-config.yaml`
+    - a folder and connect to `src/test/resources/flows-config`
+
+To confirm that the connection is work, go into `flows-config.yaml` and see if autocomplete is
+appearing for you.
+
+![IntelliJ JSON Schema Mappings menu](readme-assets/intellij-json-schema-mappings.png)
+
+### Applying Live Templates to your IntelliJ IDE ###
 
 As a team, we use [IntelliJ](https://www.jetbrains.com/idea/) and can use
 the [Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) feature to
@@ -375,8 +394,6 @@ Support for importing/exporting these Live Templates is
 a [buggy process](https://youtrack.jetbrains.com/issue/IDEA-184753) that can sometimes wipe away all
 of your previous
 settings. So we're going to use a copy/paste approach.
-
-### Applying Live Templates to your IntelliJ IDE ###
 
 1. Open the [intellij-settings/LiveTemplates.xml](intellij-settings/LiveTemplates.xml) from the root
    of
@@ -403,10 +420,3 @@ Live Templates by typing `cfa:` and a list of templates to autofill will show it
 5. Paste at the bottom of the file
 6. Commit to GitHub
 7. Now others can copy/paste your Live Templates
-
-## Setup Platform Flavored Google Styles for Java ##
-
-In intelliJ go to `Preferences --> Editor --> Code Style --> Java` and next to Scheme hit the
-cogwheel
-and `Import Scheme --> IntelliJ Code Style XML` with
-[intellij-settings/PlatformFlavoredGoogleStyle.xml](intellij-settings/PlatformFlavoredGoogleStyle.xml)
