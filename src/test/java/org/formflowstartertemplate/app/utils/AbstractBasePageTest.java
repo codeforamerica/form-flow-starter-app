@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -28,7 +27,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -54,9 +53,9 @@ public abstract class AbstractBasePageTest {
 
   @BeforeEach
   protected void setUp() throws IOException {
+    initTestPage();
     baseUrl = "http://localhost:%s".formatted(localServerPort);
     driver.navigate().to(baseUrl);
-    initTestPage();
   }
 
   protected void initTestPage() {
@@ -139,10 +138,10 @@ public abstract class AbstractBasePageTest {
 //    }
 //  }
 
-  protected void waitForDocumentUploadToComplete() {
-    await().atMost(15, TimeUnit.SECONDS)
-    .until(() -> driver.findElements(By.linkText("cancel")).isEmpty());
-  }
+//  protected void waitForDocumentUploadToComplete() {
+//    await().atMost(15, TimeUnit.SECONDS)
+//    .until(() -> driver.findElements(By.linkText("cancel")).isEmpty());
+//  }
 
   @SuppressWarnings("unused")
   public void takeSnapShot(String fileWithPath) {

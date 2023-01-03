@@ -5,6 +5,7 @@ import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.YES;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
 public class UbiFlowJourneyTest extends JourneyTest {
 
@@ -12,10 +13,8 @@ public class UbiFlowJourneyTest extends JourneyTest {
   void fullUbiFlow() {
     // Landing screen
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
-    takeSnapShot("what.png");
     testPage.clickButton("Apply now");
     // How this works screen
-    takeSnapShot("uhm.png");
     testPage.clickContinue();
     // Language preference
     testPage.clickContinue();
@@ -122,9 +121,19 @@ public class UbiFlowJourneyTest extends JourneyTest {
     // Extension list comes from application.yaml -- form-flow.uploads.accepted-file-types
     uploadFile("test.tif", "doc-upload-files");
     assertThat(testPage.findElementsByClass("text--error").get(0).getText())
-        .isEqualTo("We aren't able to upload this type of file. Please try another file that ends in one of the following: .jpeg, .jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic");
+        .isEqualTo("We aren't able to upload this type of file. Please try another file that ends in one of the following: .jpeg, .jpg, .png, .pdf, .bmp, .gif, .doc, .docx, .odt, .ods, .odp, .heic");
     testPage.clickLink("remove");
     assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("0 files added");
+    // Upload a file that is too big and assert the correct error shows - max file size in test is 1MB
+    long largeFilesize = 21000000L;
+    driver.executeScript(
+        "$('#document-upload-doc-upload-files').get(0).dropzone.addFile({name: 'testFile.pdf', size: "
+            + largeFilesize + ", type: 'not-an-image'})");
+    int maxFileSize = 1;
+    assertThat(driver.findElement(By.className("text--error")).getText()).contains(
+        "This file is too large and cannot be uploaded (max size: " + maxFileSize + " MB)");
+    testPage.clickLink("remove");
+    assertThat(driver.findElement(By.id("number-of-uploaded-files-doc-upload-files")).getText());
     uploadJpgFile("doc-upload-files");
     assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("1 file added");
 //  Test that thumb width and height are being set from application-test.yaml (they should be configurable from environment)
@@ -134,6 +143,7 @@ public class UbiFlowJourneyTest extends JourneyTest {
     uploadJpgFile("doc-upload-files"); // 4
     uploadJpgFile("doc-upload-files"); // 5
     uploadJpgFile("doc-upload-files"); // Can't upload the 6th
-//    assertThat(testPage.findElementById(""))
+    assertThat(testPage.findElementsByClass("text--error").get(0).getText())
+        .isEqualTo("You have uploaded the maximum number of files. You will have the opportunity to share more with a caseworker later.");
   }
 }
