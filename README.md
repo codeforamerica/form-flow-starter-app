@@ -26,6 +26,7 @@ Table of Contents
         * [Terminal](#terminal)
         * [IntelliJ](#intellij)
     * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler--optional-chrome--firefox--)
+    * [Spring Profile: `dev`](#spring-profile-dev)
 * [IntelliJ Setup](#intellij-setup)
   * [Connect Flows Config Schema](#connect-flows-config-schema)
   * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
