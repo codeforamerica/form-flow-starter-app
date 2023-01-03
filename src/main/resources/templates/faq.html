@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}">
+<head th:replace="fragments/head :: head(title=#{faq.title})"></head>
+<body>
+<div class="page-wrapper">
+  <th:block th:replace="fragments/toolbar :: toolbar" />
+  <th:block th:replace="fragments/demoBanner :: demoBanner" />
+  <section class="slab slab--grey">
+    <div class="grid">
+      <div class="grid__item">
+        <h1 class="spacing-below-35" th:text="#{faq.title}"></h1>
+        <a href="/ubi/howThisWorks" th:text="#{faq.apply-now}"
+           class="button--primary button"></a>
+      </div>
+    </div>
+  </section>
+  <main id="content" role="main" class="slab slab--white">
+    <div class="grid">
+      <nav class="grid__item width-one-third">
+        <p class="h3" th:text="#{faq.toc}"></p>
+        <div class="spacing-below-35">
+          <a href="#am-i-eligible" th:text="#{faq.am-i-eligible.title}"></a>
+        </div>
+        <div class="spacing-below-35">
+          <a href="#more-than-one-person" th:text="#{faq.more-than-one-person.title}"></a>
+        </div>
+        <div class="spacing-below-35">
+          <a href="#someone-else" th:text="#{faq.someone-else.title}"></a>
+        </div>
+        <div class="spacing-below-35">
+          <a href="#when-selected" th:text="#{faq.when-selected.title}"></a>
+        </div>
+      </nav>
+      <div class="grid__item shift-one-twelfth width-seven-twelfths">
+        <div class="grid">
+          <div class="grid__item">
+            <div class="grid__item spacing-below-35">
+              <h2 id="am-i-eligible" class="h3" th:text="#{faq.am-i-eligible.title}"></h2>
+              <p th:text="#{faq.am-i-eligible.content.p1}"></p>
+              <ul class="list--bulleted padding-left-25">
+                <li th:text="#{faq.am-i-eligible.content.li1}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li2}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li3}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li4}"></li>
+              </ul>
+              <p th:text="#{faq.am-i-eligible.content.p2}"></p>
+              <ul class="list--bulleted padding-left-25">
+                <li th:text="#{faq.am-i-eligible.content.li5}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li6}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li7}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li8}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li9}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li10}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li11}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li12}"></li>
+                <li th:text="#{faq.am-i-eligible.content.li13}"></li>
+              </ul>
+              <p th:text="#{faq.am-i-eligible.content.p3}"></p>
+              <h2 id="more-than-one-person" class="h3 spacing-above-60" th:text="#{faq.more-than-one-person.title}"></h2>
+              <p th:text="#{faq.more-than-one-person.content.p1}"></p>
+              <h2 id="someone-else" class="h3 spacing-above-60" th:text="#{faq.someone-else.title}"></h2>
+              <p th:text="#{faq.someone-else.content.p1}"></p>
+              <h2 id="when-selected" class="h3 spacing-above-60" th:text="#{faq.when-selected.title}"></h2>
+              <p th:text="#{faq.when-selected.content.p1}"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<th:block th:replace="fragments/footer :: footer" />
+</body>
+</html>
