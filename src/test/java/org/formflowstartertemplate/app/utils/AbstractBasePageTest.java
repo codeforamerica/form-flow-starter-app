@@ -1,5 +1,7 @@
 package org.formflowstartertemplate.app.utils;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 import java.io.BufferedOutputStream;
@@ -18,13 +20,14 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -32,6 +35,9 @@ import org.springframework.test.context.ActiveProfiles;
 @Import({WebDriverConfiguration.class})
 @ActiveProfiles("test")
 public abstract class AbstractBasePageTest {
+  
+  private static final String UPLOADED_JPG_FILE_NAME = "test.jpeg";
+  
   @Autowired
   protected RemoteWebDriver driver;
 
@@ -47,9 +53,9 @@ public abstract class AbstractBasePageTest {
 
   @BeforeEach
   protected void setUp() throws IOException {
+    initTestPage();
     baseUrl = "http://localhost:%s".formatted(localServerPort);
     driver.navigate().to(baseUrl);
-    initTestPage();
   }
 
   protected void initTestPage() {
@@ -203,20 +209,20 @@ public abstract class AbstractBasePageTest {
 //    testPage.enter("moveToMnPreviousState", "Illinois");
 //  }
 
-//  protected void uploadFile(String filepath) {
-//    testPage.clickElementById("drag-and-drop-box"); // is this needed?
-//    WebElement upload = driver.findElement(By.className("dz-hidden-input"));
-//    upload.sendKeys(filepath);
-//    await().until(
-//        () -> !driver.findElements(By.className("file-details")).get(0).getAttribute("innerHTML")
-//            .isBlank());
-//  }
+  protected void uploadFile(String filepath, String dzName) {
+    testPage.clickElementById("drag-and-drop-box-" + dzName); // is this needed?
+    WebElement upload = driver.findElement(By.className("dz-hidden-input"));
+    upload.sendKeys(TestUtils.getAbsoluteFilepathString(filepath));
+    await().until(
+        () -> !driver.findElements(By.className("file-details")).get(0).getAttribute("innerHTML")
+            .isBlank());
+  }
 
-//  protected void uploadJpgFile() {
-//    uploadFile(TestUtils.getAbsoluteFilepathString(UPLOADED_JPG_FILE_NAME));
-//    assertThat(driver.findElement(By.id("document-upload")).getText())
-//        .contains(UPLOADED_JPG_FILE_NAME);
-//  }
+  protected void uploadJpgFile(String dzName) {
+    uploadFile(UPLOADED_JPG_FILE_NAME, dzName);
+    assertThat(driver.findElement(By.id("dropzone-" + dzName)).getText().replace("\n", ""))
+        .contains(UPLOADED_JPG_FILE_NAME);
+  }
 
 //  protected void uploadInvalidJpg(){
 //    uploadFile(TestUtils.getAbsoluteFilepathString(UPLOAD_RIFF_WITH_RENAMED_JPG_EXTENSION));

@@ -1,7 +1,10 @@
 form-flow:
-  aws:
-    access_key: some-key
-    secret_key: some-key
+  uploads:
+    accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic'
+    thumbnail-width: '54'
+    thumbnail-height: '50'
+    max-files: '5' # 5 files maximum
+    max-file-size: '1' # 1 MB file size limit
 spring:
   datasource:
     url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;

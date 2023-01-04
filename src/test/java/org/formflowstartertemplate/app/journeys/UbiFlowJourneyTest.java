@@ -4,16 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.YES;
 
-import org.formflowstartertemplate.app.utils.PercyTestPage;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
-@Tag("fullFlowJourney")
 public class UbiFlowJourneyTest extends JourneyTest {
-
-  protected void initTestPage() {
-    testPage = new PercyTestPage(driver);
-  }
 
   @Test
   void fullUbiFlow() {
@@ -116,56 +110,40 @@ public class UbiFlowJourneyTest extends JourneyTest {
     assertThat(testPage.getTitle()).isEqualTo("Income");
 
   }
-
-// Assert intercom button is present on landing page
-//  await().atMost(5, SECONDS).until(() -> !driver.findElements(By.id("intercom-frame")).isEmpty());
-//  assertThat(driver.findElement(By.id("intercom-frame"))).isNotNull();
-
-//  private void assertFileDetailsAreCorrect(List<WebElement> filenameTextElements,
-//      List<WebElement> fileDetailsElements, int index,
-//      String filenameWithoutExtension, String extension, String size,
-//      String sizeUnit) {
-//    // test-caf.pdf
-//    var filename = getAttributeForElementAtIndex(filenameTextElements, index, "innerHTML");
-//    var fileDetails = getAttributeForElementAtIndex(fileDetailsElements, index, "innerHTML");
-//
-//    assertThat(filename).contains(filenameWithoutExtension);
-//    assertThat(filename).contains(extension);
-//    assertThat(fileDetails).contains(size);
-//    assertThat(fileDetails).contains(sizeUnit);
-//  }
-
-//  private void assertStylingOfNonEmptyDocumentUploadPage() {
-//    assertThat(driver.findElement(By.id("drag-and-drop-box")).getAttribute("class")).contains(
-//        "drag-and-drop-box-compact");
-//    assertThat(driver.findElement(By.id("upload-button"))
-//        .getAttribute("class")).contains("grid--item width-one-third");
-//    assertThat(driver.findElement(By.id("vertical-header-desktop")).getAttribute("class"))
-//        .contains("hidden");
-//    assertThat(driver.findElement(By.id("vertical-header-mobile")).getAttribute("class"))
-//        .contains("hidden");
-//    assertThat(driver.findElement(By.id("horizontal-header-desktop")).getAttribute("class"))
-//        .doesNotContain("hidden");
-//    assertThat(driver.findElement(By.id("horizontal-header-mobile")).getAttribute("class"))
-//        .doesNotContain("hidden");
-//    assertThat(driver.findElement(By.id("upload-doc-div")).getAttribute("class"))
-//        .doesNotContain("hidden");
-//  }
-
-//  private void assertStylingOfEmptyDocumentUploadPage() {
-//    assertThat(driver.findElement(By.id("drag-and-drop-box")).getAttribute("class")).doesNotContain(
-//        "drag-and-drop-box-compact");
-//    assertThat(driver.findElement(By.id("upload-button")).getAttribute("class")).doesNotContain(
-//        "grid--item width-one-third");
-//    assertThat(driver.findElement(By.id("vertical-header-desktop")).getAttribute("class"))
-//        .doesNotContain("hidden");
-//    assertThat(driver.findElement(By.id("vertical-header-mobile")).getAttribute("class"))
-//        .doesNotContain("hidden");
-//    assertThat(driver.findElement(By.id("horizontal-header-desktop")).getAttribute("class"))
-//        .contains("hidden");
-//    assertThat(driver.findElement(By.id("horizontal-header-mobile")).getAttribute("class"))
-//        .contains("hidden");
-//    assertThat(driver.findElement(By.id("upload-doc-div")).getAttribute("class")).contains(
-//        "hidden");
-//  }
+  
+  @Test
+  void documentUploadFlow() {
+    assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
+    testPage.clickButton("Upload documents");
+    assertThat(testPage.getTitle()).isEqualTo("Upload documents");
+    
+    // Test accepted file types
+    // Extension list comes from application.yaml -- form-flow.uploads.accepted-file-types
+    uploadFile("test.tif", "doc-upload-files");
+    assertThat(testPage.findElementsByClass("text--error").get(0).getText())
+        .isEqualTo("We aren't able to upload this type of file. Please try another file that ends in one of the following: .jpeg, .jpg, .png, .pdf, .bmp, .gif, .doc, .docx, .odt, .ods, .odp, .heic");
+    testPage.clickLink("remove");
+    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("0 files added");
+    // Upload a file that is too big and assert the correct error shows - max file size in test is 1MB
+    long largeFilesize = 21000000L;
+    driver.executeScript(
+        "$('#document-upload-doc-upload-files').get(0).dropzone.addFile({name: 'testFile.pdf', size: "
+            + largeFilesize + ", type: 'not-an-image'})");
+    int maxFileSize = 1;
+    assertThat(driver.findElement(By.className("text--error")).getText()).contains(
+        "This file is too large and cannot be uploaded (max size: " + maxFileSize + " MB)");
+    testPage.clickLink("remove");
+    assertThat(driver.findElement(By.id("number-of-uploaded-files-doc-upload-files")).getText());
+    uploadJpgFile("doc-upload-files");
+    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("1 file added");
+//  Test that thumb width and height are being set from application-test.yaml (they should be configurable from environment)
+    assertThat(testPage.findElementsByClass("thumbnail").get(0).getAttribute("outerHTML")).contains("width: 54px; height: 50px");
+    uploadJpgFile("doc-upload-files"); // 2
+    uploadJpgFile("doc-upload-files"); // 3
+    uploadJpgFile("doc-upload-files"); // 4
+    uploadJpgFile("doc-upload-files"); // 5
+    uploadJpgFile("doc-upload-files"); // Can't upload the 6th
+    assertThat(testPage.findElementsByClass("text--error").get(0).getText())
+        .isEqualTo("You have uploaded the maximum number of files. You will have the opportunity to share more with a caseworker later.");
+  }
 }
