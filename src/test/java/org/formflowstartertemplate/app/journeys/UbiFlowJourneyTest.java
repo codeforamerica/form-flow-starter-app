@@ -42,7 +42,6 @@ public class UbiFlowJourneyTest extends JourneyTest {
     // Eligibility
     testPage.clickContinue();
     // Housemates
-    // TODO: why is this failing? It's on the right screen...
     testPage.enter("hasHousehold", NO.getDisplayValue());
     // Income screen
     assertThat(testPage.getTitle()).isEqualTo("Income");
