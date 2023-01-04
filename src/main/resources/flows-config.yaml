@@ -13,6 +13,9 @@ flow:
       - name: personalInfo
   personalInfo:
     nextScreens:
+      - name: homeAddress
+  homeAddress:
+    nextScreens:
       - name: eligibility
   eligibility:
     nextScreens:

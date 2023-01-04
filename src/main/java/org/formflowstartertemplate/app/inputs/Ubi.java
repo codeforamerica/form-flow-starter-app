@@ -45,6 +45,17 @@ public class Ubi {
   private String movedToUSAYear;
   private String movedFromCountry;
 
+  // Home Address Screen
+  @NotBlank
+  private String streetAddress;
+  private String apartment;
+  @NotBlank
+  private String city;
+  @NotBlank
+  private String state;
+  @NotBlank
+  private String zip;
+
   // Housemates Screen
   private String hasHousehold;
 

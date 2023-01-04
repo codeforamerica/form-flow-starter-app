@@ -14,7 +14,7 @@ public class UbiFlowJourneyTest extends JourneyTest {
     // Landing screen
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     testPage.clickButton("Apply now");
-    // How this works screen
+    // How this works
     testPage.clickContinue();
     // Language preference
     testPage.clickContinue();
@@ -27,22 +27,28 @@ public class UbiFlowJourneyTest extends JourneyTest {
     testPage.enter("birthMonth", "01");
     testPage.enter("birthYear", "2000");
     testPage.clickContinue();
-    // Eligibility screen
+    // Home address
+    testPage.enter("streetAddress", "1111 N State St");
+    testPage.enter("city", "Roswell");
+    testPage.enter("state", "NM");
+    testPage.enter("zip", "88201");
     testPage.clickContinue();
-    // Housemates screen
+    // Eligibility
+    testPage.clickContinue();
+    // Housemates
     testPage.enter("hasHousehold", NO.getDisplayValue());
     // Income screen
     assertThat(testPage.getTitle()).isEqualTo("Income");
     // Go back to household page and select yes instead
     testPage.goBack();
     testPage.enter("hasHousehold", YES.getDisplayValue());
-    // Housemate Info screen
+    // Housemate Info
     testPage.enter("householdMemberFirstName", "John");
     testPage.enter("householdMemberLastName", "Doe");
     testPage.clickContinue();
-    // Household List screen
+    // Household List
     testPage.clickButton("+ Add a person");
-    // Housemate Info screen
+    // Housemate Info
     testPage.enter("householdMemberFirstName", "Jane");
     testPage.enter("householdMemberLastName", "Doe");
     testPage.clickContinue();
@@ -66,13 +72,13 @@ public class UbiFlowJourneyTest extends JourneyTest {
     assertThat(testPage.getTitle()).isEqualTo("Housemates");
     // Add back household members
     testPage.enter("hasHousehold", YES.getDisplayValue());
-    // Housemate Info screen
+    // Housemate Info
     testPage.enter("householdMemberFirstName", "John");
     testPage.enter("householdMemberLastName", "Doe");
     testPage.clickContinue();
-    // Household List screen
+    // Household List
     testPage.clickButton("+ Add a person");
-    // Housemate Info screen
+    // Housemate Info
     testPage.enter("householdMemberFirstName", "Jane");
     testPage.enter("householdMemberLastName", "Doe");
     testPage.clickContinue();
