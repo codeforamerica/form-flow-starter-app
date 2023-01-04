@@ -38,6 +38,7 @@ public class UbiFlowJourneyTest extends JourneyTest {
     testPage.enter("city", "Roswell");
     testPage.enter("state", "NM");
     testPage.enter("zip", "88201");
+    testPage.clickContinue();
     // Eligibility
     testPage.clickContinue();
     // Housemates
