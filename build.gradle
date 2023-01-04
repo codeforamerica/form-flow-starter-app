@@ -13,7 +13,7 @@ configurations {
     }
 }
 
-configurations.all {
+configurations.configureEach {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
@@ -29,7 +29,7 @@ repositories {
     mavenCentral()
 }
 
-def profile = props.getProperty('ENVIRONMENT')
+def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
