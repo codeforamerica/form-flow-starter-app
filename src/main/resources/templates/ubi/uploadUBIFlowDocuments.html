@@ -47,7 +47,7 @@
                 </th:block>
               </div>
             </div>
-            <div class="form-card__footer">
+            <div class="form-card__footer display-none" id="submit">
               <th:block
                   th:replace="'fragments/continueButton' :: continue(text=#{adding-documents-upload-doc.im-finished-uploading})"/>
             </div>
@@ -58,5 +58,6 @@
   </section>
 </div>
 <th:block th:replace="fragments/footer :: footer"/>
+<script>FormFlowDZ.hideContinueIfNoFiles("ubiFiles", "submit")</script>
 </body>
 </html>
