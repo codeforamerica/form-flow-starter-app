@@ -60,6 +60,9 @@ flow:
       - name: incomeComplete
   incomeComplete:
     nextScreens:
+      - name: extendsIncomeThreshold
+  extendsIncomeThreshold:
+    nextScreens:
       - name: addingDocuments
   addingDocuments:
     nextScreens:
