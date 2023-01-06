@@ -18,9 +18,9 @@
           </div>
         </main>
       </th:block>
-      <!-- TODO: possessive `'s` not coming from translations -->
       <th:block th:if="${noEntryToDelete == null}">
-      <main
+        <!-- TODO: possessive `'s` not coming from translations -->
+        <main
           th:with="name=${session.entryToDelete.get('householdMember') == 'applicant' ? #messages.msg('general.your') : session.entryToDelete.get('householdMember') + '&rsquo;s'}"
           id="content" role="main" class="form-card spacing-above-35">
         <div class="form-card__content">
