@@ -21,7 +21,7 @@
       <th:block th:if="${noEntryToDelete == null}">
         <!-- TODO: possessive `'s` not coming from translations -->
         <main
-          th:with="name=${session.entryToDelete.get('householdMember') == 'applicant' ? #messages.msg('general.your') : session.entryToDelete.get('householdMember') + '&rsquo;s'}"
+          th:with="name=${session.entryToDelete.get('householdMember') == 'applicant' ? #messages.msg('general.your').toLowerCase() : session.entryToDelete.get('householdMember') + '&rsquo;s'}"
           id="content" role="main" class="form-card spacing-above-35">
         <div class="form-card__content">
           <th:block th:replace="'fragments/icons' :: 'deleteDocument'"></th:block>
