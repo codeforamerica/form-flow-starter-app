@@ -9,31 +9,20 @@ Table of Contents
     a reasonable size.
 -->
 
-* [Form Flow Concepts](#form-flow-concepts)
-* [Defining Screens](#defining-screens)
-    * [Using Thymeleaf](#using-thymeleaf)
-        * [Icon reference](#icon-reference)
-* [Defining Conditions](#defining-conditions)
-    * [Using conditions in templates](#using-conditions-in-templates)
-* [Defining Static Pages](#defining-static-pages)
+* [Form Flow Starter Application](#form-flow-starter-application)
+* [Table of Contents](#table-of-contents)
+* [Universal Basic Income (UBI) Form Flow](#universal-basic-income-ubi-form-flow)
+    * [Static Pages](#static-pages)
 * [Development setup](#development-setup)
-    * [System Dependencies](#system-dependencies)
+    * [System dependencies](#system-dependencies)
         * [Java Development Kit](#java-development-kit)
         * [Set up jenv to manage your jdk versions](#set-up-jenv-to-manage-your-jdk-versions)
         * [Gradle](#gradle)
-    * [Start the local databases](#start-the-local-databases)
-    * [Setup EnvFile in IntelliJ](#setup-envfile-in-intellij)
-    * [Setup Application](#setup-application)
-    * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers):](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
-        * [Terminal](#terminal)
-        * [IntelliJ](#intellij)
-    * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler-optional-chrome--firefox)
-    * [Spring Profile: `dev`](#spring-profile-dev)
-* [IntelliJ Setup](#intellij-setup)
-    * [Connect Flows Config Schema](#connect-flows-config-schema)
-    * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
-    * [Using Live Templates](#using-live-templates)
-    * [Contribute new Live Templates](#contribute-new-live-templates)
+        * [Start the local databases](#start-the-local-databases)
+        * [Setup EnvFile in IntelliJ](#setup-envfile-in-intellij)
+        * [Setup Application](#setup-application)
+        * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
+        * [Setup Fake Filler (optional, Chrome &amp; Firefox)](#setup-fake-filler-optional-chrome--firefox)
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
@@ -91,7 +80,7 @@ class:
 * [faq.html](src/main/resources/templates/faq.html)
 * [privacy.html](src/main/resources/templates/privacy.html)
 
-# Development setup
+# Setup instructions
 
 ## System dependencies
 
@@ -137,7 +126,7 @@ jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
 
 `brew install gradle`
 
-### Start the local databases ###
+### Start the local databases
 
 - Install PostgreSQL 14 via an [official download](https://www.postgresql.org/download/)
     - Or on macOS, through homebrew: `brew install postgresql@14`
@@ -148,7 +137,7 @@ jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
     - `$ createdb starter-app`
     - `$ createuser -s starter-app`
 
-### Setup EnvFile in IntelliJ ###
+### Setup EnvFile in IntelliJ
 
 We use a `.env` file to store secret, we use
 the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) to connect IntelliJ with
@@ -158,26 +147,32 @@ the `.env`.
 - Follow EnvFile usage process [here](https://github.com/Ashald/EnvFile#usage) to setup Run
   Configurations with EnvFile.
 
-### Setup Application  ###
+### Setup Application
 
 - Use instructions from
   the [form-flow library here.](https://github.com/codeforamerica/form-flow#intellij-setup)
 - Run the application using the `StarterApplication` configuration (found
   in `org.formflowstartertemplate.app`)
 
-### Using a local version of the Form-Flow Library (For Form-Flow Library Developers): ###
+### Using a local version of the Form-Flow Library (For Form-Flow Library Developers)
 
-To use the [form-flow](https://github.com/codeforamerica/form-flow) library locally:
+To use a local version of the  [form-flow](https://github.com/codeforamerica/form-flow) library you
+can do the following:
 
-1. Clone the form-flow repo in the same directory as the starter app. This line
-   in [build.gradle](build.gradle) depends on it:
-    ```
-    implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
-    ```
-1. Ensure you build the jar.
+1. Clone the `form-flow` repo in the same directory as the starter app.
+1. Build the `form-flow` library jar.
+1. In this starter app, set the `SPRING_PROFILES_ACTIVE`  to `dev` in
+   the [`.env`](https://github.com/codeforamerica/form-flow-starter-app/blob/main/sample.env) file.
 1. Start the `form-flow-starter-app`.
 
-### Setup Fake Filler (optional, Chrome & Firefox): ###
+Changing the `SPRING_PROFILES_ACTIVE` to `dev` will cause the starter
+app's [build.gradle](build.gradle) to pull in the local library, via this line:
+
+ ```
+ implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
+ ```
+
+### Setup Fake Filler (optional, Chrome & Firefox)
 
 We use an automatic form filler to make manual test easier.
 
