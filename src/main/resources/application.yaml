@@ -1,7 +1,7 @@
 form-flow:
   inputs: 'org.formflowstartertemplate.app.inputs.'
   uploads:
-    accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic'
+    accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'
     thumbnail-width: '64'
     thumbnail-height: '60'
     max-files: '20' # 20 files maximum
