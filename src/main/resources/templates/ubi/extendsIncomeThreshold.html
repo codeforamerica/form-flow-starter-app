@@ -10,18 +10,23 @@
       <main id="content" role="main" class="form-card spacing-above-35">
         <th:block th:replace="'fragments/icons' :: personWithDollarSign"></th:block>
         <th:block
-        th:replace="'fragments/cardHeader' :: cardHeader(header=#{extends-income-threshold.header})"/>
+            th:replace="'fragments/cardHeader' :: cardHeader(header=#{extends-income-threshold.header})"/>
         <div class="form-card__content">
-          <p th:text=""></p>
-          <p th:text=""></p>
-        </div>
-        <div class="form-card__footer">
-          <th:block th:replace="'fragments/continueButton' :: continue(text=#{extends-income-threshold.apply-anyway})" />
-        </div>
+          <div
+              th:with="familySize=${T(org.formflowstartertemplate.app.utils.ViewUtilities).getFamilySize(submission)},
+                     familyIncomeThreshold=${T(org.formflowstartertemplate.app.utils.ViewUtilities).getIncomeThresholdByFamilySize(submission)}"
+              class="form-card__content">
+            <p th:utext="#{extends-income-threshold.the-annual-household(${familySize}, ${familyIncomeThreshold})}"></p>
+            <p th:text="#{extends-income-threshold.you-can-still-apply}"></p>
+          </div>
+          <div class="form-card__footer">
+            <th:block
+                th:replace="'fragments/continueButton' :: continue(text=#{extends-income-threshold.apply-anyway})"/>
+          </div>
       </main>
     </div>
   </section>
 </div>
-<th:block th:replace="fragments/footer :: footer" />
+<th:block th:replace="fragments/footer :: footer"/>
 </body>
 </html>

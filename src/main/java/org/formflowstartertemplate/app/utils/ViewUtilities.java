@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+import org.formflowstartertemplate.app.UbiSubmission;
 
 public class ViewUtilities {
 
@@ -65,7 +67,28 @@ public class ViewUtilities {
     return null;
   }
 
-  public static int getUuid() {
-    return Math.abs(new SecureRandom().nextInt());
+  public String getFamilySize(Submission submission){
+    //Add all household member and the applicant to get total family size
+    int familySize = 1;
+    if(submission.getInputData().get("household") != null){
+      var household = (ArrayList<LinkedHashMap<String, String>>) submission.getInputData().get("household");
+      familySize = household.size() + familySize;
+    }
+    return(Integer.toString(familySize));
+  }
+
+  public String getIncomeThresholdByFamilySize(Submission submission){
+    String defaultThreshold = String.valueOf(116775 + ((Integer.parseInt(getFamilySize(submission)) - 8) * 11800));
+    return switch (Integer.parseInt(getFamilySize(submission))) {
+      case 1 -> "33,975";
+      case 2 -> "45,775";
+      case 3 -> "57,575";
+      case 4 -> "69,375";
+      case 5 -> "81,175";
+      case 6 -> "92,975";
+      case 7 -> "104,775";
+      case 8 -> "116,775";
+      default -> defaultThreshold;
+    };
   }
 }
