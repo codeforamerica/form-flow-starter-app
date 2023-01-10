@@ -4,8 +4,12 @@ form-flow:
     accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'
     thumbnail-width: '64'
     thumbnail-height: '60'
-    max-files: '20' # 20 files maximum
-    max-file-size: '20' # 20 MB file size limit
+    # 20 files maximum
+    max-files: '20'
+    # 20 MB file size limit
+    # If this is not set then the server values below for servlet max-file-size and tomcat max POST size will not be set
+    # which will cause the server to use the default values of 1MB preventing uploads larger than that.
+    max-file-size: '20' 
   aws:
     region: 'us-west-1'
     s3_bucket_name: 'form-flow'
@@ -28,8 +32,8 @@ spring:
     password:
   servlet:
     multipart:
-      max-file-size: 20MB
-      max-request-size: 20MB
+      max-file-size: ${form-flow.uploads.max-file-size}MB
+      max-request-size: ${form-flow.uploads.max-file-size}MB
 management:
   endpoints:
     web:
@@ -41,4 +45,4 @@ logging:
     org.springframework.web: ERROR
 server:
   tomcat:
-    max-http-form-post-size: 20MB
+    max-http-form-post-size: ${form-flow.uploads.max-file-size}MB
