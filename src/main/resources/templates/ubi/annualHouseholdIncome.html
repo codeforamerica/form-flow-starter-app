@@ -17,7 +17,8 @@
             <strong th:text="#{annual-household-income.box-header}"></strong>
             <ul class="subflow-list list--bulleted padding-left-25">
               <th:block th:if="${inputData.containsKey('income')}">
-                <li th:each="personsIncome: ${T(org.formflowstartertemplate.app.utils.ViewUtilities).sortIncomeNamesWithApplicantFirst((UbiSubmission submission))}"
+                <!--<li th:each="personsIncome: ${T(org.formflowstartertemplate.app.utils.ViewUtilities).sortIncomeNamesWithApplicantFirst((UbiSubmission submission))}" -->
+                <li th:each="personsIncome: ${submission.sortIncomeNamesWithApplicantFirst()}"
                     class="spacing-below-15">
                               <span class="grid">
                                 <span class="grid__item width-one-third">
@@ -27,7 +28,7 @@
                                 </span>
                                 <span
                                     class="grid__item width-one-third text--right padding-right-10"
-                                    th:with="personsTotalIncome=${T(org.formflowstartertemplate.app.utils.ViewUtilities).getIndividualsTotalIncome(submission, personsIncome.uuid)}"
+                                    th:with="personsTotalIncome=${submission.getIndividualsTotalIncome(personsIncome.uuid)}"
                                     UbiSubmission ubiSubmission(submission);
                                     th:text="${'$' + personsTotalIncome}"></span>
                                 <span
@@ -50,7 +51,7 @@
               <strong class="grid__item width-one-third text--left padding-left-25"
                       th:text="#{annual-household-income.total}"></strong>
               <strong class="grid__item width-one-third text--right"
-                      th:text="${'$' + T(org.formflowstartertemplate.app.utils.ViewUtilities).getHouseholdTotalIncome(submission)}"></strong>
+                      th:text="${'$' + submission.getHouseholdTotalIncome()}"></strong>
             </div>
             <a th:href="'/' + ${flow} + '/' + ${iterationStartScreen}"
                th:unless="${allHouseholdMembersHaveIncome}"

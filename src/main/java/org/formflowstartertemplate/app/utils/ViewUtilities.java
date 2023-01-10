@@ -1,15 +1,9 @@
 package org.formflowstartertemplate.app.utils;
 
 import formflow.library.data.Submission;
-import java.math.BigDecimal;
-import java.security.SecureRandom;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
-import org.formflowstartertemplate.app.UbiSubmission;
+import org.formflowstartertemplate.app.data.UbiSubmission;
 
 public class ViewUtilities {
 
@@ -20,6 +14,7 @@ public class ViewUtilities {
   public static String getIndividualsTotalIncome(Submission submission, String uuid) {
     return ((UbiSubmission) submission).getIndividualsTotalIncome(uuid);
   }
+
   public static String getHouseholdTotalIncome(Submission submission) {
     return ((UbiSubmission) submission).getHouseholdTotalIncome();
   }

@@ -1,4 +1,4 @@
-package org.formflowstartertemplate.app;
+package org.formflowstartertemplate.app.data;
 
 import formflow.library.data.Submission;
 import java.math.BigDecimal;
@@ -11,11 +11,7 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UbiSubmission  {
-  Submission submission;
-  public UbiSubmission(Submission submission) {
-    this.submission = submission;
-  }
+public class UbiSubmission extends Submission {
 
   public List<Map<String, Object>> sortIncomeNamesWithApplicantFirst() {
     Map<String, Object> inputData = getInputData();
@@ -71,17 +67,17 @@ public class UbiSubmission  {
     return null;
   }
 
-  public String getFamilySize(){
+  public String getFamilySize() {
     //Add all household member and the applicant to get total family size
     int familySize = 1;
-    if(getInputData().get("household") != null){
+    if (getInputData().get("household") != null) {
       var household = (ArrayList<LinkedHashMap<String, String>>) getInputData().get("household");
       familySize = household.size() + familySize;
     }
-    return(Integer.toString(familySize));
+    return (Integer.toString(familySize));
   }
 
-  public String getIncomeThresholdByFamilySize(){
+  public String getIncomeThresholdByFamilySize() {
     String defaultThreshold = String.valueOf(116775 + ((Integer.parseInt(getFamilySize()) - 8) * 11800));
     return switch (Integer.parseInt(getFamilySize())) {
       case 1 -> "33,975";
