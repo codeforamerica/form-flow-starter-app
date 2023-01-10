@@ -187,3 +187,7 @@ or [Fake Filler for FireFox](https://addons.mozilla.org/en-US/firefox/addon/fake
 - Click
   on [Keyboard Shortcuts (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/keyboard-shortcuts)
   to choose the shortcut you want to use to fill out the page.
+
+# Using this as a template repository
+
+TODO -- fill in how to start from this repository to create a new project
