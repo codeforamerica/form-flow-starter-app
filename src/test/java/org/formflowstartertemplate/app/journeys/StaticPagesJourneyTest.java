@@ -2,15 +2,16 @@ package org.formflowstartertemplate.app.journeys;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.formflowstartertemplate.app.utils.PercyTestPage;
+import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
+import org.formflowstartertemplate.app.utils.Page;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 @Tag("staticPagesJourney")
-public class StaticPagesJourneyTest extends JourneyTest {
+public class StaticPagesJourneyTest extends AbstractBasePageTest {
 
   protected void initTestPage() {
-    testPage = new PercyTestPage(driver);
+    testPage = new Page(driver);
   }
 
   @Test
