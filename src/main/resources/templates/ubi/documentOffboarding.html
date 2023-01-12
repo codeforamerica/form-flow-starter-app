@@ -11,14 +11,16 @@
           id="content" role="main" class="form-card spacing-above-35">
         <div class="form-card__content">
           <th:block th:replace="'fragments/icons' :: 'computerScreenWithCheckmark'"></th:block>
-          <th:block th:replace="'fragments/cardHeader' :: cardHeader(header=#{document-offboarding.header})" />
+          <th:block
+              th:replace="'fragments/cardHeader' :: cardHeader(header=#{document-offboarding.header})"/>
           <p th:text="#{document-offboarding.you-can-return}"></p>
-          <p th:text="#{document-offboarding.if-you-dont-remember}">
+          <p th:text="#{document-offboarding.if-you-dont-remember}"></p>
         </div>
         <div class="form-card__footer">
-            <th:block th:replace="'fragments/continueButton' :: continue(text=#{document-offboarding.finish-application})" />
+          <th:block
+              th:replace="'fragments/continueButton' :: continue(text=#{document-offboarding.finish-application})"/>
           <br>
-          <a class="button button--other"  th:href="'/' + ${flow} + '/documentRecommendations'"
+          <a class="button button--other" th:href="'/' + ${flow} + '/documentRecommendations'"
              th:text="#{document-offboarding.go-back}"></a>
         </div>
       </main>
