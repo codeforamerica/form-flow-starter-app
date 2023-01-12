@@ -57,11 +57,15 @@ flow:
     nextScreens: null
   reportedAnnualHouseholdIncome:
     nextScreens:
+      - name: exceedsIncomeThreshold
+        condition: org.formflowstartertemplate.app.submission.conditions.ExceedsIncomeThreshold
       - name: incomeComplete
   incomeComplete:
     nextScreens:
-      - name: extendsIncomeThreshold
-  extendsIncomeThreshold:
+      - name: exceedsIncomeThreshold
+        condition: org.formflowstartertemplate.app.submission.conditions.ExceedsIncomeThreshold
+      - name: addingDocuments
+  exceedsIncomeThreshold:
     nextScreens:
       - name: addingDocuments
   addingDocuments:
