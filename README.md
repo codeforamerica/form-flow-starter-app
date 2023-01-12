@@ -22,7 +22,7 @@ Table of Contents
         * [Setup EnvFile in IntelliJ](#setup-envfile-in-intellij)
         * [Setup Application](#setup-application)
         * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
-        * [Setup Fake Filler (optional, Chrome &amp; Firefox)](#setup-fake-filler-optional-chrome--firefox)
+        
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
@@ -171,22 +171,6 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
  ```
  implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
  ```
-
-### Setup Fake Filler (optional, Chrome & Firefox)
-
-We use an automatic form filler to make manual test easier.
-
-Install [Fake Filler for Chrome](https://chrome.google.com/webstore/detail/fake-filler/bnjjngeaknajbdcgpfkgnonkmififhfo)
-or [Fake Filler for FireFox](https://addons.mozilla.org/en-US/firefox/addon/fake-filler/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
-
-- Go to [fakeFillerConfig.txt](fakeFillerConfig.txt), click on "Raw", then save the file to your
-  computer.
-- Open the Fake Filler Options then click
-  on [Backup and Restore (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/backup)
-- Click on "Import Settings" and upload the config file that you saved above.
-- Click
-  on [Keyboard Shortcuts (chrome)](chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/options.html#/keyboard-shortcuts)
-  to choose the shortcut you want to use to fill out the page.
 
 # Using this as a template repository
 
