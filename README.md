@@ -28,10 +28,10 @@ Table of Contents
     * [Setup Fake Filler (optional, Chrome &amp; Firefox):](#setup-fake-filler-optional-chrome--firefox)
     * [Spring Profile: `dev`](#spring-profile-dev)
 * [IntelliJ Setup](#intellij-setup)
-  * [Connect Flows Config Schema](#connect-flows-config-schema)
-  * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
-  * [Using Live Templates](#using-live-templates)
-  * [Contribute new Live Templates](#contribute-new-live-templates)
+    * [Connect Flows Config Schema](#connect-flows-config-schema)
+    * [Applying Live Templates to your IntelliJ IDE](#applying-live-templates-to-your-intellij-ide)
+    * [Using Live Templates](#using-live-templates)
+    * [Contribute new Live Templates](#contribute-new-live-templates)
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
@@ -145,11 +145,10 @@ We provide two classes for this purpose:
 
 - ConditionDefinitions
     - Houses methods which should always return Booleans and can be used to conditionally show or
-      hide
-      sections of a Thymeleaf template
-- ViewUtilities
-    - Houses methods for general purpose manipulation of data to display on the frontend in
-      Thymeleaf templates
+      hide sections of a Thymeleaf template
+- SubmissionUtilities
+    - Houses methods for general purpose evaluation and manipulation of Submission data to display
+      on the frontend in Thymeleaf templates
 
 An example of using the T operator can be found in the `incomeAmounts` template from the starter
 app.
@@ -308,7 +307,8 @@ the `.env`.
 
 ### Setup Application  ###
 
-- Use instructions from the [form-flow library here.](https://github.com/codeforamerica/form-flow#intellij-setup)
+- Use instructions from
+  the [form-flow library here.](https://github.com/codeforamerica/form-flow#intellij-setup)
 - Run the application using the `StarterApplication` configuration (found
   in `org.formflowstartertemplate.app`)
 
@@ -362,10 +362,12 @@ for more information about what it provides and how to use this profile.
 ## IntelliJ Setup ##
 
 ### Connect flows config schema
+
 We use [JSON schema](https://json-schema.org/understanding-json-schema/index.html) to autocomplete
 and validate the `flows-config.yaml` file.
 
-Follow the steps below in IntelliJ to connect the schema to your project's version of `flows-config.yaml`:
+Follow the steps below in IntelliJ to connect the schema to your project's version
+of `flows-config.yaml`:
 
 1. Download [`flows-config-schema.json` here.](intellij-settings/flows-config-schema.json)
 1. Open IntelliJ preferences (`Cmd + ,` on mac)
