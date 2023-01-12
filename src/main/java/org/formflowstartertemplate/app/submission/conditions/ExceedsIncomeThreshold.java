@@ -4,14 +4,13 @@ import formflow.library.config.submission.Condition;
 import formflow.library.data.Submission;
 import org.formflowstartertemplate.app.utils.SubmissionUtilities;
 
+/**
+ * This condition will check to see if the income the user has entered exceeds the maximum income allowable, based on their family
+ * size.
+ */
 public class ExceedsIncomeThreshold implements Condition {
 
-  /**
-   * This is an example of how one could create a Condition class. It is referenced from the flows-config.yaml, but is specific to
-   * the UBI flow.
-   */
   public Boolean run(Submission submission) {
-    var inputData = submission.getInputData();
     double threshold = SubmissionUtilities.getIncomeThresholdByFamilySizeValue(submission);
     double totalIncome = SubmissionUtilities.getHouseholdTotalIncomeValue(submission);
 
