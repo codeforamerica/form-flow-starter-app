@@ -1,23 +1,10 @@
-<template name="cfa:icons-list" value="&lt;th:block th:replace=&quot;fragments/icons :: icons-list&quot;&gt;&lt;/th:block&gt;" description="Insert a list of all icons from the form flow library" toReformat="false" toShortenFQNames="true">
+<template name="cfa:accordion" value="&lt;th:block th:replace=&quot;'fragments/honeycrisp/accordion' :: accordion(&#10;  buttonLabel=$BUTTON_LABEL$,&#10;  content=~{::$CONTENT_REF$})&quot;&gt;&#10;    &lt;th:block th:ref=&quot;$CONTENT_REF$&quot;&gt;&#10;     $ACCORDION_CONTENT$&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A honeycrisp accordion with buttonLabel and custom content" toReformat="false" toShortenFQNames="true">
+  <variable name="BUTTON_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+  <variable name="CONTENT_REF" expression="" defaultValue="" alwaysStopAt="true" />
+  <variable name="ACCORDION_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
   <context>
     <option name="HTML" value="true" />
   </context>
-</template>
-<template name="cfa:reveal" value="&lt;th:block th:replace=&quot;'fragments/honeycrisp/reveal' :: reveal(&#10;  linkLabel=~{::$LINK_LABEL$})&quot;&gt;&#10;  content=~{::$CONTENT_REF$})&quot;&gt;&#10;  &lt;th:block th:ref=&quot;$CONTENT_REF$&quot;&gt;&#10;     $REVEAL_CONTENT$&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A honeycrisp reveal with linkLabel and custom content" toReformat="false" toShortenFQNames="true">
-<variable name="LINK_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
-<variable name="CONTENT_REF" expression="" defaultValue="" alwaysStopAt="true" />
-<variable name="REVEAL_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
-<context>
-  <option name="HTML" value="true" />
-</context>
-</template>
-<template name="cfa:accordion" value="&lt;th:block th:replace=&quot;'fragments/honeycrisp/accordion' :: accordion(&#10;  buttonLabel=$BUTTON_LABEL$,&#10;  content=~{::$CONTENT_REF$})&quot;&gt;&#10;    &lt;th:block th:ref=&quot;$CONTENT_REF$&quot;&gt;&#10;     $ACCORDION_CONTENT$&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A honeycrisp accordion with buttonLabel and custom content" toReformat="false" toShortenFQNames="true">
-<variable name="BUTTON_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
-<variable name="CONTENT_REF" expression="" defaultValue="" alwaysStopAt="true" />
-<variable name="ACCORDION_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
-<context>
-  <option name="HTML" value="true" />
-</context>
 </template>
 <template name="cfa:cardHeader" value="&lt;th:block th:replace=&quot;'fragments/cardHeader' :: cardHeader(header=$HEADER$, subtext=$OPTIONAL_SUBTEXT$)&quot; /&gt;&#10;" description="Insert a card header, with named title and named optional subtext" toReformat="false" toShortenFQNames="true">
 <variable name="HEADER" expression="" defaultValue="" alwaysStopAt="true" />
@@ -40,6 +27,12 @@
 </context>
 </template>
 <template name="cfa:demoBanner" value="&lt;th:block th:replace=&quot;fragments/demoBanner :: demoBanner&quot; /&gt;" description="Insert the global demo banner" toReformat="false" toShortenFQNames="true">
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
+<template name="cfa:fileUploader" value="&lt;th:block th:replace=&quot;fragments/fileUploader :: fileUploader(inputName='$files$')&quot;&gt;&lt;/th:block&gt;&#10;" description="A dropzone file upload widget" toReformat="false" toShortenFQNames="true">
+<variable name="files" expression="" defaultValue="" alwaysStopAt="true" />
 <context>
   <option name="HTML" value="true" />
 </context>
@@ -90,6 +83,11 @@
   <option name="HTML" value="true" />
 </context>
 </template>
+<template name="cfa:icons-list" value="&lt;th:block th:replace=&quot;fragments/icons :: icons-list&quot;&gt;&lt;/th:block&gt;" description="Insert a list of all icons from the form flow library" toReformat="false" toShortenFQNames="true">
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
 <template name="cfa:inputDate" value="&lt;th:block th:replace=&quot;'fragments/inputs/date' ::&#10;  date(inputName='$INPUT_NAME$',&#10;  label=#{$LABEL$})&quot;/&gt;" description="A Date input with three separate fields for month [mm], day [dd], year [yyyy]" toReformat="false" toShortenFQNames="true">
 <variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
 <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
@@ -108,7 +106,7 @@
   <option name="HTML" value="true" />
 </context>
 </template>
-<template name="cfa:inputFieldsetWithRadio" value="&lt;th:block th:replace=&quot;'fragments/inputs/radioFieldset' ::&#10;              radioFieldset(inputName='$INPUT_NAME$',&#10;              label=#{$LABEL$},&#10;              helpText=#{$OPTIONAL_HELP_TEXT$},&#10;              content=~{::$CONTENTREF$})&quot;&gt;&#10;              &lt;th:block th:ref=&quot;$CONTENTREF$&quot;&gt;&#10;                &lt;!-- Copy the below input if you want to add more --&gt;&#10;                &lt;th:block&#10;                    th:replace=&quot;'fragments/inputs/radio' :: radio(inputName='$INPUT_NAME$',value='$VALUE$', label=#{$VALUE_LABEL$})&quot;/&gt;&#10;              &lt;/th:block&gt;&#10;            &lt;/th:block&gt;" description="A fieldset with legend and radio input(s) with optional help text." toReformat="false" toShortenFQNames="true">
+<template name="cfa:inputFieldsetWithRadio" value="&lt;th:block th:replace=&quot;'fragments/inputs/radioFieldset' ::&#10;              radioFieldset(inputName='$INPUT_NAME$',&#10;              label=#{$LABEL$},&#10;              fieldsetHelpText=#{$OPTIONAL_HELP_TEXT$},&#10;              content=~{::$CONTENTREF$})&quot;&gt;&#10;              &lt;th:block th:ref=&quot;$CONTENTREF$&quot;&gt;&#10;                &lt;!-- Copy the below input if you want to add more --&gt;&#10;                &lt;th:block&#10;                    th:replace=&quot;'fragments/inputs/radio' :: radio(inputName='$INPUT_NAME$',value='$VALUE$', label=#{$VALUE_LABEL$})&quot;/&gt;&#10;              &lt;/th:block&gt;&#10;            &lt;/th:block&gt;" description="A fieldset with legend and radio input(s) with optional help text." toReformat="false" toShortenFQNames="true">
 <variable name="INPUT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
 <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
 <variable name="OPTIONAL_HELP_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
@@ -198,6 +196,14 @@
   <option name="HTML" value="true" />
 </context>
 </template>
+<template name="cfa:reveal" value="&lt;th:block th:replace=&quot;'fragments/honeycrisp/reveal' :: reveal(&#10;  linkLabel=~{::$LINK_LABEL$})&quot;&gt;&#10;  content=~{::$CONTENT_REF$})&quot;&gt;&#10;  &lt;th:block th:ref=&quot;$CONTENT_REF$&quot;&gt;&#10;     $REVEAL_CONTENT$&#10;    &lt;/th:block&gt;&#10;&lt;/th:block&gt;" description="A honeycrisp reveal with linkLabel and custom content" toReformat="false" toShortenFQNames="true">
+<variable name="LINK_LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="CONTENT_REF" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="REVEAL_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
 <template name="cfa:screen" value="&lt;!DOCTYPE html&gt;&#10;&lt;html th:lang=&quot;${#locale.language}&quot;&gt;&#10;&lt;head th:replace=&quot;fragments/head :: head(title=#{$TITLE$})&quot;&gt;&lt;/head&gt;&#10;&lt;body&gt;&#10;&lt;div class=&quot;page-wrapper&quot;&gt;&#10;  &lt;div th:replace=&quot;fragments/toolbar :: toolbar&quot;&gt;&lt;/div&gt;&#10;  &lt;section class=&quot;slab&quot;&gt;&#10;    &lt;div class=&quot;grid&quot;&gt;&#10;      &lt;div th:replace=&quot;fragments/goBack :: goBackLink&quot;&gt;&lt;/div&gt;&#10;      &lt;main id=&quot;content&quot; role=&quot;main&quot; class=&quot;form-card spacing-above-35&quot;&gt;&#10;        &lt;th:block&#10;            th:replace=&quot;'fragments/cardHeader' :: cardHeader(header=#{$CARD_HEADER$}, subtext=#{$CARD_SUBTEXT$})&quot;/&gt;&#10;          &lt;th:block th:replace=&quot;'fragments/form' :: form(action=${formAction}, content=~{::$FORM_CONTENT$})&quot;&gt;&#10;            &lt;th:block th:ref=&quot;$FORM_CONTENT$&quot;&gt;&#10;              &lt;div class=&quot;form-card__content&quot;&gt;&#10;                $CARD_CONTENT$&#10;              &lt;/div&gt;&#10;            &lt;div class=&quot;form-card__footer&quot;&gt;&#10;              $CARD_FOOTER$&#10;            &lt;/div&gt;&#10;          &lt;/th:block&gt;&#10;        &lt;/th:block&gt;&#10;      &lt;/main&gt;&#10;    &lt;/div&gt;&#10;  &lt;/section&gt;&#10;&lt;/div&gt;&#10;&lt;th:block th:replace=&quot;fragments/footer :: footer&quot; /&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;&#10;" description="Insert an entire screen template" toReformat="false" toShortenFQNames="true">
 <variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
 <variable name="CARD_HEADER" expression="" defaultValue="" alwaysStopAt="true" />
@@ -254,12 +260,6 @@
 <template name="cfa:withCondition" value="th:with=&quot;$VARIABLE$=${T(org.codeforamerica.formflowstarter.app.config.ConditionDefinitions).$METHOD$}&quot;" description="Insert a th:with so that you can use a condition within a template" toReformat="false" toShortenFQNames="true">
 <variable name="VARIABLE" expression="" defaultValue="showCondition" alwaysStopAt="true" />
 <variable name="METHOD" expression="" defaultValue="" alwaysStopAt="true" />
-<context>
-  <option name="HTML" value="true" />
-</context>
-</template>
-<template name="cfa:fileUploader" value="&lt;th:block th:replace=&quot;fragments/fileUploader :: fileUploader(inputName='$files$')&quot;&gt;&lt;/th:block&gt;&#10;" description="A dropzone file upload widget" toReformat="false" toShortenFQNames="true">
-<variable name="files" expression="" defaultValue="" alwaysStopAt="true" />
 <context>
   <option name="HTML" value="true" />
 </context>
