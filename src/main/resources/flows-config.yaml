@@ -64,8 +64,11 @@ flow:
       - name: incomeComplete
   incomeComplete:
     nextScreens:
-      - name: addingDocuments
+      - name: economicHardship
   exceedsIncomeThreshold:
+    nextScreens:
+      - name: economicHardship
+  economicHardship:
     nextScreens:
       - name: addingDocuments
   addingDocuments:
