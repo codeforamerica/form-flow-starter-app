@@ -110,10 +110,14 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("reportedTotalAnnualHouseholdIncome", "300000");
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Exceeds Income Threshold");
+    testPage.clickButton("Apply anyway");
+    assertThat(testPage.getTitle()).isEqualTo("Economic Hardship");
+    testPage.goBack();
     testPage.goBack();
     assertThat(testPage.getTitle()).isEqualTo("Reported Annual Household Pre-Tax Income");
 
     testPage.enter("reportedTotalAnnualHouseholdIncome", "125");
+
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Income Complete");
     testPage.goBack();
