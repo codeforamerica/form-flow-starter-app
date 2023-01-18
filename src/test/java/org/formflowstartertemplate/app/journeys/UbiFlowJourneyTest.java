@@ -4,9 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.YES;
 
+import java.util.stream.Collectors;
 import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class UbiFlowJourneyTest extends AbstractBasePageTest {
 
@@ -152,5 +154,16 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     uploadJpgFile("doc-upload-files"); // Can't upload the 6th
     assertThat(testPage.findElementsByClass("text--error").get(0).getText())
         .isEqualTo("You have uploaded the maximum number of files. You will have the opportunity to share more with a caseworker later.");
+    testPage.clickLink("remove");
+    // Assert there are no longer any error after removing the errored item
+    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("5 files added");
+    assertThat(testPage.findElementsByClass("text--error").stream().map(WebElement::getText).collect(Collectors.toList())).allMatch(String::isEmpty);
+    // Delete all elements on the page and then assert there are no longer any uploaded files on the page
+    while (testPage.findElementsByClass("dz-remove").size() > 0) {
+      testPage.clickLink("delete");
+      driver.switchTo().alert().accept();
+    }
+    assertThat(testPage.findElementsByClass("dz-remove").size()).isEqualTo(0);
+    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("0 files added");
   }
 }
