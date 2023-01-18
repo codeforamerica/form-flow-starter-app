@@ -135,4 +135,7 @@ public class Ubi {
   @NotBlank(message = "{household-reported-annual-pre-tax-income.please-enter-a-value}")
   @Money(message = "{income-amounts.must-be-dollars-cents}")
   private String reportedTotalAnnualHouseholdIncome;
+
+  //Economic Hardship Screen
+  private ArrayList<String> economicHardshipTypes;
 }

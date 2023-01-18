@@ -52,13 +52,23 @@ flow:
       - name: annualHouseholdIncome
   annualHouseholdIncome:
     nextScreens:
+      - name: exceedsIncomeThreshold
+        condition: org.formflowstartertemplate.app.submission.conditions.ExceedsIncomeThreshold
       - name: incomeComplete
   incomeDeleteConfirmation:
     nextScreens: null
   reportedAnnualHouseholdIncome:
     nextScreens:
+      - name: exceedsIncomeThreshold
+        condition: org.formflowstartertemplate.app.submission.conditions.ExceedsIncomeThreshold
       - name: incomeComplete
   incomeComplete:
+    nextScreens:
+      - name: economicHardship
+  exceedsIncomeThreshold:
+    nextScreens:
+      - name: economicHardship
+  economicHardship:
     nextScreens:
       - name: addingDocuments
   addingDocuments:

@@ -94,7 +94,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     assertThat(testPage.getCssSelectorText(".form-card__content")).doesNotContain("John Doe");
     testPage.clickButton("Yes, this is everyone");
 
-    //click on No I already no....
+    //click on No I already know....
     assertThat(testPage.getTitle()).isEqualTo("Income");
     testPage.clickLink("No, I already know my annual household pre-tax income - I prefer to enter it directly.");
 
@@ -108,7 +108,18 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.clickContinue();
     assertThat(testPage.hasErrorText("Please enter a valid amount"));
 
+    // Test a high amount to see that we get the exceeds max income page
+    testPage.enter("reportedTotalAnnualHouseholdIncome", "300000");
+    testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Exceeds Income Threshold");
+    testPage.clickButton("Apply anyway");
+    assertThat(testPage.getTitle()).isEqualTo("Economic Hardship");
+    testPage.goBack();
+    testPage.goBack();
+    assertThat(testPage.getTitle()).isEqualTo("Reported Annual Household Pre-Tax Income");
+
     testPage.enter("reportedTotalAnnualHouseholdIncome", "125");
+
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Income Complete");
     testPage.goBack();
@@ -119,18 +130,19 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     assertThat(testPage.getTitle()).isEqualTo("Income");
 
   }
-  
+
   @Test
   void documentUploadFlow() {
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     testPage.clickButton("Upload documents");
     assertThat(testPage.getTitle()).isEqualTo("Upload documents");
-    
+
     // Test accepted file types
     // Extension list comes from application.yaml -- form-flow.uploads.accepted-file-types
     uploadFile("test.tif", "doc-upload-files");
     assertThat(testPage.findElementsByClass("text--error").get(0).getText())
-        .isEqualTo("We aren't able to upload this type of file. Please try another file that ends in one of the following: .jpeg, .jpg, .png, .pdf, .bmp, .gif, .doc, .docx, .odt, .ods, .odp, .heic");
+        .isEqualTo(
+            "We aren't able to upload this type of file. Please try another file that ends in one of the following: .jpeg, .jpg, .png, .pdf, .bmp, .gif, .doc, .docx, .odt, .ods, .odp, .heic");
     testPage.clickLink("remove");
     assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("0 files added");
     // Upload a file that is too big and assert the correct error shows - max file size in test is 1MB
