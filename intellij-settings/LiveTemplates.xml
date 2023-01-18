@@ -224,6 +224,13 @@
   <option name="HTML" value="true" />
 </context>
 </template>
+<template name="cfa:selectOption" value="&lt;th:block th:replace=&quot;'fragments/inputs/selectOption' :: selectOption(value='$VALUE$', optionText=#{$OPTION_TEXT$})&quot;/&gt;&#10;" description="Add a select option input" toReformat="false" toShortenFQNames="true">
+<variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+<variable name="OPTION_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+<context>
+  <option name="HTML" value="true" />
+</context>
+</template>
 <template name="cfa:selectOptionPlaceholder" value="&lt;th:block&#10;  th:replace=&quot;'fragments/inputs/selectOptionPlaceholder' :: selectOptionPlaceholder(optionText=#{$PLACEHOLDER_TEXT$})&quot;/&gt;" description="A placeholder select dropdown option that is disabled and selected by default" toReformat="false" toShortenFQNames="true">
 <variable name="PLACEHOLDER_TEXT" expression="" defaultValue="" alwaysStopAt="true" />
 <context>
