@@ -8,7 +8,7 @@
     <div class="grid">
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35"
-      th:with="dzFormName='doc-upload-files'">
+      th:with="dzFormName='docUpload'">
         <th:block
             th:replace="'fragments/cardHeader' :: cardHeader(header=#{upload-documents.title})"/>
         <th:block
@@ -29,8 +29,8 @@
   </section>
 </div>
 <th:block th:replace="fragments/footer :: footer"/>
-<script>
-  FormFlowDZ.hideContinueIfNoFiles([[${dzFormName}]], 'submit');
+<script th:inline="javascript" th:with="test=${dzFormName}">
+    FormFlowDZ.hideContinueIfNoFiles('docUpload', 'submit');
 </script>
 </body>
 </html>
