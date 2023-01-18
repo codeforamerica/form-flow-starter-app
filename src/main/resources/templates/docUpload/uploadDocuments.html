@@ -30,7 +30,7 @@
 </div>
 <th:block th:replace="fragments/footer :: footer"/>
 <script>
-  FormFlowDZ.hideContinueIfNoFiles('doc-upload-files', 'submit');
+  FormFlowDZ.hideContinueIfNoFiles([[${dzFormName}]], 'submit');
 </script>
 </body>
 </html>

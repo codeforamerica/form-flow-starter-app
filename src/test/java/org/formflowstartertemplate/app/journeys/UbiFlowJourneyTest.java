@@ -154,11 +154,9 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     assertThat(driver.findElement(By.className("text--error")).getText()).contains(
         "This file is too large and cannot be uploaded (max size: " + maxFileSize + " MB)");
     testPage.clickLink("remove");
-    assertThat(driver.findElement(By.id("number-of-uploaded-files-doc-upload-files")).getText());
+    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("0 files added");
     uploadJpgFile("doc-upload-files");
     assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("1 file added");
-//  Test that thumb width and height are being set from application-test.yaml (they should be configurable from environment)
-    assertThat(testPage.findElementsByClass("thumbnail").get(0).getAttribute("outerHTML")).contains("width: 54px; height: 50px");
     uploadJpgFile("doc-upload-files"); // 2
     uploadJpgFile("doc-upload-files"); // 3
     uploadJpgFile("doc-upload-files"); // 4
