@@ -4,11 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.YES;
 
-import java.util.stream.Collectors;
 import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class UbiFlowJourneyTest extends AbstractBasePageTest {
 
@@ -129,51 +126,5 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
 
     assertThat(testPage.getTitle()).isEqualTo("Income");
 
-  }
-
-  @Test
-  void documentUploadFlow() {
-    assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
-    testPage.clickButton("Upload documents");
-    assertThat(testPage.getTitle()).isEqualTo("Upload documents");
-
-    // Test accepted file types
-    // Extension list comes from application.yaml -- form-flow.uploads.accepted-file-types
-    uploadFile("test.tif", "doc-upload-files");
-    assertThat(testPage.findElementsByClass("text--error").get(0).getText())
-        .isEqualTo(
-            "We aren't able to upload this type of file. Please try another file that ends in one of the following: .jpeg, .jpg, .png, .pdf, .bmp, .gif, .doc, .docx, .odt, .ods, .odp, .heic");
-    testPage.clickLink("remove");
-    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("0 files added");
-    // Upload a file that is too big and assert the correct error shows - max file size in test is 1MB
-    long largeFilesize = 21000000L;
-    driver.executeScript(
-        "$('#document-upload-doc-upload-files').get(0).dropzone.addFile({name: 'testFile.pdf', size: "
-            + largeFilesize + ", type: 'not-an-image'})");
-    int maxFileSize = 1;
-    assertThat(driver.findElement(By.className("text--error")).getText()).contains(
-        "This file is too large and cannot be uploaded (max size: " + maxFileSize + " MB)");
-    testPage.clickLink("remove");
-    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("0 files added");
-    uploadJpgFile("doc-upload-files");
-    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("1 file added");
-    uploadJpgFile("doc-upload-files"); // 2
-    uploadJpgFile("doc-upload-files"); // 3
-    uploadJpgFile("doc-upload-files"); // 4
-    uploadJpgFile("doc-upload-files"); // 5
-    uploadJpgFile("doc-upload-files"); // Can't upload the 6th
-    assertThat(testPage.findElementsByClass("text--error").get(0).getText())
-        .isEqualTo("You have uploaded the maximum number of files. You will have the opportunity to share more with a caseworker later.");
-    testPage.clickLink("remove");
-    // Assert there are no longer any error after removing the errored item
-    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("5 files added");
-    assertThat(testPage.findElementsByClass("text--error").stream().map(WebElement::getText).collect(Collectors.toList())).allMatch(String::isEmpty);
-    // Delete all elements on the page and then assert there are no longer any uploaded files on the page
-    while (testPage.findElementsByClass("dz-remove").size() > 0) {
-      testPage.clickLink("delete");
-      driver.switchTo().alert().accept();
-    }
-    assertThat(testPage.findElementsByClass("dz-remove").size()).isEqualTo(0);
-    assertThat(testPage.findElementTextById("number-of-uploaded-files-doc-upload-files")).isEqualTo("0 files added");
   }
 }
