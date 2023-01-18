@@ -90,17 +90,13 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     assertThat(testPage.getCssSelectorText(".form-card__content")).contains("Anthony Dee");
     assertThat(testPage.getCssSelectorText(".form-card__content")).doesNotContain("John Doe");
     testPage.clickButton("Yes, this is everyone");
-
     //click on No I already know....
     assertThat(testPage.getTitle()).isEqualTo("Income");
     testPage.clickLink("No, I already know my annual household pre-tax income - I prefer to enter it directly.");
-
     assertThat(testPage.getTitle()).isEqualTo("Reported Annual Household Pre-Tax Income");
-
     testPage.clickContinue();
     assertThat(testPage.hasErrorText("Please enter a value"));
     assertThat(testPage.hasErrorText("Please enter a valid amount"));
-
     testPage.enter("reportedTotalAnnualHouseholdIncome", "a");
     testPage.clickContinue();
     assertThat(testPage.hasErrorText("Please enter a valid amount"));
@@ -114,17 +110,13 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.goBack();
     testPage.goBack();
     assertThat(testPage.getTitle()).isEqualTo("Reported Annual Household Pre-Tax Income");
-
     testPage.enter("reportedTotalAnnualHouseholdIncome", "125");
-
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Income Complete");
     testPage.goBack();
     testPage.goBack();
     testPage.goBack();
     testPage.goBack();
-
     assertThat(testPage.getTitle()).isEqualTo("Income");
-
   }
 }
