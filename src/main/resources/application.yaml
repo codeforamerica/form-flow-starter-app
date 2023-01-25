@@ -15,6 +15,11 @@ form-flow:
     s3_bucket_name: 'form-flow'
     access_key: ${AWS_ACCESS_KEY}
     secret_key: ${AWS_SECRET_KEY}
+  address:
+    smarty:
+      smarty_auth_id: ${SMARTY_AUTH_ID}
+      smarty_auth_token: ${SMARTY_AUTH_TOKEN}
+      smarty_url: "https://us-street.api.smartystreets.com/street-address"
 spring:
   thymeleaf:
     cache: false
