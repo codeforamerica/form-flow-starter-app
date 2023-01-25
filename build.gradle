@@ -33,7 +33,6 @@ def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     implementation 'org.flywaydb:flyway-core'

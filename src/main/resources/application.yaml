@@ -46,3 +46,6 @@ logging:
 server:
   tomcat:
     max-http-form-post-size: ${form-flow.uploads.max-file-size}MB
+  error:
+    whitelabel:
+      enabled: false

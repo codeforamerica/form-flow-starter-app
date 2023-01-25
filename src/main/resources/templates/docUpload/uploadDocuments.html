@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
 <head th:replace="fragments/head :: head(title=#{upload-documents.title})"></head>
-<body>
+<body 
+    th:with="dzFormName='docUpload'">
 <div class="page-wrapper">
   <div th:replace="fragments/toolbar :: toolbar"></div>
   <section class="slab">
     <div class="grid">
       <div th:replace="fragments/goBack :: goBackLink"></div>
-      <main id="content" role="main" class="form-card spacing-above-35"
-      th:with="dzFormName='doc-upload-files'">
+      <main id="content" role="main" class="form-card spacing-above-35">
         <th:block
             th:replace="'fragments/cardHeader' :: cardHeader(header=#{upload-documents.title})"/>
         <th:block
@@ -30,7 +30,7 @@
 </div>
 <th:block th:replace="fragments/footer :: footer"/>
 <script>
-  FormFlowDZ.hideContinueIfNoFiles('doc-upload-files', 'submit');
+  FormFlowDZ.hideContinueIfNoFiles('[[${dzFormName}]]', 'submit');
 </script>
 </body>
 </html>
