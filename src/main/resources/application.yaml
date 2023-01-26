@@ -22,8 +22,16 @@ form-flow:
       smarty_url: "https://us-street.api.smartystreets.com/street-address"
 spring:
   profiles:
-    include:
-      - form-flow-library
+    group:
+      test:
+        - test
+        - form-flow-library-test
+      dev:
+        - dev
+        - form-flow-library
+      demo:
+        - demo
+        - form-flow-library
   thymeleaf:
     cache: false
     template-resolver-order: 0
