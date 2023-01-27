@@ -82,11 +82,14 @@ flow:
       - name: uploadUBIFlowDocuments
   documentOffboarding:
     nextScreens:
-      - name: success
+      - name: submitting
   uploadUBIFlowDocuments:
     nextScreens:
       - name: docSubmitConfirmation
   docSubmitConfirmation:
+    nextScreens:
+      - name: submitting
+  submitting:
     nextScreens:
       - name: success
   success:
