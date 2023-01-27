@@ -15,7 +15,7 @@
               th:replace="'fragments/cardHeader' :: cardHeader(header=#{submitting.header})"/>
         </div>
         <div class="boxed-content">
-          <h2 class="text--centered" th:text="#{submitting.before-you-submit}"></h2>
+          <h3 class="text--centered" th:utext="#{submitting.before-you-submit}"></h3>
           <ul class="list--numbered">
             <li th:text="#{submitting.attest-to-accuracy}"></li>
             <li th:text="#{submitting.sign}"></li>
