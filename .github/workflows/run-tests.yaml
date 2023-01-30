@@ -23,8 +23,23 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
           cache: 'gradle'
+      - name: Use form-flow branch if it exists
+        id: form-flow
+        run: |
+          git ls-remote --heads git@github.com:codeforamerica/form-flow.git ${{github.head_ref}} | wc -l
+          if [ "$?" == "1" ]; then echo "USE_BRANCH=true >> $GITHUB_OUTPUT"
       - name: Build Gradle
-        run: ./gradlew build
+        run: |
+          if [ -f ${{ steps.form-flow.outputs.USE_BRANCH }} ]; then
+            cd ..
+            git clone -b ${{github.head_ref}} git@github.com:codeforamerica/form-flow.git
+            cd form-flow
+            ./gradlew build
+            cd ../form-flow-starter-app
+            SPRING_PROFILES_ACTIVE=dev ./gradlew build
+          else
+            ./gradlew build
+          fi
       - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
