@@ -30,7 +30,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     // Home address
     testPage.enter("streetAddress", "1111 N State St");
     testPage.enter("city", "Roswell");
-    testPage.enter("state", "NM");
+    testPage.enter("state", "NM - New Mexico");
     testPage.enter("zip", "88201");
     testPage.clickContinue();
     // Eligibility
@@ -95,11 +95,11 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.clickLink("No, I already know my annual household pre-tax income - I prefer to enter it directly.");
     assertThat(testPage.getTitle()).isEqualTo("Reported Annual Household Pre-Tax Income");
     testPage.clickContinue();
-    assertThat(testPage.hasErrorText("Please enter a value"));
-    assertThat(testPage.hasErrorText("Please enter a valid amount"));
+    assertThat(testPage.hasErrorText("Please enter a value")).isTrue();
+    assertThat(testPage.hasErrorText("Please enter a valid amount")).isTrue();
     testPage.enter("reportedTotalAnnualHouseholdIncome", "a");
     testPage.clickContinue();
-    assertThat(testPage.hasErrorText("Please enter a valid amount"));
+    assertThat(testPage.hasErrorText("Please enter a valid amount")).isTrue();
 
     // Test a high amount to see that we get the exceeds max income page
     testPage.enter("reportedTotalAnnualHouseholdIncome", "300000");
