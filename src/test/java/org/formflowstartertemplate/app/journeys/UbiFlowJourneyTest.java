@@ -30,7 +30,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     // Home address
     testPage.enter("streetAddress", "1111 N State St");
     testPage.enter("city", "Roswell");
-    testPage.enter("state", "NM");
+    testPage.enter("state", "NM - New Mexico");
     testPage.enter("zip", "88201");
     testPage.clickContinue();
     // Eligibility
