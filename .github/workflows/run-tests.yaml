@@ -23,8 +23,10 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
           cache: 'gradle'
-      - name: Build Gradle
-        run: ./gradlew build
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Test with Gradle
+        run: ./gradlew clean test --stacktrace
       - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
@@ -34,10 +36,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Test with Gradle
-        run: ./gradlew clean test --stacktrace
       - name: Announce failures on Slack
         if: failure()
         uses: ravsamhq/notify-slack-action@v2
