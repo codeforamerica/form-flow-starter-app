@@ -1,6 +1,6 @@
 form-flow:
   uploads:
-    accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp,.heic'
+    accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'
     thumbnail-width: '54'
     thumbnail-height: '50'
     max-files: '5' # 5 files maximum
