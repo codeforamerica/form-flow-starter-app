@@ -30,7 +30,7 @@ jobs:
         run: |
           ssh-keyscan beta.aptible.com >> ~/.ssh/known_hosts
           git remote add aptible git@beta.aptible.com:form-flow-staging/demo.git
-          git push --force git@beta.aptible.com:form-flow-staging/demo.git ${GITHUB_SHA}:master
+          git push --force git@beta.aptible.com:form-flow-staging/demo.git ${GITHUB_SHA}:main
       - name: Announce on Slack when deploy fails
         if: failure()
         uses: ravsamhq/notify-slack-action@v2
