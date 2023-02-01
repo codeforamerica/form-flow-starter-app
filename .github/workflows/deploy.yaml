@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: ["Run tests"]
     types: [completed]
-    branches: [main]
+    branches: [main, add-aptible-env-vars-to-deployment-#184227131]
   workflow_dispatch:
     inputs: { }
 
@@ -38,3 +38,8 @@ jobs:
           status: ${{ job.status }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Set aptible environment variables
+        run: |
+          wget -O aptible-package https://omnibus-aptible-toolbelt.s3.amazonaws.com/aptible/omnibus-aptible-toolbelt/master/206/pkg/aptible-toolbelt_0.16.5%2B20200508143656~ubuntu.16.04-1_amd64.deb
+          sudo dpkg -i aptible-package
+
