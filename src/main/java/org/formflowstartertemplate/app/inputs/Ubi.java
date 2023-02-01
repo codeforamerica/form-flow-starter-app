@@ -135,4 +135,7 @@ public class Ubi extends FlowInputs {
 
   //Economic Hardship Screen
   private ArrayList<String> economicHardshipTypes;
+
+  @NotEmpty(message="{legal-stuff.make-sure-you-answer-this-question}")
+  private ArrayList<String> agreesToLegalTerms;
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<body>
+<th:block
+    th:fragment="checkboxMod"
+    th:with="
+      interiorElementHelp=${!#strings.isEmpty(interiorElementHelpText)},
+      exteriorElementHelp=${!#strings.isEmpty(exteriorElementHelpText)},
+      hasIcon=${!#strings.isEmpty(checkboxIcon)},
+      name=${inputName} + '[]',
+      hasError=${
+        errorMessages != null &&
+        errorMessages.get(inputName) != null &&
+        (#arrays.length(errorMessages.get(inputName)) > 0) }"
+    th:assert="
+      ${!#strings.isEmpty(inputName)},
+      ${!#strings.isEmpty(value)},
+      ${!#strings.isEmpty(label)}">
+  <div th:class="'form-group' + ${(hasError ? ' form-group--error' : '')}">
+    <label th:for="${inputName} + '-' + ${value}"
+           th:id="${inputName} + '-' + ${value} + '-label'"
+           class="checkbox display-flex">
+      <input type="hidden" th:id="${inputName} + 'Hidden'" th:name="${name}" value="">
+      <input type="checkbox"
+             th:id="${inputName} + '-' + ${value}"
+             th:value="${value}"
+             th:name="${name}"
+             th:with="checked=${T(formflow.library.utils.InputUtils).arrayOrStringContains(inputData.getOrDefault(name, ''), value)}"
+             th:checked="${checked}"
+             th:attr="
+              aria-invalid=${hasError},
+              data-follow-up=${followUpId}">
+      <div th:if="${hasIcon}">
+        <i th:class="${'icon-' + checkboxIcon}" style="margin-right: 0.5rem"></i>
+      </div>
+      <div>
+        <span th:text="${label}"></span>
+        <p th:if="${interiorElementHelp}"
+           th:id="${name} + '-' + ${value} + '-help-text'"
+           th:text="${interiorElementHelpText}"
+           class="text--help with-no-padding"></p>
+      </div>
+
+    </label>
+    <p th:if="${exteriorElementHelp}"
+       th:id="${name} + '-' + ${value} + '-help-text'"
+       th:text="${exteriorElementHelpText}"
+       class="text--help with-no-padding"></p>
+    <th:block
+        th:replace="fragments/inputError :: validationError(inputName=${inputName})"></th:block>
+  </div>
+</th:block>
+</body>
+</html>
