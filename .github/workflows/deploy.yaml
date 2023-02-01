@@ -6,7 +6,11 @@ on:
     types: [completed]
     branches: [main]
   workflow_dispatch:
-    inputs: { }
+    inputs:
+      branch:
+        description: 'Target branch to be released'
+        required: true
+        default: staging
 
 env:
   USERNAME: ${{ secrets.GPR_USER }}
