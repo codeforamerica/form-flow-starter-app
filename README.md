@@ -181,14 +181,14 @@ For example, for `childcare-illinois-model-app` we used `childcare-illinois` for
 - `$ createdb childcare-illinois`
 - `$ createuser -s childcare-illinois`. This assumes that you have installed postgres locally, if that is not the case please refer back to [this section](#start-the-local-databases).
 4. Edit the [main application configuration](src/main/resources/application.yaml) as well as the [demo application configuration](src/main/resources/application-demo.yaml) to reflect your new database configuration. Replace the database name and username with the ones you created in the last step in the datasources section of the document. 
-For example, the datasource section of your application configuration
+For example, the datasource section of your application configuration would initially contain the details for the `starter-app` database as follows:
 ```yaml 
 
 datasource:
    url: jdbc:postgresql://localhost:5432/starter-app
    username: starter-app
 ```
-should be updated to this
+and should be updated to this
 ```yaml 
 
 datasource:
