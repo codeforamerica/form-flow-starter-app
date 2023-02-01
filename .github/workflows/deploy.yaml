@@ -5,7 +5,8 @@ on:
     workflows: ["Run tests"]
     types: [completed]
     branches: [main]
-#  workflow_dispatch:
+  workflow_dispatch:
+    inputs: { }
 #    inputs:
 #      branch:
 #        description: 'Target branch to be released'
