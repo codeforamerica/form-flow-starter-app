@@ -19,7 +19,7 @@ Table of Contents
         * [Set up jenv to manage your jdk versions](#set-up-jenv-to-manage-your-jdk-versions)
         * [Gradle](#gradle)
         * [Start the local databases](#start-the-local-databases)
-        * [Setup EnvFile in IntelliJ](#setup-envfile-in-intellij)
+        * [Setup Environment](#setup-environment)
         * [Setup Application](#setup-application)
         * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
         
@@ -137,14 +137,13 @@ jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
     - `$ createdb starter-app`
     - `$ createuser -s starter-app`
 
-### Setup EnvFile in IntelliJ
+### Setup Environment
 
-We use a `.env` file to store secret, we use
-the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) to connect IntelliJ with
-the `.env`.
+Note that you'll need to provide some environment variables specified in [sample.env](sample.env) to your IDE/shell to run the application. We use IntelliJ and have provided setup instructions for convenience.
 
-- You will need to go [through their setup](https://plugins.jetbrains.com/plugin/7861-envfile).
-- Follow EnvFile usage process [here](https://github.com/Ashald/EnvFile#usage) to setup Run
+#### IntelliJ
+- `cp sample.env .env` (.env is marked as ignored by git)
+- Download the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) and follow the setup instructions[here](https://github.com/Ashald/EnvFile#usage) to setup Run
   Configurations with EnvFile.
 
 ### Setup Application
@@ -174,4 +173,26 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
 
 # Using this as a template repository
 
-TODO -- fill in how to start from this repository to create a new project
+1. Create a [new repository from the `form-flow-starter-app` template](https://github.com/codeforamerica/form-flow-starter-app/generate).
+2. Once the repository is created, clone it on your local machine. 
+3. Create a new database and user for your project. Please use descriptive names which are unique to your project to avoid conflicts locally. 
+For example, for `childcare-illinois-model-app` we used `childcare-illinois` for both the database name and username. Following this example, create the new database and user with the following commands: 
+- `$ createdb childcare-illinois`
+- `$ createuser -s childcare-illinois`. This assumes that you have installed postgres locally, if that is not the case please refer back to [this section](#start-the-local-databases).
+4. Edit the [main application configuration](src/main/resources/application.yaml) as well as the [demo application configuration](src/main/resources/application-demo.yaml) to reflect your new database configuration. Replace the database name and username with the ones you created in the last step in the datasources section of the document. 
+For example, the datasource section of your application configuration would initially contain the details for the `starter-app` database as follows:
+```yaml 
+
+datasource:
+   url: jdbc:postgresql://localhost:5432/starter-app
+   username: starter-app
+```
+and should be updated to this
+```yaml 
+
+datasource:
+   url: jdbc:postgresql://localhost:5432/childcare-illinois
+   username: childcare-illinois
+```
+
+5. Follow the instructions to [set up an env file in intellij](#setup-envfile-in-intellij) for your new repository.
