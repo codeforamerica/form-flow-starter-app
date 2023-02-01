@@ -19,7 +19,7 @@ Table of Contents
         * [Set up jenv to manage your jdk versions](#set-up-jenv-to-manage-your-jdk-versions)
         * [Gradle](#gradle)
         * [Start the local databases](#start-the-local-databases)
-        * [Setup EnvFile in IntelliJ](#setup-envfile-in-intellij)
+        * [Setup Environment](#setup-environment)
         * [Setup Application](#setup-application)
         * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
         
@@ -137,14 +137,13 @@ jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
     - `$ createdb starter-app`
     - `$ createuser -s starter-app`
 
-### Setup EnvFile in IntelliJ
+### Setup Environment
 
-We use a `.env` file to store secret, we use
-the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) to connect IntelliJ with
-the `.env`.
+Note that you'll need to provide some environment variables specified in [sample.env](sample.env) to your IDE/shell to run the application. We use IntelliJ and have provided setup instructions for convenience.
 
-- You will need to go [through their setup](https://plugins.jetbrains.com/plugin/7861-envfile).
-- Follow EnvFile usage process [here](https://github.com/Ashald/EnvFile#usage) to setup Run
+#### IntelliJ
+- `cp sample.env .env` (.env is marked as ignored by git)
+- Download the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) and follow the setup instructions[here](https://github.com/Ashald/EnvFile#usage) to setup Run
   Configurations with EnvFile.
 
 ### Setup Application
