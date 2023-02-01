@@ -181,7 +181,7 @@ For example, for `childcare-illinois-model-app` we used `childcare-illinois` for
 - `$ createdb childcare-illinois`
 - `$ createuser -s childcare-illinois`. This assumes that you have installed postgres locally, if that is not the case please refer back to [this section](#start-the-local-databases).
 4. Edit the [main application configuration](src/main/resources/application.yaml) as well as the [demo application configuration](src/main/resources/application-demo.yaml) to reflect your new database configuration. Replace the database name and username with the ones you created in the last step in the datasources section of the document. 
-For example
+For example, the datasource section of your application configuration
 ```yaml 
 
 datasource:
@@ -195,5 +195,5 @@ datasource:
    url: jdbc:postgresql://localhost:5432/childcare-illinois
    username: childcare-illinois
 ```
-following the example from the last step. 
-5. Follow the instructions to [set up an env file in intellij](#setup-envfile-in-intellij) for your new repository. 
+
+5. Follow the instructions to [set up an env file in intellij](#setup-envfile-in-intellij) for your new repository.
