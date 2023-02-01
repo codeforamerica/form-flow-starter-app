@@ -174,4 +174,26 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
 
 # Using this as a template repository
 
-TODO -- fill in how to start from this repository to create a new project
+1. Navigate to [this link](https://github.com/codeforamerica/form-flow-starter-app/generate) to create a new repository from the `form-flow-starter-app`.
+2. Once the repository is created, clone it on your local machine. 
+3. Create a new database and user for your project. Please use descriptive names which are unique to your project to avoid conflicts locally. 
+For example, for `childcare-illinois-model-app` we used `childcare-illinois` for both the database name and username. Following this example, create the new database and user with the following commands: 
+- `$ createdb childcare-illinois`
+- `$ createuser -s childcare-illinois`. This assumes that you have installed postgres locally, if that is not the case please refer back to [this section](#start-the-local-databases).
+4. Edit the [main application configuration](src/main/resources/application.yaml) as well as the [demo application configuration](src/main/resources/application-demo.yaml) to reflect your new database configuration. Replace the database name and username with the ones you created in the last step in the datasources section of the document. 
+For example
+```yaml 
+
+datasource:
+   url: jdbc:postgresql://localhost:5432/starter-app
+   username: starter-app
+```
+should be updated to this
+```yaml 
+
+datasource:
+   url: jdbc:postgresql://localhost:5432/childcare-illinois
+   username: childcare-illinois
+```
+following the example from the last step. 
+5. Follow the instructions to [set up an env file in intellij](#setup-envfile-in-intellij) for your new repository. 
