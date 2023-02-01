@@ -173,7 +173,7 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
 
 # Using this as a template repository
 
-1. Navigate to [this link](https://github.com/codeforamerica/form-flow-starter-app/generate) to create a new repository from the `form-flow-starter-app`.
+1. Create a [new repository from the `form-flow-starter-app` template](https://github.com/codeforamerica/form-flow-starter-app/generate).
 2. Once the repository is created, clone it on your local machine. 
 3. Create a new database and user for your project. Please use descriptive names which are unique to your project to avoid conflicts locally. 
 For example, for `childcare-illinois-model-app` we used `childcare-illinois` for both the database name and username. Following this example, create the new database and user with the following commands: 
