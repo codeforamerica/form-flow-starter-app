@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: ["Run tests"]
     types: [completed]
-    branches: [main, add-aptible-env-vars-to-deployment-#184227131]
+    branches: [main]
   workflow_dispatch:
     inputs: { }
 
@@ -26,22 +26,27 @@ jobs:
         with:
           key: ${{ secrets.APTIBLE_SSH_PRIVATE_KEY }}
           known_hosts: ${{ secrets.APTIBLE_KNOWN_HOSTS }}
-#      - name: Push to Aptible remote branch and deploy
-#        run: |
-#          ssh-keyscan beta.aptible.com >> ~/.ssh/known_hosts
-#          git remote add aptible git@beta.aptible.com:form-flow-staging/demo.git
-#          git push --force git@beta.aptible.com:form-flow-staging/demo.git ${GITHUB_SHA}:main
-#      - name: Announce on Slack when deploy fails
-#        if: failure()
-#        uses: ravsamhq/notify-slack-action@v2
-#        with:
-#          status: ${{ job.status }}
-#        env:
-#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Push to Aptible remote branch and deploy
+        run: |
+          ssh-keyscan beta.aptible.com >> ~/.ssh/known_hosts
+          git remote add aptible git@beta.aptible.com:form-flow-staging/demo.git
+          git push --force git@beta.aptible.com:form-flow-staging/demo.git ${GITHUB_SHA}:demo-deploy
+      - name: Announce on Slack when deploy fails
+        if: failure()
+        uses: ravsamhq/notify-slack-action@v2
+        with:
+          status: ${{ job.status }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Set aptible environment variables
         run: |
           wget -O aptible-package https://omnibus-aptible-toolbelt.s3.amazonaws.com/aptible/omnibus-aptible-toolbelt/master/206/pkg/aptible-toolbelt_0.16.5%2B20200508143656~ubuntu.16.04-1_amd64.deb
           sudo dpkg -i aptible-package
           aptible login --email=${{ secrets.APTIBLE_USERNAME }} --password=${{ secrets.APTIBLE_PASSWORD}}
-          aptible deploy --app demo --git-commitish main SPRING_PROFILES_ACTIVE=demo \
-          'SPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }}'
+          aptible deploy --app demo --git-commitish demo-deploy SPRING_PROFILES_ACTIVE=demo \
+          'SPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }}' \
+          'SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }}' \
+          'AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}' \
+          'AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}' \
+          'SPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }}' \
+          'SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }}'
