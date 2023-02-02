@@ -9,3 +9,41 @@
   display: flex;
   margin-right: 10px;
 }
+
+.align-with-boxed-content {
+  padding: 2.5rem 0;
+  margin: auto;
+  border-radius: 3px;
+  max-width: 35rem;
+}
+.legal-stuff-header {
+  padding: 2.5rem 0 -2.5rem 0;
+  margin: auto;
+  border-radius: 3px;
+  max-width: 35rem;
+}
+
+.legal-stuff-window {
+  border: 2px solid black;
+  height: 35rem;
+  overflow-y: scroll;
+  padding-right: calc(1.5rem + 12px);
+}
+.textarea-readonly::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.textarea-readonly::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+
+.textarea-readonly::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}
+
+.textarea-readonly::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #ffffff;
+}

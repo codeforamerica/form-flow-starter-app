@@ -91,6 +91,9 @@ flow:
       - name: submitting
   submitting:
     nextScreens:
+      - name: legalStuff
+  legalStuff:
+    nextScreens:
       - name: success
   success:
     nextScreens: null
