@@ -1,0 +1,16 @@
+<th:block
+  th:replace="fragments/screens/screenWithOneInput ::
+  screenWithOneInput(
+    title=#{sign-name.title},
+    header=#{sign-name.header},
+    subtext=#{sign-name.subheader},
+    buttonLabel=#{sign-name.submit-application},
+    formAction=${formAction},
+    inputContent=~{::inputContent})">
+  <th:block th:ref="inputContent">
+    <!-- Be sure to have `ariaLabel='header'` to label the input with the header -->
+    <th:block th:replace="'fragments/inputs/text' ::
+      text(inputName='signature',
+      ariaLabel='header')"/>
+  </th:block>
+</th:block>
