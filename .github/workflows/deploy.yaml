@@ -26,7 +26,7 @@ jobs:
         with:
           key: ${{ secrets.APTIBLE_SSH_PRIVATE_KEY }}
           known_hosts: ${{ secrets.APTIBLE_KNOWN_HOSTS }}
-      - name: Push to Aptible remote branch and deploy
+      - name: Push to Aptible remote branch
         run: |
           ssh-keyscan beta.aptible.com >> ~/.ssh/known_hosts
           git remote add aptible git@beta.aptible.com:form-flow-staging/demo.git
@@ -38,7 +38,7 @@ jobs:
           status: ${{ job.status }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      - name: Set aptible environment variables
+      - name: Set Aptible environment variables and deploy
         run: |
           wget -O aptible-package https://omnibus-aptible-toolbelt.s3.amazonaws.com/aptible/omnibus-aptible-toolbelt/master/206/pkg/aptible-toolbelt_0.16.5%2B20200508143656~ubuntu.16.04-1_amd64.deb
           sudo dpkg -i aptible-package
