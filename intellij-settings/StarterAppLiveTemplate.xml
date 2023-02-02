@@ -1,0 +1,11 @@
+<template name="example:screen" value="&lt;!DOCTYPE html&gt;&#10;&lt;html th:lang=&quot;${#locale.language}&quot;&gt;&#10;&lt;head th:replace=&quot;fragments/head :: head(title=#{$TITLE$})&quot;&gt;&lt;/head&gt;&#10;&lt;body&gt;&#10;&lt;div class=&quot;page-wrapper&quot;&gt;&#10;  &lt;div th:replace=&quot;fragments/toolbar :: toolbar&quot;&gt;&lt;/div&gt;&#10;  &lt;section class=&quot;slab&quot;&gt;&#10;    &lt;div class=&quot;grid&quot;&gt;&#10;      &lt;div th:replace=&quot;fragments/goBack :: goBackLink&quot;&gt;&lt;/div&gt;&#10;      &lt;main id=&quot;content&quot; role=&quot;main&quot; class=&quot;form-card spacing-above-35&quot;&gt;&#10;        &lt;th:block&#10;            th:replace=&quot;'fragments/cardHeader' :: cardHeader(header=#{$CARD_HEADER$}, subtext=#{$CARD_SUBTEXT$})&quot;/&gt;&#10;          &lt;th:block th:replace=&quot;'fragments/form' :: form(action=${formAction}, content=~{::$FORM_CONTENT$})&quot;&gt;&#10;            &lt;th:block th:ref=&quot;$FORM_CONTENT$&quot;&gt;&#10;              &lt;div class=&quot;form-card__content&quot;&gt;&#10;                $CARD_CONTENT$&#10;              &lt;/div&gt;&#10;            &lt;div class=&quot;form-card__footer&quot;&gt;&#10;              $CARD_FOOTER$&#10;            &lt;/div&gt;&#10;          &lt;/th:block&gt;&#10;        &lt;/th:block&gt;&#10;      &lt;/main&gt;&#10;    &lt;/div&gt;&#10;  &lt;/section&gt;&#10;&lt;/div&gt;&#10;&lt;th:block th:replace=&quot;fragments/footer :: footer&quot; /&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;&#10;" description="Insert an entire screen template" toReformat="false" toShortenFQNames="true">
+    <variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CARD_HEADER" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CARD_SUBTEXT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FORM_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CARD_CONTENT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CARD_FOOTER" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+        <option name="HTML" value="true" />
+    </context>
+</template>
