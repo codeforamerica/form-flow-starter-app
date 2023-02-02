@@ -138,4 +138,6 @@ public class Ubi extends FlowInputs {
 
   @NotEmpty(message="{legal-stuff.make-sure-you-answer-this-question}")
   private ArrayList<String> agreesToLegalTerms;
+  @NotBlank
+  private String signature;
 }

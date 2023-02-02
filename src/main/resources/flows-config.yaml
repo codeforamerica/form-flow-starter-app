@@ -94,6 +94,9 @@ flow:
       - name: legalStuff
   legalStuff:
     nextScreens:
+      - name: signName
+  signName:
+    nextScreens:
       - name: success
   success:
     nextScreens: null
