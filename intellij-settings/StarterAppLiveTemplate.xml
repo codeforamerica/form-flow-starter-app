@@ -1,4 +1,4 @@
-<template name="hello" value="&lt;!DOCTYPE html&gt;&#10;&lt;html lang=&quot;en&quot;&gt;&#10;&lt;head&gt;&#10;  &lt;meta charset=&quot;UTF-8&quot;&gt;&#10;  &lt;title&gt;Hello, World!&lt;/title&gt;&#10;&lt;/head&gt;&#10;&lt;body&gt;&#10;&#10;&lt;/body&gt;&#10;&lt;/html&gt;" toReformat="true" toShortenFQNames="true">
+<template name="sfa:hello" value="&lt;!DOCTYPE html&gt;&#10;&lt;html lang=&quot;en&quot;&gt;&#10;&lt;head&gt;&#10;  &lt;meta charset=&quot;UTF-8&quot;&gt;&#10;  &lt;title&gt;Hello, World!&lt;/title&gt;&#10;&lt;/head&gt;&#10;&lt;body&gt;&#10;&#10;&lt;/body&gt;&#10;&lt;/html&gt;" toReformat="true" toShortenFQNames="true">
     <context>
         <option name="XML" value="true" />
     </context>
