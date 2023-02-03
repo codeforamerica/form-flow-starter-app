@@ -160,7 +160,7 @@ you can commit them to your repository. You will follow a similar pattern to cre
 outlined [in the form-flow library here.](https://github.com/codeforamerica/form-flow#contribute-new-live-templates)
 
 An example template which was set up using this process, starting from an html snippet is available 
-[in this repository's intellij settings folder](intellij-settings/StarterAppLiveTemplate.xml). 
+[in this repository's IntelliJ settings folder](intellij-settings/StarterAppLiveTemplate.xml). 
 
 
 ### Using a local version of the Form-Flow Library (For Form-Flow Library Developers)
