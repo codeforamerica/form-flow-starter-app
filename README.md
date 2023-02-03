@@ -156,9 +156,11 @@ Note that you'll need to provide some environment variables specified in [sample
 ### Contributing Live Templates to your App
 
 If you have created live templates with fragments which are specific to your application based on a starter app template, 
-you can commit them to your repository. You will follow a similar pattern to create the fragment and export the XML, 
-which is outlined [in the form-flow library here.](https://github.com/codeforamerica/form-flow#contribute-new-live-templates)
+you can commit them to your repository. You will follow a similar pattern to create templates to what is
+outlined [in the form-flow library here.](https://github.com/codeforamerica/form-flow#contribute-new-live-templates)
 
+An example template which was set up using this process, starting from an html snippet is available 
+[in this repository's intellij settings folder](intellij-settings/StarterAppLiveTemplate.xml). 
 
 
 ### Using a local version of the Form-Flow Library (For Form-Flow Library Developers)
