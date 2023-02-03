@@ -153,6 +153,14 @@ Note that you'll need to provide some environment variables specified in [sample
 - Run the application using the `StarterApplication` configuration (found
   in `org.formflowstartertemplate.app`)
 
+### Contributing Live Templates to your App
+
+If you have created live templates with fragments which are specific to your application based on a starter app template, 
+you can commit them to your repository. You will follow a similar pattern to create the fragment and export the XML, 
+which is outlined [in the form-flow library here.](https://github.com/codeforamerica/form-flow#contribute-new-live-templates)
+
+
+
 ### Using a local version of the Form-Flow Library (For Form-Flow Library Developers)
 
 To use a local version of the  [form-flow](https://github.com/codeforamerica/form-flow) library you
