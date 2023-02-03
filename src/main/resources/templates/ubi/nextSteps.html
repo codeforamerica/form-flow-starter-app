@@ -17,39 +17,31 @@
         <div class="form-card__content">
           <div class="vertical-steps">
             <div class="vertical-steps__step">
-              <div class="notice-blue grid">
-                <div class="grid__item width-one-sixth">
-                  <th:block th:replace="'fragments/icons' :: phoneInTalkBack"></th:block>
-                </div>
-                <div class="grid__item width-five-sixths">
-                  <p th:text="#{next-steps.within-24-hours-expect-an-email}"></p>
-                </div>
+              <div class="notice-blue steps-box">
+                <th:block th:replace="'fragments/icons' :: phoneInTalkBack"></th:block>
+                <p th:utext="#{next-steps.within-24-hours-expect-an-email}"></p>
               </div>
             </div>
             <div class="vertical-steps__step">
-              <div class="notice-blue grid">
-                <div class="grid__item width-one-sixth" >
-                  <th:block th:replace="'fragments/icons' :: localPostOfficeBlack"></th:block>
-                </div>
-                <div class="grid__item width-five-sixths">
-                  <p th:text="#{next-steps.in-the-next-7-10-days}"></p>
-                </div>
+              <div class="notice-blue steps-box">
+                <th:block th:replace="'fragments/icons' :: localPostOfficeBlack"></th:block>
+                <p th:utext="#{next-steps.in-the-next-7-10-days}"></p>
               </div>
             </div>
             <div class="vertical-steps__step">
-              <div class="notice-blue grid vertical-step-bottom">
-                <div class="grid__item grid-ignore-mobile  width-one-sixth" >
-                  <th:block th:replace="'fragments/icons' :: communicate"></th:block>
-                </div>
-                <div class="grid__item width-five-sixths">
-                  <p th:text="#{next-steps.you-may-receive-a-phone-call}"></p>
-                </div>
+              <div class="notice-blue steps-box vertical-step-bottom">
+                <th:block th:replace="'fragments/icons' :: communicate"></th:block>
+                <p th:utext="#{next-steps.you-may-receive-a-phone-call}"></p>
               </div>
             </div>
           </div>
         </div>
         <div class="form-card__footer">
-          <th:block th:replace="'fragments/continueButton' :: continue" />
+          <th:block th:replace="'fragments/continueButton' :: continue"/>
+          <div class="email-confirmation-box">
+            <th:block th:replace="'fragments/icons' :: greenCheckmark"></th:block>
+            <strong th:utext="#{next-steps.your-next-steps-have-been-emailed}"></strong>
+          </div>
         </div>
       </main>
     </div>
