@@ -97,6 +97,9 @@ flow:
       - name: signName
   signName:
     nextScreens:
+      - name: nextSteps
+  nextSteps:
+    nextScreens:
       - name: success
   success:
     nextScreens: null

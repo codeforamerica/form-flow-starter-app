@@ -47,3 +47,29 @@
   border-radius: 10px;
   background-color: #ffffff;
 }
+
+.notice-container {
+  max-width: 55rem;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.notice-blue {
+  background: #E9F6FF;
+  border: 1px solid #003865;
+  border-radius: 3px;
+  position: relative;
+  padding: 20px 15px 0 15px;
+}
+
+.vertical-steps:before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  left: 50%;
+  background-color: #003964;
+}
