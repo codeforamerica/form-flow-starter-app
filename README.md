@@ -22,7 +22,7 @@ Table of Contents
         * [Setup Environment](#setup-environment)
         * [Setup Application](#setup-application)
         * [Contributing Live Templates to your App](#contributing-live-templates-to-your-app)
-        * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library--for-form-flow-library-developers-)
+        * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
 * [Using this as a template repository](#using-this-as-a-template-repository)
         
 
