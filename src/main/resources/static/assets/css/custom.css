@@ -47,3 +47,62 @@
   border-radius: 10px;
   background-color: #ffffff;
 }
+
+.notice-container {
+  max-width: 55rem;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.notice-blue {
+  background: #E9F6FF;
+  border: 1px solid #003865;
+  border-radius: 3px;
+  position: relative;
+  padding: 20px 15px 0 15px;
+}
+
+.steps-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.steps-box svg {
+  flex-shrink: 0;
+}
+
+.vertical-steps .notice-blue {
+  margin-bottom: -10px;
+  margin-top: -10px;
+}
+
+.notice-blue .width-one-sixth {
+  text-align: center;
+}
+
+.vertical-steps:before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  left: 50%;
+  background-color: #003964;
+}
+
+.email-confirmation-box {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.email-confirmation-box strong {
+  color: #00891B;
+}
+
+.email-confirmation-box svg {
+  flex-shrink: 0;
+}
