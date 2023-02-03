@@ -21,7 +21,9 @@ Table of Contents
         * [Start the local databases](#start-the-local-databases)
         * [Setup Environment](#setup-environment)
         * [Setup Application](#setup-application)
+        * [Contributing Live Templates to your App](#contributing-live-templates-to-your-app)
         * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
+* [Using this as a template repository](#using-this-as-a-template-repository)
         
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
@@ -152,6 +154,16 @@ Note that you'll need to provide some environment variables specified in [sample
   the [form-flow library here.](https://github.com/codeforamerica/form-flow#intellij-setup)
 - Run the application using the `StarterApplication` configuration (found
   in `org.formflowstartertemplate.app`)
+
+### Contributing Live Templates to your App
+
+If you have created live templates with fragments which are specific to your application based on a starter app template, 
+you can commit them to your repository. You will follow a similar pattern to create templates to what is
+outlined [in the form-flow library here.](https://github.com/codeforamerica/form-flow#contribute-new-live-templates)
+
+An example template which was set up using this process, starting from an html snippet is available 
+[in this repository's IntelliJ settings folder](intellij-settings/StarterAppLiveTemplate.xml). 
+
 
 ### Using a local version of the Form-Flow Library (For Form-Flow Library Developers)
 
