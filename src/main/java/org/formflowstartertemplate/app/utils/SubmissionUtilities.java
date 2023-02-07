@@ -3,6 +3,7 @@ package org.formflowstartertemplate.app.utils;
 import formflow.library.data.Submission;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -152,5 +153,11 @@ public class SubmissionUtilities {
    */
   public static String getIncomeThresholdByFamilySize(Submission submission) {
     return decimalFormat.format(getIncomeThresholdByFamilySizeValue(submission));
+  }
+
+  public static String getFormattedSubmittedAtDate(Submission submission) {
+    String pattern = "MMMM d, yyy";
+    SimpleDateFormat formatDate= new SimpleDateFormat(pattern);
+    return formatDate.format(submission.getSubmittedAt());
   }
 }

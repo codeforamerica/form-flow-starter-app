@@ -8,7 +8,7 @@
     <div class="grid">
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main
-          th:with="name=${submission.getSubmittedAt()}"
+          th:with="name=${T(org.formflowstartertemplate.app.utils.SubmissionUtilities).getFormattedSubmittedAtDate(submission)}"
           id="content" role="main" class="form-card spacing-above-35">
         <div>
           <th:block th:replace="'fragments/icons' :: successComputerPrimaryIcon"></th:block>
