@@ -103,20 +103,15 @@
   color: #00891B;
 }
 
-.email-confirmation-box svg {
-  flex-shrink: 0;
-}
-
 .success-confirmation-box {
   display: flex;
   align-items: flex-start;
   gap: 10px;
 }
 
-.success-confirmation-box svg {
+.zero-flex-shrink svg{
   flex-shrink: 0;
 }
-
 .move-box-left {
   margin-left: -5px;
 }
