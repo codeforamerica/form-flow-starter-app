@@ -171,10 +171,10 @@ To use a local version of the  [form-flow](https://github.com/codeforamerica/for
 can do the following:
 
 1. Clone the `form-flow` repo in the same directory as the starter app.
-1. Build the `form-flow` library jar.
-1. In this starter app, set the `SPRING_PROFILES_ACTIVE`  to `dev` in
+2. Build the `form-flow` library jar.
+3. In this starter app, set the `SPRING_PROFILES_ACTIVE`  to `dev` in
    the [`.env`](https://github.com/codeforamerica/form-flow-starter-app/blob/main/sample.env) file.
-1. Start the `form-flow-starter-app`.
+4. Start the `form-flow-starter-app`.
 
 Changing the `SPRING_PROFILES_ACTIVE` to `dev` will cause the starter
 app's [build.gradle](build.gradle) to pull in the local library, via this line:
@@ -185,14 +185,26 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
 
 # Using this as a template repository
 
+## AWS Setup
+1. Provision 2 new AWS buckets in the Platform account - 1 for demo purposes and another for production. Please reach out to a member of the Platform team if you do not have permissions.
+2. Replace the bucket names with your newly created buckets in the [main application configuration](src/main/resources/application.yaml) and the [demo application configuration](src/main/resources/application-demo.yaml).
+
+
+## Aptible Setup
+1. Either add a new app to the `form-flow-staging` environment, or create a new environment in Aptible.
+2. Setup aptible permissions to enable deploying your app, if they do not already exist.
+3. Provision database for your app in Aptible.
+4. Add repository secrets for the deploy github action. 
+
+## Development Setup 
 1. Create a [new repository from the `form-flow-starter-app` template](https://github.com/codeforamerica/form-flow-starter-app/generate).
-2. Once the repository is created, clone it on your local machine. 
-3. Create a new database and user for your project. Please use descriptive names which are unique to your project to avoid conflicts locally. 
-For example, for `childcare-illinois-model-app` we used `childcare-illinois` for both the database name and username. Following this example, create the new database and user with the following commands: 
+2. Once the repository is created, clone it on your local machine.
+3. Create a new database and user for your project. Please use descriptive names which are unique to your project to avoid conflicts locally.
+   For example, for `childcare-illinois-model-app` we used `childcare-illinois` for both the database name and username. Following this example, create the new database and user with the following commands:
 - `$ createdb childcare-illinois`
 - `$ createuser -s childcare-illinois`. This assumes that you have installed postgres locally, if that is not the case please refer back to [this section](#start-the-local-databases).
-4. Edit the [main application configuration](src/main/resources/application.yaml) as well as the [demo application configuration](src/main/resources/application-demo.yaml) to reflect your new database configuration. Replace the database name and username with the ones you created in the last step in the datasources section of the document. 
-For example, the datasource section of your application configuration would initially contain the details for the `starter-app` database as follows:
+4. Edit the [main application configuration](src/main/resources/application.yaml) as well as the [demo application configuration](src/main/resources/application-demo.yaml) to reflect your new database configuration. Replace the database name and username with the ones you created in the last step in the datasources section of the document.
+   For example, the datasource section of your application configuration would initially contain the details for the `starter-app` database as follows:
 ```yaml 
 
 datasource:
@@ -206,5 +218,4 @@ datasource:
    url: jdbc:postgresql://localhost:5432/childcare-illinois
    username: childcare-illinois
 ```
-
 5. Follow the instructions to [set up an env file in intellij](#setup-envfile-in-intellij) for your new repository.
