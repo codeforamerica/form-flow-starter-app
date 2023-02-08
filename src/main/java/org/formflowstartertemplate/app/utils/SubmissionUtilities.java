@@ -155,8 +155,16 @@ public class SubmissionUtilities {
     return decimalFormat.format(getIncomeThresholdByFamilySizeValue(submission));
   }
 
+  /**
+   * This function returns a String of the formatted submitted_at date.   The
+   * method returns a date that looks like this: "February 7, 2023".
+   *
+   * @param submission submssion contains the submittedAt instance variable that holds the
+   *                   date the application was submitted.
+   * @return a string containing the formatted date.
+   */
   public static String getFormattedSubmittedAtDate(Submission submission) {
-    String pattern = "MMMM d, yyy";
+    String pattern = "MMMM d, yyyy";
     SimpleDateFormat formatDate= new SimpleDateFormat(pattern);
     return formatDate.format(submission.getSubmittedAt());
   }
