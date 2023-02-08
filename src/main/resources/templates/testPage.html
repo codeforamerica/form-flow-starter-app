@@ -2,7 +2,16 @@
     th:replace="fragments/screens/screenWithYesAndNoButtons ::
   screenWithYesAndNoButtons(
     title='This is a title',
-    header='Ice cream',
-    subtext='Do you like ice cream?',
+    header='Do you like ice cream?',
     formAction='/blank/blank',
-    inputName='goodInput')"/>
+    inputName='goodInput',
+    inputContent= ~{::questionInformation})">
+  <th:block th:ref="questionInformation">
+    <!-- Be sure to have `ariaLabel='header'` to label the input with the header -->
+    <ul>
+      <li>Item one to consider</li>
+      <li>Item two to consider</li>
+      <li>Item three to consider</li>
+    </ul>
+  </th:block>
+</th:block>
