@@ -16,8 +16,11 @@ flow:
       - name: homeAddress
   homeAddress:
     nextScreens:
-      - name: verifyHomeAddress 
+      - name: verifyHomeAddress
   verifyHomeAddress:
+    nextScreens:
+      - name: contactInfo
+  contactInfo:
     nextScreens:
       - name: eligibility
   eligibility:
