@@ -33,9 +33,15 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("state", "NM - New Mexico");
     testPage.enter("zip", "88201");
     testPage.clickContinue();
+    // Contact Info
+    assertThat(testPage.getTitle()).isEqualTo("Contact Info");
+    testPage.enter("phoneNumber", "3128771021");
+    testPage.clickElementById("howToContactYou-phoneNumber");
+    testPage.clickContinue();
     // Eligibility
     testPage.clickContinue();
     // Housemates
+    assertThat(testPage.getTitle()).isEqualTo("Housemates");
     testPage.enter("hasHousehold", NO.getDisplayValue());
     // Income screen
     assertThat(testPage.getTitle()).isEqualTo("Income");
