@@ -3,6 +3,7 @@ package org.formflowstartertemplate.app.inputs;
 import formflow.library.data.validators.Money;
 import formflow.library.data.FlowInputs;
 import java.util.ArrayList;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -140,4 +141,13 @@ public class Ubi extends FlowInputs {
   private ArrayList<String> agreesToLegalTerms;
   @NotBlank
   private String signature;
+
+
+  private String phoneNumber;
+  @Email
+  private String email;
+  @NotEmpty
+  private ArrayList<String> howToContactYou;
+
+
 }
