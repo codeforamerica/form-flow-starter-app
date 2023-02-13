@@ -3,8 +3,7 @@
 <head th:replace="fragments/head :: head(title=#{faq.title})"></head>
 <body>
 <div class="page-wrapper">
-  <th:block th:replace="fragments/toolbar :: toolbar" />
-  <th:block th:replace="fragments/demoBanner :: demoBanner" />
+  <th:block th:replace="fragments/toolbar :: toolbar"/>
   <section class="slab slab--grey">
     <div class="grid">
       <div class="grid__item">
@@ -56,11 +55,14 @@
                 <li th:text="#{faq.am-i-eligible.content.li13}"></li>
               </ul>
               <p th:text="#{faq.am-i-eligible.content.p3}"></p>
-              <h2 id="more-than-one-person" class="h3 spacing-above-60" th:text="#{faq.more-than-one-person.title}"></h2>
+              <h2 id="more-than-one-person" class="h3 spacing-above-60"
+                  th:text="#{faq.more-than-one-person.title}"></h2>
               <p th:text="#{faq.more-than-one-person.content.p1}"></p>
-              <h2 id="someone-else" class="h3 spacing-above-60" th:text="#{faq.someone-else.title}"></h2>
+              <h2 id="someone-else" class="h3 spacing-above-60"
+                  th:text="#{faq.someone-else.title}"></h2>
               <p th:text="#{faq.someone-else.content.p1}"></p>
-              <h2 id="when-selected" class="h3 spacing-above-60" th:text="#{faq.when-selected.title}"></h2>
+              <h2 id="when-selected" class="h3 spacing-above-60"
+                  th:text="#{faq.when-selected.title}"></h2>
               <p th:text="#{faq.when-selected.content.p1}"></p>
             </div>
           </div>
@@ -69,6 +71,6 @@
     </div>
   </main>
 </div>
-<th:block th:replace="fragments/footer :: footer" />
+<th:block th:replace="fragments/footer :: footer"/>
 </body>
 </html>
