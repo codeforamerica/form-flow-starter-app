@@ -1,8 +1,9 @@
 package org.formflowstartertemplate.app.inputs;
 
+import formflow.library.data.FlowInputs;
+import formflow.library.data.validators.ContactRequiresPhoneOrEmail;
 import formflow.library.data.validators.FormFlowEmail;
 import formflow.library.data.validators.Money;
-import formflow.library.data.FlowInputs;
 import formflow.library.data.validators.Phone;
 import java.util.ArrayList;
 import javax.validation.constraints.Max;
@@ -13,6 +14,7 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
+@ContactRequiresPhoneOrEmail(checkboxField = "howToContactYou")
 public class Ubi extends FlowInputs {
   private MultipartFile ubiFiles;
 
@@ -148,6 +150,4 @@ public class Ubi extends FlowInputs {
   private String email;
   @NotEmpty
   private ArrayList<String> howToContactYou;
-
-
 }

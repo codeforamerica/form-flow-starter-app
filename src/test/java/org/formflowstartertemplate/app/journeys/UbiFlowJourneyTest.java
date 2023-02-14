@@ -36,9 +36,11 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     // Contact Info
     assertThat(testPage.getTitle()).isEqualTo("Contact Info");
     testPage.enter("phoneNumber", "3128771021");
-    testPage.clickElementById("howToContactYou-phoneNumber");
+    // Check if element with ID "howToContactYou-phoneNumber" is selected
+    assertThat(testPage.findElementById("howToContactYou-phoneNumber").isSelected()).isTrue();
+//    testPage.clickElementById("howToContactYou-phoneNumber");
     testPage.clickContinue();
-    // Eligibility
+    // Eligibility    
     testPage.clickContinue();
     // Housemates
     assertThat(testPage.getTitle()).isEqualTo("Housemates");
