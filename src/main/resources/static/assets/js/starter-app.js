@@ -1,20 +1,18 @@
-function requireEmailFieldIfChecked() {
-    var emailCheckboxLabel = document.getElementById("howToContactYou-email-label");
-    var emailText = document.getElementById("email");
-    if (emailCheckboxLabel.classList.contains("is-selected") && emailText.value === "") {
-        emailText.required = true;
-    }
-}
-
-function requirePhoneFieldIfChecked() {
-    var phoneCheckboxLabel = document.getElementById("howToContactYou-phoneNumber-label");
-    var phoneText = document.getElementById("phoneNumber");
-    if (phoneCheckboxLabel.classList.contains("is-selected") && phoneText.value === "") {
-        phoneText.required = true;
-    }
+function selectCheckboxFieldIfTextFieldIsNotEmpty(textFieldId, checkboxFieldId) {
+    let textField = document.getElementById(textFieldId);
+    let checkboxField = document.getElementById(checkboxFieldId);
+    textField.addEventListener("input", function() {
+        if (textField.value !== "") {
+            checkboxField.checked = true;
+            checkboxField.parentElement.classList.add("is-selected");
+        }  else {
+            checkboxField.checked = false;
+            checkboxField.parentElement.classList.remove("is-selected");
+        }
+    });
 }
 
 window.onload = function() {
-    requireEmailFieldIfChecked();
-    requirePhoneFieldIfChecked();
+    selectCheckboxFieldIfTextFieldIsNotEmpty("email", "howToContactYou-email");
+    selectCheckboxFieldIfTextFieldIsNotEmpty("phoneNumber", "howToContactYou-phoneNumber");
 }
