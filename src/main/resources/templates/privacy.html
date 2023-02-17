@@ -3,8 +3,7 @@
 <head th:replace="fragments/head :: head(title=#{privacy.title})"></head>
 <body>
 <div class="page-wrapper">
-  <th:block th:replace="fragments/toolbar :: toolbar" />
-  <th:block th:replace="fragments/demoBanner :: demoBanner" />
+  <th:block th:replace="fragments/toolbar :: toolbar"/>
   <section class="slab slab--grey">
     <div class="grid">
       <div class="grid__item">
@@ -43,7 +42,8 @@
                 <li th:text="#{privacy.info.content.li3}"></li>
                 <li th:text="#{privacy.info.content.li4}"></li>
               </ul>
-              <h2 id="how-we-use" class="h3 spacing-above-60" th:text="#{privacy.how-we-use.title}"></h2>
+              <h2 id="how-we-use" class="h3 spacing-above-60"
+                  th:text="#{privacy.how-we-use.title}"></h2>
               <p th:text="#{privacy.how-we-use.content.p1}"></p>
               <p th:text="#{privacy.how-we-use.content.p2}"></p>
               <p th:text="#{privacy.how-we-use.content.p3}"></p>
@@ -55,6 +55,6 @@
     </div>
   </main>
 </div>
-<th:block th:replace="fragments/footer :: footer" />
+<th:block th:replace="fragments/footer :: footer"/>
 </body>
 </html>
