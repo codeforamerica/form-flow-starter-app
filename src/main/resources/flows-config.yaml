@@ -16,6 +16,9 @@ flow:
       - name: homeAddress
   homeAddress:
     nextScreens:
+      - name: verifyHomeAddress 
+  verifyHomeAddress:
+    nextScreens:
       - name: eligibility
   eligibility:
     nextScreens:
