@@ -11,7 +11,8 @@
         <th:block th:replace="'fragments/screens/addressSelectionScreen' ::
                   addressSelectionScreen(
                     addressInputToCheck='residentialAddress',
-                    inputName='useValidatedresidentialAddress'
+                    inputName='useValidatedresidentialAddress',
+                    editAddressURL=${'/' + flow + '/homeAddress'}
                   )"/>
       </main>
     </div>
