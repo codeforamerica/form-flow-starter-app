@@ -8,16 +8,20 @@
     <div class="grid">
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
-        <th:block th:replace="'fragments/screens/addressSelectionScreen' ::
+          <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{:: verifyAddress})">
+            <th:block th:ref="verifyAddress">
+              <th:block th:replace="'fragments/screens/addressSelectionScreen' ::
                   addressSelectionScreen(
                     addressInputToCheck='residentialAddress',
-                    inputName='useValidatedresidentialAddress',
+                    inputName='useValidatedResidentialAddress',
                     editAddressURL=${'/' + flow + '/homeAddress'}
                   )"/>
+          </th:block>
+        </th:block>
       </main>
     </div>
   </section>
 </div>
-<th:block th:replace="fragments/footer :: footer"/>
+<th:block th:replace="fragments/footer :: footer" />
 </body>
 </html>
