@@ -1,6 +1,7 @@
 package org.formflowstartertemplate.app.inputs;
 
 import formflow.library.data.FlowInputs;
+import formflow.library.data.validators.AppropriateCheckboxClicked;
 import formflow.library.data.validators.ContactRequiresPhoneOrEmail;
 import formflow.library.data.validators.FormFlowEmail;
 import formflow.library.data.validators.Money;
@@ -14,7 +15,8 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
-@ContactRequiresPhoneOrEmail(checkboxField = "howToContactYou")
+
+@AppropriateCheckboxClicked({"phoneNumber", "email", "howToContactYou"})
 public class Ubi extends FlowInputs {
   private MultipartFile ubiFiles;
 
