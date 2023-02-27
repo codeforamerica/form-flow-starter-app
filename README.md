@@ -24,7 +24,9 @@ Table of Contents
         * [Contributing Live Templates to your App](#contributing-live-templates-to-your-app)
         * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
 * [Using this as a template repository](#using-this-as-a-template-repository)
-        
+    * [AWS Setup](#aws-setup)
+    * [Cloud Deployment](#cloud-deployment)
+        * [Aptible Setup](#aptible-setup)
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
@@ -141,12 +143,16 @@ jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
 
 ### Setup Environment
 
-Note that you'll need to provide some environment variables specified in [sample.env](sample.env) to your IDE/shell to run the application. We use IntelliJ and have provided setup instructions for convenience.
+Note that you'll need to provide some environment variables specified in [sample.env](sample.env) to
+your IDE/shell to run the application. We use IntelliJ and have provided setup instructions for
+convenience.
 
 #### IntelliJ
+
 - `cp sample.env .env` (.env is marked as ignored by git)
-- Download the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) and follow the setup instructions[here](https://github.com/Ashald/EnvFile#usage) to setup Run
-  Configurations with EnvFile.
+- Download the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) and follow the
+  setup instructions[here](https://github.com/Ashald/EnvFile#usage) to setup Run Configurations with
+  EnvFile.
 
 ### Setup Application
 
@@ -157,13 +163,13 @@ Note that you'll need to provide some environment variables specified in [sample
 
 ### Contributing Live Templates to your App
 
-If you have created live templates with fragments which are specific to your application based on a starter app template, 
-you can commit them to your repository. You will follow a similar pattern to create templates to what is
-outlined [in the form-flow library here.](https://github.com/codeforamerica/form-flow#contribute-new-live-templates)
+If you have created live templates with fragments which are specific to your application based on a
+starter app template, you can commit them to your repository. You will follow a similar pattern to
+create templates to what is outlined
+[in the form-flow library here.](https://github.com/codeforamerica/form-flow#contribute-new-live-templates)
 
-An example template which was set up using this process, starting from an html snippet is available 
-[in this repository's IntelliJ settings folder](intellij-settings/StarterAppLiveTemplate.xml). 
-
+An example template which was set up using this process, starting from an html snippet is available
+[in this repository's IntelliJ settings folder](intellij-settings/StarterAppLiveTemplate.xml).
 
 ### Using a local version of the Form-Flow Library (For Form-Flow Library Developers)
 
@@ -186,36 +192,66 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
 # Using this as a template repository
 
 ## AWS Setup
-1. Provision 2 new AWS buckets in the Platform account - 1 for demo purposes and another for production. Please reach out to a member of the Platform team if you do not have permissions.
-2. Replace the bucket names with your newly created buckets in the [main application configuration](src/main/resources/application.yaml) and the [demo application configuration](src/main/resources/application-demo.yaml).
 
+1. Provision a new AWS bucket.
+    1. We use two buckets: one for demo purposes and another for production.
+2. Replace the bucket names with your newly created buckets in
+   the [main application configuration](src/main/resources/application.yaml) and
+   the [demo application configuration](src/main/resources/application-demo.yaml).
 
-## Aptible Setup
-1. Either add a new app to the `form-flow-staging` environment, or create a new environment in Aptible.
-2. Setup aptible permissions to enable deploying your app, if they do not already exist.
-3. Provision database for your app in Aptible.
-4. Add repository secrets for the deploy github action. 
+## Cloud deployment
 
-## Development Setup 
-1. Create a [new repository from the `form-flow-starter-app` template](https://github.com/codeforamerica/form-flow-starter-app/generate).
+### Aptible Setup
+
+For [Aptible](https://www.aptible.com/) configuration information, please see
+their [documentation](https://deploy-docs.aptible.com/).
+
+The [Aptible CLI documentation](https://deploy-docs.aptible.com/docs/cli) is particularly helpful.
+
+1. Create a new environment and application in Aptible, or create a new application in an existing
+   environment.
+2. Setup Aptible permissions to enable deploying your application, if they do not already exist.
+3. Provision a database for your application in Aptible.
+4. Add repository secrets for the deploy github action.
+
+## Development Setup
+
+1. Create a
+   [new repository from the `form-flow-starter-app` template](https://github.com/codeforamerica/form-flow-starter-app/generate)
+   .
 2. Once the repository is created, clone it on your local machine.
-3. Create a new database and user for your project. Please use descriptive names which are unique to your project to avoid conflicts locally.
-   For example, for `childcare-illinois-model-app` we used `childcare-illinois` for both the database name and username. Following this example, create the new database and user with the following commands:
+3. Create a new database and user for your project. Please use descriptive names which are unique to
+   your project to avoid conflicts locally.
+   For example, for `childcare-illinois-model-app` we used `childcare-illinois` for both the
+   database name and username. Following this example, create the new database and user with the
+   following commands:
+
 - `$ createdb childcare-illinois`
-- `$ createuser -s childcare-illinois`. This assumes that you have installed postgres locally, if that is not the case please refer back to [this section](#start-the-local-databases).
-4. Edit the [main application configuration](src/main/resources/application.yaml) as well as the [demo application configuration](src/main/resources/application-demo.yaml) to reflect your new database configuration. Replace the database name and username with the ones you created in the last step in the datasources section of the document.
-   For example, the datasource section of your application configuration would initially contain the details for the `starter-app` database as follows:
+- `$ createuser -s childcare-illinois`. This assumes that you have installed postgres locally, if
+  that is not the case please refer back to [this section](#start-the-local-databases).
+
+4. Edit the [main application configuration](src/main/resources/application.yaml) as well as
+   the [demo application configuration](src/main/resources/application-demo.yaml) to reflect your
+   new database configuration. Replace the database name and username with the ones you created in
+   the last step in the datasources section of the document.
+   For example, the datasource section of your application configuration would initially contain the
+   details for the `starter-app` database as follows:
+
 ```yaml 
 
 datasource:
    url: jdbc:postgresql://localhost:5432/starter-app
    username: starter-app
 ```
+
 and should be updated to this
+
 ```yaml 
 
 datasource:
    url: jdbc:postgresql://localhost:5432/childcare-illinois
    username: childcare-illinois
 ```
-5. Follow the instructions to [set up an env file in intellij](#setup-envfile-in-intellij) for your new repository.
+
+5. Follow the instructions to [set up an env file in intellij](#setup-envfile-in-intellij) for your
+   new repository.
