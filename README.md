@@ -208,6 +208,8 @@ their [documentation](https://deploy-docs.aptible.com/).
 
 The [Aptible CLI documentation](https://deploy-docs.aptible.com/docs/cli) is particularly helpful.
 
+Here are the general steps to setup a new application in Aptible:
+
 1. Create a new environment and application in Aptible, or create a new application in an existing
    environment.
 2. Setup Aptible permissions to enable deploying your application, if they do not already exist.
@@ -253,5 +255,6 @@ datasource:
    username: childcare-illinois
 ```
 
-5. Follow the instructions to [set up an env file in intellij](#setup-envfile-in-intellij) for your
-   new repository.
+5. To load the `.env` file in IntelliJ, you'll need to enable
+   the [EnvFile Plugin](https://plugins.jetbrains.com/plugin/7861-envfile). Then enable it for your
+   project.
