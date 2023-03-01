@@ -12,6 +12,7 @@ flow:
     nextScreens:
       - name: personalInfo
   personalInfo:
+    beforeValidationActionName: org.formflowstartertemplate.app.submission.actions.UpdatePersonalInfoDates
     nextScreens:
       - name: homeAddress
   homeAddress:

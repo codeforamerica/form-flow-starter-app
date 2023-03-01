@@ -1,22 +1,26 @@
 package org.formflowstartertemplate.app.inputs;
 
-import formflow.library.data.validators.Money;
 import formflow.library.data.FlowInputs;
+import formflow.library.data.validators.Money;
 import formflow.library.data.validators.Phone;
 import formflow.library.utils.RegexUtils;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class Ubi extends FlowInputs {
+
   private MultipartFile ubiFiles;
+
   // Language Preferences Screen
   private String languageRead;
   private String languageSpoken;
@@ -36,10 +40,15 @@ public class Ubi extends FlowInputs {
   @Min(value = 1850, message = "{personal-info.provide-birth-year-min}")
   @Max(value = 2100, message = "{personal-info.provide-birth-year-max}")
   private String birthYear;
+
+  @Pattern(regexp = "[1-9]", message = "Whoops! Failed!")
+  private String birthDate;
+
   private String genderIdentity;
   private String movedToUSA;
   private String movedToUSADay;
   private String movedToUSAMonth;
+  private Date movedToUSADate;
   // TODO: figure out how to only have day & month for a date fragment
   private String movedToUSAYear;
   private String movedFromCountry;
@@ -142,7 +151,7 @@ public class Ubi extends FlowInputs {
   //Economic Hardship Screen
   private ArrayList<String> economicHardshipTypes;
 
-  @NotEmpty(message="{legal-stuff.make-sure-you-answer-this-question}")
+  @NotEmpty(message = "{legal-stuff.make-sure-you-answer-this-question}")
   private ArrayList<String> agreesToLegalTerms;
   @NotBlank
   private String signature;
