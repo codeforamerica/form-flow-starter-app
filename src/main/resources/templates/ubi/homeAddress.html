@@ -15,23 +15,11 @@
             th:replace="'fragments/form' :: form(action=${formAction}, content=~{::formContent})">
           <th:block th:ref="formContent">
             <div class="form-card__content">
-              <th:block th:replace="'fragments/inputs/text' ::
-                  text(inputName='streetAddress',
-                  label=#{homeAddress.street-address})"/>
-              <th:block th:replace="'fragments/inputs/text' ::
-                  text(inputName='apartment',
-                  label=#{homeAddress.apartment})"/>
-              <th:block th:replace="'fragments/inputs/text' ::
-                  text(inputName='city',
-                  label=#{homeAddress.city})"/>
-              <th:block th:replace="'fragments/inputs/state' ::
-                  state(
-                    inputName='state',
-                    label=#{homeAddress.state}
+              <th:block th:replace="'fragments/inputs/address' ::
+                  address(
+                    validate=true,
+                    inputName='residentialAddress'
                   )"/>
-              <th:block th:replace="'fragments/inputs/text' ::
-                  text(inputName='zip',
-                  label=#{homeAddress.zip})"/>
             </div>
             <div class="form-card__footer">
               <th:block th:replace="fragments/inputs/submitButton :: submitButton(

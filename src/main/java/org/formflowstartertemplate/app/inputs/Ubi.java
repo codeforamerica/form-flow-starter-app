@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class Ubi extends FlowInputs {
+
   private MultipartFile ubiFiles;
 
   // Language Preferences Screen
@@ -43,14 +44,17 @@ public class Ubi extends FlowInputs {
 
   // Home Address Screen
   @NotBlank
-  private String streetAddress;
-  private String apartment;
+  private String residentialAddressStreetAddress1;
+  private String residentialAddressStreetAddress2;
   @NotBlank
-  private String city;
+  private String residentialAddressCity;
   @NotBlank
-  private String state;
+  private String residentialAddressState;
   @NotBlank
-  private String zip;
+  private String residentialAddressZipCode;
+  
+  // Verify Home Address Screen
+  private String useValidatedResidentialAddress;
 
   // Housemates Screen
   private String hasHousehold;
