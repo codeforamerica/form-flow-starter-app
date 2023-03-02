@@ -216,6 +216,32 @@ Here are the general steps to setup a new application in Aptible:
 3. Provision a database for your application in Aptible.
 4. Add repository secrets for the deploy github action.
 
+### Deployment in Aptible to a custom URL
+
+These instructions guide you through the process of creating resources in Aptible + AWS which will
+allow you to deploy your application to a custom domain with root domain forwarding. Please create the resources in the specified order, as there are
+dependencies.
+
+#### Route53 setup
+1. Create a new hosted zone with the name corresponding to the root domain of your purchased domain name.
+
+#### Aptible endpoint setup
+1. Create a new managed HTTPS endpoint for your root domain with subdomain (i.e. www)
+2. Follow the instructions to create managed HTTPS validation records in Route53
+
+#### Request public certificate
+1. Request certificate in AWS Certificate Manager (ACM) for your purchased domain name. If you would like to support directing non-www to www traffic, please use your root domain for the fully qualified domain name in the request.
+2. Create records in AWS Route53
+
+#### S3 static hosting for redirect requests (non-www traffic -> www)
+1. Create a new S3 bucket with your root domain.
+2. Under the bucket properties, configure static website hosting with hosting type of `Redirect requests for an object`. Select Protocol of `none`.
+
+#### Cloudfront Distribution Setup
+1. Create a new CloudFront distribution with CNAME corresponding to your root domain
+2. Associate the certificate that you created for your root domain. All other settings can remain as defaults.
+3. Create a Route53 Alias record for the root domain which points to your cloudfront distribution.
+
 ## Development Setup
 
 1. Create a
