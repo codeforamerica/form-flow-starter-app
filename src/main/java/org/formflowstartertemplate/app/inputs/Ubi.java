@@ -39,17 +39,17 @@ public class Ubi extends FlowInputs {
   @Min(value = 1850, message = "{personal-info.provide-birth-year-min}")
   @Max(value = 2100, message = "{personal-info.provide-birth-year-max}")
   private String birthYear;
-
-  @Pattern(regexp = "[1-9]", message = "{personal-info.date-invalid}")
+  @Pattern(regexp = "\\d\\d/\\d\\d/\\d\\d\\d\\d", message = "{personal-info.date-invalid}")
   private String birthDate;
 
   private String genderIdentity;
   private String movedToUSA;
   private String movedToUSADay;
   private String movedToUSAMonth;
-  private String movedToUSADate;
   // TODO: figure out how to only have day & month for a date fragment
   private String movedToUSAYear;
+  @Pattern(regexp = "\\d\\d/\\d\\d/\\d\\d\\d\\d", message = "{personal-info.date-invalid}")
+  private String movedToUSADate;
   private String movedFromCountry;
 
   // Home Address Screen
