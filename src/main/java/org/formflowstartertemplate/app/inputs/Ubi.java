@@ -5,7 +5,6 @@ import formflow.library.data.validators.Money;
 import formflow.library.data.validators.Phone;
 import formflow.library.utils.RegexUtils;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
@@ -41,14 +40,14 @@ public class Ubi extends FlowInputs {
   @Max(value = 2100, message = "{personal-info.provide-birth-year-max}")
   private String birthYear;
 
-  @Pattern(regexp = "[1-9]", message = "Whoops! Failed!")
+  @Pattern(regexp = "[1-9]", message = "{personal-info.date-invalid}")
   private String birthDate;
 
   private String genderIdentity;
   private String movedToUSA;
   private String movedToUSADay;
   private String movedToUSAMonth;
-  private Date movedToUSADate;
+  private String movedToUSADate;
   // TODO: figure out how to only have day & month for a date fragment
   private String movedToUSAYear;
   private String movedFromCountry;
