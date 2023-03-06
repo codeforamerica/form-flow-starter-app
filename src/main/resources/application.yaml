@@ -1,5 +1,8 @@
 form-flow:
-  inputs: 'org.formflowstartertemplate.app.inputs.'
+  paths:
+    inputs: 'org.formflowstartertemplate.app.inputs.'
+    conditions: 'org.formflowstartertemplate.app.submission.conditions'
+    actions: 'org.formflowstartertemplate.app.submission.actions'
   uploads:
     accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'
     thumbnail-width: '64'

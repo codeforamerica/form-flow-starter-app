@@ -14,7 +14,7 @@ public class UpdatePersonalInfoDates implements Action {
     List<String> datePrefixes = Arrays.asList("birth", "movedToUSA");
     datePrefixes.forEach(prefix -> {
       List<String> dateComponents = new ArrayList<>(3);
-      if (formSubmission.formData.containsKey(prefix + "Month")) {
+      if (formSubmission.formData.containsKey(prefix + "Month") && formSubmission.formData.get(prefix + "Month") != "") {
         dateComponents.add((String) formSubmission.formData.get(prefix + "Month"));
         dateComponents.add((String) formSubmission.formData.get(prefix + "Day"));
         dateComponents.add((String) formSubmission.formData.get(prefix + "Year"));
