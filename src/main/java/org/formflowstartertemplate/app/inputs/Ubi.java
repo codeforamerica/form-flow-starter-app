@@ -148,7 +148,7 @@ public class Ubi extends FlowInputs {
   private String signature;
   @Phone(message="{contact-info.invalid-phone-number}")
   private String phoneNumber;
-  @FormFlowEmail
+  @FormFlowEmail(message="{contact-info.invalid-email}")
   private String email;
   @NotEmpty
   private ArrayList<String> howToContactYou;
