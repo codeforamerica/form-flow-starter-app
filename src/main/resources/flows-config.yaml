@@ -1,4 +1,6 @@
 name: ubi
+conditionsPath: 'org.formflowstartertemplate.app.submission.conditions'
+actionsPath: 'org.formflowstartertemplate.app.submission.actions'
 flow:
   howThisWorks:
     nextScreens:
@@ -10,8 +12,8 @@ flow:
     nextScreens:
       - name: personalInfo
   personalInfo:
-    beforeValidationAction: UpdatePersonalInfoDates
-    validationAction: ValidateMovedToUSADate
+    onPostAction: org.formflowstartertemplate.app.submission.actions.UpdatePersonalInfoDates
+    crossFieldValidationAction: org.formflowstartertemplate.app.submission.actions.ValidateMovedToUSADate
     nextScreens:
       - name: homeAddress
   homeAddress:
@@ -29,7 +31,7 @@ flow:
   housemates:
     nextScreens:
       - name: housemateInfo
-        condition: HasHousehold
+        condition: org.formflowstartertemplate.app.submission.conditions.HasHousehold
       - name: income
   housemateInfo:
     subflow: household
@@ -59,14 +61,14 @@ flow:
   annualHouseholdIncome:
     nextScreens:
       - name: exceedsIncomeThreshold
-        condition: ExceedsIncomeThreshold
+        condition: org.formflowstartertemplate.app.submission.conditions.ExceedsIncomeThreshold
       - name: incomeComplete
   incomeDeleteConfirmation:
     nextScreens: null
   reportedAnnualHouseholdIncome:
     nextScreens:
       - name: exceedsIncomeThreshold
-        condition: ExceedsIncomeThreshold
+        condition: org.formflowstartertemplate.app.submission.conditions.ExceedsIncomeThreshold
       - name: incomeComplete
   incomeComplete:
     nextScreens:
