@@ -105,7 +105,6 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     assertThat(testPage.getTitle()).isEqualTo("Reported Annual Household Pre-Tax Income");
     testPage.clickContinue();
     assertThat(testPage.hasErrorText("Please enter a value")).isTrue();
-    takeSnapShot("test.png");
     assertThat(testPage.hasErrorText("Please enter a valid amount")).isTrue();
     testPage.enter("reportedTotalAnnualHouseholdIncome", "a");
     testPage.clickContinue();
