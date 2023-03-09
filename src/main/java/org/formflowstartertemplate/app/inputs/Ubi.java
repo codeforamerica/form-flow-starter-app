@@ -3,6 +3,7 @@ package org.formflowstartertemplate.app.inputs;
 import formflow.library.data.validators.Money;
 import formflow.library.data.FlowInputs;
 import formflow.library.data.validators.Phone;
+import formflow.library.utils.RegexUtils;
 import java.util.ArrayList;
 
 import javax.validation.constraints.Email;
@@ -11,7 +12,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
-import org.formflowstartertemplate.app.utils.RegexUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
