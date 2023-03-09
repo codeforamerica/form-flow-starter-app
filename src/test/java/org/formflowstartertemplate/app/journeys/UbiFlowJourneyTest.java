@@ -27,8 +27,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("birthMonth", "01");
     testPage.enter("birthYear", "2000");
     testPage.clickContinue();
-    // Home address
-//    TODO: once we have the global turn off feature for address validation, we can make this test work
+    //    TODO: once we have the global turn off feature for address validation, we can make this test work
 //    testPage.enter("residentialAddressStreetAddress1", "1111 N State St");
 //    testPage.enter("residentialAddressStreetAddress2", "Apt 2");
 //    testPage.enter("residentialAddressCity", "Roswell");
@@ -38,8 +37,19 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
 //    // Eligibility
 //    testPage.clickContinue();
 //    TODO: remove this navigate call when we can get the address validation test to work
-    driver.navigate().to(baseUrl + "/ubi/housemates");
+    driver.navigate().to(baseUrl + "/ubi/contactInfo");
+    // Contact Info
+    assertThat(testPage.getTitle()).isEqualTo("Contact Info");
+    testPage.enter("phoneNumber", "(312) 877-1021");
+    testPage.enter("email", "foo@test.com");
+    // Assert JavaScript is checking the phone and email checkboxes when values are entered
+    assertThat(testPage.findElementById("howToContactYou-phoneNumber").isSelected()).isTrue();
+    assertThat(testPage.findElementById("howToContactYou-email").isSelected()).isTrue();
+    testPage.clickContinue();
+    // Eligibility
+    testPage.clickContinue();
     // Housemates
+    assertThat(testPage.getTitle()).isEqualTo("Housemates");
     testPage.enter("hasHousehold", NO.getDisplayValue());
     // Income screen
     assertThat(testPage.getTitle()).isEqualTo("Income");
@@ -99,11 +109,10 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.clickLink("No, I already know my annual household pre-tax income - I prefer to enter it directly.");
     assertThat(testPage.getTitle()).isEqualTo("Reported Annual Household Pre-Tax Income");
     testPage.clickContinue();
-    assertThat(testPage.hasErrorText("Please enter a value"));
-    assertThat(testPage.hasErrorText("Please enter a valid amount"));
+    assertThat(testPage.hasErrorText("Please enter a value")).isTrue();
     testPage.enter("reportedTotalAnnualHouseholdIncome", "a");
     testPage.clickContinue();
-    assertThat(testPage.hasErrorText("Please enter a valid amount"));
+    assertThat(testPage.hasErrorText("Please make sure to enter a valid dollar amount.")).isTrue();
 
     // Test a high amount to see that we get the exceeds max income page
     testPage.enter("reportedTotalAnnualHouseholdIncome", "300000");
