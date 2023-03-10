@@ -80,9 +80,25 @@ This application has three static pages served up by
 the [StaticPageController](src/main/java/org/formflowstartertemplate/app/StaticPageController.java)
 class:
 
-* [index.html](src/main/resources/templates/index.hmtl)
+* [index.html](src/main/resources/templates/index.html)
 * [faq.html](src/main/resources/templates/faq.html)
 * [privacy.html](src/main/resources/templates/privacy.html)
+
+## Example Actions and Conditions
+
+Actions can be run at specific points in a form submissions life cycle.
+
+### Actions
+
+#### ClearIncomeAmountsBeforeSaving
+
+This action is a `beforeSaveAction` and
+
+#### UpdatePersonalInfoDates
+
+#### ValidateMovedToUSADate
+
+### Conditions
 
 # Setup instructions
 

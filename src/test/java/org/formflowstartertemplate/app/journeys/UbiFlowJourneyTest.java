@@ -53,7 +53,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.goBack();
     assertThat(testPage.getTitle()).isEqualTo("Personal Info");
 
-    // now exercise movedToUSADate - ignore bad date if movedToUSA=No
+    // moved to USA date
     testPage.clickElementById("movedToUSA-No");
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Where are you currently living?");
@@ -66,7 +66,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("movedToUSAMonth", "3");
     testPage.enter("movedToUSAYear", "1987");
     testPage.clickContinue();
-    assertThat(testPage.hasErrorText("The date is invalid. Make sure to provide a valid date.")).isTrue();
+    assertThat(testPage.hasErrorText("Please check the date entered. It is not a valid date")).isTrue();
     assertThat(testPage.hasErrorText("Make sure to provide a day equal or below 31.")).isFalse();
 
     // movedToUSA - check correct date when movedToUSA=Yes
