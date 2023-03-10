@@ -74,11 +74,7 @@ public class Page {
       case input -> {
         switch (InputTypeHtmlAttribute.valueOf(firstElement.getAttribute("type"))) {
           case text -> {
-            if (firstElement.getAttribute("class").contains("dob-input")) {
-              enterDateInput(inputName, value);
-            } else {
-              enterInput(firstElement, value);
-            }
+            enterInput(firstElement, value);
           }
           case radio, checkbox -> selectEnumeratedInput(formInputElements, value);
           default -> enterInput(firstElement, value);
@@ -106,19 +102,16 @@ public class Page {
   }
 
   private void enterInput(WebElement webElement, String input) {
-    webElement.clear();
+    if (!webElement.getAttribute("type").equals(InputTypeHtmlAttribute.radio.toString())) {
+      webElement.clear();
+    }
     webElement.sendKeys(input);
   }
 
-  private void enterInputById(String inputId, String value) {
-    enterInput(driver.findElement(By.id(inputId)), value);
-  }
-
-  private void enterDateInput(String inputName, String value) {
-    String[] dateParts = value.split("/", 3);
-    enterInputById(inputName + "-month", dateParts[DatePart.MONTH.getPosition() - 1]);
-    enterInputById(inputName + "-day", dateParts[DatePart.DAY.getPosition() - 1]);
-    enterInputById(inputName + "-year", dateParts[DatePart.YEAR.getPosition() - 1]);
+  public void enterInputById(String inputId, String value) {
+    String id = By.id(inputId).toString();
+    WebElement we = driver.findElement(By.id(inputId));
+    enterInput(we, value);
   }
 
   private void selectEnumeratedInput(List<WebElement> webElements, String optionText) {
@@ -311,6 +304,7 @@ public class Page {
     number,
     radio,
     checkbox,
-    tel
+    tel,
+    hidden
   }
 }
