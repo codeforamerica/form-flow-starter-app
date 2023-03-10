@@ -1,7 +1,6 @@
 package org.formflowstartertemplate.app.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,14 +32,14 @@ public class SeleniumFactory implements FactoryBean<RemoteWebDriver> {
     return true;
   }
 
-  public void start() throws IOException {
+  public void start() {
     WebDriverManager.chromedriver().setup();
     ChromeOptions options = new ChromeOptions();
     HashMap<String, Object> chromePrefs = new HashMap<>();
     chromePrefs.put("download.default_directory", tempdir.toString());
     options.setExperimentalOption("prefs", chromePrefs);
     options.addArguments("--window-size=1280,1600");
-    options.addArguments("--headless");
+    options.addArguments("--headless=new");
     options.addArguments("--remote-allow-origins=*");
     driver = new ChromeDriver(options);
   }
