@@ -34,7 +34,7 @@ public class ValidateMovedToUSADate implements Action {
 
   private boolean isDateValid(String date) {
     try {
-      DateTimeFormatter dtf = DateTimeFormat.forPattern("M/d/yyyy");
+      DateTimeFormatter dtf = DateTimeFormat.forPattern("MM/dd/yyyy");
 
       dtf.parseDateTime(date);
     } catch (Exception e) {
