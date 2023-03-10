@@ -16,8 +16,11 @@ flow:
       - name: homeAddress
   homeAddress:
     nextScreens:
-      - name: verifyHomeAddress 
+      - name: verifyHomeAddress
   verifyHomeAddress:
+    nextScreens:
+      - name: contactInfo
+  contactInfo:
     nextScreens:
       - name: eligibility
   eligibility:
@@ -49,7 +52,7 @@ flow:
     nextScreens:
       - name: incomeAmounts
   incomeAmounts:
-    beforeSave: org.formflowstartertemplate.app.submission.actions.ClearIncomeAmountsBeforeSaving
+    beforeSaveAction: org.formflowstartertemplate.app.submission.actions.ClearIncomeAmountsBeforeSaving
     subflow: income
     nextScreens:
       - name: annualHouseholdIncome

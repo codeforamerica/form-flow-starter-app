@@ -2,7 +2,11 @@ package org.formflowstartertemplate.app.inputs;
 
 import formflow.library.data.validators.Money;
 import formflow.library.data.FlowInputs;
+import formflow.library.data.validators.Phone;
+import formflow.library.utils.RegexUtils;
 import java.util.ArrayList;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -12,9 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class Ubi extends FlowInputs {
-
   private MultipartFile ubiFiles;
-
   // Language Preferences Screen
   private String languageRead;
   private String languageSpoken;
@@ -144,4 +146,12 @@ public class Ubi extends FlowInputs {
   private ArrayList<String> agreesToLegalTerms;
   @NotBlank
   private String signature;
+  @Phone(message="{contact-info.invalid-phone-number}")
+  private String phoneNumber;
+  @Email(message="{contact-info.invalid-email}", regexp = RegexUtils.EMAIL_REGEX)
+  private String email;
+  @NotEmpty
+  private ArrayList<String> howToContactYou;
+
+
 }
