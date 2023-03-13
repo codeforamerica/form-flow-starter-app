@@ -100,8 +100,8 @@ There are for types of actions that one can use.
 * `crossFieldValidationAction`
 * `beforeDisplayAction`
 
-You can find more detailed information about each type of action in the Form Flow library's (
-readme)[https://github.com/codeforamerica/form-flow#actions].
+You can find more detailed information about each type of action in the Form Flow library's
+(readme)[https://github.com/codeforamerica/form-flow#actions].
 
 #### ClearIncomeAmountsBeforeSaving
 
