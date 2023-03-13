@@ -90,11 +90,28 @@ Actions can be run at specific points in a form submissions life cycle.
 
 ### Actions
 
+There are for types of actions that one can use.
+
+* `beforeSaveAction`
+* `onPostAction`
+* `crossFieldValidationAction`
+* `beforeDisplayAction`
+
+You can find more detailed information about each type of action in the Form Flow library's (
+readme)[https://github.com/codeforamerica/form-flow#actions].
+
 #### ClearIncomeAmountsBeforeSaving
 
-This action is a `beforeSaveAction` and
+This action is a `beforeSaveAction` and is run after validation but before the data is
+submitted to the database.
+The `UpdateIncomeAmountsBeforeSaving` will clear out and now unused Income types, if they were
+updated.
 
 #### UpdatePersonalInfoDates
+
+This is a `onPostAction` and is run just after the data is POSTed to the server. This particular
+action take the three separate date fields and make them into one string date. It will do this
+both for the birth day fields as well as the movedToUSA fields, if set.
 
 #### ValidateMovedToUSADate
 

@@ -54,7 +54,7 @@ flow:
     nextScreens:
       - name: incomeAmounts
   incomeAmounts:
-    beforeSaveAction: org.formflowstartertemplate.app.submission.actions.ClearIncomeAmountsBeforeSaving
+    beforeSaveAction: org.formflowstartertemplate.app.submission.actions.UpdateIncomeAmountsBeforeSaving
     subflow: income
     nextScreens:
       - name: annualHouseholdIncome
