@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * This is an example of how one could create an Action class. It is referenced from the flows-config.yaml, but is specific to the
- * UBI flow.
+ * This will update the data submitted for Income Amounts before its saved to the database. It will take the new Income Amount
+ * data and reconcile it with the data stored in the database.
  */
-public class ClearIncomeAmountsBeforeSaving implements Action {
+public class UpdateIncomeAmountsBeforeSaving implements Action {
 
   public void run(Submission submission, String data) {
     //grab the current household members incometypes

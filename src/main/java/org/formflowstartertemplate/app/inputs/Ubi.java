@@ -1,7 +1,7 @@
 package org.formflowstartertemplate.app.inputs;
 
-import formflow.library.data.validators.Money;
 import formflow.library.data.FlowInputs;
+import formflow.library.data.validators.Money;
 import formflow.library.data.validators.Phone;
 import formflow.library.utils.RegexUtils;
 import java.util.ArrayList;
@@ -11,12 +11,15 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class Ubi extends FlowInputs {
+
   private MultipartFile ubiFiles;
+
   // Language Preferences Screen
   private String languageRead;
   private String languageSpoken;
@@ -27,21 +30,29 @@ public class Ubi extends FlowInputs {
   private String firstName;
   @NotBlank(message = "{personal-info.provide-last-name}")
   private String lastName;
-  @Min(value = 1, message = "{personal-info.provide-birth-day-min}")
-  @Max(value = 31, message = "{personal-info.provide-birth-day-max}")
+  @NotBlank(message = "{personal-info.provide-birth-day}")
+  @Min(value = 1, message = "{personal-info.provide-day-min}")
+  @Max(value = 31, message = "{personal-info.provide-day-max}")
   private String birthDay;
-  @Min(value = 1, message = "{personal-info.provide-birth-month-min}")
-  @Max(value = 12, message = "{personal-info.provide-birth-month-max}")
+  @NotBlank(message = "{personal-info.provide-birth-month}")
+  @Min(value = 1, message = "{personal-info.provide-month-min}")
+  @Max(value = 12, message = "{personal-info.provide-month-max}")
   private String birthMonth;
-  @Min(value = 1850, message = "{personal-info.provide-birth-year-min}")
-  @Max(value = 2100, message = "{personal-info.provide-birth-year-max}")
+  @NotBlank(message = "{personal-info.provide-birth-year}")
+  @Min(value = 1850, message = "{personal-info.provide-year-min}")
+  @Max(value = 2100, message = "{personal-info.provide-year-max}")
   private String birthYear;
+  @Pattern(regexp = "\\d{1,2}/\\d{1,2}/\\d\\d\\d\\d", message = "{personal-info.date-invalid}")
+  private String birthDate;
+
   private String genderIdentity;
+  // TODO: figure out how to only have day & month for a date fragment
   private String movedToUSA;
   private String movedToUSADay;
   private String movedToUSAMonth;
-  // TODO: figure out how to only have day & month for a date fragment
   private String movedToUSAYear;
+  @Pattern(regexp = "\\d{1,2}/\\d{1,2}/\\d\\d\\d\\d", message = "{personal-info.date-invalid}")
+  private String movedToUSADate;
   private String movedFromCountry;
 
   // Home Address Screen
@@ -54,7 +65,7 @@ public class Ubi extends FlowInputs {
   private String residentialAddressState;
   @NotBlank
   private String residentialAddressZipCode;
-  
+
   // Verify Home Address Screen
   private String useValidatedResidentialAddress;
 
@@ -142,13 +153,13 @@ public class Ubi extends FlowInputs {
   //Economic Hardship Screen
   private ArrayList<String> economicHardshipTypes;
 
-  @NotEmpty(message="{legal-stuff.make-sure-you-answer-this-question}")
+  @NotEmpty(message = "{legal-stuff.make-sure-you-answer-this-question}")
   private ArrayList<String> agreesToLegalTerms;
   @NotBlank
   private String signature;
-  @Phone(message="{contact-info.invalid-phone-number}")
+  @Phone(message = "{contact-info.invalid-phone-number}")
   private String phoneNumber;
-  @Email(message="{contact-info.invalid-email}", regexp = RegexUtils.EMAIL_REGEX)
+  @Email(message = "{contact-info.invalid-email}", regexp = RegexUtils.EMAIL_REGEX)
   private String email;
   @NotEmpty
   private ArrayList<String> howToContactYou;

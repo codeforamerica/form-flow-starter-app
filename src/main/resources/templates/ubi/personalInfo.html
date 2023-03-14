@@ -25,7 +25,8 @@
                   helpText=#{personal-info.last-name-help})"/>
               <th:block th:replace="'fragments/inputs/date' ::
                 date(inputName='birth',
-                label=#{personal-info.birth-label})"/>
+                label=#{personal-info.birth-label},
+                groupName='birthDate')"/>
               <th:block th:replace="'fragments/inputs/radioFieldset' ::
                             radioFieldset(inputName='genderIdentity',
                             label=#{personal-info.gender-label},
@@ -57,7 +58,8 @@
                 <div class="question-with-follow-up__follow-up" id="moved-to-usa-follow-up">
                   <th:block th:replace="'fragments/inputs/date' ::
                                             date(inputName='movedToUSA',
-                                            label=#{personal-info.moved-when-label})"/>
+                                            label=#{personal-info.moved-when-label},
+                                            groupName='movedToUSADate')"/>
                   <th:block th:replace="'fragments/inputs/text' ::
                                 text(inputName='movedFromCountry',
                                 label=#{personal-info.moved-from-label})"/>

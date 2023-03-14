@@ -1,6 +1,6 @@
 name: ubi
-conditionsPath: org.formflowstartertemplate.app.submission.conditions
-actionsPath: org.formflowstartertemplate.app.submission.actions
+conditionsPath: 'org.formflowstartertemplate.app.submission.conditions'
+actionsPath: 'org.formflowstartertemplate.app.submission.actions'
 flow:
   howThisWorks:
     nextScreens:
@@ -12,6 +12,8 @@ flow:
     nextScreens:
       - name: personalInfo
   personalInfo:
+    onPostAction: org.formflowstartertemplate.app.submission.actions.UpdatePersonalInfoDates
+    crossFieldValidationAction: org.formflowstartertemplate.app.submission.actions.ValidateMovedToUSADate
     nextScreens:
       - name: homeAddress
   homeAddress:
@@ -52,7 +54,7 @@ flow:
     nextScreens:
       - name: incomeAmounts
   incomeAmounts:
-    beforeSaveAction: org.formflowstartertemplate.app.submission.actions.ClearIncomeAmountsBeforeSaving
+    beforeSaveAction: org.formflowstartertemplate.app.submission.actions.UpdateIncomeAmountsBeforeSaving
     subflow: income
     nextScreens:
       - name: annualHouseholdIncome

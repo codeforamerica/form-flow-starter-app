@@ -20,14 +20,91 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.clickContinue();
     // Getting to know you
     testPage.clickContinue();
+
     // Personal info
     testPage.enter("firstName", "Testy");
     testPage.enter("lastName", "McTesterson");
-    testPage.enter("birthDay", "01");
-    testPage.enter("birthMonth", "01");
+
+    // test bad date
+    testPage.enter("birthDay", "1");
+    testPage.enter("birthMonth", "15");
     testPage.enter("birthYear", "2000");
     testPage.clickContinue();
-    //    TODO: once we have the global turn off feature for address validation, we can make this test work
+    assertThat(testPage.getTitle()).isEqualTo("Personal Info");
+    assertThat(testPage.hasErrorText("Make sure to provide a month equal or below 12."));
+
+    // test invalid date
+    testPage.enter("birthDay", "abc");
+    testPage.enter("birthMonth", "2");
+    testPage.enter("birthYear", "2000");
+    testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Personal Info");
+    assertThat(testPage.hasErrorText("The date is invalid. Make sure to provide a valid date."));
+    assertThat(testPage.hasErrorText("Make sure to provide a day equal or above 01."));
+    assertThat(testPage.hasErrorText("Make sure to provide a day equal or below 31."));
+
+    // test single digit day and month
+    testPage.enter("birthDay", "1");
+    testPage.enter("birthMonth", "2");
+    testPage.enter("birthYear", "2000");
+    testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Where are you currently living?");
+    testPage.goBack();
+    assertThat(testPage.getTitle()).isEqualTo("Personal Info");
+
+    // test two digit dates for day and month
+    testPage.enter("birthDay", "11");
+    testPage.enter("birthMonth", "12");
+    testPage.enter("birthYear", "2000");
+    testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Where are you currently living?");
+    testPage.goBack();
+    assertThat(testPage.getTitle()).isEqualTo("Personal Info");
+
+    // moved to USA date
+    testPage.clickElementById("movedToUSA-No");
+    testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Where are you currently living?");
+    testPage.goBack();
+
+    // movedToUSA - check invalid date when movedToUSA=Yes
+    assertThat(testPage.getTitle()).isEqualTo("Personal Info");
+    testPage.clickElementById("movedToUSA-Yes");
+    testPage.enter("movedToUSADay", "65");
+    testPage.enter("movedToUSAMonth", "3");
+    testPage.enter("movedToUSAYear", "1987");
+    testPage.clickContinue();
+    assertThat(testPage.hasErrorText("Please check the date entered. It is not a valid date")).isTrue();
+    assertThat(testPage.hasErrorText("Make sure to provide a day equal or below 31.")).isFalse();
+
+    // movedToUSA - check correct date when movedToUSA=Yes
+    testPage.clickElementById("movedToUSA-Yes");
+    testPage.enter("movedToUSADay", "1");
+    testPage.enter("movedToUSAMonth", "3");
+    testPage.enter("movedToUSAYear", "1987");
+    testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Where are you currently living?");
+
+    testPage.goBack();
+    assertThat(testPage.getTitle()).isEqualTo("Personal Info");
+    // movedToUSA - try an incorrect date to test leap year out
+    testPage.clickElementById("movedToUSA-Yes");
+    testPage.enter("movedToUSADay", "29");
+    testPage.enter("movedToUSAMonth", "2");
+    testPage.enter("movedToUSAYear", "2023");
+    testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Personal Info");
+
+    // movedToUSA - try a good leap year out
+    testPage.clickElementById("movedToUSA-Yes");
+    testPage.enter("movedToUSADay", "29");
+    testPage.enter("movedToUSAMonth", "2");
+    testPage.enter("movedToUSAYear", "2024");
+    testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Where are you currently living?");
+
+    // Home address
+//    TODO: once we have the global turn off feature for address validation, we can make this test work
 //    testPage.enter("residentialAddressStreetAddress1", "1111 N State St");
 //    testPage.enter("residentialAddressStreetAddress2", "Apt 2");
 //    testPage.enter("residentialAddressCity", "Roswell");
