@@ -13,6 +13,9 @@ Table of Contents
 * [Table of Contents](#table-of-contents)
 * [Universal Basic Income (UBI) Form Flow](#universal-basic-income-ubi-form-flow)
     * [Static Pages](#static-pages)
+    * [Example Actions and Conditions](#example-actions-and-conditions)
+        * [Actions](#actions)
+        * [Conditions](#conditions)
 * [Development setup](#development-setup)
     * [System dependencies](#system-dependencies)
         * [Java Development Kit](#java-development-kit)
@@ -80,9 +83,53 @@ This application has three static pages served up by
 the [StaticPageController](src/main/java/org/formflowstartertemplate/app/StaticPageController.java)
 class:
 
-* [index.html](src/main/resources/templates/index.hmtl)
+* [index.html](src/main/resources/templates/index.html)
 * [faq.html](src/main/resources/templates/faq.html)
 * [privacy.html](src/main/resources/templates/privacy.html)
+
+## Example Actions and Conditions
+
+Actions can be run at specific points in a form submission's life cycle.
+
+### Actions
+
+There are for types of actions that one can use.
+
+* `beforeSaveAction`
+* `onPostAction`
+* `crossFieldValidationAction`
+* `beforeDisplayAction`
+
+You can find more detailed information about each type of action in the Form Flow library's
+[readme](https://github.com/codeforamerica/form-flow#actions).
+
+#### ClearIncomeAmountsBeforeSaving
+
+This action is a `beforeSaveAction` and is run after validation but before the data is
+stored in the database.
+The `UpdateIncomeAmountsBeforeSaving` will clear out any unused Income types, if they were
+updated. For example, a user fills out the income type page and submits values for their chosen
+input types. If they then decide to go back and change a value or add a new income type, this action
+will ensure that any previous values entered that the user then cleared out are cleared out in the
+stored data as well.
+
+#### UpdatePersonalInfoDates
+
+This is an `onPostAction` and is run just after the data is sent to the server, before any
+validation is done on it. The `UpdatePersonalInfoDates` action will do the following for both
+the `birth` and `movedToUSA` fields on the `Personal Info` page. It will take the three separate
+date fields associated with them (day, month, and year) and put an aggregated date string into a
+general date field (`birthDate` and `movedToUSADate`, respectively).
+
+#### ValidateMovedToUSADate
+
+This is a `crossFieldValidationAction` and is run just after field level validation has occurred,
+but before the data is stored in the database.  `ValidateMovedToUSADate` will check to see if the
+client has indicated that they moved to the USA in the last year. If they have, then this action
+will check to see that they've entered values for `movedToUSA` day, month and year, as well as check
+to see that the resulting date is actually valid.
+
+### Conditions
 
 # Setup instructions
 
