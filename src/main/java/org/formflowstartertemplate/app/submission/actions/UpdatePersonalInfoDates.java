@@ -10,12 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UpdatePersonalInfoDates implements Action {
 
-  private String nothing;
-
-  public UpdatePersonalInfoDates() {
-    this.nothing = "nothing";
-  }
-
   public void run(FormSubmission formSubmission) {
     List<String> datePrefixes = Arrays.asList("birth", "movedToUSA");
     datePrefixes.forEach(prefix -> {
