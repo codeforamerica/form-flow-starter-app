@@ -1,3 +1,22 @@
 ubi:
   inputs:
+    firstName: APPLICANT_LEGAL_NAME_FIRST
+    lastName: APPLICANT_LEGAL_NAME_LAST
+    birthDate: DATE_OF_BIRTH
+    residentialAddressStreetAddress1: APPLICANT_ADDRESS
+    residentialAddressStreetAddress2: APPLICANT_APT_NUMBER
+    residentialAddressCity: APPLICANT_CITY
+    residentialAddressState: APPLICANT_STATE
+    residentialAddressZip: APPLICANT_ZIP_CODE
+    phoneNumber: APPLICANT_PHONE_NUMBER
+    email: APPLICANT_EMAIL_ADDRESS
+    genderIdentity: GENDER
+    needInterpreter: APPLICANT_NEEDS_INTERPRETER
+    languageSpoken: APPLICANT_PREFERRED SPOKEN LANGUAGE
+    languageRead: APPLICANT_PREFERRED_WRITTEN_LANGUAGE
+    movedToUSA: APPLICANT_RECENTLY_MOVED_TO_US
+    movedToUSADate: DATE_APPLICANT_MOVED_TO_US
+    movedFromCountry: COUNTRY_APPLICANT_MOVED_FROM
+    reportedTotalAnnualHouseholdIncome: REPORTED_ANNUAL_HOUSEHOLD_INCOME_AMOUNT
+    economicHardshipTypes: ????????
   subflows:
