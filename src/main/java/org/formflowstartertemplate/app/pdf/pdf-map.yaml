@@ -20,3 +20,9 @@ ubi:
     reportedTotalAnnualHouseholdIncome: REPORTED_ANNUAL_HOUSEHOLD_INCOME_AMOUNT
     economicHardshipTypes: ????????
   subflows:
+    household:
+      householdMemberFirstName:
+      householdMemberLastName:
+      householdMemberRecentlyMovedToUS:
+      
+        
