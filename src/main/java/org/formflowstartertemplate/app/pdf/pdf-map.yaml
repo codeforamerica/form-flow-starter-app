@@ -23,9 +23,12 @@ ubi:
     job: APPLICANT_HAS_JOB
   subflows:
     household:
-      householdMemberFirstName:
-      householdMemberLastName:
-      householdMemberRecentlyMovedToUS:
+      householdMemberFirstName: LEGAL_NAME_FIRST
+      householdMemberLastName: LEGAL_NAME_LAST
+      householdMemberRecentlyMovedToUS: RECENTLY_MOVED_TO_US
+      householdMemberRelationship: RELATIONSHIP
+      movedToUSADate: DATE_MOVED_TO_US
+      movedFromCountry: MOVED_FROM_COUNTRY
     income: # presume APPLICANT_ / HOUSEHOLD_MEMBER_X gets prepended to all these
       # one of these data types might help supporting checkbox/one to many, gotta try em first to know
       incomeTypes: [ INCOME_JOB, INCOME_SELF, INCOME_UNEMPLOYMENT, INCOME_SOCIAL_SECURITY, INCOME_RETIREMENT, INCOME_CHILD_OR_SPOUSAL_SUPPORT, INCOME_PENSION, INCOME_INVESTMENT, INCOME_CAPITAL_GAINS, INCOME_RENTAL_OR_ROYALTY, INCOME_FARM_OR_FISH, INCOME_ALIMONY, INCOME_TAXABLE_SCHOLARSHIP, INCOME_CANCELLED_DEBT, INCOME_COURT_AWARDS, INCOME_GAMBLING, INCOME_JURY_DUTY_PAY, INCOME_OTHER ]
