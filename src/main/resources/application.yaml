@@ -50,11 +50,6 @@ spring:
     multipart:
       max-file-size: ${form-flow.uploads.max-file-size}MB
       max-request-size: ${form-flow.uploads.max-file-size}MB
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
 logging:
   level:
     root: INFO
@@ -65,3 +60,6 @@ server:
   error:
     whitelabel:
       enabled: false
+management:
+  endpoints:
+    enabled-by-default: false
