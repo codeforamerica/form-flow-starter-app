@@ -60,3 +60,6 @@ server:
   error:
     whitelabel:
       enabled: false
+management:
+  endpoints:
+    enabled-by-default: false

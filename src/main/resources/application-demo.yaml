@@ -7,9 +7,8 @@ form-flow:
   aws:
     s3_bucket_name: 'form-flow-demo'
 management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-    env:
-        enabled: false
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: true
