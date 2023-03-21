@@ -8,13 +8,13 @@
     <div class="grid">
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
-        <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{:: pickAddress})">
-          <th:block th:ref="pickAddress">
-            <th:block th:replace="'fragments/screens/addressSuggestionNotFound' ::
+          <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{:: pickAddress})">
+            <th:block th:ref="pickAddress">
+              <th:block th:replace="'fragments/screens/addressSuggestionFound' ::
                   addressSelectionScreen(
                     addressInputToCheck='residentialAddress',
-                    inputName='useValidatedResidentialAddress',
-                    editAddressURL=${'/' + flow + '/homeAddress'})"/>
+                    inputName='useValidatedResidentialAddress'
+                    )"/>
           </th:block>
         </th:block>
       </main>
