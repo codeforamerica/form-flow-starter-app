@@ -1,0 +1,92 @@
+ubi:
+  inputs:
+    firstName: APPLICANT_LEGAL_NAME_FIRST
+    lastName: APPLICANT_LEGAL_NAME_LAST
+    birthDate: DATE_OF_BIRTH
+    residentialAddressStreetAddress1: APPLICANT_ADDRESS
+    residentialAddressStreetAddress2: APPLICANT_APT_NUMBER
+    residentialAddressCity: APPLICANT_CITY
+    residentialAddressState: APPLICANT_STATE
+    residentialAddressZip: APPLICANT_ZIP_CODE
+    phoneNumber: APPLICANT_PHONE_NUMBER
+    email: APPLICANT_EMAIL_ADDRESS
+    genderIdentity: GENDER
+    needInterpreter: APPLICANT_NEEDS_INTERPRETER
+    languageSpoken: APPLICANT_PREFERRED SPOKEN LANGUAGE
+    languageRead: APPLICANT_PREFERRED_WRITTEN_LANGUAGE
+    movedToUSA: APPLICANT_RECENTLY_MOVED_TO_US
+    movedToUSADate: DATE_APPLICANT_MOVED_TO_US
+    movedFromCountry: COUNTRY_APPLICANT_MOVED_FROM
+    reportedTotalAnnualHouseholdIncome: REPORTED_ANNUAL_HOUSEHOLD_INCOME_AMOUNT
+    economicHardshipTypes: ????????
+    doYouReceiveIncome: APPLICANT_RECEIVES_INCOME # will need to custom map this based on answer to income question: do they have any?
+    job: APPLICANT_HAS_JOB
+  subflows:
+    household:
+      householdMemberFirstName: LEGAL_NAME_FIRST
+      householdMemberLastName: LEGAL_NAME_LAST
+      householdMemberRecentlyMovedToUS: RECENTLY_MOVED_TO_US
+      householdMemberRelationship: RELATIONSHIP
+      movedToUSADate: DATE_MOVED_TO_US
+      movedFromCountry: MOVED_FROM_COUNTRY
+    income: # presume APPLICANT_ / HOUSEHOLD_MEMBER_X gets prepended to all these
+      # one of these data types might help supporting checkbox/one to many, gotta try em first to know
+      incomeTypes: [ INCOME_JOB, INCOME_SELF, INCOME_UNEMPLOYMENT, INCOME_SOCIAL_SECURITY, INCOME_RETIREMENT, INCOME_CHILD_OR_SPOUSAL_SUPPORT, INCOME_PENSION, INCOME_INVESTMENT, INCOME_CAPITAL_GAINS, INCOME_RENTAL_OR_ROYALTY, INCOME_FARM_OR_FISH, INCOME_ALIMONY, INCOME_TAXABLE_SCHOLARSHIP, INCOME_CANCELLED_DEBT, INCOME_COURT_AWARDS, INCOME_GAMBLING, INCOME_JURY_DUTY_PAY, INCOME_OTHER ]
+      incomeTypes:
+        incomeJob: INCOME_JOB
+        incomeSelf: INCOME_SELF
+        incomeUnemployment: INCOME_UNEMPLOYMENT
+        incomeSocialSecurity: INCOME_SOCIAL_SECURITY
+        incomeRetirement: INCOME_RETIREMENT
+        incomeChildOrSpousalSupport: INCOME_CHILD_OR_SPOUSAL_SUPPORT
+        incomePension: INCOME_PENSION
+        incomeInvestment: INCOME_INVESTMENT
+        incomeCapitalGains: INCOME_CAPITAL_GAINS
+        incomeRentalOrRoyalty: INCOME_RENTAL_OR_ROYALTY
+        incomeFarmOrFish: INCOME_FARM_OR_FISH
+        incomeAlimony: INCOME_ALIMONY
+        incomeTaxableScholarship: INCOME_TAXABLE_SCHOLARSHIP
+        incomeCancelledDebt: INCOME_CANCELLED_DEBT
+        incomeCourtAwards: INCOME_COURT_AWARDS
+        incomeGambling: INCOME_GAMBLING
+        incomeJuryDutyPay: INCOME_JURY_DUTY_PAY
+        incomeOther: INCOME_OTHER
+      incomeJobAmount: JOB_AMT
+#      incomeJob: HAS_JOB_INCOME
+      incomeSelfAmount: SELF_EMPLOYMENT_AMT
+#      incomeSelf: HAS_SELF_EMPLOYMENT_INCOME
+      incomeUnemploymentAmount: UNEMPLOYMENT_AMT
+#      incomeUnemployment: HAS_UNEMPLOYMENT_INCOME
+      incomeSocialSecurityAmount: SOCIAL_SECURITY_AMT
+#      incomeSocialSecurity: HAS_SOCIAL_SECURITY_INCOME
+      incomeRetirementAmount: RETIREMENT_AMT
+#      incomeRetirement: HAS_RETIREMENT_INCOME
+      incomeChildOrSpousalSupportAmount: CHILD_OR_SPOUSAL_SUPPORT_AMT
+#      incomeChildOrSpousalSupport: HAS_CHILD_SPOUSAL_SUPPORT_INCOME
+      incomePensionAmount: PENSION_BENEFITS_AMT
+#      incomePension: HAS_PENSION_INCOME
+      incomeInvestmentAmount: INVESTMENT_INCOME_AMT
+#      incomeInvestment: HAS_INVESTMENT_INCOME
+      incomeCapitalGainsAmount: CAPITAL_GAINS_AMT
+#      incomeCapitalGains: HAS_CAPITAL_GAINS
+      incomeRentalOrRoyaltyAmount: RENTAL_OR_ROYALTY_AMT
+#      incomeRentalOrRoyalty: HAS_RENTAL_ROYALTY_INCOME
+      incomeFarmOrFishAmount: FARMING_OR_FISHING_AMT
+#      incomeFarmOrFish: HAS_FARMING_FISHING_INCOME
+      incomeAlimonyAmount: ALIMONY_RECEIVED_AMT
+#      incomeAlimony: HAS_ALIMONY_INCOME
+      incomeTaxableScholarshipAmount: TAXABLE_SCHOLARSHIP_AMT
+#      incomeTaxableScholarship: HAS_TAXABLE_SCHOLARSHIP_INCOME
+      incomeCancelledDebtAmount: CANCELLED_DEBT_AMT
+#      incomeCancelledDebt: HAS_CANCELLED_DEBT_INCOME
+      incomeCourtAwardsAmount: COURT_AWARDS_AMT
+#      incomeCourtAwards: HAS_COURT_AWARDS_INCOME
+      incomeGamblingAmount: GAMBLING_PRIZES_OR_AWARDS_AMT
+#      incomeGambling: HAS_GAMBLING_PRIZES_INCOME
+      incomeJuryDutyPayAmount: JURY_DUTY_PAY_AMT
+#      incomeJuryDutyPay: HAS_OTHER_INCOME
+      incomeOtherAmount: OTHER_INCOME_AMT
+#      incomeOther: HAS_JURY_DUTY_INCOME
+      liveWith: [SPOUSE, CHILDREN, OTHER-FAMILY-MEMBER, DOMESTIC_PARTNER]
+      # custom mapper needed, could also have convention to prepend input (LIVE_WITH)
+      # to values from array
