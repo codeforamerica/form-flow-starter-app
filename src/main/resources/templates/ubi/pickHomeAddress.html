@@ -11,7 +11,7 @@
           <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{:: pickAddress})">
             <th:block th:ref="pickAddress">
               <th:block th:replace="'fragments/screens/addressSuggestionFound' ::
-                  addressSelectionScreen(
+                  addressSuggestionFound(
                     addressInputToCheck='residentialAddress',
                     inputName='useValidatedResidentialAddress'
                     )"/>
