@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SkipAddressValidation implements Condition {
 
-  @Value("${form-flow.address-validation.disabled}")
+  @Value("${form-flow.address-validation.disabled:false}")
   private boolean isDisabled;
 
   @Override
