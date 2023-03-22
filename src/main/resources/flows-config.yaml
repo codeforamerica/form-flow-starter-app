@@ -17,13 +17,11 @@ flow:
   homeAddress:
     nextScreens:
       - name: pickHomeAddress
-        condition: org.formflowstartertemplate.app.submission.conditions.SmartySuggestionFound
-      - name: contactInfo
-        condition: SkipAddressValidation
+        condition: SmartySuggestionFound
       - name: verifyHomeAddress
-        condition: org.formflowstartertemplate.app.submission.conditions.SmartySuggestionNotFound
+        condition: SmartySuggestionNotFound
       - name: contactInfo
-        condition: org.formflowstartertemplate.app.submission.conditions.HomeAddressValidationIsOff
+        condition: HomeAddressValidationIsOff
   pickHomeAddress:
     nextScreens:
       - name: contactInfo
