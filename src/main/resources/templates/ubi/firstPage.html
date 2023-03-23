@@ -12,7 +12,7 @@
         <th:block
             th:replace="'fragments/form' :: form(action=${'/' + flow + '/' + screen}, content=~{::formContent})">
           <th:block th:ref="formContent"
-                    th:with="showCondition=${templateManager.runCondition('ApplicantIsFemale', submission)}">
+                    th:with="showCondition=${conditionManager.runCondition('ApplicantIsFemale', submission)}">
             <div class="form-card__content">
               <p th:if="${showCondition}">This is a paragraph text that showing on a
                 <code>true</code> condition. 🟢</p>

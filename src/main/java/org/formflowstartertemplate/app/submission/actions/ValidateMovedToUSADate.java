@@ -8,8 +8,10 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.springframework.stereotype.Component;
 
 @Slf4j
+@Component
 public class ValidateMovedToUSADate implements Action {
 
   private final String INPUT_NAME = "movedToUSADate";

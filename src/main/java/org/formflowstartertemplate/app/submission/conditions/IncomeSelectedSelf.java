@@ -4,7 +4,9 @@ import formflow.library.config.submission.Condition;
 import formflow.library.data.Submission;
 import java.util.ArrayList;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
+@Component
 public class IncomeSelectedSelf implements Condition {
 
   @Override
