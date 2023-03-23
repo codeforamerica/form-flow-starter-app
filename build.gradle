@@ -29,6 +29,7 @@ repositories {
 }
 
 def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
+def formFlowLibraryVersion = '0.0.2-SNAPSHOT'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -39,10 +40,10 @@ dependencies {
 
     if (profile == 'dev') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
-        println "Using local library 🗼"
+        println "📦 Using local library"
     } else {
-        implementation 'org.codeforamerica.platform:form-flow:0.0.1-SNAPSHOT'
-        println "Using 0.0.1-SNAPSHOT 💜"
+        implementation "org.codeforamerica.platform:form-flow:${formFlowLibraryVersion}"
+        println "📚Using form flow library ${formFlowLibraryVersion}"
     }
 
     compileOnly 'org.projectlombok:lombok'
