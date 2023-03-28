@@ -26,7 +26,7 @@
               <th:block th:replace="'fragments/icons' :: smallDownloadDocuments"></th:block>
               <div>
                 <p th:text="#{success.save-a-copy-of-your-application}"></p>
-                <a th:href="'/download/' + ${flow} + '/' + ${submission.getId()}"
+                <a th:href="'/download/' + ${flow} + '/' + ${submission.getId()} + '/Multipage-UBI-Form'"
                    th:text="#{success.download-your-application}"></a>
               </div>
           </div>
