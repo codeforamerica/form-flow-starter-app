@@ -28,11 +28,11 @@
                                   <span th:text="${householdMember.householdMemberLastName}"></span>
                                 </span>
                                 <span class="text--small spacing-below-0">
-                                  <a th:href="'/ubi/' + ${iterationStartScreen} + '/' + ${householdMember.uuid} + '/edit'"
+                                  <a th:href="'/flow/ubi/' + ${iterationStartScreen} + '/' + ${householdMember.uuid} + '/edit'"
                                      th:text="#{general.edit}"
                                      th:id="'edit-iteration-' + ${householdMember.uuid}"
                                      class="subflow-edit"></a>
-                                  <a th:href="'/ubi/household/' + ${householdMember.uuid} + '/deleteConfirmation'"
+                                  <a th:href="'/flow/ubi/household/' + ${householdMember.uuid} + '/deleteConfirmation'"
                                      th:text="#{general.delete}"
                                      class="subflow-delete"
                                      th:id="'delete-iteration-' + ${householdMember.uuid}"></a>
@@ -41,7 +41,7 @@
                 </li>
               </th:block>
             </ul>
-            <a th:href="'/' + ${flow} + '/housemateInfo'" class="button spacing-above-15"
+            <a th:href="'/flow/' + ${flow} + '/housemateInfo'" class="button spacing-above-15"
                th:text="#{household-list.add}"></a>
           </div>
         </div>

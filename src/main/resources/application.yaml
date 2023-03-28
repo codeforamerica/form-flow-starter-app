@@ -20,6 +20,8 @@ form-flow:
       auth-id: ${SMARTY_AUTH_ID}
       auth-token: ${SMARTY_AUTH_TOKEN}
       license: us-core-cloud
+  pdf:
+    path: 'src/main/resources/pdfs/'
 spring:
   profiles:
     group:

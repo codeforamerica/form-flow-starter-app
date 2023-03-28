@@ -31,11 +31,11 @@
         </div>
         <div class="form-card__footer">
           <form method="post"
-                th:action="'/' + ${flow} + '/' + ${subflow} + '/' + ${param.uuid} + '/delete'">
+                th:action="'/flow/' + ${flow} + '/' + ${subflow} + '/' + ${param.uuid} + '/delete'">
             <th:block th:replace="fragments/inputs/submitButton :: submitButton(
                   text=#{income-delete-confirmation.yes})"/>
           </form>
-          <a class="button spacing-above-35" th:href="'/' + ${flow} + '/annualHouseholdIncome'"
+          <a class="button spacing-above-35" th:href="'/flow/' + ${flow} + '/annualHouseholdIncome'"
              th:text="#{income-delete-confirmation.no}"></a>
         </div>
       </main>
