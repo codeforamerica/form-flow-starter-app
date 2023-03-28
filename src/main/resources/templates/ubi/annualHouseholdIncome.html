@@ -31,11 +31,11 @@
                                     th:text="${'$' + personsTotalIncome}"></span>
                                 <span
                                     class="grid__item width-one-third text--small spacing-below-0">
-                                  <a th:href="'/ubi/incomeTypes/' + ${personsIncome.uuid} + '/edit'"
+                                  <a th:href="'/flow/ubi/incomeTypes/' + ${personsIncome.uuid} + '/edit'"
                                      th:text="#{general.edit}"
                                      th:id="'edit-iteration-' + ${personsIncome.uuid}"
                                      class="subflow-edit"></a>
-                                  <a th:href="'/ubi/income/' + ${personsIncome.uuid} + '/deleteConfirmation'"
+                                  <a th:href="'/flow/ubi/income/' + ${personsIncome.uuid} + '/deleteConfirmation'"
                                      th:text="#{general.delete}"
                                      class="subflow-delete"
                                      th:id="'delete-iteration-' + ${personsIncome.uuid}"></a>
@@ -51,7 +51,7 @@
               <strong class="grid__item width-one-third text--right"
                       th:text="${'$' + T(org.formflowstartertemplate.app.utils.SubmissionUtilities).getHouseholdTotalIncome(submission)}"></strong>
             </div>
-            <a th:href="'/' + ${flow} + '/' + ${iterationStartScreen}"
+            <a th:href="'/flow/' + ${flow} + '/' + ${iterationStartScreen}"
                th:unless="${allHouseholdMembersHaveIncome}"
                class="button spacing-above-25 spacing-below-0 spacing-right-0"
                th:text="#{annual-household-income.add-income}"></a>

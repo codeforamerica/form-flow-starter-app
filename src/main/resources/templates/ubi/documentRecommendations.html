@@ -42,10 +42,10 @@
         </div>
         <div class="form-card__footer">
           <!-- upload documents -->
-          <a class="button button--primary" th:href="'/' + ${flow} + '/uploadUBIFlowDocuments'"
+          <a class="button button--primary" th:href="'/flow/' + ${flow} + '/uploadUBIFlowDocuments'"
              th:text="#{document-recommendations.upload-documents-now}"></a>
           <!-- don't upload docs now, do it later -->
-          <a class="button button--other"  th:href="'/' + ${flow} + '/documentOffboarding'"
+          <a class="button button--other"  th:href="'/flow/' + ${flow} + '/documentOffboarding'"
                th:text="#{document-recommendations.ill-do-this-later}"></a>
         </div>
       </main>
