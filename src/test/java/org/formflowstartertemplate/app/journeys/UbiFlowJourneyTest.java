@@ -103,13 +103,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Where are you currently living?");
 
-    // Test Ideas for Address Validation
-    // home address -- test not found address  (mock smarty response)
-    // home address -- test close address  (mock smarty response)
-    // home address -- validation is off (skip validation) - Condition that redirects to next page
-    //    there is already a condition to help with this one: SkipAddressValidation
-
-    // Home address (validation service is turned off)
+    // Home address (validation service is turned off in testing)
     testPage.enter("residentialAddressStreetAddress1", "1111 N State St");
     testPage.enter("residentialAddressStreetAddress2", "Apt 2");
     testPage.enter("residentialAddressCity", "Roswell");
