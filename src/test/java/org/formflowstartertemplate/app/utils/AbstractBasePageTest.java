@@ -45,6 +45,7 @@ public abstract class AbstractBasePageTest {
   protected void setUp() throws IOException {
     initTestPage();
     baseUrl = "http://localhost:%s".formatted(localServerPort);
+
     driver.navigate().to(baseUrl);
   }
 

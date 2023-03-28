@@ -114,7 +114,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
 //    // Eligibility
 //    testPage.clickContinue();
 //    TODO: remove this navigate call when we can get the address validation test to work
-    driver.navigate().to(baseUrl + "/ubi/contactInfo");
+    driver.navigate().to( baseUrl + "/flow/ubi/contactInfo");
     // Contact Info
     assertThat(testPage.getTitle()).isEqualTo("Contact Info");
     testPage.enter("phoneNumber", "(312) 877-1021");
