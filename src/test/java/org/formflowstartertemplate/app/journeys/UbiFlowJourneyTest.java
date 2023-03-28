@@ -103,18 +103,14 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Where are you currently living?");
 
-    // Home address
-//    TODO: once we have the global turn off feature for address validation, we can make this test work
-//    testPage.enter("residentialAddressStreetAddress1", "1111 N State St");
-//    testPage.enter("residentialAddressStreetAddress2", "Apt 2");
-//    testPage.enter("residentialAddressCity", "Roswell");
-//    testPage.enter("residentialAddressState", "NM - New Mexico");
-//    testPage.enter("residentialAddressZipCode", "88201");
-//    testPage.clickContinue();
-//    // Eligibility
-//    testPage.clickContinue();
-//    TODO: remove this navigate call when we can get the address validation test to work
-    driver.navigate().to( baseUrl + "/flow/ubi/contactInfo");
+    // Home address (validation service is turned off in testing)
+    testPage.enter("residentialAddressStreetAddress1", "1111 N State St");
+    testPage.enter("residentialAddressStreetAddress2", "Apt 2");
+    testPage.enter("residentialAddressCity", "Roswell");
+    testPage.enter("residentialAddressState", "NM - New Mexico");
+    testPage.enter("residentialAddressZipCode", "88201");
+    testPage.clickContinue();
+
     // Contact Info
     assertThat(testPage.getTitle()).isEqualTo("Contact Info");
     testPage.enter("phoneNumber", "(312) 877-1021");
