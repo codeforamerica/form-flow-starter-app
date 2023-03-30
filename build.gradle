@@ -4,6 +4,7 @@ plugins {
     id 'java'
     id 'com.gorylenko.gradle-git-properties' version '2.3.2'
     id 'com.adarshr.test-logger' version '3.2.0'
+    id 'jacoco'
 }
 
 configurations {
@@ -67,6 +68,13 @@ springBoot {
     buildInfo()
 }
 
-tasks.named('test') {
+test {
+    finalizedBy jacocoTestReport
     useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
 }

@@ -26,6 +26,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Test with Gradle
+        id: test
         run: ./gradlew clean test --stacktrace
       - name: Cache Gradle packages
         uses: actions/cache@v3
@@ -37,12 +38,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Announce failures on Slack
-        if: failure()
+        if:  ${{ steps.test.conclusion == 'failure' }}
         uses: ravsamhq/notify-slack-action@v2
         with:
           status: ${{ job.status }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Report results to DeepSource
+        if: ${{ steps.test.conclusion == 'success' }}
+        run: |
+          curl https://deepsource.io/cli | sh
+          ./bin/deepsource report --analyzer test-coverage --key java --value-file ./build/reports/jacoco/test/jacocoTestReport.xml
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
