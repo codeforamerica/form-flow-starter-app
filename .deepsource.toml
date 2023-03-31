@@ -1,8 +1,12 @@
 version = 1
 
+test_patterns = ["src/test"]
+
+[[analyzers]]
+name = "test-coverage"
+
 [[analyzers]]
 name = "java"
-enabled = true
 
-  [analyzers.meta]
-  runtime_version = "17"
+[analyzers.meta]
+runtime_version = "17"
