@@ -1,0 +1,7 @@
+flow: ubi
+inputs:
+  firstName: APPLICANT_LEGAL_NAME_FIRST
+---
+flow: docUpload
+inputs:
+    docUpload: DOCUMENT_UPLOAD
