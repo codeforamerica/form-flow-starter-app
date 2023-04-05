@@ -12,9 +12,14 @@ form-flow:
       auth-token: 'test-token'
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;
-    username: sa
-    password: sa
+    url: jdbc:postgresql://localhost:5432/form-flow-test
+    username: form-flow-test
+    password: postgres
+  flyway:
+    baselineOnMigrate: true
+    clean-on-validation-error: true
+    placeholders:
+      uuid_function: "gen_random_uuid"
   thymeleaf:
     prefix: classpath:/templates/
   jpa:
