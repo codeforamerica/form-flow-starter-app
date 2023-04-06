@@ -132,61 +132,7 @@ to see that the resulting date is actually valid.
 ### Conditions
 
 # Setup instructions
-
-## System dependencies
-
-_Note: these instructions are specific to macOS, but the same dependencies do need to be installed
-on Windows as well._
-
-### Java Development Kit
-
-If you do not already have Java 17 installed, we recommend doing this:
-
-```
-brew tap homebrew/cask-versions
-brew install --cask temurin17
-```
-
-### Set up jenv to manage your jdk versions
-
-First run `brew install jenv`.
-
-Add the following to your `~/.bashrc` or `~/.zshrc`:
-
-```
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-```
-
-For m1 macs, if the above snippet doesn't work, try:
-
-```
-export PATH="$HOME/.jenv/bin:$PATH"
-export JENV_ROOT="/opt/homebrew/Cellar/jenv/"
-eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(jenv init -)"
-```
-
-Reload your terminal, then finally run this from the repo's root directory:
-
-```
-jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
-```
-
-### Gradle
-
-`brew install gradle`
-
-### Start the local databases
-
-- Install PostgreSQL 14 via an [official download](https://www.postgresql.org/download/)
-    - Or on macOS, through homebrew: `brew install postgresql@14`
-
-<!-- TODO: Is this the right way to create db/user? -->
-
-- Create the database using the command line:
-    - `$ createdb starter-app`
-    - `$ createuser -s starter-app`
+Refer to the [setup instructions](https://github.com/codeforamerica/form-flow#developer-setup) in form-flow to get the dependencies necessary.
 
 ### Setup Environment
 
