@@ -27,7 +27,7 @@ spring:
     group:
       test:
         - test
-        - form-flow-library-test
+        - form-flow-library
       dev:
         - dev
         - form-flow-library
