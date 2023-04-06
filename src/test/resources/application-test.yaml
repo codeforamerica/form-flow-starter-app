@@ -12,8 +12,8 @@ form-flow:
       auth-token: 'test-token'
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/form-flow-test
-    username: form-flow-test
+    url: jdbc:postgresql://localhost:5432/starter-app-test
+    username: starter-app-test
     password: postgres
   flyway:
     baselineOnMigrate: true
