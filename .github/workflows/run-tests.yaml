@@ -13,6 +13,8 @@ jobs:
   test:
     name: Run unit tests
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
     services:
       postgres:
         image: postgres
@@ -55,6 +57,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Report results to DeepSource
+        continue-on-error: true
         if: ${{ steps.test.conclusion == 'success' }}
         run: |
           curl https://deepsource.io/cli | sh
