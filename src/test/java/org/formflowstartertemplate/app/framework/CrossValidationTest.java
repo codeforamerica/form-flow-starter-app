@@ -95,7 +95,7 @@ public class CrossValidationTest extends AbstractMockMvcTest {
   void shouldDisplayErrorMessagesForBothPhoneAndEmailIfBothAreMissing() throws Exception {
     postExpectingFailure("contactInfoPreference",
         Map.of(
-            "howToContactYou[]", List.of("", "email", "phone"),
+            "howToContactYou[]", List.of("email", "phone"),
             "email", List.of(""),
             "phoneNumber", List.of("")));
 

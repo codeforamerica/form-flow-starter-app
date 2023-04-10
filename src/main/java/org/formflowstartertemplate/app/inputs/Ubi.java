@@ -164,6 +164,6 @@ public class Ubi extends FlowInputs {
   private String phoneNumber;
   @Email(message = "{contact-info.invalid-email}", regexp = RegexUtils.EMAIL_REGEX)
   private String email;
-  @NotEmpty
+  @NotEmpty(message = "{contact-info.select-a-contact-method}")
   private ArrayList<String> howToContactYou;
 }
