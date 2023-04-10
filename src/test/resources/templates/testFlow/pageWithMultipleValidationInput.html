@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}">
+<head th:replace="fragments/head :: head(title='Page with Multiple Validation Input')"></head>
+<body>
+<div class="page-wrapper">
+  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <section class="slab">
+    <div class="grid">
+      <main id="content" role="main" class="form-card spacing-above-35">
+        <th:block
+            th:replace="'fragments/cardHeader' :: cardHeader(header='Page with Multiple Validation Input')"/>
+        <th:block
+            th:replace="'fragments/form' :: form(action='/flow/testFlow/pageWithMultipleValidationInput', content=~{::formContent})">
+          <th:block th:ref="formContent">
+            <div class="form-card__content">
+              <th:block th:replace="'fragments/inputs/text' ::
+                  text(inputName='inputWithMultipleValidations',
+                  label='inputWithMultipleValidations')"/>
+
+              <th:block th:replace="'fragments/inputs/text' ::
+                  text(inputName='inputWithSingleValidation',
+                  label='inputWithSingleValidation')"/>
+            </div>
+            <div class="form-card__footer">
+              <th:block th:replace="'fragments/continueButton' :: continue"/>
+            </div>
+          </th:block>
+        </th:block>
+      </main>
+    </div>
+  </section>
+</div>
+<th:block th:replace="fragments/footer :: footer"/>
+</body>
+</html>

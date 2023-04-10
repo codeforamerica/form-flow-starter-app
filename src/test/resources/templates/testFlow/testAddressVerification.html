@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}">
+<head th:replace="fragments/head :: head(title='testAddressVerification')"></head>
+<body>
+<div class="page-wrapper">
+  <section class="slab">
+    <div class="grid">
+      <main id="content" role="main" class="form-card spacing-above-35">
+        <th:block
+            th:replace="'fragments/form' :: form(action=${formAction}, content=~{:: verifyAddress})">
+          <th:block th:ref="verifyAddress">
+            <th:block th:replace="'fragments/screens/addressSelectionScreen' ::
+                  addressSelectionScreen(
+                    addressInputToCheck='validationOn',
+                    inputName='useValidatedValidationOn',
+                    editAddressURL=${'/flow/testFlow/testAddressValidation'}
+                  )"/>
+          </th:block>
+        </th:block>
+      </main>
+    </div>
+  </section>
+</div>
+<th:block th:replace="fragments/footer :: footer"/>
+</body>
+</html>

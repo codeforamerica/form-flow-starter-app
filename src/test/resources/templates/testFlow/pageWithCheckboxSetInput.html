@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}">
+<head th:replace="fragments/head :: head(title='Checkbox input page')"></head>
+<body>
+<div class="page-wrapper">
+  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <section class="slab">
+    <div class="grid">
+      <main id="content" role="main" class="form-card spacing-above-35">
+        <th:block
+            th:replace="'fragments/cardHeader' :: cardHeader(header='Checkbox input page')"/>
+        <th:block
+            th:replace="'fragments/form' :: form(action='/flow/testFlow/pageWithCheckboxSetInput', content=~{::formContent})">
+          <th:block th:ref="formContent">
+            <th:block th:replace="'fragments/inputs/checkboxFieldset' ::
+                checkboxFieldset(inputName='favoriteFruitCheckbox',
+                label='favoriteFruit',
+                fieldsetHelpText='favoriteFruitGoesHere',
+                content=~{::favoriteFruit})">
+              <th:block th:ref="favoriteFruit">
+                <!-- Copy the below input if you want to add more -->
+                <th:block
+                    th:replace="'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='favoriteFruitCheckbox',value='Apple', label='Apple')"/>
+                <th:block
+                    th:replace="'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='favoriteFruitCheckbox',value='Orange', label='Orange')"/>
+                <th:block
+                    th:replace="'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='favoriteFruitCheckbox',value='Banana', label='Banana')"/>
+              </th:block>
+            </th:block>
+            <div class="form-card__footer">
+              <th:block th:replace="'fragments/continueButton' :: continue"/>
+            </div>
+          </th:block>
+        </th:block>
+      </main>
+    </div>
+  </section>
+</div>
+<th:block th:replace="fragments/footer :: footer"/>
+</body>
+</html>

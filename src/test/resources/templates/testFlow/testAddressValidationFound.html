@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}">
+<head th:replace="fragments/head :: head(title='Validation Is On')"></head>
+<body>
+<div class="page-wrapper">
+  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <section class="slab">
+    <div class="grid">
+      <main id="content" role="main" class="form-card spacing-above-35">
+        <th:block
+            th:replace="'fragments/form' :: form(action=${formAction}, content=~{:: pickAddress})">
+          <th:block th:ref="pickAddress">
+            <th:block th:replace="'fragments/screens/addressSuggestionFound' ::
+                  addressSuggestionFound(
+                    addressInputToCheck='validationOn',
+                    inputName='someAddress'
+                    )"/>
+          </th:block>
+        </th:block>
+      </main>
+    </div>
+  </section>
+</div>
+<th:block th:replace="fragments/footer :: footer"/>
+</body>
+</html>

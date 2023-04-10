@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}">
+<head th:replace="fragments/head :: head(title='Inputs Screen')"></head>
+<body>
+<div class="page-wrapper">
+  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <section class="slab">
+    <div class="grid">
+      <main id="content" role="main" class="form-card spacing-above-35">
+        <th:block
+            th:replace="'fragments/cardHeader' :: cardHeader(header='Inputs Screen', subtext='This is the inputs screen!')"/>
+        <th:block
+            th:replace="'fragments/form' :: form(action='/flow/testFlow/inputs', content=~{::formContent})">
+          <th:block th:ref="formContent">
+            <div class="form-card__content">
+              <th:block
+                  th:replace="'fragments/inputs/text' ::
+                            text(inputName='textInput',
+                            label='textInput')"/>
+              <th:block th:replace="'fragments/inputs/textArea' ::
+                          textArea(inputName='areaInput',
+                          label='areaInput')"/>
+              <th:block th:replace="'fragments/inputs/date' ::
+                          date(inputName='date',
+                          label='dateInput',
+                          groupName='dateFull')"/>
+              <th:block th:replace="'fragments/inputs/number' ::
+                          number(inputName='numberInput',
+                          label='numberInput')"/>
+              <th:block th:replace="'fragments/inputs/checkboxFieldset' ::
+                          checkboxFieldset(inputName='checkboxSet',
+                          label='checkboxSet',
+                          content=~{::checkboxContent})">
+                <th:block th:ref="checkboxContent">
+                  <th:block
+                      th:replace="'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='checkboxSet', value='Checkbox-A', label='Checkbox A')"/>
+                  <th:block
+                      th:replace="'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='checkboxSet', value='Checkbox-B', label='Checkbox B')"/>
+                </th:block>
+              </th:block>
+              <th:block
+                  th:replace="'fragments/inputs/checkbox' :: checkbox(inputName='checkboxInput', value='checkbox-value', label='Single checkbox')"/>
+              <th:block th:replace="'fragments/inputs/radioFieldset' ::
+                          radioFieldset(inputName='radioInput',
+                          label='radioInput',
+                          content=~{::radioContent})">
+                <th:block th:ref="radioContent">
+                  <th:block
+                      th:replace="'fragments/inputs/radio' :: radio(inputName='radioInput',value='Radio A', label='Radio A')"/>
+                  <th:block
+                      th:replace="'fragments/inputs/radio' :: radio(inputName='radioInput',value='Radio B', label='Radio B')"/>
+                  <th:block
+                      th:replace="'fragments/inputs/radio' :: radio(inputName='radioInput',value='Radio C', label='Radio C')"/>
+                </th:block>
+              </th:block>
+              <th:block
+                  th:replace="'fragments/inputs/select' ::
+                          select(inputName='selectInput',
+                                 label='selectInput',
+                                 content=~{::selectContent})">
+                <th:block th:ref="selectContent">
+                  <th:block
+                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='', optionText='Choose one')"/>
+                  <th:block
+                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='Select A', optionText='Select A')"/>
+                  <th:block
+                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='Select B', optionText='Select B')"/>
+                  <th:block
+                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='Select C', optionText='Select C')"/>
+                </th:block>
+              </th:block>
+              <th:block
+                  th:replace="'fragments/inputs/money' :: money(
+                            inputName='moneyInput',
+                            label='moneyInput')"/>
+              <th:block
+                  th:replace="'fragments/inputs/phone' :: phone(
+                            inputName='phoneInput',
+                            label='phoneInput')"/>
+              <th:block
+                  th:replace="'fragments/inputs/ssn' :: ssn(
+                            inputName='ssnInput',
+                            label='ssnInput')"/>
+              <th:block th:replace="'fragments/inputs/state' ::
+                          state(inputName='stateInput',
+                          label='stateInput',
+                          placeholderText='State')"/>
+            </div>
+            <div class="form-card__footer">
+              <th:block th:replace="'fragments/continueButton' :: continue"/>
+            </div>
+          </th:block>
+        </th:block>
+      </main>
+    </div>
+  </section>
+</div>
+<th:block th:replace="fragments/footer :: footer"/>
+</body>
+</html>

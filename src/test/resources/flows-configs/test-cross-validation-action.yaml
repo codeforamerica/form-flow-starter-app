@@ -1,0 +1,34 @@
+name: testFlow
+flow:
+  contactInfoPreference:
+    crossFieldValidationAction: CheckIndicatedContactMethodIsProvided
+    nextScreens:
+      - name: subflowEntry
+  subflowEntry:
+    nextScreens:
+      - name: subflowIterationStart
+  subflowIterationStart:
+    subflow: income
+    nextScreens:
+      - name: next
+  next:
+    beforeSaveAction: CalculateTotalBeforeSave
+    subflow: income
+    nextScreens:
+      - name: subflowReview
+  subflowReview:
+    nextScreens:
+      - name: subflowComplete
+  subflowDeleteConfirmation:
+    nextScreens: null
+  subflowComplete:
+    nextScreens:
+      - name: last
+  last:
+    nextScreens: null
+subflows:
+  income:
+    entryScreen: subflowEntry
+    iterationStartScreen: subflowIterationStart
+    reviewScreen: subflowReview
+    deleteConfirmationScreen: subflowDeleteConfirmation
