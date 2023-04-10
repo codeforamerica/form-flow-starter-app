@@ -31,11 +31,11 @@ public class CheckIndicatedContactMethodIsProvided implements Action {
       ArrayList<String> preferredContactMethods = (ArrayList<String>) formSubmission.getFormData().get(HOW_TO_CONTACT_YOU_INPUT);
       if (preferredContactMethods.contains("phone") && formSubmission.getFormData().get(PHONE_NUMBER_INPUT).equals("")) {
         errorMessages.put(PHONE_NUMBER_INPUT, 
-            List.of(messageSource.getMessage("contact-info.error-email-selected", null, null)));
+            List.of(messageSource.getMessage("contact-info.error-phone-selected", null, null)));
       }  
       if (preferredContactMethods.contains("email") && formSubmission.getFormData().get("email").equals("")) {
         errorMessages.put(EMAIL_INPUT,
-            List.of(messageSource.getMessage("contact-info.error-phone-selected", null, null)));
+            List.of(messageSource.getMessage("contact-info.error-email-selected", null, null)));
       }
     }
     return errorMessages;

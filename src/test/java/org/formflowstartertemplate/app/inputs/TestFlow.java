@@ -58,11 +58,11 @@ public class TestFlow extends FlowInputs {
   String validatePositiveIfNotEmpty;
 
   @Email(message = "Please enter a valid email address.")
-  String emailAddress;
+  String email;
 
   String phoneNumber;
 
-  ArrayList<String> contactMethod;
+  ArrayList<String> howToContactYou;
 
 //    Old approach
 //  HashMap<String, HashMap<String, String>> address;

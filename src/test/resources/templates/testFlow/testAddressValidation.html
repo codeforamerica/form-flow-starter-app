@@ -1,8 +1,0 @@
-<th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{::testAddress})">
-  <th:block th:ref="testAddress">
-    <div class="form-card__content">
-      <th:block
-          th:replace="'fragments/inputs/address' :: address(validate=true, inputName='validationOn')"/>
-    </div>
-  </th:block>
-</th:block>

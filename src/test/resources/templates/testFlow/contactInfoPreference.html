@@ -20,20 +20,20 @@
                   label='please enter a phone number')"/>
 
                 <th:block th:replace="'fragments/inputs/text' ::
-                  text(inputName='emailAddress',
+                  text(inputName='email',
                   label='please enter an email address')" />
                 
                 <th:block th:replace="'fragments/inputs/checkboxFieldset' ::
-                  checkboxFieldset(inputName='contactMethod',
+                  checkboxFieldset(inputName='howToContactYou',
                   label='how to contact',
                   content=~{::contactMethods})">
                     <th:block th:ref="contactMethods">
                       <!-- Copy the below input if you want to add more -->
                       <th:block
-                        th:replace="'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='contactMethod',value='emailPreferred', label='contact by email')"/>
+                        th:replace="'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='howToContactYou',value='email', label='contact by email')"/>
 
                       <th:block
-                          th:replace="'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='contactMethod',value='phonePreferred', label='contact by phone')"/>
+                          th:replace="'fragments/inputs/checkboxInSet' :: checkboxInSet(inputName='howToContactYou',value='phone', label='contact by phone')"/>
                     </th:block>
                 </th:block>
 
