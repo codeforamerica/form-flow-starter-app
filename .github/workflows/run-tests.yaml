@@ -28,9 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up ChromeDriver
-        uses: nanasess/setup-chromedriver@v1.0.8
+        uses: nanasess/setup-chromedriver@v2.0.0
       - name: Set up JDK
-        uses: actions/setup-java@v3.5.0
+        uses: actions/setup-java@v3.11.0
         with:
           distribution: 'adopt'
           java-version: '17'
