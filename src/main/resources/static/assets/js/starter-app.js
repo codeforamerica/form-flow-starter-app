@@ -14,5 +14,5 @@ function selectCheckboxFieldIfTextFieldIsNotEmpty(textFieldId, checkboxFieldId) 
 
 window.onload = function() {
     selectCheckboxFieldIfTextFieldIsNotEmpty("email", "howToContactYou-email");
-    selectCheckboxFieldIfTextFieldIsNotEmpty("phoneNumber", "howToContactYou-phoneNumber");
+    selectCheckboxFieldIfTextFieldIsNotEmpty("phoneNumber", "howToContactYou-phone");
 }

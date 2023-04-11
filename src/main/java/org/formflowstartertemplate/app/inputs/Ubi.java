@@ -152,17 +152,18 @@ public class Ubi extends FlowInputs {
 
   //Economic Hardship Screen
   private ArrayList<String> economicHardshipTypes;
-
+  
+  // Legal Stuff Screen
   @NotEmpty(message = "{legal-stuff.make-sure-you-answer-this-question}")
   private ArrayList<String> agreesToLegalTerms;
   @NotBlank
   private String signature;
+  
+  // Contact Info Screen
   @Phone(message = "{contact-info.invalid-phone-number}")
   private String phoneNumber;
   @Email(message = "{contact-info.invalid-email}", regexp = RegexUtils.EMAIL_REGEX)
   private String email;
-  @NotEmpty
+  @NotEmpty(message = "{contact-info.select-a-contact-method}")
   private ArrayList<String> howToContactYou;
-
-
 }
