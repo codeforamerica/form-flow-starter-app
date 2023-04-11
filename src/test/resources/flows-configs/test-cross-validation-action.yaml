@@ -1,9 +1,0 @@
-name: testFlow
-flow:
-  contactInfoPreference:
-    crossFieldValidationAction: CheckIndicatedContactMethodIsProvided
-    nextScreens:
-      - name: success
-  success:
-    nextScreens:
-      - name: null
