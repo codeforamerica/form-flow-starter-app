@@ -10,9 +10,9 @@
       <main id="content" role="main" class="form-card spacing-above-35">
         <div class="legal-stuff-header">
           <th:block
-              th:replace="'fragments/cardHeader' :: cardHeader(header=#{legal-stuff.header}, subtext=#{legal-stuff.scroll-down})"/>
+              th:replace="fragments/cardHeader :: cardHeader(header=#{legal-stuff.header}, subtext=#{legal-stuff.scroll-down})"/>
         </div>
-          <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{::legalStuffContent})">
+          <th:block th:replace="fragments/form :: form(action=${formAction}, content=~{::legalStuffContent})">
             <th:block th:ref="legalStuffContent">
               <div class="form-card__content">
                 <div class="boxed-content legal-stuff-window textarea-readonly">
@@ -31,7 +31,7 @@
                   <p th:text="#{legal-stuff.individuals-requiring-assistance}"></p>
                 </div>
                 <div class="align-with-boxed-content">
-                  <th:block th:replace="'fragments/inputs/checkboxMod' ::
+                  <th:block th:replace="fragments/inputs/checkboxMod ::
                     checkboxMod(inputName='agreesToLegalTerms',
                     label=#{legal-stuff.i-agree},
                     exteriorElementHelpText=#{legal-stuff.copies-of-the-full-agreements-and-policies},

@@ -9,7 +9,7 @@
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
         <th:block
-            th:replace="'fragments/cardHeader' :: cardHeader(header='Success!', subtext='You have successfully completed your document upload!')"/>
+            th:replace="fragments/cardHeader :: cardHeader(header='Success!', subtext='You have successfully completed your document upload!')"/>
         <th:block th:ref="">
           <div class="form-card__content">
             <p>Congratulations, you did it! 🎉</p>

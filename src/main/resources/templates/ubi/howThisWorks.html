@@ -9,9 +9,9 @@
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
         <th:block
-            th:replace="'fragments/cardHeader' :: cardHeader(header=#{how-this-works.how-this-works}, subtext=#{how-this-works.this-application-form})"/>
+            th:replace="fragments/cardHeader :: cardHeader(header=#{how-this-works.how-this-works}, subtext=#{how-this-works.this-application-form})"/>
         <div class="form-card__content">
-          <th:block th:replace="'fragments/honeycrisp/accordion' :: accordion(
+          <th:block th:replace="fragments/honeycrisp/accordion :: accordion(
             buttonLabel=#{how-this-works.we-will-ask-you-about},
             content=~{::accordionOneContent})">
             <th:block th:ref="accordionOneContent">
@@ -23,7 +23,7 @@
               </ul>
             </th:block>
           </th:block>
-          <th:block th:replace="'fragments/honeycrisp/accordion' :: accordion(
+          <th:block th:replace="fragments/honeycrisp/accordion :: accordion(
             buttonLabel=#{how-this-works.adding-documents},
             content=~{::accordionTwoContent})">
             <th:block th:ref="accordionTwoContent">
@@ -32,7 +32,7 @@
           </th:block>
         </div>
         <div class="form-card__footer">
-          <th:block th:replace="'fragments/continueButton' :: continue"/>
+          <th:block th:replace="fragments/continueButton :: continue"/>
           <div>
             <i class="icon-lock_outline"></i>
             <span th:utext="#{how-this-works.your-info-is-secure}"></span>

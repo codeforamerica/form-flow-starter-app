@@ -9,9 +9,9 @@
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
         <th:block
-            th:replace="'fragments/cardHeader' :: cardHeader(header=#{income.header}, subtext=#{income.include-all-money})"/>
+            th:replace="fragments/cardHeader :: cardHeader(header=#{income.header}, subtext=#{income.include-all-money})"/>
         <div class="form-card__footer">
-          <th:block th:replace="'fragments/continueButton' :: continue(text=#{income.add-income})"/>
+          <th:block th:replace="fragments/continueButton :: continue(text=#{income.add-income})"/>
           <hr>
           <a href="/flow/ubi/reportedAnnualHouseholdIncome" th:text="#{income.no-i-already-know}"></a>
         </div>

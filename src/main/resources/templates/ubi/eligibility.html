@@ -9,10 +9,10 @@
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
         <div class="text--centered">
-          <th:block th:replace="'fragments/icons' :: household"/>
+          <th:block th:replace="fragments/icons :: household"/>
           <p class="text--grey-dark" th:text="#{eligibility.step}"></p>
           <th:block
-              th:replace="'fragments/cardHeader' :: cardHeader(header=#{eligibility.eligibility})"/>
+              th:replace="fragments/cardHeader :: cardHeader(header=#{eligibility.eligibility})"/>
         </div>
         <div class="boxed-content">
           <h2 class="text--centered" th:text="#{eligibility.we-will}"></h2>
@@ -24,7 +24,7 @@
           </ol>
         </div>
         <div class="form-card__footer text--centered">
-          <th:block th:replace="'fragments/continueButton' :: continue"/>
+          <th:block th:replace="fragments/continueButton :: continue"/>
         </div>
       </main>
     </div>

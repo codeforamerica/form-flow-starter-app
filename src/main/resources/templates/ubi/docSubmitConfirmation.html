@@ -11,11 +11,11 @@
       <main
           id="content" role="main" class="form-card spacing-above-35">
         <div class="form-card__content">
-          <th:block th:replace="'fragments/icons' :: 'fileWithCheckmark'"></th:block>
-          <th:block th:replace="'fragments/cardHeader' :: cardHeader(header=#{doc-submit-confirmation.header})" />
+          <th:block th:replace="fragments/icons :: 'fileWithCheckmark'"></th:block>
+          <th:block th:replace="fragments/cardHeader :: cardHeader(header=#{doc-submit-confirmation.header})" />
         </div>
         <div class="form-card__footer">
-            <th:block th:replace="'fragments/continueButton' :: continue(text=#{doc-submit-confirmation.yes-submit-and-finish})" />
+            <th:block th:replace="fragments/continueButton :: continue(text=#{doc-submit-confirmation.yes-submit-and-finish})" />
           <br>
           <a class="button button--other"  th:href="'/flow/' + ${flow} + '/uploadUBIFlowDocuments'"
              th:text="#{doc-submit-confirmation.no-add-more-documents}"></a>

@@ -11,11 +11,11 @@
           th:with="name=${inputData.firstName} + ' ' + ${inputData.lastName}"
           id="content" role="main" class="form-card spacing-above-35">
         <th:block
-            th:replace="'fragments/cardHeader' :: cardHeader(header=#{sign-name.header}, subtext=#{sign-name.subheader(${name})})"/>
-          <th:block th:replace="'fragments/form' :: form(action=('/flow/' + ${flow} + '/'+ ${screen} + '/submit' ), content=~{::signNameInput})">
+            th:replace="fragments/cardHeader :: cardHeader(header=#{sign-name.header}, subtext=#{sign-name.subheader(${name})})"/>
+          <th:block th:replace="fragments/form :: form(action=('/flow/' + ${flow} + '/'+ ${screen} + '/submit' ), content=~{::signNameInput})">
             <th:block th:ref="signNameInput">
               <div class="form-card__content">
-                <th:block th:replace="'fragments/inputs/text' ::
+                <th:block th:replace="fragments/inputs/text ::
                   text(inputName='signature',
                   ariaLabel='header')" />
               </div>

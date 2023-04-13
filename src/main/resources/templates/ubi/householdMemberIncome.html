@@ -7,7 +7,7 @@
     inputContent=~{::inputContent})">
   <th:block th:ref="inputContent">
     <!-- Be sure to have `ariaLabel='header'` to label the input with the header -->
-    <th:block th:replace="'fragments/inputs/radioFieldset' ::
+    <th:block th:replace="fragments/inputs/radioFieldset ::
                     radioFieldset(inputName='householdMember',
                     ariaLabel='header',
                     content=~{::householdMembers})">
@@ -15,14 +15,14 @@
           th:ref="householdMembers"
           th:with="applicantWasSelected=${conditionManager.runCondition('HouseholdMemberAlreadyHasIncome', submission, 'applicant')}">
         <th:block
-            th:replace="'fragments/inputs/radio' :: radio(inputName='householdMember', value='applicant', label=#{general.me}, disabled=${applicantWasSelected})"/>
+            th:replace="fragments/inputs/radio :: radio(inputName='householdMember', value='applicant', label=#{general.me}, disabled=${applicantWasSelected})"/>
         <th:block th:if="${inputData.containsKey('household')}">
           <th:block th:each="hm, iter: ${inputData.household}"
                     th:with="
                     fullName=${hm.householdMemberFirstName + ' ' + hm.householdMemberLastName},
                     householdMemberWasSelected=${conditionManager.runCondition('HouseholdMemberAlreadyHasIncome', submission, fullName)}">
             <th:block
-                th:replace="'fragments/inputs/radio' :: radio(inputName='householdMember', value=${fullName}, label=${fullName}, disabled=${householdMemberWasSelected})"/>
+                th:replace="fragments/inputs/radio :: radio(inputName='householdMember', value=${fullName}, label=${fullName}, disabled=${householdMemberWasSelected})"/>
           </th:block>
           </th:if>
         </th:block>

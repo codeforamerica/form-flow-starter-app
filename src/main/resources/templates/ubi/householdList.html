@@ -8,9 +8,9 @@
     <div class="grid">
       <div th:replace="fragments/goBack :: goBackLink"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
-        <th:block th:replace="'fragments/icons' :: 'householdBlue'"></th:block>
+        <th:block th:replace="fragments/icons :: 'householdBlue'"></th:block>
         <th:block
-            th:replace="'fragments/cardHeader' :: cardHeader(header=#{household-list.header},
+            th:replace="fragments/cardHeader :: cardHeader(header=#{household-list.header},
             subtext=#{household-list.include-children})"/>
         <div class="form-card__content">
           <div class="boxed-content text--centered">
@@ -47,7 +47,7 @@
         </div>
         <div class="form-card__footer">
           <th:block
-              th:replace="'fragments/continueButton' :: continue(text=#{household-list.continue})"/>
+              th:replace="fragments/continueButton :: continue(text=#{household-list.continue})"/>
         </div>
       </main>
     </div>
