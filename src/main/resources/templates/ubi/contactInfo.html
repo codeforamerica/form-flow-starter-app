@@ -10,19 +10,19 @@
       <main id="content" role="main" class="form-card spacing-above-35">
         <th:block th:replace="'fragments/icons' :: contactInfo"></th:block>
         <th:block
-            th:replace="'fragments/cardHeader' :: cardHeader(header=#{contact-info.header})"/>
-          <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{::contactInfoContent})">
+            th:replace="~{'fragments/cardHeader' :: cardHeader(header=#{contact-info.header})}"/>
+          <th:block th:replace="~{'fragments/form' :: form(action=${formAction}, content=~{::contactInfoContent})}">
             <th:block th:ref="contactInfoContent">
               <div class="form-card__content">
                 <th:block
-                  th:replace="'fragments/inputs/phone' :: phone(
+                  th:replace="~{fragments/inputs/phone :: phone(
                   inputName='phoneNumber',
                   label=#{contact-info.what-is-your-phone-number},
                   helpText=#{contact-info.a-caseworker-may-use-this-number-to-contact-you},
-                  placeholder=#{contact-info.phone-number-placeholder})"/>
-                <th:block th:replace="'fragments/inputs/text' ::
+                  placeholder=#{contact-info.phone-number-placeholder})}"/>
+                <th:block th:replace="~{fragments/inputs/text ::
                   text(inputName='email',
-                  label=#{contact-info.what-is-your-email-address})" />
+                  label=#{contact-info.what-is-your-email-address})}" />
                 <th:block th:replace="'fragments/inputs/checkboxFieldset' ::
                   checkboxFieldset(inputName='howToContactYou',
                   label=#{contact-info.how-can-we-send-you-updates},
