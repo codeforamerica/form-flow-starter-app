@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
-<head th:replace="fragments/head :: head(title=#{income-amounts.title})"></head>
+<head th:replace="~{fragments/head :: head(title=#{income-amounts.title})}"></head>
 <body>
 <div class="page-wrapper">
-  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <div th:replace="~{fragments/toolbar :: toolbar}"></div>
   <section class="slab">
     <div class="grid">
-      <div th:replace="fragments/goBack :: goBackLink"></div>
+      <div th:replace="~{fragments/goBack :: goBackLink}"></div>
       <main id="content" role="main" class="form-card spacing-above-35"
             th:with="selectedSelf=${conditionManager.runCondition('IncomeSelectedSelf', submission, uuid)},
                      houseHoldMemberName=${submission.getSubflowEntryByUuid('income', uuid).householdMember}">
         <th:block
-            th:replace="fragments/cardHeader :: cardHeader(header=${selectedSelf ? #messages.msg('income-amounts.header', 'you') : #messages.msg('income-amounts.header', houseHoldMemberName)})"/>
+            th:replace="~{fragments/cardHeader :: cardHeader(header=${selectedSelf ? #messages.msg('income-amounts.header', 'you') : #messages.msg('income-amounts.header', houseHoldMemberName)})}"/>
         <th:block
-            th:replace="fragments/form :: form(action=${formAction}, content=~{::incomeAmounts})">
+            th:replace="~{fragments/form :: form(action=${formAction}, content=~{::incomeAmounts})}">
           <div th:ref="incomeAmounts">
             <!-- When visiting from /edit, inputData is the singular object of one iteration,
                  so put it in an array to be used for th:each  -->
@@ -40,6 +40,6 @@
     </div>
   </section>
 </div>
-<th:block th:replace="fragments/footer :: footer"/>
+<th:block th:replace="~{fragments/footer :: footer}"/>
 </body>
 </html>

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
-<head th:replace="fragments/head :: head(title='First Page')"></head>
+<head th:replace="~{fragments/head :: head(title='First Page')}"></head>
 <body>
 <div class="page-wrapper">
-  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <div th:replace="~{fragments/toolbar :: toolbar}"></div>
   <section class="slab">
     <div class="grid">
       <main id="content" role="main" class="form-card spacing-above-35">
         <th:block
-            th:replace="fragments/cardHeader :: cardHeader(header=#{first-page.header}, subtext=#{first-page.subheader})"/>
+            th:replace="~{fragments/cardHeader :: cardHeader(header=#{first-page.header}, subtext=#{first-page.subheader})}"/>
         <th:block
-            th:replace="fragments/form :: form(action=${'/' + flow + '/' + screen}, content=~{::formContent})">
+            th:replace="~{fragments/form :: form(action=${'/' + flow + '/' + screen}, content=~{::formContent})}">
           <th:block th:ref="formContent"
                     th:with="showCondition=${conditionManager.runCondition('ApplicantIsFemale', submission)}">
             <div class="form-card__content">
@@ -43,9 +43,9 @@
                           content=~{::genderContent})">
                 <th:block th:ref="genderContent">
                   <th:block
-                      th:replace="fragments/inputs/checkboxInSet :: checkboxInSet(inputName='gender',value='MALE', label='A tall man', checkboxHelpText='This is helping, right?', checkboxIcon='favorite')"/>
+                      th:replace="~{fragments/inputs/checkboxInSet :: checkboxInSet(inputName='gender',value='MALE', label='A tall man', checkboxHelpText='This is helping, right?', checkboxIcon='favorite')}"/>
                   <th:block
-                      th:replace="fragments/inputs/checkboxInSet :: checkboxInSet(inputName='gender',value='FEMALE', label='Female')"/>
+                      th:replace="~{fragments/inputs/checkboxInSet :: checkboxInSet(inputName='gender',value='FEMALE', label='Female')}"/>
                 </th:block>
               </th:block>
               <th:block th:replace="fragments/inputs/radioFieldset ::
@@ -55,24 +55,24 @@
                           content=~{::favoriteColorContent})">
                 <th:block th:ref="favoriteColorContent">
                   <th:block
-                      th:replace="fragments/inputs/radio :: radio(inputName='favoriteColor',value='BLUE', label='Blue')"/>
+                      th:replace="~{fragments/inputs/radio :: radio(inputName='favoriteColor',value='BLUE', label='Blue')}"/>
                   <th:block
-                      th:replace="fragments/inputs/radio :: radio(inputName='favoriteColor',value='BABY BLUE', label='Baby blue')"/>
+                      th:replace="~{fragments/inputs/radio :: radio(inputName='favoriteColor',value='BABY BLUE', label='Baby blue')}"/>
                   <th:block
-                      th:replace="fragments/inputs/radio :: radio(inputName='favoriteColor',value='NAVY BLUE', label='Navy blue')"/>
+                      th:replace="~{fragments/inputs/radio :: radio(inputName='favoriteColor',value='NAVY BLUE', label='Navy blue')}"/>
                 </th:block>
               </th:block>
               <th:block
-                  th:replace="fragments/inputs/select :: select(inputName='favoriteFruit', label='What\'s your favorite fruit?', helpText='Mine is banana', content=~{::favoriteFruitContent})">
+                  th:replace="~{fragments/inputs/select :: select(inputName='favoriteFruit', label='What\'s your favorite fruit?', helpText='Mine is banana', content=~{::favoriteFruitContent})}">
                 <th:block th:ref="favoriteFruitContent">
                   <th:block
-                      th:replace="fragments/inputs/selectOption :: selectOption(value='', optionText='Choose one')"/>
+                      th:replace="~{fragments/inputs/selectOption :: selectOption(value='', optionText='Choose one')}"/>
                   <th:block
-                      th:replace="fragments/inputs/selectOption :: selectOption(value='APPLE', optionText='Apple')"/>
+                      th:replace="~{fragments/inputs/selectOption :: selectOption(value='APPLE', optionText='Apple')}"/>
                   <th:block
-                      th:replace="fragments/inputs/selectOption :: selectOption(value='BANANA', optionText='Banana')"/>
+                      th:replace="~{fragments/inputs/selectOption :: selectOption(value='BANANA', optionText='Banana')}"/>
                   <th:block
-                      th:replace="fragments/inputs/selectOption :: selectOption(value='KIWI', optionText='Kiwi')"/>
+                      th:replace="~{fragments/inputs/selectOption :: selectOption(value='KIWI', optionText='Kiwi')}"/>
                 </th:block>
               </th:block>
               <th:block
@@ -96,7 +96,7 @@
 
             </div>
             <div class="form-card__footer">
-              <th:block th:replace="fragments/inputs/submitButton :: submitButton(text='Submit')"/>
+              <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(text='Submit')}"/>
             </div>
           </th:block>
         </th:block>
@@ -104,7 +104,7 @@
     </div>
   </section>
 </div>
-<th:block th:replace="fragments/footer :: footer"/>
+<th:block th:replace="~{fragments/footer :: footer}"/>
 </body>
 </html>
 

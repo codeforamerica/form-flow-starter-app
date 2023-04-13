@@ -47,7 +47,7 @@
        th:text="${exteriorElementHelpText}"
        class="text--help with-no-padding"></p>
     <th:block
-        th:replace="fragments/inputError :: validationError(inputName=${inputName})"></th:block>
+        th:replace="~{fragments/inputError :: validationError(inputName=${inputName})}"></th:block>
   </div>
 </th:block>
 </body>

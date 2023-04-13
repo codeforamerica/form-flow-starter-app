@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
-<head th:replace="fragments/head :: head(title=#{next-steps.title})"></head>
+<head th:replace="~{fragments/head :: head(title=#{next-steps.title})}"></head>
 <body>
 <div class="page-wrapper">
-  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <div th:replace="~{fragments/toolbar :: toolbar}"></div>
   <section class="slab">
     <div class="grid">
       <div class="notice--warning notice-container spacing-below-25">
         <p th:utext="#{next-steps.warning}"></p>
       </div>
-      <div th:replace="fragments/goBack :: goBackLink"></div>
+      <div th:replace="~{fragments/goBack :: goBackLink}"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
-        <th:block th:replace="fragments/icons :: nextSteps"></th:block>
+        <th:block th:replace="~{fragments/icons :: nextSteps}"></th:block>
         <th:block
-            th:replace="fragments/cardHeader :: cardHeader(header=#{next-steps.header})"/>
+            th:replace="~{fragments/cardHeader :: cardHeader(header=#{next-steps.header})}"/>
         <div class="form-card__content">
           <div class="vertical-steps">
             <div class="vertical-steps__step">
               <div class="notice-blue steps-box">
-                <th:block th:replace="fragments/icons :: phoneInTalkBack"></th:block>
+                <th:block th:replace="~{fragments/icons :: phoneInTalkBack}"></th:block>
                 <p th:utext="#{next-steps.within-24-hours-expect-an-email}"></p>
               </div>
             </div>
             <div class="vertical-steps__step">
               <div class="notice-blue steps-box">
-                <th:block th:replace="fragments/icons :: localPostOfficeBlack"></th:block>
+                <th:block th:replace="~{fragments/icons :: localPostOfficeBlack}"></th:block>
                 <p th:utext="#{next-steps.in-the-next-7-10-days}"></p>
               </div>
             </div>
             <div class="vertical-steps__step">
               <div class="notice-blue steps-box vertical-step-bottom">
-                <th:block th:replace="fragments/icons :: communicate"></th:block>
+                <th:block th:replace="~{fragments/icons :: communicate}"></th:block>
                 <p th:utext="#{next-steps.you-may-receive-a-phone-call}"></p>
               </div>
             </div>
           </div>
         </div>
         <div class="form-card__footer">
-          <th:block th:replace="fragments/continueButton :: continue"/>
+          <th:block th:replace="~{fragments/continueButton :: continue}"/>
           <div class="email-confirmation-box zero-flex-shrink">
-            <th:block th:replace="fragments/icons :: greenCheckmark"></th:block>
+            <th:block th:replace="~{fragments/icons :: greenCheckmark}"></th:block>
             <strong th:utext="#{next-steps.your-next-steps-have-been-emailed}"></strong>
           </div>
         </div>
@@ -47,6 +47,6 @@
     </div>
   </section>
 </div>
-<th:block th:replace="fragments/footer :: footer"/>
+<th:block th:replace="~{fragments/footer :: footer}"/>
 </body>
 </html>

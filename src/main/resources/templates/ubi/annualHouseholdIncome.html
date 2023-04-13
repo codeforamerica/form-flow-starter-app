@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
-<head th:replace="fragments/head :: head(title=#{annual-household-income.title})"></head>
+<head th:replace="~{fragments/head :: head(title=#{annual-household-income.title})}"></head>
 <body>
 <div class="page-wrapper">
-  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <div th:replace="~{fragments/toolbar :: toolbar}"></div>
   <section class="slab">
     <div class="grid">
-      <div th:replace="fragments/goBack :: goBackLink"></div>
+      <div th:replace="~{fragments/goBack :: goBackLink}"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
         <th:block
-            th:replace="fragments/cardHeader :: cardHeader(header=#{annual-household-income.header})"/>
+            th:replace="~{fragments/cardHeader :: cardHeader(header=#{annual-household-income.header})}"/>
         <div class="form-card__content">
           <div
               th:with="allHouseholdMembersHaveIncome=${conditionManager.runCondition('AllHouseholdMembersHaveIncome',submission)}"
@@ -59,12 +59,12 @@
         </div>
         <div class="form-card__footer">
           <th:block
-              th:replace="fragments/continueButton :: continue(text=#{annual-household-income.continue-button})"/>
+              th:replace="~{fragments/continueButton :: continue(text=#{annual-household-income.continue-button})}"/>
         </div>
       </main>
     </div>
   </section>
 </div>
-<th:block th:replace="fragments/footer :: footer"/>
+<th:block th:replace="~{fragments/footer :: footer}"/>
 </body>
 </html>
