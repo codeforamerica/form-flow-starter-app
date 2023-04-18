@@ -1,7 +1,5 @@
 flow: ubi
+pdf: /pdfs/Multipage-UBI-Form.pdf
 inputs:
   firstName: APPLICANT_LEGAL_NAME_FIRST
----
-flow: docUpload
-inputs:
-    docUpload: DOCUMENT_UPLOAD
+  residentialAddressCity: APPLICANT_CITY
