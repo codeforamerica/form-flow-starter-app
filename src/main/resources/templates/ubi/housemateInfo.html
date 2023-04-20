@@ -15,14 +15,14 @@
             th:replace="~{fragments/form :: form(action=${formAction}, content=~{::formContent})}">
           <th:block th:ref="formContent">
             <div class="form-card__content">
-              <th:block th:replace="fragments/inputs/text ::
+              <th:block th:replace="~{fragments/inputs/text ::
                   text(inputName='householdMemberFirstName',
                   label=#{housemate-info.first-name},
-                  helpText=#{housemate-info.legally})"/>
-              <th:block th:replace="fragments/inputs/text ::
+                  helpText=#{housemate-info.legally})}"/>
+              <th:block th:replace="~{fragments/inputs/text ::
                   text(inputName='householdMemberLastName',
                   label=#{housemate-info.last-name},
-                  helpText=#{housemate-info.legally})"/>
+                  helpText=#{housemate-info.legally})}"/>
               <th:block
                   th:replace="~{fragments/inputs/select :: select(label=#{housemate-info.relationship}, inputName='householdMemberRelationship', content=~{::options})}">
                 <th:block th:ref="options">
@@ -38,10 +38,10 @@
                       th:replace="~{fragments/inputs/selectOption :: selectOption(value='Domestic partner', optionText=#{housemate-info.domestic})}"/>
                 </th:block>
               </th:block>
-              <th:block th:replace="fragments/inputs/radioFieldset ::
+              <th:block th:replace="~{fragments/inputs/radioFieldset ::
                             radioFieldset(inputName='householdMemberRecentlyMovedToUS',
                             label=#{housemate-info.did-they-move},
-                            content=~{::radioOptions})">
+                            content=~{::radioOptions})}">
                 <th:block th:ref="radioOptions">
                   <!-- Copy the below input if you want to add more -->
                   <th:block
@@ -51,8 +51,8 @@
                 </th:block>
               </th:block>
               <div class="form-card__footer">
-                <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                  text=#{general.inputs.continue})"/>
+                <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
+                  text=#{general.inputs.continue})}"/>
               </div>
             </div>
           </th:block>

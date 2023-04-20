@@ -1,16 +1,16 @@
 <th:block
-    th:replace="fragments/screens/screenWithOneInput ::
+    th:replace="~{fragments/screens/screenWithOneInput ::
   screenWithOneInput(
     title=#{household-member-income.title},
     header=#{household-member-income.header},
     formAction=${formAction},
-    inputContent=~{::inputContent})">
+    inputContent=~{::inputContent})}">
   <th:block th:ref="inputContent">
     <!-- Be sure to have `ariaLabel='header'` to label the input with the header -->
-    <th:block th:replace="fragments/inputs/radioFieldset ::
+    <th:block th:replace="~{fragments/inputs/radioFieldset ::
                     radioFieldset(inputName='householdMember',
                     ariaLabel='header',
-                    content=~{::householdMembers})">
+                    content=~{::householdMembers})}">
       <th:block
           th:ref="householdMembers"
           th:with="applicantWasSelected=${conditionManager.runCondition('HouseholdMemberAlreadyHasIncome', submission, 'applicant')}">

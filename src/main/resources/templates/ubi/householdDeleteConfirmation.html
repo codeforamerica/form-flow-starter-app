@@ -32,8 +32,8 @@
           <div class="form-card__footer">
             <form method="post"
                   th:action="'/flow/' + ${flow} + '/' + ${subflow} + '/' + ${param.uuid} + '/delete'">
-              <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                  text=#{household-delete-confirmation.yes})"/>
+              <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
+                  text=#{household-delete-confirmation.yes})}"/>
             </form>
             <a class="button spacing-above-35" th:href="'/flow/' + ${flow} + '/householdList'"
                th:text="#{household-delete-confirmation.no}"></a>

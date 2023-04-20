@@ -15,18 +15,18 @@
           <th:block th:ref="contactInfoContent">
             <div class="form-card__content">
               <th:block
-                  th:replace="fragments/inputs/phone :: phone(
+                  th:replace="~{fragments/inputs/phone :: phone(
                   inputName='phoneNumber',
                   label=#{contact-info.what-is-your-phone-number},
                   helpText=#{contact-info.a-caseworker-may-use-this-number-to-contact-you},
-                  placeholder=#{contact-info.phone-number-placeholder})"/>
-              <th:block th:replace="fragments/inputs/text ::
+                  placeholder=#{contact-info.phone-number-placeholder})}"/>
+              <th:block th:replace="~{fragments/inputs/text ::
                   text(inputName='email',
-                  label=#{contact-info.what-is-your-email-address})" />
-              <th:block th:replace="fragments/inputs/checkboxFieldset ::
+                  label=#{contact-info.what-is-your-email-address})}" />
+              <th:block th:replace="~{fragments/inputs/checkboxFieldset ::
                   checkboxFieldset(inputName='howToContactYou',
                   label=#{contact-info.how-can-we-send-you-updates},
-                  content=~{::howToSendYouUpdates})">
+                  content=~{::howToSendYouUpdates})}">
                 <th:block th:ref="howToSendYouUpdates">
                   <!-- Copy the below input if you want to add more -->
                   <th:block
@@ -38,8 +38,8 @@
               <p class="text--help help--header-spacing" th:utext="#{contact-info.the-center-of-ubi-may-send-you-text}"></p>
             </div>
             <div class="form-card__footer">
-              <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                  text=#{general.inputs.continue})"/>
+              <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
+                  text=#{general.inputs.continue})}"/>
             </div>
           </th:block>
         </th:block>

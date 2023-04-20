@@ -15,13 +15,13 @@
           <th:block th:replace="~{fragments/form :: form(action=('/flow/' + ${flow} + '/'+ ${screen} + '/submit' ), content=~{::signNameInput})}">
             <th:block th:ref="signNameInput">
               <div class="form-card__content">
-                <th:block th:replace="fragments/inputs/text ::
+                <th:block th:replace="~{fragments/inputs/text ::
                   text(inputName='signature',
-                  ariaLabel='header')" />
+                  ariaLabel='header')}" />
               </div>
               <div class="form-card__footer">
-                <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                  text=#{sign-name.submit-application})" />
+                <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
+                  text=#{sign-name.submit-application})}" />
               </div>
           </th:block>
         </th:block>

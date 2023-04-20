@@ -20,9 +20,9 @@
                   th:replace="~{fragments/fileUploader :: fileUploader(inputName='ubiFiles')}"></th:block>
 
               <div class="spacing-above-60">
-                <th:block th:replace="fragments/honeycrisp/reveal :: reveal(
+                <th:block th:replace="~{fragments/honeycrisp/reveal :: reveal(
                 linkLabel=~{::revealLabel},
-                content=~{::revealContent})">
+                content=~{::revealContent})}">
                   <th:block th:ref="revealLabel">
                     <th:block th:replace="~{fragments/icons :: smallDoubleFileIcon}"></th:block>
                     <th:block
@@ -49,8 +49,8 @@
               </div>
             </div>
             <div class="form-card__footer display-none" id="submit">
-              <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                text=#{adding-documents-upload-doc.im-finished-uploading})"/>
+              <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
+                text=#{adding-documents-upload-doc.im-finished-uploading})}"/>
             </div>
           </th:block>
         </th:block>

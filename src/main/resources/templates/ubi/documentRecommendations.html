@@ -12,9 +12,9 @@
         <th:block
             th:replace="~{fragments/cardHeader :: cardHeader(header=#{document-recommendations.header}, subtext=#{document-recommendations.you-have-30-days})}"/>
         <div class="form-card__content">
-          <th:block th:replace="fragments/honeycrisp/reveal :: reveal(
+          <th:block th:replace="~{fragments/honeycrisp/reveal :: reveal(
             linkLabel=~{::revealLabel},
-            content=~{::recommendedDocumentsContent})">
+            content=~{::recommendedDocumentsContent})}">
             <th:block th:ref="revealLabel">
               <th:block th:text="#{document-recommendations.recommended-documents}"/>
             </th:block>

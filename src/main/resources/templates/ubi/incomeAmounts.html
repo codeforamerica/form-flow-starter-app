@@ -23,15 +23,15 @@
                         th:if="${personsIncome.uuid.equals(uuid)}">
                 <th:block th:each="incomeType: ${personsIncome['incomeTypes[]']}">
                   <th:block
-                      th:replace="fragments/inputs/money :: money(inputName=${incomeType + 'Amount'},
+                      th:replace="~{fragments/inputs/money :: money(inputName=${incomeType + 'Amount'},
                       label=#{'income-shared.' + ${incomeType}},
-                      helpText=#{income-amounts.yearly})"/>
+                      helpText=#{income-amounts.yearly})}"/>
                 </th:block>
               </th:block>
             </div>
             <div class="form-card__footer">
-              <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                text=#{general.inputs.continue})"/>
+              <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
+                text=#{general.inputs.continue})}"/>
             </div>
           </div>
         </th:block>

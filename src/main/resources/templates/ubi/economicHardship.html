@@ -1,17 +1,17 @@
 <th:block>
   <th:block
-      th:replace="fragments/screens/screenWithOneInput ::
+      th:replace="~{fragments/screens/screenWithOneInput ::
   screenWithOneInput(
     title=#{economic-hardship.title},
     header=#{economic-hardship.header},
     subtext=#{economic-hardship.subheader},
     formAction=${formAction},
-    inputContent=~{::inputContent})">
+    inputContent=~{::inputContent})}">
     <th:block th:ref="inputContent">
-      <th:block th:replace="fragments/inputs/checkboxFieldset ::
+      <th:block th:replace="~{fragments/inputs/checkboxFieldset ::
       checkboxFieldset(inputName='economicHardshipTypes',
       ariaLabel='header',
-      content=~{::checkboxContent})">
+      content=~{::checkboxContent})}">
         <th:block th:ref="checkboxContent">
           <th:block
               th:replace="~{fragments/inputs/checkboxInSet :: checkboxInSet(inputName='economicHardshipTypes', value=#{economic-hardship.hours-or-wages}, label=#{economic-hardship.hours-or-wages})}"/>

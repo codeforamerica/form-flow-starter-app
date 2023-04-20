@@ -32,10 +32,10 @@
                       th:replace="~{fragments/inputs/selectOption :: selectOption(value='Spanish', optionText=#{general.language.spanish})}"/>
                 </th:block>
               </th:block>
-              <th:block th:replace="fragments/inputs/radioFieldset ::
+              <th:block th:replace="~{fragments/inputs/radioFieldset ::
                             radioFieldset(inputName='needInterpreter',
                             label=#{language-preference.need-an-interpreter-label},
-                            content=~{::needInterpreterContent})">
+                            content=~{::needInterpreterContent})}">
                 <th:block th:ref="needInterpreterContent">
                   <th:block
                       th:replace="~{fragments/inputs/radio :: radio(inputName='needInterpreter',value='Yes', label=#{general.inputs.yes})}"/>
@@ -45,8 +45,8 @@
               </th:block>
             </div>
             <div class="form-card__footer">
-              <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                  text=#{general.inputs.continue})"/>
+              <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
+                  text=#{general.inputs.continue})}"/>
             </div>
           </th:block>
         </th:block>
