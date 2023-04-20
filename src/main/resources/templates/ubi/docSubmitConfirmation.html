@@ -17,7 +17,7 @@
         <div class="form-card__footer">
             <th:block th:replace="'fragments/continueButton' :: continue(text=#{doc-submit-confirmation.yes-submit-and-finish})" />
           <br>
-          <a class="button button--other"  th:href="'/' + ${flow} + '/uploadUBIFlowDocuments'"
+          <a class="button button--other"  th:href="'/flow/' + ${flow} + '/uploadUBIFlowDocuments'"
              th:text="#{doc-submit-confirmation.no-add-more-documents}"></a>
         </div>
       </main>
