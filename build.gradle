@@ -32,7 +32,6 @@ repositories {
 def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
 def formFlowLibraryVersion = '0.0.2-SNAPSHOT'
 def useLocalLibrary = System.getenv('USE_LOCAL_LIBRARY')
-def dev = System.getenv('SPRING_PROFILES_ACTIVE')
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -40,7 +39,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.flywaydb:flyway-core'
 
-    println("dev on env: ${dev}")
     if (profile == 'dev' || useLocalLibrary == 'true') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
         println "📦 Using local library"
