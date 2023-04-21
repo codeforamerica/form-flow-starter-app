@@ -39,7 +39,7 @@ dependencies {
 
     implementation 'org.flywaydb:flyway-core'
 
-    if (profile == 'dev') {
+    if (profile == 'dev' || props.getProperty('USE_LOCAL_LIBRARY') == 'true') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
         println "📦 Using local library"
     } else {
