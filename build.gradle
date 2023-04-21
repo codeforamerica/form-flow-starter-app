@@ -37,12 +37,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
     implementation 'org.flywaydb:flyway-core'
 
-
-    println("useLocalLibrary: " + useLocalLibrary)
-    if (useLocalLibrary == 'true'  || profile == 'dev') {
+    if (profile == 'dev' || useLocalLibrary == 'true') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
         println "📦 Using local library"
     } else {
