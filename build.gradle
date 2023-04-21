@@ -39,15 +39,14 @@ dependencies {
 
     implementation 'org.flywaydb:flyway-core'
 
-    println("USE_LOCAL_LIBRARY: " + props.getProperty('USE_LOCAL_LIBRARY'))
     println("SPRING_PROFILES_ACTIVE: " + profile)
-//    if (props.getProperty('USE_LOCAL_LIBRARY') == 'true'  || profile == 'dev') {
+    if (profile == 'dev') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
         println "📦 Using local library"
-//    } else {
-//        implementation "org.codeforamerica.platform:form-flow:${formFlowLibraryVersion}"
-//        println "📚Using form flow library ${formFlowLibraryVersion}"
-//    }
+    } else {
+        implementation "org.codeforamerica.platform:form-flow:${formFlowLibraryVersion}"
+        println "📚Using form flow library ${formFlowLibraryVersion}"
+    }
 
     compileOnly 'org.projectlombok:lombok'
 
