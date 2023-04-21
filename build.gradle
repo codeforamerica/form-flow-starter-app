@@ -39,8 +39,9 @@ dependencies {
 
     implementation 'org.flywaydb:flyway-core'
 
+    println("useLocalLibrary: " + props.getProperty('useLocalLibrary'))
     println("SPRING_PROFILES_ACTIVE: " + profile)
-    if (profile == 'dev') {
+    if (props.getProperty('useLocalLibrary') == 'true'  || profile == 'dev') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
         println "📦 Using local library"
     } else {
