@@ -20,7 +20,7 @@
           <th:block
               th:replace="~{fragments/continueButton :: continue(text=#{document-offboarding.finish-application})}"/>
           <br>
-          <a class="button button--other" th:href="'/' + ${flow} + '/documentRecommendations'"
+          <a class="button button--other" th:href="'/flow/' + ${flow} + '/documentRecommendations'"
              th:text="#{document-offboarding.go-back}"></a>
         </div>
       </main>
