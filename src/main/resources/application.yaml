@@ -1,6 +1,5 @@
 form-flow:
   inputs: 'org.formflowstartertemplate.app.inputs.'
-  pdf-map-file: pdf-map.yaml
   uploads:
     accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'
     thumbnail-width: '64'
@@ -23,6 +22,7 @@ form-flow:
       license: us-core-cloud
   pdf:
     path: 'src/main/resources/pdfs/'
+    map-file: pdf-map.yaml
   email-client:
     mailgun:
       key: ${MAILGUN_KEY}
