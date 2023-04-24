@@ -22,6 +22,7 @@ form-flow:
       license: us-core-cloud
   pdf:
     path: 'src/main/resources/pdfs/'
+    map-file: pdf-map.yaml
   email-client:
     mailgun:
       key: ${MAILGUN_KEY}

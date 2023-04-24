@@ -1,0 +1,37 @@
+flow: ubi
+pdf: /pdfs/Multipage-UBI-Form.pdf
+inputFields:
+  firstName: APPLICANT_LEGAL_NAME_FIRST
+  lastName: APPLICANT_LEGAL_NAME_LAST
+  birthDate: APPLICANT_DATE_OF_BIRTH
+  residentialAddressStreetAddress1: APPLICANT_ADDRESS
+  residentialAddressStreetAddress2: APPLICANT_APT_NUMBER
+  residentialAddressCity: APPLICANT_CITY
+  residentialAddressState: APPLICANT_STATE
+  residentialAddressZipCode: APPLICANT_ZIP_CODE
+  phoneNumber: APPLICANT_PHONE_NUMBER
+  email: APPLICANT_EMAIL_ADDRESS
+  genderIdentity: GENDER
+  needInterpreter: APPLICANT_NEEDS_INTERPRETER
+  languageSpoken: APPLICANT_PREFERRED_SPOKEN_LANGUAGE
+  languageRead: APPLICANT_PREFERRED_WRITTEN_LANGUAGE
+  movedToUSA: APPLICANT_RECENTLY_MOVED_TO_US
+  movedToUSADate: DATE_APPLICANT_MOVED_TO_US
+  movedFromCountry: COUNTRY_APPLICANT_MOVED_FROM
+  reportedTotalAnnualHouseholdIncome: REPORTED_ANNUAL_HOUSEHOLD_INCOME_AMOUNT
+  economicHardshipTypes:
+    Hours or wages were reduced due to COVID-19: COVID_WAGES_REDUCED
+    Furloughed due to COVID-19: COVID_FURLOUGHED
+    Laid off due to COVID-19: COVID_LAID_OFF
+    Unemployed for more than 90 days: COVID_UNEMPLOYED
+    Left work to care for self or others in household: COVID_LEFT_WORK_TO_CARE_FOR
+    Lost childcare or home aide support: COVID_LOST_CHILDCARE
+    Left work because of COVID-19 medical complications: COVID_LEFT_WORK_MEDICAL
+    Household medical expenses grew due to COVID-19: COVID_HOUSEHOLD_MEDICAL_EXPENSES
+    Household income reduced due to death of household member: COVID_HOUSEHOLD_INCOME_REDUCED
+    Business revenue declined significantly (business owner or self-employed): COVID_BUSINESS_REVENUE_DECLINED
+    Other: COVID_OTHER
+  signature: APPLICANT_SIGNATURE
+dbFields:
+  submittedAt: SUBMISSION_DATE
+  

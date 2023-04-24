@@ -18,18 +18,18 @@
                   th:replace="'fragments/inputs/select' :: select(label=#{language-preference.language-to-read-label}, inputName='languageRead', helpText=#{language-preference.language-to-read-help}, content=~{::languageToReadContent})">
                 <th:block th:ref="languageToReadContent">
                   <th:block
-                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='english', optionText=#{general.language.english})"/>
+                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='English', optionText=#{general.language.english})"/>
                   <th:block
-                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='spanish', optionText=#{general.language.spanish})"/>
+                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='Spanish', optionText=#{general.language.spanish})"/>
                 </th:block>
               </th:block>
               <th:block
                   th:replace="'fragments/inputs/select' :: select(label=#{language-preference.language-to-speak-label}, inputName='languageSpoken', helpText=#{language-preference.language-to-speak-help}, content=~{::languageToSpeakContent})">
                 <th:block th:ref="languageToSpeakContent">
                   <th:block
-                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='english', optionText=#{general.language.english})"/>
+                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='English', optionText=#{general.language.english})"/>
                   <th:block
-                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='spanish', optionText=#{general.language.spanish})"/>
+                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='Spanish', optionText=#{general.language.spanish})"/>
                 </th:block>
               </th:block>
               <th:block th:replace="'fragments/inputs/radioFieldset' ::
@@ -38,9 +38,9 @@
                             content=~{::needInterpreterContent})">
                 <th:block th:ref="needInterpreterContent">
                   <th:block
-                      th:replace="'fragments/inputs/radio' :: radio(inputName='needInterpreter',value='yes', label=#{general.inputs.yes})"/>
+                      th:replace="'fragments/inputs/radio' :: radio(inputName='needInterpreter',value='Yes', label=#{general.inputs.yes})"/>
                   <th:block
-                      th:replace="'fragments/inputs/radio' :: radio(inputName='needInterpreter',value='no', label=#{general.inputs.no})"/>
+                      th:replace="'fragments/inputs/radio' :: radio(inputName='needInterpreter',value='No', label=#{general.inputs.no})"/>
                 </th:block>
               </th:block>
             </div>
