@@ -1,6 +1,6 @@
 form-flow:
   inputs: 'org.formflowstartertemplate.app.inputs.'
-#  pdf-map-location: file:src/main/java/org/formflowstartertemplate/app/pdf/pdf-map.yaml
+  pdf-map-file: pdf-map.yaml
   uploads:
     accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'
     thumbnail-width: '64'
