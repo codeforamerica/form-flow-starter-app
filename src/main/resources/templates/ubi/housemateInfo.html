@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
-<head th:replace="fragments/head :: head(title=#{housemate-info.title})"></head>
+<head th:replace="~{fragments/head :: head(title=#{housemate-info.title})}"></head>
 <body>
 <div class="page-wrapper">
-  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <div th:replace="~{fragments/toolbar :: toolbar}"></div>
   <section class="slab">
     <div class="grid">
-      <div th:replace="fragments/goBack :: goBackLink"></div>
+      <div th:replace="~{fragments/goBack :: goBackLink}"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
-        <th:block th:replace="'fragments/icons' :: face"/>
+        <th:block th:replace="~{fragments/icons :: face}"/>
         <th:block
-            th:replace="'fragments/cardHeader' :: cardHeader(header=#{housemate-info.add-a-person})"/>
+            th:replace="~{fragments/cardHeader :: cardHeader(header=#{housemate-info.add-a-person})}"/>
         <th:block
-            th:replace="'fragments/form' :: form(action=${formAction}, content=~{::formContent})">
+            th:replace="~{fragments/form :: form(action=${formAction}, content=~{::formContent})}">
           <th:block th:ref="formContent">
             <div class="form-card__content">
-              <th:block th:replace="'fragments/inputs/text' ::
+              <th:block th:replace="~{fragments/inputs/text ::
                   text(inputName='householdMemberFirstName',
                   label=#{housemate-info.first-name},
-                  helpText=#{housemate-info.legally})"/>
-              <th:block th:replace="'fragments/inputs/text' ::
+                  helpText=#{housemate-info.legally})}"/>
+              <th:block th:replace="~{fragments/inputs/text ::
                   text(inputName='householdMemberLastName',
                   label=#{housemate-info.last-name},
-                  helpText=#{housemate-info.legally})"/>
+                  helpText=#{housemate-info.legally})}"/>
               <th:block
-                  th:replace="'fragments/inputs/select' :: select(label=#{housemate-info.relationship}, inputName='householdMemberRelationship', content=~{::options})">
+                  th:replace="~{fragments/inputs/select :: select(label=#{housemate-info.relationship}, inputName='householdMemberRelationship', content=~{::options})}">
                 <th:block th:ref="options">
                   <th:block
-                      th:replace="'fragments/inputs/selectOptionPlaceholder' :: selectOptionPlaceholder(optionText=#{housemate-info.select-relationship})"/>
+                      th:replace="~{fragments/inputs/selectOptionPlaceholder :: selectOptionPlaceholder(optionText=#{housemate-info.select-relationship})}"/>
                   <th:block
-                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='Spouse', optionText=#{housemate-info.spouse})"/>
+                      th:replace="~{fragments/inputs/selectOption :: selectOption(value='Spouse', optionText=#{housemate-info.spouse})}"/>
                   <th:block
-                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='Child', optionText=#{housemate-info.child})"/>
+                      th:replace="~{fragments/inputs/selectOption :: selectOption(value='Child', optionText=#{housemate-info.child})}"/>
                   <th:block
-                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='Other family member', optionText=#{housemate-info.other})"/>
+                      th:replace="~{fragments/inputs/selectOption :: selectOption(value='Other family member', optionText=#{housemate-info.other})}"/>
                   <th:block
-                      th:replace="'fragments/inputs/selectOption' :: selectOption(value='Domestic partner', optionText=#{housemate-info.domestic})"/>
+                      th:replace="~{fragments/inputs/selectOption :: selectOption(value='Domestic partner', optionText=#{housemate-info.domestic})}"/>
                 </th:block>
               </th:block>
-              <th:block th:replace="'fragments/inputs/radioFieldset' ::
+              <th:block th:replace="~{fragments/inputs/radioFieldset ::
                             radioFieldset(inputName='householdMemberRecentlyMovedToUS',
                             label=#{housemate-info.did-they-move},
-                            content=~{::radioOptions})">
+                            content=~{::radioOptions})}">
                 <th:block th:ref="radioOptions">
                   <!-- Copy the below input if you want to add more -->
                   <th:block
-                      th:replace="'fragments/inputs/radio' :: radio(inputName='householdMemberRecentlyMovedToUS',value='Yes', label=#{general.inputs.yes})"/>
+                      th:replace="~{fragments/inputs/radio :: radio(inputName='householdMemberRecentlyMovedToUS',value='Yes', label=#{general.inputs.yes})}"/>
                   <th:block
-                      th:replace="'fragments/inputs/radio' :: radio(inputName='householdMemberRecentlyMovedToUS',value='No', label=#{general.inputs.no})"/>
+                      th:replace="~{fragments/inputs/radio :: radio(inputName='householdMemberRecentlyMovedToUS',value='No', label=#{general.inputs.no})}"/>
                 </th:block>
               </th:block>
               <div class="form-card__footer">
-                <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                  text=#{general.inputs.continue})"/>
+                <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
+                  text=#{general.inputs.continue})}"/>
               </div>
             </div>
           </th:block>
@@ -61,6 +61,6 @@
     </div>
   </section>
 </div>
-<th:block th:replace="fragments/footer :: footer"/>
+<th:block th:replace="~{fragments/footer :: footer}"/>
 </body>
 </html>

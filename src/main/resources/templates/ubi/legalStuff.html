@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
-<head th:replace="fragments/head :: head(title=#{legal-stuff.title})"></head>
+<head th:replace="~{fragments/head :: head(title=#{legal-stuff.title})}"></head>
 <body>
 <div class="page-wrapper">
-  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <div th:replace="~{fragments/toolbar :: toolbar}"></div>
   <section class="slab">
     <div class="grid">
-      <div th:replace="fragments/goBack :: goBackLink"></div>
+      <div th:replace="~{fragments/goBack :: goBackLink}"></div>
       <main id="content" role="main" class="form-card spacing-above-35">
         <div class="legal-stuff-header">
           <th:block
-              th:replace="'fragments/cardHeader' :: cardHeader(header=#{legal-stuff.header}, subtext=#{legal-stuff.scroll-down})"/>
+              th:replace="~{fragments/cardHeader :: cardHeader(header=#{legal-stuff.header}, subtext=#{legal-stuff.scroll-down})}"/>
         </div>
-          <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{::legalStuffContent})">
+          <th:block th:replace="~{fragments/form :: form(action=${formAction}, content=~{::legalStuffContent})}">
             <th:block th:ref="legalStuffContent">
               <div class="form-card__content">
                 <div class="boxed-content legal-stuff-window textarea-readonly">
@@ -31,17 +31,17 @@
                   <p th:text="#{legal-stuff.individuals-requiring-assistance}"></p>
                 </div>
                 <div class="align-with-boxed-content">
-                  <th:block th:replace="'fragments/inputs/checkboxMod' ::
+                  <th:block th:replace="~{fragments/inputs/checkboxMod ::
                     checkboxMod(inputName='agreesToLegalTerms',
                     label=#{legal-stuff.i-agree},
                     exteriorElementHelpText=#{legal-stuff.copies-of-the-full-agreements-and-policies},
-                    value='true')">
+                    value='true')}">
                   </th:block>
                 </div>
               </div>
             <div class="form-card__footer">
-              <th:block th:replace="fragments/inputs/submitButton :: submitButton(
-                text=#{general.inputs.continue})" />
+              <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
+                text=#{general.inputs.continue})}" />
             </div>
           </th:block>
         </th:block>
@@ -49,6 +49,6 @@
     </div>
   </section>
 </div>
-<th:block th:replace="fragments/footer :: footer" />
+<th:block th:replace="~{fragments/footer :: footer}" />
 </body>
 </html>
