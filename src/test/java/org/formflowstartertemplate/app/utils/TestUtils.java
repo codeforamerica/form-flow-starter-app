@@ -7,6 +7,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 
 public class TestUtils {
 
@@ -26,12 +27,10 @@ public class TestUtils {
     return Files.readAllBytes(getAbsoluteFilepath(filename));
   }
 
-  public static void resetSubmissionData(Submission submission) {
+  public static void resetSubmission() {
+    Submission submission = new Submission();
     submission.setId(null);
+    submission.setInputData(new HashMap<>());
     submission.setFlow(null);
-    submission.setInputData(null);
-    submission.setCreatedAt(null);
-    submission.setUpdatedAt(null);
-    submission.setSubmittedAt(null);
   }
 }

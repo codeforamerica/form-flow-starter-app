@@ -29,6 +29,7 @@ flow:
     nextScreens:
       - name: contactInfo
   contactInfo:
+    crossFieldValidationAction: CheckIndicatedContactMethodIsProvided
     nextScreens:
       - name: eligibility
   eligibility:

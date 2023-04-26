@@ -15,11 +15,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/starter-app-test
     username: starter-app-test
     password: postgres
+    hikari:
+      maximum-pool-size: 2
   flyway:
     baselineOnMigrate: true
     clean-on-validation-error: true
     placeholders:
       uuid_function: "gen_random_uuid"
+    clean-disabled: false
   thymeleaf:
     prefix: classpath:/templates/
   jpa:

@@ -116,7 +116,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("phoneNumber", "(312) 877-1021");
     testPage.enter("email", "foo@test.com");
     // Assert JavaScript is checking the phone and email checkboxes when values are entered
-    assertThat(testPage.findElementById("howToContactYou-phoneNumber").isSelected()).isTrue();
+    assertThat(testPage.findElementById("howToContactYou-phone").isSelected()).isTrue();
     assertThat(testPage.findElementById("howToContactYou-email").isSelected()).isTrue();
     testPage.clickContinue();
     // Eligibility

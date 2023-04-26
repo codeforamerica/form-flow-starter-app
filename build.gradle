@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.3'
+    id 'org.springframework.boot' version '3.0.5'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'java'
     id 'com.gorylenko.gradle-git-properties' version '2.4.1'
@@ -30,16 +30,16 @@ repositories {
 }
 
 def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
-def formFlowLibraryVersion = '0.0.2-SNAPSHOT'
+def formFlowLibraryVersion = '0.0.3-SNAPSHOT'
+def useLocalLibrary = System.getenv('USE_LOCAL_LIBRARY')
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
     implementation 'org.flywaydb:flyway-core'
 
-    if (profile == 'dev') {
+    if (profile == 'dev' || useLocalLibrary == 'true') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
         println "📦 Using local library"
     } else {

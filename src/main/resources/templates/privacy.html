@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
-<head th:replace="fragments/head :: head(title=#{privacy.title})"></head>
+<head th:replace="~{fragments/head :: head(title=#{privacy.title})}"></head>
 <body>
 <div class="page-wrapper">
-  <th:block th:replace="fragments/toolbar :: toolbar"/>
+  <th:block th:replace="~{fragments/toolbar :: toolbar}"/>
   <section class="slab slab--grey">
     <div class="grid">
       <div class="grid__item">
@@ -55,6 +55,6 @@
     </div>
   </main>
 </div>
-<th:block th:replace="fragments/footer :: footer"/>
+<th:block th:replace="~{fragments/footer :: footer}"/>
 </body>
 </html>
