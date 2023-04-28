@@ -36,11 +36,14 @@
             </div>
           </div>
         </div>
-        <div class="form-card__footer">
+        <div class="form-card__footer" th:with="email=${inputData.email}">
           <th:block th:replace="~{fragments/continueButton :: continue}"/>
-          <div class="email-confirmation-box zero-flex-shrink">
+          <div
+              th:if="${email != null && inputData.get('howToContactYou[]').contains('email')}"
+              class="email-confirmation-box zero-flex-shrink">
             <th:block th:replace="~{fragments/icons :: greenCheckmark}"></th:block>
-            <strong th:utext="#{next-steps.your-next-steps-have-been-emailed}"></strong>
+            <strong
+                th:utext="#{next-steps.your-next-steps-have-been-emailed(${email})}"></strong>
           </div>
         </div>
       </main>
