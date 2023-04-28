@@ -4,6 +4,8 @@ on:
   push:
     branches: [ main ]
   pull_request:
+  repository_dispatch:
+    types: [form-flow-published]
 
 env:
   USERNAME: ${{ secrets.GPR_USER }}
