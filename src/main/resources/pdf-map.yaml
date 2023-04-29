@@ -31,6 +31,7 @@ inputFields:
     Household income reduced due to death of household member: COVID_HOUSEHOLD_INCOME_REDUCED
     Business revenue declined significantly (business owner or self-employed): COVID_BUSINESS_REVENUE_DECLINED
     Other: COVID_OTHER
+  applicantReceivesIncome: APPLICANT_RECEIVES_INCOME
   signature: APPLICANT_SIGNATURE
 dbFields:
   submittedAt: SUBMISSION_DATE
