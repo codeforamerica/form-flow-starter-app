@@ -48,8 +48,7 @@ public class ApplicantIncomePreparer implements SubmissionFieldPreparer {
         applicantIncomeFieldMap.put("applicantReceivesIncome", new SingleField("applicantReceivesIncome", "No", null));
       }
     }
-
-
+    
     return applicantIncomeFieldMap;
   }
 }

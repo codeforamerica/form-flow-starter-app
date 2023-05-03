@@ -70,6 +70,11 @@ inputFields:
   incomeGamblingAmount: APPLICANT_GAMBLING_PRIZES_OR_AWARDS_AMT
   incomeJuryDutyPayAmount: APPLICANT_JURY_DUTY_PAY_AMT
   incomeOtherAmount: APPLICANT_OTHER_INCOME_AMT
+  householdMemberRelationship:
+    Spouse: LIVE_WITH_SPOUSE
+    Child: LIVE_WITH_CHILDREN
+    Other family member: LIVE_WITH_OTHER_FAMILY_MEMBER
+    Domestic partner: LIVE_WITH_DOMESTIC_PARTNER
 dbFields:
   submittedAt: SUBMISSION_DATE
   
