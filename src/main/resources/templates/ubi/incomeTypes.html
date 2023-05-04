@@ -1,6 +1,6 @@
 <th:block
     th:with="selectedSelf=${conditionManager.runCondition('IncomeSelectedSelf', submission, uuid)},
-             houseHoldMemberName=${submission.getSubflowEntryByUuid('income', uuid).householdMember}">
+             houseHoldMemberName=${currentSubflowItem.householdMember}">
   <th:block
       th:replace="~{fragments/screens/screenWithOneInput ::
   screenWithOneInput(
@@ -8,6 +8,7 @@
     header=${selectedSelf ? #messages.msg('income-types.headerYou') : #messages.msg('income-types.headerPerson', houseHoldMemberName)},
     subtext=#{income-types.sub-header},
     formAction=${formAction},
+    inputData=${currentSubflowItem},
     inputContent=~{::inputContent})}">
     <th:block th:ref="inputContent">
       <th:block th:replace="~{fragments/inputs/checkboxFieldset ::
