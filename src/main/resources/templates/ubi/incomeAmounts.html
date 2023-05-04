@@ -9,25 +9,27 @@
       <div th:replace="~{fragments/goBack :: goBackLink}"></div>
       <main id="content" role="main" class="form-card spacing-above-35"
             th:with="selectedSelf=${conditionManager.runCondition('IncomeSelectedSelf', submission, uuid)},
-                     houseHoldMemberName=${submission.getSubflowEntryByUuid('income', uuid).householdMember}">
+                     houseHoldMemberName=${currentSubflowItem.householdMember}">
         <th:block
             th:replace="~{fragments/cardHeader :: cardHeader(header=${selectedSelf ? #messages.msg('income-amounts.header', 'you') : #messages.msg('income-amounts.header', houseHoldMemberName)})}"/>
         <th:block
             th:replace="~{fragments/form :: form(action=${formAction}, content=~{::incomeAmounts})}">
           <div th:ref="incomeAmounts">
-            <!-- When visiting from /edit, inputData is the singular object of one iteration,
-                 so put it in an array to be used for th:each  -->
-            <div class="form-card__content"
-                 th:with="iterator=${inputData.getOrDefault('income', {inputData})}">
+            <!-- we need to handle three scenarios for this page:
+                 1) first time through it -- no data yet
+                 2) user clicked "go back" during subflow
+                 3) user clicked on "edit" on the listing page
+            -->
+            <div class="form-card__content">
+                 <!--th:with="iterator=${inputData.getOrDefault('income', inputData)}"
               <th:block th:each="personsIncome: ${iterator}"
-                        th:if="${personsIncome.uuid.equals(uuid)}">
-                <th:block th:each="incomeType: ${personsIncome['incomeTypes[]']}">
+                        th:if="${personsIncome.uuid.equals(uuid)}">-->
+                <th:block th:each="incomeType: ${currentSubflowItem['incomeTypes[]']}">
                   <th:block
-                      th:replace="~{fragments/inputs/money :: money(inputName=${incomeType + 'Amount'},
+                      th:replace="~{fragments/inputs/money :: money(data=currentSubflowItem, inputName=${incomeType + 'Amount'},
                       label=#{'income-shared.' + ${incomeType}},
                       helpText=#{income-amounts.yearly})}"/>
                 </th:block>
-              </th:block>
             </div>
             <div class="form-card__footer">
               <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
