@@ -26,6 +26,9 @@ form-flow:
   email-client:
     mailgun:
       key: ${MAILGUN_KEY}
+#      url: 'https://api.mailgun.net/v3/mail.forms-starter.cfa-platforms.org/messages'
+      domain: 'mail.forms-starter.cfa-platforms.org'
+      sender-email: 'Excited User<cborg@mail.forms-starter.cfa-platforms.org>'
 spring:
   profiles:
     group:
