@@ -6,6 +6,7 @@ import formflow.library.pdf.SubmissionField;
 import formflow.library.pdf.SubmissionFieldPreparer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Component;
 
@@ -21,12 +22,15 @@ public class LivingInHouseholdPreparer implements SubmissionFieldPreparer {
 
     if (doesNotLiveAlone) {
       ArrayList<Map<String, Object>> household = (ArrayList<Map<String, Object>>) submission.getInputData().get("household");
+      List<String> relationships = new ArrayList<>();
       household.forEach(iteration -> {
         if (iteration.containsKey("householdMemberRelationship")) {
-          householdFieldMap.put("householdMemberRelationship", new CheckboxField("householdMemberRelationship",
-              (ArrayList<String>) iteration.get("householdMemberRelationship"), null));
+          relationships.add(iteration.get("householdMemberRelationship").toString());
         }
       });
+
+      householdFieldMap.put("householdMemberRelationship", new CheckboxField("householdMemberRelationship",
+          relationships, null));
     }
 
     return householdFieldMap;
