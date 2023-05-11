@@ -31,7 +31,50 @@ inputFields:
     Household income reduced due to death of household member: COVID_HOUSEHOLD_INCOME_REDUCED
     Business revenue declined significantly (business owner or self-employed): COVID_BUSINESS_REVENUE_DECLINED
     Other: COVID_OTHER
+  applicantReceivesIncome: APPLICANT_RECEIVES_INCOME
   signature: APPLICANT_SIGNATURE
+  applicantIncomeTypes:
+    incomeJob: APPLICANT_HAS_JOB_INCOME
+    incomeSelf: APPLICANT_HAS_SELF_EMPLOYMENT_INCOME
+    incomeUnemployment: APPLICANT_HAS_UNEMPLOYMENT_INCOME
+    incomeSocialSecurity: APPLICANT_HAS_SOCIAL_SECURITY_INCOME
+    incomeRetirement: APPLICANT_HAS_RETIREMENT_INCOME
+    incomeChildOrSpousalSupport: APPLICANT_HAS_CHILD_SPOUSAL_SUPPORT_INCOME
+    incomePension: APPLICANT_HAS_PENSION_INCOME
+    incomeInvestment: APPLICANT_HAS_INVESTMENT_INCOME
+    incomeCapitalGains: APPLICANT_HAS_CAPITAL_GAINS
+    incomeRentalOrRoyalty: APPLICANT_HAS_RENTAL_ROYALTY_INCOME
+    incomeFarmOrFish: APPLICANT_HAS_FARMING_FISHING_INCOME
+    incomeAlimony: APPLICANT_HAS_ALIMONY_INCOME
+    incomeTaxableScholarship: APPLICANT_HAS_TAXABLE_SCHOLARSHIP_INCOME
+    incomeCancelledDebt: APPLICANT_HAS_CANCELLED_DEBT_INCOME
+    incomeCourtAwards: APPLICANT_HAS_COURT_AWARDS_INCOME
+    incomeGambling: APPLICANT_HAS_GAMBLING_PRIZES_INCOME
+    incomeJuryDutyPay: APPLICANT_HAS_JURY_DUTY_INCOME
+    incomeOther: APPLICANT_HAS_OTHER_INCOME
+  incomeJobAmount: APPLICANT_JOB_AMT
+  incomeSelfAmount: APPLICANT_SELF_EMPLOYMENT_AMT
+  incomeUnemploymentAmount: APPLICANT_UNEMPLOYMENT_AMT
+  incomeSocialSecurityAmount: SOCIAL_SECURITY_AMT
+  incomeRetirementAmount: APPLICANT_RETIREMENT_AMT
+  incomeChildOrSpousalSupportAmount: APPLICANT_CHILD_OR_SPOUSAL_SUPPORT_AMT
+  incomePensionAmount: APPLICANT_PENSION_BENEFITS_AMT
+  incomeInvestmentAmount: APPLICANT_INVESTMENT_INCOME_AMT
+  incomeCapitalGainsAmount: APPLICANT_CAPITAL_GAINS_AMT
+  incomeRentalOrRoyaltyAmount: APPLICANT_RENTAL_OR_ROYALTY_AMT
+  incomeFarmOrFishAmount: APPLICANT_FARMING_OR_FISHING_AMT
+  incomeAlimonyAmount: APPLICANT_ALIMONY_RECEIVED_AMT
+  incomeTaxableScholarshipAmount: APPLICANT_TAXABLE_SCHOLARSHIP_AMT
+  incomeCancelledDebtAmount: APPLICANT_CANCELLED_DEBT_AMT
+  incomeCourtAwardsAmount: APPLICANT_COURT_AWARDS_AMT
+  incomeGamblingAmount: APPLICANT_GAMBLING_PRIZES_OR_AWARDS_AMT
+  incomeJuryDutyPayAmount: APPLICANT_JURY_DUTY_PAY_AMT
+  incomeOtherAmount: APPLICANT_OTHER_INCOME_AMT
+  householdMemberRelationship:
+    Spouse: LIVE_WITH_SPOUSE
+    Child: LIVE_WITH_CHILDREN
+    Other family member: LIVE_WITH_OTHER_FAMILY_MEMBER
+    Domestic partner: LIVE_WITH_DOMESTIC_PARTNER
 dbFields:
   submittedAt: SUBMISSION_DATE
   
