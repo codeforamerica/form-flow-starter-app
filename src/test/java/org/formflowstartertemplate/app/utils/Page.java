@@ -1,12 +1,14 @@
 package org.formflowstartertemplate.app.utils;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
-import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
 
 public class Page {
 
@@ -59,6 +61,9 @@ public class Page {
   }
 
   public void clickContinue() {
+    await().until(
+            () -> !driver.findElements(By.className("main-footer")).get(0).getAttribute("innerHTML")
+                    .isBlank());
     clickButton("Continue");
   }
 

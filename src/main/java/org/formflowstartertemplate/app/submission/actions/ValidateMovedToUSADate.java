@@ -2,13 +2,14 @@ package org.formflowstartertemplate.app.submission.actions;
 
 import formflow.library.config.submission.Action;
 import formflow.library.data.FormSubmission;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -28,7 +29,7 @@ public class ValidateMovedToUSADate implements Action {
     }
 
     if (!this.isDateValid(movedToUSADate)) {
-      errorMessages.put(INPUT_NAME, List.of("Please check the date entered. It is not a valid date"));
+      errorMessages.put(INPUT_NAME, List.of("Please check the date entered. It is not a valid date."));
     }
 
     return errorMessages;
