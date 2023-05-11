@@ -61,10 +61,10 @@ public class Page {
   }
 
   public void clickContinue() {
+    clickButton("Continue");
     await().until(
             () -> !driver.findElements(By.className("main-footer")).get(0).getAttribute("innerHTML")
                     .isBlank());
-    clickButton("Continue");
   }
 
   public void enter(String inputName, String value) {
