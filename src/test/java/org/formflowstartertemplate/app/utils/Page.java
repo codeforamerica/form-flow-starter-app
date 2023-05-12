@@ -1,14 +1,13 @@
 package org.formflowstartertemplate.app.utils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.awaitility.Awaitility.await;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class Page {
 
@@ -34,6 +33,10 @@ public class Page {
 
   public void goBack() {
     driver.findElement(By.partialLinkText("Go Back")).click();
+
+    await().until(
+        () -> !driver.findElements(By.className("main-footer")).get(0).getAttribute("innerHTML")
+            .isBlank());
   }
 
   public void clickLink(String linkText) {
@@ -48,6 +51,10 @@ public class Page {
         .findFirst()
         .orElseThrow(() -> new RuntimeException("No button found containing text: " + buttonText));
     buttonToClick.click();
+
+    await().until(
+        () -> !driver.findElements(By.className("main-footer")).get(0).getAttribute("innerHTML")
+            .isBlank());
   }
 
   public void clickButtonLink(String buttonLinkText) {
@@ -58,13 +65,17 @@ public class Page {
         .orElseThrow(
             () -> new RuntimeException("No button link found containing text: " + buttonLinkText));
     buttonToClick.click();
+
+    await().until(
+        () -> !driver.findElements(By.className("main-footer")).get(0).getAttribute("innerHTML")
+            .isBlank());
   }
 
   public void clickContinue() {
     clickButton("Continue");
     await().until(
-            () -> !driver.findElements(By.className("main-footer")).get(0).getAttribute("innerHTML")
-                    .isBlank());
+        () -> !driver.findElements(By.className("main-footer")).get(0).getAttribute("innerHTML")
+            .isBlank());
   }
 
   public void enter(String inputName, String value) {
@@ -87,6 +98,7 @@ public class Page {
       }
       default -> throw new IllegalArgumentException("Cannot find element");
     }
+
   }
 
   public void enter(String inputName, List<String> value) {
@@ -139,6 +151,10 @@ public class Page {
         .findFirst()
         .orElseThrow();
     buttonToClick.click();
+
+    await().until(
+        () -> !driver.findElements(By.className("main-footer")).get(0).getAttribute("innerHTML")
+            .isBlank());
   }
 
   public void selectFromDropdown(String inputName, String optionText) {
