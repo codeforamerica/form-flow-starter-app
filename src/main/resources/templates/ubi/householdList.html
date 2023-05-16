@@ -17,9 +17,9 @@
             <strong th:text="#{household-list.your-household}"></strong>
             <ul class="subflow-list list--bulleted">
               <li class="spacing-below-15"
-                  th:text="${inputData.firstName} + ' ' + ${inputData.lastName}"></li>
-              <th:block th:if="${inputData.containsKey('household')}">
-                <li th:each="householdMember, iter: ${inputData.household}"
+                  th:text="${fieldData.firstName} + ' ' + ${fieldData.lastName}"></li>
+              <th:block th:if="${fieldData.containsKey('household')}">
+                <li th:each="householdMember, iter: ${fieldData.household}"
                     class="spacing-below-15">
                               <span class="space-between">
                                 <span>
