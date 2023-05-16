@@ -10,6 +10,11 @@ form-flow:
     smarty:
       auth-id: 'test-id'
       auth-token: 'test-token'
+  email-client:
+    mailgun:
+      key: testing-fake-key
+      domain: 'mail.forms-starter.cfa-platforms.org'
+      sender-email: 'Testing <test@mail.forms-starter.cfa-platforms.org>'
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/starter-app-test
