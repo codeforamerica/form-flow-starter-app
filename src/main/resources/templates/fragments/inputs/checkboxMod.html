@@ -25,7 +25,7 @@
              th:id="${inputName} + '-' + ${value}"
              th:value="${value}"
              th:name="${name}"
-             th:with="checked=${T(formflow.library.utils.InputUtils).arrayOrStringContains(inputData.getOrDefault(name, ''), value)}"
+             th:with="checked=${T(formflow.library.utils.InputUtils).arrayOrStringContains(fieldData.getOrDefault(name, ''), value)}"
              th:checked="${checked}"
              th:attr="
               aria-invalid=${hasError},

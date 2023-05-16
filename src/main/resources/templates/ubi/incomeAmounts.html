@@ -8,8 +8,9 @@
     <div class="grid">
       <div th:replace="~{fragments/goBack :: goBackLink}"></div>
       <main id="content" role="main" class="form-card spacing-above-35"
-            th:with="selectedSelf=${conditionManager.runCondition('IncomeSelectedSelf', submission, uuid)},
-                     houseHoldMemberName=${currentSubflowItem.householdMember}">
+            th:with="
+            selectedSelf=${conditionManager.runCondition('IncomeSelectedSelf', submission, uuid)},
+                     houseHoldMemberName=${fieldData.householdMember}">
         <th:block
             th:replace="~{fragments/cardHeader :: cardHeader(header=${selectedSelf ? #messages.msg('income-amounts.header', 'you') : #messages.msg('income-amounts.header', houseHoldMemberName)})}"/>
         <th:block
@@ -21,12 +22,12 @@
                  3) user clicked on "edit" on the listing page
             -->
             <div class="form-card__content">
-                 <!--th:with="iterator=${inputData.getOrDefault('income', inputData)}"
+                 <!--th:with="iterator=${fieldData.getOrDefault('income', fieldData)}"
               <th:block th:each="personsIncome: ${iterator}"
                         th:if="${personsIncome.uuid.equals(uuid)}">-->
-                <th:block th:each="incomeType: ${currentSubflowItem['incomeTypes[]']}">
+                <th:block th:each="incomeType: ${fieldData['incomeTypes[]']}">
                   <th:block
-                      th:replace="~{fragments/inputs/money :: money(data=currentSubflowItem, inputName=${incomeType + 'Amount'},
+                      th:replace="~{fragments/inputs/money :: money(data=fieldData, inputName=${incomeType + 'Amount'},
                       label=#{'income-shared.' + ${incomeType}},
                       helpText=#{income-amounts.yearly})}"/>
                 </th:block>

@@ -16,7 +16,7 @@
               class="boxed-content text--centered">
             <strong th:text="#{annual-household-income.box-header}"></strong>
             <ul class="subflow-list list--bulleted padding-left-25">
-              <th:block th:if="${inputData.containsKey('income')}">
+              <th:block th:if="${fieldData.containsKey('income')}">
                 <li th:each="personsIncome: ${T(org.formflowstartertemplate.app.utils.SubmissionUtilities).sortIncomeNamesWithApplicantFirst(submission)}"
                     class="spacing-below-15">
                               <span class="grid">
