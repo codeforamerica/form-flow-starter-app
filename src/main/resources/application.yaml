@@ -25,7 +25,7 @@ form-flow:
     map-file: pdf-map.yaml
   email-client:
     mailgun:
-      key: ${MAILGUN_KEY}
+      key: ${MAILGUN_KEY:'no-key-set'}
       domain: 'mail.forms-starter.cfa-platforms.org'
       sender-email: 'UBI Demo <demo@mail.forms-starter.cfa-platforms.org>'
 spring:

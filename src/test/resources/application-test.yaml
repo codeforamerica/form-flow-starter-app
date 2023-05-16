@@ -12,8 +12,6 @@ form-flow:
       auth-token: 'test-token'
   email-client:
     mailgun:
-      key: testing-fake-key
-      domain: 'mail.forms-starter.cfa-platforms.org'
       sender-email: 'Testing <test@mail.forms-starter.cfa-platforms.org>'
 spring:
   datasource:
