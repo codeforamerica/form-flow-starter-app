@@ -26,6 +26,8 @@ form-flow:
   email-client:
     mailgun:
       key: ${MAILGUN_KEY}
+      domain: 'mail.forms-starter.cfa-platforms.org'
+      sender-email: 'UBI Demo <demo@mail.forms-starter.cfa-platforms.org>'
 spring:
   profiles:
     group:
