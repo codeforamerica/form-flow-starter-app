@@ -77,7 +77,13 @@ public class Ubi extends FlowInputs {
   private String householdMemberLastName;
   private String householdMemberRelationship;
   private String householdMemberRecentlyMovedToUS;
-  private String householdAddressFile;  // file id
+  private String householdMemberMovedToUSA;
+  private String householdMemberMovedToUSADay;
+  private String householdMemberMovedToUSAMonth;
+  private String householdMemberMovedToUSAYear;
+  @Pattern(regexp = "\\d{1,2}/\\d{1,2}/\\d\\d\\d\\d", message = "{personal-info.date-invalid}")
+  private String householdMemberMovedToUSADate;
+  private String householdMemberMovedFromCountry;
 
   // Household Member Income Screen
   @NotBlank(message = "{household-member-income.failed-to-make-selection}")
@@ -150,13 +156,13 @@ public class Ubi extends FlowInputs {
 
   //Economic Hardship Screen
   private ArrayList<String> economicHardshipTypes;
-  
+
   // Legal Stuff Screen
   @NotEmpty(message = "{legal-stuff.make-sure-you-answer-this-question}")
   private ArrayList<String> agreesToLegalTerms;
   @NotBlank
   private String signature;
-  
+
   // Contact Info Screen
   @Phone(message = "{contact-info.invalid-phone-number}")
   private String phoneNumber;

@@ -2,21 +2,21 @@ package org.formflowstartertemplate.app.pdf;
 
 import formflow.library.data.Submission;
 import formflow.library.pdf.CheckboxField;
+import formflow.library.pdf.PdfMap;
 import formflow.library.pdf.SingleField;
 import formflow.library.pdf.SubmissionField;
 import formflow.library.pdf.SubmissionFieldPreparer;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ApplicantIncomePreparer implements SubmissionFieldPreparer {
 
   @Override
-  public Map<String, SubmissionField> prepareSubmissionFields(Submission submission) {
+  public Map<String, SubmissionField> prepareSubmissionFields(Submission submission, PdfMap pdfMap) {
     Map<String, SubmissionField> applicantIncomeFieldMap = new HashMap<>();
 
     boolean householdHasIncome = submission.getInputData().containsKey("income");
@@ -40,7 +40,7 @@ public class ApplicantIncomePreparer implements SubmissionFieldPreparer {
         incomeTypes.forEach(incomeType -> {
           String inputName = incomeType + "Amount";
           applicantIncomeFieldMap.put(
-                  inputName,
+              inputName,
               new SingleField(inputName, applicantSubflowIteration.get(inputName).toString(), null));
         });
 
@@ -48,7 +48,7 @@ public class ApplicantIncomePreparer implements SubmissionFieldPreparer {
         applicantIncomeFieldMap.put("applicantReceivesIncome", new SingleField("applicantReceivesIncome", "No", null));
       }
     }
-    
+
     return applicantIncomeFieldMap;
   }
 }

@@ -2,6 +2,7 @@ package org.formflowstartertemplate.app.pdf;
 
 import formflow.library.data.Submission;
 import formflow.library.pdf.CheckboxField;
+import formflow.library.pdf.PdfMap;
 import formflow.library.pdf.SubmissionField;
 import formflow.library.pdf.SubmissionFieldPreparer;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class LivingInHouseholdPreparer implements SubmissionFieldPreparer {
 
   @Override
-  public Map<String, SubmissionField> prepareSubmissionFields(Submission submission) {
+  public Map<String, SubmissionField> prepareSubmissionFields(Submission submission, PdfMap pdfMap) {
     Map<String, SubmissionField> householdFieldMap = new HashMap<>();
 
     boolean doesNotLiveAlone = submission.getInputData().containsKey("hasHousehold") &&
