@@ -85,12 +85,13 @@ subflowInfo:
       - income
       - household
     fields:
+      householdMemberFirstName: LEGAL_NAME_FIRST_MEMBER
       householdMemberLastName: LEGAL_NAME_LAST_MEMBER
       householdMemberRelationship: RELATIONSHIP_MEMBER
-      householdMemberRecentlyMovedToUS: COUNTRY_MOVED_FROM_MEMBER
-      householdMemberMovedToUSA: RECENTLY_MOVED_TO_US_MEMBER
+      householdMemberRecentlyMovedToUS: RECENTLY_MOVED_TO_US_MEMBER
       householdMemberMovedToUSADate: DATED_MOVED_TO_US_MEMBER
       householdMemberMovedFromCountry: COUNTRY_MOVED_FROM_MEMBER
+      householdMemberReceivesIncome: RECEIVED_INCOME_MEMBER
       incomeTypes:
         incomeJob: INCOME_HAS_JOB_MEMBER
         incomeSelf: INCOME_HAS_SELF_EMPLOYMENT_MEMBER
@@ -108,7 +109,7 @@ subflowInfo:
         incomeCancelledDebt: INCOME_HAS_CANCELLED_DEBT_MEMBER
         incomeCourtAwards: INCOME_HAS_COURT_AWARDS_MEMBER
         incomeGambling: INCOME_HAS_GAMBLING_PRIZES_MEMBER
-        incomeJuryDutyPay: INCOME_HAS_JURY_DUTY_PAY
+        incomeJuryDutyPay: INCOME_HAS_JURY_DUTY_MEMBER
         incomeOther: INCOME_HAS_OTHER_MEMBER
       incomeJobAmount: INCOME_JOB_AMT_MEMBER
       incomeSelfAmount: INCOME_SELF_EMPLOYMENT_AMT_MEMBER
@@ -125,6 +126,6 @@ subflowInfo:
       incomeTaxableScholarshipAmount: INCOME_TAXABLE_SCHOLARSHIP_AMT_MEMBER
       incomeCancelledDebtAmount: INCOME_CANCELLED_DEBT_AMT_MEMBER
       incomeCourtAwardsAmount: INCOME_COURT_AWARDS_AMT_MEMBER
-      incomeGamblingAmount: INCOME_GAMBLING_PRIZES_OR_AWARDS_MEMBER
+      incomeGamblingAmount: INCOME_GAMBLING_PRIZES_OR_AWARDS_AMT_MEMBER
       incomeJuryDutyPayAmount: INCOME_JURY_DUTY_PAY_AMT_MEMBER
       incomeOtherAmount: INCOME_OTHER_INCOME_AMT_MEMBER

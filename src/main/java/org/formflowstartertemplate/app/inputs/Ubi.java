@@ -77,7 +77,6 @@ public class Ubi extends FlowInputs {
   private String householdMemberLastName;
   private String householdMemberRelationship;
   private String householdMemberRecentlyMovedToUS;
-  private String householdMemberMovedToUSA;
   private String householdMemberMovedToUSADay;
   private String householdMemberMovedToUSAMonth;
   private String householdMemberMovedToUSAYear;
