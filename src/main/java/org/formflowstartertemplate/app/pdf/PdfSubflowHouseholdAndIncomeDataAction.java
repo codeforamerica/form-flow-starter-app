@@ -21,6 +21,11 @@ public class PdfSubflowHouseholdAndIncomeDataAction implements Action {
    */
   public List<Map<String, Object>> runSubflowAction(Submission submission, PdfMapSubflow subflowMap) {
     List<Map<String, Object>> mergedData = new ArrayList<>();
+
+    if (!submission.getInputData().containsKey("household")) {
+      return mergedData;
+    }
+
     List<Map<String, Object>> householdMembers = (List<Map<String, Object>>) (submission.getInputData().get("household"));
     List<Map<String, Object>> income = (List<Map<String, Object>>) (submission.getInputData().get("income"));
 
@@ -34,11 +39,13 @@ public class PdfSubflowHouseholdAndIncomeDataAction implements Action {
           }
           memberInfo.putAll(member);
 
-          String fullName = member.get("householdMemberFirstName") + " " + member.get("householdMemberLastName");
-          List<Map<String, Object>> memberIncomeList = income.stream()
-              .filter(iteration -> iteration.get("householdMember").equals(fullName)).toList();
-          if (memberIncomeList.size() > 0) {
-            memberInfo.putAll(memberIncomeList.get(0));
+          if (income != null) {
+            String fullName = member.get("householdMemberFirstName") + " " + member.get("householdMemberLastName");
+            List<Map<String, Object>> memberIncomeList = income.stream()
+                .filter(iteration -> iteration.get("householdMember").equals(fullName)).toList();
+            if (memberIncomeList.size() > 0) {
+              memberInfo.putAll(memberIncomeList.get(0));
+            }
           }
 
           mergedData.add(memberInfo);
