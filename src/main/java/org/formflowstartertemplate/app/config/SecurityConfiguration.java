@@ -8,6 +8,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
+/**
+ * Security Configuration
+ * - securityFilterChain: Disables basic auth while retaining other spring security features
+ * - forwardedHeaderFilter: Redirects http -> https
+*/
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
