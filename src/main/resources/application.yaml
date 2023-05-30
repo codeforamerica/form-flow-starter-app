@@ -1,4 +1,10 @@
 form-flow:
+  flow:
+    ubi:
+      email:
+        confirmation:
+          cc: testsfdaafwefaewf@gmail.com, testingefafawfe@gmail.com
+          bcc: geowinf@gmail.com
   inputs: 'org.formflowstartertemplate.app.inputs.'
   uploads:
     accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'
