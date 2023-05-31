@@ -18,6 +18,16 @@ public class ApplicantIncomePreparer implements SubmissionFieldPreparer {
   @Override
   public Map<String, SubmissionField> prepareSubmissionFields(Submission submission, Map<String, Object> data, PdfMap pdfMap) {
     Map<String, SubmissionField> applicantIncomeFieldMap = new HashMap<>();
+    
+    boolean applicantReportedTotalHouseholdIncome = submission.getInputData().containsKey("reportedTotalAnnualHouseholdIncome");
+    
+    if (applicantReportedTotalHouseholdIncome) {
+      if (submission.getInputData().get("reportedTotalAnnualHouseholdIncome").equals("0")) {
+        applicantIncomeFieldMap.put("applicantReceivesIncome", new SingleField("applicantReceivesIncome", "No", null));
+      } else {
+        applicantIncomeFieldMap.put("applicantReceivesIncome", new SingleField("applicantReceivesIncome", "Yes", null));
+      }
+    }
 
     boolean householdHasIncome = submission.getInputData().containsKey("income");
 
@@ -25,10 +35,10 @@ public class ApplicantIncomePreparer implements SubmissionFieldPreparer {
       ArrayList<Map<String, Object>> householdIncomeSubflow = (ArrayList<Map<String, Object>>) submission.getInputData()
           .get("income");
 
-      boolean applicantHasIncome = householdIncomeSubflow.stream()
+      boolean applicantEnteredIncomeAmounts = householdIncomeSubflow.stream()
           .anyMatch(iteration -> iteration.get("householdMember").equals("applicant"));
 
-      if (applicantHasIncome) {
+      if (applicantEnteredIncomeAmounts) {
         applicantIncomeFieldMap.put("applicantReceivesIncome", new SingleField("applicantReceivesIncome", "Yes", null));
 
         Map<String, Object> applicantSubflowIteration = householdIncomeSubflow.stream().filter(iteration ->

@@ -17,15 +17,19 @@ public class HouseholdMemberReceivesIncomePreparer implements SubmissionFieldPre
     Map<String, SubmissionField> householdMembersReceivingIncomeMap = new HashMap<>();
     int maxIterations = pdfMap.getSubflowInfo().get("householdAndIncome").getTotalIterations();
     
-    for (int index = 1; index <= maxIterations; index++) {
-      if (data.containsKey("incomeTypes_" + index + "[]")) {
-        householdMembersReceivingIncomeMap.put(
-            "householdMemberReceivesIncome_" + index,
-            new SingleField("householdMemberReceivesIncome_" + index, "Yes", null));
-      } else {
-        householdMembersReceivingIncomeMap.put(
-            "householdMemberReceivesIncome_" + index,
-            new SingleField("householdMemberReceivesIncome_" + index, "No", null));
+    boolean householdHasIncome = submission.getInputData().containsKey("income");
+    
+    if (householdHasIncome) {
+      for (int index = 1; index <= maxIterations; index++) {
+        if (data.containsKey("incomeTypes_" + index + "[]")) {
+          householdMembersReceivingIncomeMap.put(
+              "householdMemberReceivesIncome_" + index,
+              new SingleField("householdMemberReceivesIncome_" + index, "Yes", null));
+        } else {
+          householdMembersReceivingIncomeMap.put(
+              "householdMemberReceivesIncome_" + index,
+              new SingleField("householdMemberReceivesIncome_" + index, "No", null));
+        }
       }
     }
     
