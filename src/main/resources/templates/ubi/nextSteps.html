@@ -36,10 +36,10 @@
             </div>
           </div>
         </div>
-        <div class="form-card__footer" th:with="email=${inputData.email}">
+        <div class="form-card__footer" th:with="email=${fieldData.email}">
           <th:block th:replace="~{fragments/continueButton :: continue}"/>
           <div
-              th:if="${email != null && inputData.get('howToContactYou[]').contains('email')}"
+              th:if="${email != null && fieldData.get('howToContactYou[]').contains('email')}"
               class="email-confirmation-box zero-flex-shrink">
             <th:block th:replace="~{fragments/icons :: greenCheckmark}"></th:block>
             <strong

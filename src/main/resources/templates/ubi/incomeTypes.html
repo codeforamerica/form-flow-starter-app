@@ -1,6 +1,6 @@
 <th:block
     th:with="selectedSelf=${conditionManager.runCondition('IncomeSelectedSelf', submission, uuid)},
-             houseHoldMemberName=${submission.getSubflowEntryByUuid('income', uuid).householdMember}">
+             houseHoldMemberName=${fieldData.householdMember}">
   <th:block
       th:replace="~{fragments/screens/screenWithOneInput ::
   screenWithOneInput(

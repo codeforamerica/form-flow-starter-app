@@ -1,10 +1,11 @@
 <th:block
     th:replace="~{fragments/screens/screenWithOneInput ::
-  screenWithOneInput(
-    title=#{household-member-income.title},
-    header=#{household-member-income.header},
-    formAction=${formAction},
-    inputContent=~{::inputContent})}">
+      screenWithOneInput(
+          title=#{household-member-income.title},
+          header=#{household-member-income.header},
+          formAction=${formAction},
+          inputContent=~{::inputContent})}">
+
   <th:block th:ref="inputContent">
     <!-- Be sure to have `ariaLabel='header'` to label the input with the header -->
     <th:block th:replace="~{fragments/inputs/radioFieldset ::
@@ -16,18 +17,18 @@
           th:with="applicantWasSelected=${conditionManager.runCondition('HouseholdMemberAlreadyHasIncome', submission, 'applicant')}">
         <th:block
             th:replace="~{fragments/inputs/radio :: radio(inputName='householdMember', value='applicant', label=#{general.me}, disabled=${applicantWasSelected})}"/>
-        <th:block th:if="${inputData.containsKey('household')}">
-          <th:block th:each="hm, iter: ${inputData.household}"
+        <th:block
+            th:if="${fieldData.containsKey('household')}">
+
+          <th:block th:each="hm, iter: ${fieldData.household}"
                     th:with="
                     fullName=${hm.householdMemberFirstName + ' ' + hm.householdMemberLastName},
                     householdMemberWasSelected=${conditionManager.runCondition('HouseholdMemberAlreadyHasIncome', submission, fullName)}">
             <th:block
                 th:replace="~{fragments/inputs/radio :: radio(inputName='householdMember', value=${fullName}, label=${fullName}, disabled=${householdMemberWasSelected})}"/>
           </th:block>
-          </th:if>
         </th:block>
       </th:block>
     </th:block>
   </th:block>
-</th:block>
 </th:block>
