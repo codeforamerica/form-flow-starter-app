@@ -6,6 +6,8 @@ spring:
 form-flow:
   aws:
     s3_bucket_name: 'form-flow-demo'
+  error:
+    show-stack-trace: false
 management:
   endpoint:
     health:
