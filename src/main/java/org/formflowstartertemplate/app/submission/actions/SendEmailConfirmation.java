@@ -6,6 +6,7 @@ import formflow.library.config.submission.Action;
 import formflow.library.data.Submission;
 import formflow.library.email.EmailUtils;
 import formflow.library.email.MailgunEmailClient;
+import jakarta.validation.constraints.Email;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,15 +33,16 @@ public class SendEmailConfirmation implements Action {
   @Value("${form-flow.flow.ubi.email.confirmation.bcc:}")
   private List<String> emailToBcc;
 public void run(Submission submission){
-  //Generate an email subject:
-  log.info("emailToBcc=  " +  emailToBcc.isEmpty());
-  log.info("emailToBcc=  " +  emailToBcc.isEmpty());
+
+  String recipientEmail = (String) submission.getInputData().get("email");
+  if (recipientEmail == null || recipientEmail.isBlank()){
+    return;
+  }
   String emailSubject = messageSource.getMessage("email.subject", null, null);
   Object[] args = new Object[] {submission.getId().toString()};
   String emailBody = messageSource.getMessage("email.body", args, null);
   String htmlEmailBody = EmailUtils.wrapHtml(emailBody);
 
-  String recipientEmail = (String) submission.getInputData().get("email");
   Boolean requireTls = Boolean.TRUE;
   List<File> pdfs = new ArrayList<File>();
   try {
