@@ -36,12 +36,10 @@ public class HouseholdMemberReceivesIncomePreparer implements SubmissionFieldPre
         String householdMemberRecentlyMovedToUs = houseHoldSubflow.get(i).get("householdMemberRecentlyMovedToUS").toString();
         int iterationNumber = i + 1;
         householdMemberSubmissionFields.putAll(Map.of(
-            "householdMemberFirstName_" + iterationNumber, new SingleField("householdMemberFirstName_" + iterationNumber, householdMemberFirstName, null),
-            "householdMemberLastName_" + iterationNumber, new SingleField("householdMemberLastName_" + iterationNumber, householdMemberLastName, null),
-            "householdMemberRelationship_" + iterationNumber,
-            new SingleField("householdMemberRelationship_" + iterationNumber, householdMemberRelationship, null),
-            "householdMemberRecentlyMovedToUS_" + iterationNumber,
-            new SingleField("householdMemberRecentlyMovedToUS_" + iterationNumber, householdMemberRecentlyMovedToUs, null)
+            "householdMemberFirstName_" + iterationNumber, new SingleField("householdMemberFirstName", householdMemberFirstName, iterationNumber),
+            "householdMemberLastName_" + iterationNumber, new SingleField("householdMemberLastName", householdMemberLastName, iterationNumber),
+            "householdMemberRelationship_" + iterationNumber, new SingleField("householdMemberRelationship", householdMemberRelationship, iterationNumber),
+            "householdMemberRecentlyMovedToUS_" + iterationNumber,  new SingleField("householdMemberRecentlyMovedToUS", householdMemberRecentlyMovedToUs, iterationNumber)
         ));
 
         Map<String, Object> householdMember = incomeSubflow.stream().filter(
@@ -50,7 +48,7 @@ public class HouseholdMemberReceivesIncomePreparer implements SubmissionFieldPre
 
         if (householdMember != null) {
           householdMemberSubmissionFields.put("householdMemberReceivesIncome_" + iterationNumber,
-              new SingleField("householdMemberReceivesIncome_" + iterationNumber, "Yes", null));
+              new SingleField("householdMemberReceivesIncome", "Yes", iterationNumber));
 
           ArrayList<String> incomeTypes = (ArrayList<String>) householdMember.get("incomeTypes[]");
           householdMemberSubmissionFields.put("incomeTypes_" + iterationNumber,
@@ -60,12 +58,12 @@ public class HouseholdMemberReceivesIncomePreparer implements SubmissionFieldPre
           incomeTypes.forEach(incomeType -> {
             String incomeAmount = householdMember.get(incomeType + "Amount").toString();
             householdMemberSubmissionFields.put(incomeType + "Amount_" + finalIterationNumber,
-                new SingleField(incomeType + "Amount_" + finalIterationNumber, incomeAmount, null));
+                new SingleField(incomeType + "Amount", incomeAmount, finalIterationNumber));
           });
 
         } else {
           householdMemberSubmissionFields.put("householdMemberReceivesIncome_" + iterationNumber,
-              new SingleField("householdMemberReceivesIncome_" + iterationNumber, "No", null));
+              new SingleField("householdMemberReceivesIncome", "No", iterationNumber));
         }
       }
     }
