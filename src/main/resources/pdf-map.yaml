@@ -77,4 +77,55 @@ inputFields:
     Domestic partner: LIVE_WITH_DOMESTIC_PARTNER
 dbFields:
   submittedAt: SUBMISSION_DATE
-  
+subflowInfo:
+  householdAndIncome:
+    totalIterations: 5
+    dataAction: PdfSubflowHouseholdAndIncomeDataAction
+    subflows:
+      - income
+      - household
+    fields:
+      householdMemberFirstName: LEGAL_NAME_FIRST_MEMBER
+      householdMemberLastName: LEGAL_NAME_LAST_MEMBER
+      householdMemberRelationship: RELATIONSHIP_MEMBER
+      householdMemberRecentlyMovedToUS: RECENTLY_MOVED_TO_US_MEMBER
+      householdMemberMovedToUSADate: DATED_MOVED_TO_US_MEMBER
+      householdMemberMovedFromCountry: COUNTRY_MOVED_FROM_MEMBER
+      householdMemberReceivesIncome: RECEIVED_INCOME_MEMBER
+      incomeTypes:
+        incomeJob: INCOME_HAS_JOB_MEMBER
+        incomeSelf: INCOME_HAS_SELF_EMPLOYMENT_MEMBER
+        incomeUnemployment: INCOME_HAS_UNEMPLOYMENT_MEMBER
+        incomeSocialSecurity: INCOME_HAS_SOCIAL_SECURITY_MEMBER
+        incomeRetirement: INCOME_HAS_RETIREMENT_MEMBER
+        incomeChildOrSpousalSupport: INCOME_HAS_CHILD_OR_SPOUSAL_SUPPORT_MEMBER
+        incomePension: INCOME_HAS_PENSION_MEMBER
+        incomeInvestment: INCOME_HAS_INVESTMENT_MEMBER
+        incomeCapitalGains: INCOME_HAS_CAPITAL_GAINS_MEMBER
+        incomeRentalOrRoyalty: INCOME_HAS_RENTAL_OR_ROYALTY_MEMBER
+        incomeFarmOrFish: INCOME_HAS_FARMING_OR_FISHING_MEMBER
+        incomeAlimony: INCOME_HAS_ALIMONY_MEMBER
+        incomeTaxableScholarship: INCOME_HAS_TAXABLE_SCHOLARSHIP_MEMBER
+        incomeCancelledDebt: INCOME_HAS_CANCELLED_DEBT_MEMBER
+        incomeCourtAwards: INCOME_HAS_COURT_AWARDS_MEMBER
+        incomeGambling: INCOME_HAS_GAMBLING_PRIZES_MEMBER
+        incomeJuryDutyPay: INCOME_HAS_JURY_DUTY_MEMBER
+        incomeOther: INCOME_HAS_OTHER_MEMBER
+      incomeJobAmount: INCOME_JOB_AMT_MEMBER
+      incomeSelfAmount: INCOME_SELF_EMPLOYMENT_AMT_MEMBER
+      incomeUnemploymentAmount: INCOME_UNEMPLOYMENT_AMT_MEMBER
+      incomeSocialSecurityAmount: INCOME_SOCIAL_SECURITY_AMT_MEMBER
+      incomeRetirementAmount: INCOME_RETIREMENT_AMT_MEMBER
+      incomeChildOrSpousalSupportAmount: INCOME_CHILD_OR_SPOUSAL_SUPPORT_AMT_MEMBER
+      incomePensionAmount: INCOME_PENSION_BENEFITS_AMT_MEMBER
+      incomeInvestmentAmount: INCOME_INVESTMENT_INCOME_AMT_MEMBER
+      incomeCapitalGainsAmount: INCOME_CAPITAL_GAINS_AMT_MEMBER
+      incomeRentalOrRoyaltyAmount: INCOME_RENTAL_OR_ROYALTY_AMT_MEMBER
+      incomeFarmOrFishAmount: INCOME_FARMING_OR_FISHING_AMT_MEMBER
+      incomeAlimonyAmount: INCOME_ALIMONY_RECEIVED_AMT_MEMBER
+      incomeTaxableScholarshipAmount: INCOME_TAXABLE_SCHOLARSHIP_AMT_MEMBER
+      incomeCancelledDebtAmount: INCOME_CANCELLED_DEBT_AMT_MEMBER
+      incomeCourtAwardsAmount: INCOME_COURT_AWARDS_AMT_MEMBER
+      incomeGamblingAmount: INCOME_GAMBLING_PRIZES_OR_AWARDS_AMT_MEMBER
+      incomeJuryDutyPayAmount: INCOME_JURY_DUTY_PAY_AMT_MEMBER
+      incomeOtherAmount: INCOME_OTHER_INCOME_AMT_MEMBER
