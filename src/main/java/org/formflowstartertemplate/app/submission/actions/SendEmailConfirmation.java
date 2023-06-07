@@ -1,11 +1,11 @@
 package org.formflowstartertemplate.app.submission.actions;
 
 
-import formflow.library.PdfService;
+
 import formflow.library.config.submission.Action;
 import formflow.library.data.Submission;
-import formflow.library.email.EmailUtils;
 import formflow.library.email.MailgunEmailClient;
+import formflow.library.pdf.PdfService;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,14 +44,13 @@ public void run(Submission submission){
   String emailSubject = messageSource.getMessage("email.subject", null, null);
   Object[] args = new Object[] {submission.getId().toString()};
   String emailBody = messageSource.getMessage("email.body", args, null);
-  String htmlEmailBody = EmailUtils.wrapHtml(emailBody);
 
   Boolean requireTls = Boolean.TRUE;
   List<File> pdfs = new ArrayList<File>();
   try {
-    String generateStringPrefixName = pdfService.generatePdfName(submission.getFlow(), submission.getId().toString());
+    String generateStringPrefixName = pdfService.generatePdfName(submission);
     File pdf = File.createTempFile(generateStringPrefixName,".pdf");
-    byte[] pdfByteArray = pdfService.getFilledOutPDF(submission.getFlow(), submission.getId().toString());
+    byte[] pdfByteArray = pdfService.getFilledOutPDF(submission);
     FileOutputStream fos = new FileOutputStream(pdf);
     fos.write(pdfByteArray);
     fos.flush();
@@ -61,7 +60,7 @@ public void run(Submission submission){
         recipientEmail,
         emailToCc,
         emailToBcc,
-        htmlEmailBody,
+        emailBody,
         pdfs,
         requireTls
     );
