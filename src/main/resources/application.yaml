@@ -3,8 +3,8 @@ form-flow:
     ubi:
       email:
         confirmation:
-          cc: testsfdaafwefaewf@gmail.com, testingefafawfe@gmail.com
-          bcc: geowinf@gmil.com
+          cc:
+          bcc:
   inputs: 'org.formflowstartertemplate.app.inputs.'
   uploads:
     accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'
