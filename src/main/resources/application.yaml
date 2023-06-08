@@ -1,4 +1,10 @@
 form-flow:
+  flow:
+    ubi:
+      email:
+        confirmation:
+          cc:
+          bcc:
   inputs: 'org.formflowstartertemplate.app.inputs.'
   uploads:
     accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'

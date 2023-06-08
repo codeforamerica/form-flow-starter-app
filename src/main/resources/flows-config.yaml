@@ -111,6 +111,7 @@ flow:
     nextScreens:
       - name: signName
   signName:
+    afterSaveAction: SendEmailConfirmation
     nextScreens:
       - name: nextSteps
   nextSteps:
