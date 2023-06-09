@@ -80,10 +80,6 @@ dbFields:
 subflowInfo:
   householdAndIncome:
     totalIterations: 5
-    dataAction: PdfSubflowHouseholdAndIncomeDataAction
-    subflows:
-      - income
-      - household
     fields:
       householdMemberFirstName: LEGAL_NAME_FIRST_MEMBER
       householdMemberLastName: LEGAL_NAME_LAST_MEMBER
