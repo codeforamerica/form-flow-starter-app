@@ -1,6 +1,7 @@
 package org.formflowstartertemplate.app.submission.actions;
 
 
+import com.mailgun.model.message.MessageResponse;
 import formflow.library.config.submission.Action;
 import formflow.library.data.Submission;
 import formflow.library.email.MailgunEmailClient;
@@ -57,7 +58,8 @@ public class SendEmailConfirmation implements Action {
       fos.write(pdfByteArray);
       fos.flush();
       pdfs.add(pdf);
-      mailgunEmailClient.sendEmail(
+
+      MessageResponse response = mailgunEmailClient.sendEmail(
           emailSubject,
           recipientEmail,
           emailToCc,
@@ -66,6 +68,11 @@ public class SendEmailConfirmation implements Action {
           pdfs,
           requireTls
       );
+
+      log.info("EMAIL RESPONSE:     " + response);
+      boolean confirmationWasQueued = response.getMessage().contains("Queued. Thank you.");
+      submission.getInputData().put("confirmationEmailQueued", confirmationWasQueued);
+      log.info("Confirmation Email Queued returns: "  + confirmationWasQueued);
       pdf.delete();
     } catch (IOException e) {
       throw new RuntimeException(e);
