@@ -2,7 +2,6 @@ package org.formflowstartertemplate.app.submission.actions;
 
 import formflow.library.config.submission.Action;
 import formflow.library.data.FormSubmission;
-import formflow.library.data.Submission;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UpdatePersonalInfoDates implements Action {
 
-  public void run(FormSubmission formSubmission, Submission submission) {
+  public void run(FormSubmission formSubmission) {
     List<String> datePrefixes = Arrays.asList("birth", "movedToUSA");
     datePrefixes.forEach(prefix -> {
       List<String> dateComponents = new ArrayList<>(3);
