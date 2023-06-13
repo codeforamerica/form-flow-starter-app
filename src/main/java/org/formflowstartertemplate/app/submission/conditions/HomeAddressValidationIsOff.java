@@ -13,7 +13,7 @@ public class HomeAddressValidationIsOff implements Condition {
 
   @Override
   public Boolean run(Submission submission) {
-    boolean addrValidationOffAtFragmentLevel = submission.getInputData().get("_validateresidentialAddress").equals("false");
+    boolean addrValidationOffAtFragmentLevel = submission.getInputData().get("validate_residentialAddress").equals("false");
     return isAddressValidationDisabled || addrValidationOffAtFragmentLevel;
   }
 }

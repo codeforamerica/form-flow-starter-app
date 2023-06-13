@@ -65,7 +65,7 @@ public class Ubi extends FlowInputs {
   private String residentialAddressZipCode;
 
   // Verify Home Address Screen
-  private String useValidatedResidentialAddress;
+  private String useSuggestedResidentialAddress;
 
   // Housemates Screen
   private String hasHousehold;
