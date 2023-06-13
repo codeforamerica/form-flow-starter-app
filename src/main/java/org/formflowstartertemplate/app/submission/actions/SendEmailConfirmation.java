@@ -66,10 +66,9 @@ public class SendEmailConfirmation implements Action {
         requireTls
     );
     Boolean confirmationWasQueued = nextStepsResponse.getMessage().contains("Queued. Thank you.");
-    log.info("Confirmation was queued: " + confirmationWasQueued);
+    log.info("Mailgun MessageResponse confirms message was queued (true/false): " + confirmationWasQueued);
     submission.getInputData().put("confirmationEmailQueued", confirmationWasQueued.toString());
     submission.setInputData(submission.getInputData());
-    log.info("ConfirmationQueued input data is: " + submission.getInputData().get("confirmationEmailQueued"));
   }
 
   public MessageResponse generatePDFEmail(
