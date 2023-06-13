@@ -80,7 +80,7 @@ dbFields:
 subflowInfo:
   householdAndIncome:
     totalIterations: 5
-    fields:
+    inputFields:
       householdMemberFirstName: LEGAL_NAME_FIRST_MEMBER
       householdMemberLastName: LEGAL_NAME_LAST_MEMBER
       householdMemberRelationship: RELATIONSHIP_MEMBER
