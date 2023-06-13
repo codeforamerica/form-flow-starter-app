@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class HouseholdMemberReceivesIncomePreparer implements SubmissionFieldPreparer {
 
   @Override
-  public Map<String, SubmissionField> prepareSubmissionFields(Submission submission, Map<String, Object> data, PdfMap pdfMap) {
+  public Map<String, SubmissionField> prepareSubmissionFields(Submission submission, PdfMap pdfMap) {
     Map<String, SubmissionField> householdMemberSubmissionFields = new HashMap<>();
 
     boolean hasHousehold = submission.getInputData().containsKey("hasHousehold") &&
