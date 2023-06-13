@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +45,42 @@ public class SendEmailConfirmation implements Action {
     if (recipientEmail == null || recipientEmail.isBlank()) {
       return;
     }
+    Boolean requireTls = Boolean.TRUE;
+
     String emailSubject = messageSource.getMessage("email.subject", null, null);
     Object[] args = new Object[]{submission.getId().toString()};
     String emailBody = messageSource.getMessage("email.body", args, null);
-
-    Boolean requireTls = Boolean.TRUE;
     List<File> pdfs = new ArrayList<File>();
+    MessageResponse response = generatePDFEmail(recipientEmail, emailSubject, emailToCc, emailToBcc, emailBody, pdfs, requireTls, submission);
+
+    String nextStepsSubject = messageSource.getMessage("next-steps-email.subject", null, null);
+    String nextStepsBody = messageSource.getMessage("next-steps-email.body", null, null);
+    pdfs = new ArrayList<File>();
+    MessageResponse nextStepsResponse = mailgunEmailClient.sendEmail(
+        nextStepsSubject,
+        recipientEmail,
+        Collections.emptyList(),
+        Collections.emptyList(),
+        nextStepsBody,
+        pdfs,
+        requireTls
+    );
+    Boolean confirmationWasQueued = nextStepsResponse.getMessage().contains("Queued. Thank you.");
+    log.info("Confirmation was queued: " + confirmationWasQueued);
+    submission.getInputData().put("confirmationEmailQueued", confirmationWasQueued.toString());
+    submission.setInputData(submission.getInputData());
+    log.info("ConfirmationQueued input data is: " + submission.getInputData().get("confirmationEmailQueued"));
+  }
+
+  public MessageResponse generatePDFEmail(
+      String recipientEmail,
+      String emailSubject,
+      List<String> emailToCc,
+      List<String> emailToBcc,
+      String emailBody,
+      List<File>pdfs,
+      Boolean requireTls,
+      Submission submission){
     try {
       String generateStringPrefixName = pdfService.generatePdfName(submission);
       File pdf = File.createTempFile(generateStringPrefixName, ".pdf");
@@ -58,8 +89,8 @@ public class SendEmailConfirmation implements Action {
       fos.write(pdfByteArray);
       fos.flush();
       pdfs.add(pdf);
-
-      MessageResponse response = mailgunEmailClient.sendEmail(
+      MessageResponse response;
+      response = mailgunEmailClient.sendEmail(
           emailSubject,
           recipientEmail,
           emailToCc,
@@ -68,12 +99,8 @@ public class SendEmailConfirmation implements Action {
           pdfs,
           requireTls
       );
-
-      log.info("EMAIL RESPONSE:     " + response);
-      boolean confirmationWasQueued = response.getMessage().contains("Queued. Thank you.");
-      submission.getInputData().put("confirmationEmailQueued", confirmationWasQueued);
-      log.info("Confirmation Email Queued returns: "  + confirmationWasQueued);
       pdf.delete();
+      return response;
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
