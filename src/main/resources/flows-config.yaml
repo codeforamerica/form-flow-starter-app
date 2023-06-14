@@ -2,6 +2,9 @@ name: ubi
 flow:
   howThisWorks:
     nextScreens:
+      - name: schoolName
+  schoolName:
+    nextScreens:
       - name: languagePreference
   languagePreference:
     nextScreens:

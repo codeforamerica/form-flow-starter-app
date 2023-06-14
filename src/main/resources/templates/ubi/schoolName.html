@@ -1,0 +1,15 @@
+<th:block
+    th:replace="fragments/screens/screenWithOneInput ::
+  screenWithOneInput(
+    title=${'What is your school name'},
+    header=${'What is your school name'},
+    subtext=${'Enter the name of your school here:'},
+    formAction=${formAction},
+    inputContent=~{::inputContent})">
+  <th:block th:ref="inputContent">
+    <!-- Be sure to have `ariaLabel='header'` to label the input with the header -->
+    <th:block th:replace="'fragments/inputs/text' ::
+      text(inputName='schoolName',
+      ariaLabel='header')"/>
+  </th:block>
+</th:block>
