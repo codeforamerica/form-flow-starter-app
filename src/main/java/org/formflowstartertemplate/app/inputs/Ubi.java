@@ -67,6 +67,20 @@ public class Ubi extends FlowInputs {
   // Verify Home Address Screen
   private String useSuggestedResidentialAddress;
 
+  // Home Address Screen
+  @NotBlank
+  private String testAddressStreetAddress1;
+  private String testAddressStreetAddress2;
+  @NotBlank
+  private String testAddressCity;
+  @NotBlank
+  private String testAddressState;
+  @NotBlank
+  private String testAddressZipCode;
+
+  // Verify Home Address Screen
+  private String useSuggestedTestAddress;
+
   // Housemates Screen
   private String hasHousehold;
 

@@ -43,6 +43,23 @@ flow:
   housemateInfo:
     subflow: household
     nextScreens:
+      - name: testAddress
+  testAddress:
+    subflow: household
+    nextScreens:
+      - name: householdList
+        condition: HomeAddressValidationIsOff
+      - name: pickTestAddress
+        condition: TestSmartySuggestionFound
+      - name: verifyTestAddress
+        condition: TestSmartySuggestionNotFound
+  pickTestAddress:
+    subflow: household
+    nextScreens:
+      - name: householdList
+  verifyTestAddress:
+    subflow: household
+    nextScreens:
       - name: householdList
   householdList:
     nextScreens:
