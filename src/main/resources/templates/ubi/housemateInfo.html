@@ -38,18 +38,31 @@
                       th:replace="~{fragments/inputs/selectOption :: selectOption(value='Domestic partner', optionText=#{housemate-info.domestic})}"/>
                 </th:block>
               </th:block>
-              <th:block th:replace="~{fragments/inputs/radioFieldset ::
-                            radioFieldset(inputName='householdMemberRecentlyMovedToUS',
-                            label=#{housemate-info.did-they-move},
-                            content=~{::radioOptions})}">
-                <th:block th:ref="radioOptions">
-                  <!-- Copy the below input if you want to add more -->
-                  <th:block
-                      th:replace="~{fragments/inputs/radio :: radio(inputName='householdMemberRecentlyMovedToUS',value='Yes', label=#{general.inputs.yes})}"/>
-                  <th:block
-                      th:replace="~{fragments/inputs/radio :: radio(inputName='householdMemberRecentlyMovedToUS',value='No', label=#{general.inputs.no})}"/>
-                </th:block>
-              </th:block>
+              <div class="question-with-follow-up">
+                <div class="question-with-follow-up__question">
+                  <th:block th:replace="~{fragments/inputs/radioFieldset ::
+                              radioFieldset(inputName='householdMemberRecentlyMovedToUS',
+                              label=#{housemate-info.did-they-move},
+                              content=~{::radioOptions})}">
+                    <th:block th:ref="radioOptions">
+                      <!-- Copy the below input if you want to add more -->
+                      <th:block
+                          th:replace="~{fragments/inputs/radio :: radio(inputName='householdMemberRecentlyMovedToUS',value='Yes', label=#{general.inputs.yes}, followUpId='#householdmember-moved-to-usa-follow-up')}"/>
+                      <th:block
+                          th:replace="~{fragments/inputs/radio :: radio(inputName='householdMemberRecentlyMovedToUS',value='No', label=#{general.inputs.no})}"/>
+                    </th:block>
+                  </th:block>
+                </div>
+                <div class="question-with-follow-up__follow-up" id="householdmember-moved-to-usa-follow-up">
+                  <th:block th:replace="~{fragments/inputs/date ::
+                                            date(inputName='householdMemberMovedToUSA',
+                                            label=#{personal-info.moved-when-label},
+                                            groupName='householdMemberMovedToUSA')}"/>
+                  <th:block th:replace="~{fragments/inputs/text ::
+                                text(inputName='householdMemberMovedFromCountry',
+                                label=#{personal-info.moved-from-label})}"/>
+                </div>
+              </div>
               <div class="form-card__footer">
                 <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
                   text=#{general.inputs.continue})}"/>
