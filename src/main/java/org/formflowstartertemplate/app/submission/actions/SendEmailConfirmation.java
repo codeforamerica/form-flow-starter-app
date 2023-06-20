@@ -51,7 +51,7 @@ public class SendEmailConfirmation implements Action {
     Object[] args = new Object[]{submission.getId().toString()};
     String emailBody = messageSource.getMessage("email.body", args, null);
     List<File> pdfs = new ArrayList<File>();
-    MessageResponse response = generatePDFEmail(recipientEmail, emailSubject, emailToCc, emailToBcc, emailBody, pdfs, requireTls, submission);
+    generateApplicationAndAttachToEmail(recipientEmail, emailSubject, emailToCc, emailToBcc, emailBody, pdfs, requireTls, submission);
 
     String nextStepsSubject = messageSource.getMessage("next-steps-email.subject", null, null);
     String nextStepsBody = messageSource.getMessage("next-steps-email.body", null, null);
@@ -71,7 +71,7 @@ public class SendEmailConfirmation implements Action {
     submission.setInputData(submission.getInputData());
   }
 
-  public MessageResponse generatePDFEmail(
+  public MessageResponse generateApplicationAndAttachToEmail(
       String recipientEmail,
       String emailSubject,
       List<String> emailToCc,
