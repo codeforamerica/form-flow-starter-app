@@ -56,11 +56,11 @@
                 <div class="question-with-follow-up__follow-up" id="householdmember-moved-to-usa-follow-up">
                   <th:block th:replace="~{fragments/inputs/date ::
                                             date(inputName='householdMemberMovedToUSA',
-                                            label=#{personal-info.moved-when-label},
+                                            label=#{housemate-info.when-did-they-move},
                                             groupName='householdMemberMovedToUSA')}"/>
                   <th:block th:replace="~{fragments/inputs/text ::
                                 text(inputName='householdMemberMovedFromCountry',
-                                label=#{personal-info.moved-from-label})}"/>
+                                label=#{housemate-info.what-country})}"/>
                 </div>
               </div>
               <div class="form-card__footer">
