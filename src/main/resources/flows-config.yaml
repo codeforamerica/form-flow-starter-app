@@ -41,6 +41,7 @@ flow:
         condition: HasHousehold
       - name: income
   housemateInfo:
+    onPostAction: UpdateHouseholdMemberMovedToUSADate
     subflow: household
     nextScreens:
       - name: householdList
