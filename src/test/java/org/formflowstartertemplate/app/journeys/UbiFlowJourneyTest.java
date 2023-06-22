@@ -1,11 +1,11 @@
 package org.formflowstartertemplate.app.journeys;
 
-import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.YES;
+
+import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
+import org.junit.jupiter.api.Test;
 
 public class UbiFlowJourneyTest extends AbstractBasePageTest {
 
@@ -39,7 +39,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("birthYear", "2000");
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Personal Info");
-    assertThat(testPage.hasErrorText("The date is invalid. Make sure to provide a valid date."));
+    assertThat(testPage.hasErrorText("This date is invalid. Make sure to provide a valid date."));
     assertThat(testPage.hasErrorText("Make sure to provide a day equal or above 01."));
     assertThat(testPage.hasErrorText("Make sure to provide a day equal or below 31."));
 

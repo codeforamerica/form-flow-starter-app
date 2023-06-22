@@ -80,7 +80,7 @@ public class Ubi extends FlowInputs {
   private String householdMemberMovedToUSADay;
   private String householdMemberMovedToUSAMonth;
   private String householdMemberMovedToUSAYear;
-  @Pattern(regexp = "\\d{1,2}/\\d{1,2}/\\d\\d\\d\\d", message = "{personal-info.date-invalid}")
+  @Pattern(regexp = "\\d{1,2}/\\d{1,2}/\\d\\d\\d\\d", message = "{housemate-info.date-invalid}")
   private String householdMemberMovedToUSADate;
   private String householdMemberMovedFromCountry;
 

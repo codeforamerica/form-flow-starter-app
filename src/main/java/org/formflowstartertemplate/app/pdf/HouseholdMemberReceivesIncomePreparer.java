@@ -34,6 +34,7 @@ public class HouseholdMemberReceivesIncomePreparer implements SubmissionFieldPre
         String householdMemberLastName = houseHoldSubflow.get(i).get("householdMemberLastName").toString();
         String householdMemberRelationship = houseHoldSubflow.get(i).get("householdMemberRelationship").toString();
         String householdMemberRecentlyMovedToUs = houseHoldSubflow.get(i).get("householdMemberRecentlyMovedToUS").toString();
+        
         int iterationNumber = i + 1;
         householdMemberSubmissionFields.putAll(Map.of(
             "householdMemberFirstName_" + iterationNumber, new SingleField("householdMemberFirstName", householdMemberFirstName, iterationNumber),
@@ -41,6 +42,22 @@ public class HouseholdMemberReceivesIncomePreparer implements SubmissionFieldPre
             "householdMemberRelationship_" + iterationNumber, new SingleField("householdMemberRelationship", householdMemberRelationship, iterationNumber),
             "householdMemberRecentlyMovedToUS_" + iterationNumber,  new SingleField("householdMemberRecentlyMovedToUS", householdMemberRecentlyMovedToUs, iterationNumber)
         ));
+
+        boolean hasHouseholdMemberMovedToUSADate = houseHoldSubflow.get(i).containsKey("householdMemberMovedToUSADate");
+        boolean hasHouseholdMemberMovedFromCountry = houseHoldSubflow.get(i).containsKey("householdMemberMovedFromCountry");
+        
+        
+        if (hasHouseholdMemberMovedToUSADate) {
+          String householdMemberMovedToUSADate = houseHoldSubflow.get(i).get("householdMemberMovedToUSADate").toString();
+          householdMemberSubmissionFields.put("householdMemberMovedToUSADate_" + iterationNumber,
+              new SingleField("householdMemberMovedToUSADate", householdMemberMovedToUSADate, iterationNumber));
+        }
+        
+        if (hasHouseholdMemberMovedFromCountry) {
+          String householdMemberMovedFromCountry = houseHoldSubflow.get(i).get("householdMemberMovedFromCountry").toString();
+          householdMemberSubmissionFields.put("householdMemberMovedFromCountry_" + iterationNumber,
+              new SingleField("householdMemberMovedFromCountry", householdMemberMovedFromCountry, iterationNumber));
+        }
 
         Map<String, Object> householdMember = incomeSubflow.stream().filter(
                 iteration -> iteration.get("householdMember").equals(householdMemberFirstName + " " + householdMemberLastName))
