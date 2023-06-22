@@ -24,7 +24,7 @@ public class ValidateMovedToUSADate extends VerifyDate {
       return errorMessages;
     }
 
-    if (!this.isDateValid(movedToUSADate)) {
+    if (this.isDateInvalid(movedToUSADate)) {
       errorMessages.put(INPUT_NAME, List.of("Please check the date entered. It is not a valid date."));
     }
 
