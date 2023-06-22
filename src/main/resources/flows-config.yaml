@@ -45,6 +45,12 @@ flow:
     crossFieldValidationAction: ValidateHouseholdMemberMovedToUSADate
     subflow: household
     nextScreens:
+      - name: testDocUpload
+  testDocUpload:
+    nextScreens:
+      - name: uploadDocuments
+  uploadDocuments:
+    nextScreens:
       - name: householdList
   householdList:
     nextScreens:
