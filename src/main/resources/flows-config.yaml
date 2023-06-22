@@ -2,12 +2,6 @@ name: ubi
 flow:
   howThisWorks:
     nextScreens:
-      - name: languagePreference
-  languagePreference:
-    nextScreens:
-      - name: gettingToKnowYou
-  gettingToKnowYou:
-    nextScreens:
       - name: personalInfo
   personalInfo:
     onPostAction: UpdatePersonalInfoDates
@@ -16,8 +10,6 @@ flow:
       - name: homeAddress
   homeAddress:
     nextScreens:
-      - name: contactInfo
-        condition: HomeAddressValidationIsOff
       - name: pickHomeAddress
         condition: SmartySuggestionFound
       - name: verifyHomeAddress
@@ -31,109 +23,12 @@ flow:
   contactInfo:
     crossFieldValidationAction: CheckIndicatedContactMethodIsProvided
     nextScreens:
-      - name: eligibility
-  eligibility:
-    nextScreens:
-      - name: housemates
-  housemates:
-    nextScreens:
-      - name: housemateInfo
-        condition: HasHousehold
-      - name: income
-  housemateInfo:
-    subflow: household
-    nextScreens:
-      - name: householdList
-  householdList:
-    nextScreens:
-      - name: income
-  householdDeleteConfirmation:
-    nextScreens: null
-  income:
-    nextScreens:
-      - name: householdMemberIncome
-  householdMemberIncome:
-    subflow: income
-    nextScreens:
-      - name: incomeTypes
-  incomeTypes:
-    subflow: income
-    nextScreens:
-      - name: incomeAmounts
-  incomeAmounts:
-    beforeSaveAction: UpdateIncomeAmountsBeforeSaving
-    subflow: income
-    nextScreens:
-      - name: annualHouseholdIncome
-  annualHouseholdIncome:
-    nextScreens:
-      - name: exceedsIncomeThreshold
-        condition: ExceedsIncomeThreshold
-      - name: incomeComplete
-  incomeDeleteConfirmation:
-    nextScreens: null
-  reportedAnnualHouseholdIncome:
-    nextScreens:
-      - name: exceedsIncomeThreshold
-        condition: ExceedsIncomeThreshold
-      - name: incomeComplete
-  incomeComplete:
-    nextScreens:
-      - name: economicHardship
-  exceedsIncomeThreshold:
-    nextScreens:
-      - name: economicHardship
-  economicHardship:
-    nextScreens:
-      - name: addingDocuments
-  addingDocuments:
-    nextScreens:
-      - name: howToAddDocuments
-  howToAddDocuments:
-    nextScreens:
-      - name: documentRecommendations
-  documentRecommendations:
-    nextScreens:
-      - name: uploadUBIFlowDocuments
-  documentOffboarding:
-    nextScreens:
-      - name: submitting
-  uploadUBIFlowDocuments:
-    nextScreens:
-      - name: docSubmitConfirmation
-  docSubmitConfirmation:
-    nextScreens:
-      - name: submitting
-  submitting:
-    nextScreens:
-      - name: legalStuff
-  legalStuff:
-    nextScreens:
       - name: signName
   signName:
     beforeSaveAction: SendEmailConfirmation
     nextScreens:
       - name: nextSteps
   nextSteps:
-    nextScreens:
-      - name: success
-  success:
-    nextScreens: null
-subflows:
-  household:
-    entryScreen: housemates
-    iterationStartScreen: housemateInfo
-    reviewScreen: householdList
-    deleteConfirmationScreen: householdDeleteConfirmation
-  income:
-    entryScreen: income
-    iterationStartScreen: householdMemberIncome
-    reviewScreen: annualHouseholdIncome
-    deleteConfirmationScreen: incomeDeleteConfirmation
----
-name: docUpload
-flow:
-  uploadDocuments:
     nextScreens:
       - name: success
   success:
