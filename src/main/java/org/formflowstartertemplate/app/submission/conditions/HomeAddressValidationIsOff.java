@@ -2,6 +2,7 @@ package org.formflowstartertemplate.app.submission.conditions;
 
 import formflow.library.config.submission.Condition;
 import formflow.library.data.Submission;
+import formflow.library.inputs.UnvalidatedField;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,10 @@ public class HomeAddressValidationIsOff implements Condition {
 
   @Override
   public Boolean run(Submission submission) {
-    boolean addrValidationOffAtFragmentLevel = submission.getInputData().get("validate_residentialAddress").equals("false");
-    return isAddressValidationDisabled || addrValidationOffAtFragmentLevel;
+    if (isAddressValidationDisabled) {
+      return true;
+    }
+
+    return submission.getInputData().get(UnvalidatedField.VALIDATE_ADDRESS + "residentialAddress").equals("false");
   }
 }
