@@ -9,22 +9,22 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class ValidateMovedToUSADate extends VerifyDate {
+public class ValidateHouseholdMemberMovedToUSADate extends VerifyDate {
 
-  private final String INPUT_NAME = "movedToUSADate";
+  private final String INPUT_NAME = "householdMemberMovedToUSADate";
 
   public Map<String, List<String>> runValidation(FormSubmission formSubmission) {
-    log.info("Running ValidateMovedToUSADate!");
+    log.info("Running ValidateHouseholdMovedToUSADate!");
     Map<String, List<String>> errorMessages = new HashMap<>();
     Map<String, Object> inputData = formSubmission.getFormData();
-    String movedToUSA = (String) inputData.get("movedToUSA");
-    String movedToUSADate = (String) inputData.get("movedToUSADate");
+    String movedToUSA = (String) inputData.get("householdMemberRecentlyMovedToUS");
+    String movedToUSADate = (String) inputData.get("householdMemberMovedToUSADate");
 
     if (movedToUSA == null || !movedToUSA.equalsIgnoreCase("Yes")) {
       return errorMessages;
     }
 
-    if (!this.isDateValid(movedToUSADate)) {
+    if (!isDateValid(movedToUSADate)) {
       errorMessages.put(INPUT_NAME, List.of("Please check the date entered. It is not a valid date."));
     }
 

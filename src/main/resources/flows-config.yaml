@@ -42,6 +42,7 @@ flow:
       - name: income
   housemateInfo:
     onPostAction: UpdateHouseholdMemberMovedToUSADate
+    crossFieldValidationAction: ValidateHouseholdMemberMovedToUSADate
     subflow: household
     nextScreens:
       - name: householdList
