@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,7 +46,7 @@ public class SendEmailConfirmation implements Action {
     if (recipientEmail == null || recipientEmail.isBlank()) {
       return;
     }
-    Boolean requireTls = Boolean.TRUE;
+    Optional<Boolean> requireTls = Optional.empty();
 
     String emailSubject = messageSource.getMessage("email.subject", null, null);
     Object[] args = new Object[]{submission.getId().toString()};
@@ -62,8 +63,7 @@ public class SendEmailConfirmation implements Action {
         Collections.emptyList(),
         Collections.emptyList(),
         nextStepsBody,
-        pdfs,
-        requireTls
+        pdfs
     );
     Boolean confirmationWasQueued = nextStepsResponse.getMessage().contains("Queued. Thank you.");
     log.info("Mailgun MessageResponse confirms message was queued (true/false): " + confirmationWasQueued);
@@ -78,7 +78,7 @@ public class SendEmailConfirmation implements Action {
       List<String> emailToBcc,
       String emailBody,
       List<File>pdfs,
-      Boolean requireTls,
+      Optional requireTls,
       Submission submission){
     try {
       String generateStringPrefixName = pdfService.generatePdfName(submission);
@@ -89,14 +89,16 @@ public class SendEmailConfirmation implements Action {
       fos.flush();
       pdfs.add(pdf);
       MessageResponse response;
+      if(requireTls.isPresent() && requireTls.get().equals(false)){
+        mailgunEmailClient.setRequireTls(false);
+      }
       response = mailgunEmailClient.sendEmail(
           emailSubject,
           recipientEmail,
           emailToCc,
           emailToBcc,
           emailBody,
-          pdfs,
-          requireTls
+          pdfs
       );
       pdf.delete();
       return response;
