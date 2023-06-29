@@ -278,11 +278,12 @@ datasource:
 
 ## Application won't run after IntelliJ update
 
-Sometimes an IntelliJ will prevent the `StarterApplication` run context to fail. Here are some ways to attempt to fix it.
+Sometimes an IntelliJ update will prevent the `StarterApplication` run context to fail. Here are some ways to attempt to fix it.
 
 1. Invalidate the cache
     * File -> Invalidate Caches...
     * This will invalidate the caches and restart IntelliJ.
+    * Afterward, try to run the application. If this issue isn't fixed, try suggestion 2.
 2. Remove `.idea/modules`
     * In the root of the repository, look for `.idea/modules`
     * Make a copy of this folder and save somewhere else
