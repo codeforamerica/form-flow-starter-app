@@ -25,6 +25,7 @@ Table of Contents
     * [AWS Setup](#aws-setup)
     * [Cloud Deployment](#cloud-deployment)
         * [Aptible Setup](#aptible-setup)
+* [Troubleshooting IntelliJ](#troubleshooting-intellij)
 
 This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
@@ -272,3 +273,19 @@ datasource:
 5. To load the `.env` file in IntelliJ, you'll need to enable
    the [EnvFile Plugin](https://plugins.jetbrains.com/plugin/7861-envfile). Then enable it for your
    project.
+
+# Troubleshooting IntelliJ
+
+## Application won't run after IntelliJ update
+
+Sometimes an IntelliJ will prevent the `StarterApplication` run context to fail. Here are some ways to attempt to fix it.
+
+1. Invalidate the cache
+    * File -> Invalidate Caches...
+    * This will invalidate the caches and restart IntelliJ.
+2. Remove `.idea/modules`
+    * In the root of the repository, look for `.idea/modules`
+    * Make a copy of this folder and save somewhere else
+    * Delete this folder and all of its contents
+    * Quit IntelliJ
+    * Open IntelliJ, hopefully modules are re-created from the application context
