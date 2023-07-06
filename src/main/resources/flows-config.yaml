@@ -32,7 +32,7 @@ flow:
     crossFieldValidationAction: CheckIndicatedContactMethodIsProvided
     nextScreens:
       - name: phoneNumberNudge
-        condition: ContactByPhoneNotSelected
+        condition: PhoneNumberNotProvidedOnContactInfoPage
       - name: eligibility
   phoneNumberNudge:
     nextScreens:

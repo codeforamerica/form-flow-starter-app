@@ -110,7 +110,12 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("residentialAddressState", "NM - New Mexico");
     testPage.enter("residentialAddressZipCode", "88201");
     testPage.clickContinue();
-
+    // Contact Info Does not include phone number, and should trigger phoneNumberNudge Page
+    assertThat(testPage.getTitle()).isEqualTo("Contact Info");
+    testPage.enter("email", "foo@test.com");
+    testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Phone number nudge");
+    testPage.clickButton("Add a phone number");
     // Contact Info
     assertThat(testPage.getTitle()).isEqualTo("Contact Info");
     testPage.enter("phoneNumber", "(312) 877-1021");
