@@ -31,6 +31,11 @@ flow:
   contactInfo:
     crossFieldValidationAction: CheckIndicatedContactMethodIsProvided
     nextScreens:
+      - name: phoneNumberNudge
+        condition: PhoneNumberNotProvidedOnContactInfoPage
+      - name: eligibility
+  phoneNumberNudge:
+    nextScreens:
       - name: eligibility
   eligibility:
     nextScreens:
