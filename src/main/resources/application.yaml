@@ -1,5 +1,5 @@
 form-flow:
-  locales: en, es, vi
+  locales: en, es
   flow:
     ubi:
       email:
