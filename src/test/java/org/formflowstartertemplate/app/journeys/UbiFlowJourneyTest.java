@@ -126,6 +126,9 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     assertThat(testPage.findElementById("howToContactYou-phone").isSelected()).isTrue();
     assertThat(testPage.findElementById("howToContactYou-email").isSelected()).isTrue();
     testPage.clickContinue();
+    assertThat(testPage.getTitle()).isEqualTo("Review info");
+    assertThat(testPage.getCssSelectorText(".form-card__content")).contains("(312) 877-1021");
+    testPage.clickButton("This looks correct");
     // Eligibility
     testPage.clickContinue();
     // Housemates
