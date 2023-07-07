@@ -13,23 +13,23 @@
             th:replace="~{fragments/cardHeader :: cardHeader(header=#{review-info.header})}"/>
         <div class="form-card__content">
           <div>
-            <b th:text="#{review-info.name-header}"></b></br>
+            <b th:text="#{review-info.name-header}"></b><br>
             <div class="spacing-above-15">
               <th:block th:text="${fieldData.firstName} + ' ' + ${fieldData.lastName}"></th:block>
               <hr class="spacing-below-25 spacing-above-25">
             </div>
           </div>
           <div>
-            <b th:text="#{review-info.home-address-header}"></b></br>
-            <div class="spacing-above-15" th:if="${fieldData.useSuggestedResidentialAddress == 'false'}">
+            <b th:text="#{review-info.home-address-header}"></b><br>
+            <div class="spacing-above-15" th:if="${fieldData.getOrDefault('useSuggestedResidentialAddress', 'false') == 'false'}">
               <th:block th:text="${fieldData.residentialAddressStreetAddress1}"></th:block><br>
-              <th:block th:if="${fieldData.residentialAddressStreetAddress2 != null && !fieldData.residentialAddressStreetAddress2.trim().isEmpty()}">
-                <th:block th:text="${fieldData.residentialAddressStreetAddress2}"></th:block></br>
-              </th:block>
+              <div th:if="${fieldData.residentialAddressStreetAddress2 != null && !fieldData.residentialAddressStreetAddress2.trim().isEmpty()}">
+                <th:block th:text="${fieldData.residentialAddressStreetAddress2}"></th:block><br>
+              </div>
               <th:block th:text="${fieldData.residentialAddressCity} + ', ' + ${fieldData.residentialAddressState}"></th:block><br>
               <th:block th:text="${fieldData.residentialAddressZipCode}"></th:block><br>
             </div>
-            <div class="spacing-above-15" th:if="${fieldData.useSuggestedResidentialAddress == 'true'}">
+            <div class="spacing-above-15" th:if="${fieldData.getOrDefault('useSuggestedResidentialAddress', 'false') == 'true'}">
               <th:block th:text="${fieldData.residentialAddressStreetAddress1_validated}"></th:block><br>
               <th:block th:text="${fieldData.residentialAddressCity_validated} + ', ' + ${fieldData.residentialAddressState_validated}"></th:block><br>
               <th:block th:text="${fieldData.residentialAddressZipCode_validated}"></th:block><br>
