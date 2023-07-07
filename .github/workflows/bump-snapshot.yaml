@@ -1,0 +1,30 @@
+name: Bump form-flow snapshot
+on:
+  repository_dispatch:
+    types: [ form-flow-snapshot-bumped ]
+jobs:
+  bump_snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+          token: ${{ secrets.PLATFORM_ROBOT_PAT }}
+      - name: Update snapshot version
+        run: sed -i 's/formFlowLibraryVersion =.*/formFlowLibraryVersion = "{{ github.event.client_payload.version }}"/' build.gradle
+  run_tests:
+    name: Run tests
+    needs: bump-snapshot
+    uses: ./.github/workflows/run-tests.yml
+  push_snapshot_update_changes:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push snapshot update changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_user_name: cfa-platforms-robot
+          commit_message: Bump version to ${{github.event.client_payload.version}}
+          commit_user_email: platforms-robot@codeforamerica.org
+          commit_author: CfA Platforms Robot <platforms-robot@codeforamerica.org>
+          push_options: --force
