@@ -33,8 +33,11 @@ flow:
     nextScreens:
       - name: phoneNumberNudge
         condition: PhoneNumberNotProvidedOnContactInfoPage
-      - name: eligibility
+      - name: reviewInfo
   phoneNumberNudge:
+    nextScreens:
+      - name: reviewInfo
+  reviewInfo:
     nextScreens:
       - name: eligibility
   eligibility:
