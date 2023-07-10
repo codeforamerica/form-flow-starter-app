@@ -1,4 +1,5 @@
 form-flow:
+  languages: en, es
   flow:
     ubi:
       email:
