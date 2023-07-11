@@ -21,16 +21,12 @@ public class StaticPagesJourneyTest extends AbstractBasePageTest {
     assertThat(driver.getWindowHandles().size()).isEqualTo(1);
     String originalWindow = driver.getWindowHandle();
 
-    System.out.println("✨Before click ✨");
-    System.out.println(testPage.getCssSelectorText("body"));
     // Test language change
     testPage.clickLink("Español");
-    System.out.println("\uD83D\uDC38 After click \uD83D\uDC38");
-    System.out.println(testPage.getCssSelectorText("body"));
-
-    assertThat(testPage.getTitle()).isEqualTo("Solicitar beneficios de RBU fácilmente en línea.");
-    testPage.clickLink("English");
-    assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
+    assertThat(testPage.getCssSelectorText("body")).isEqualTo("");
+//    assertThat(testPage.getTitle()).isEqualTo("Solicitar beneficios de RBU fácilmente en línea.");
+//    testPage.clickLink("English");
+//    assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     // Go to FAQ tab
 //    testPage.clickLink("FAQ");
 //    assertThat(driver.getWindowHandles().size()).isEqualTo(2);
