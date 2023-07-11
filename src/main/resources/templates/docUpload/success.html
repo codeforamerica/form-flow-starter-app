@@ -16,7 +16,7 @@
             <ul>
               <li th:each="userFile : ${userFiles.entrySet()}">
                 <span th:text="${userFile.value.originalFilename} + ' -'"></span>
-                <a th:href="@{'/file-download/' + ${userFile.key}}">Download</a>
+                <a th:href="@{'/file-download/' + ${submission.id} + '/' + ${userFile.key}}">Download</a>
               </li>
             </ul>
             <div><a th:href="@{'/file-download/' + ${submission.id}}">Download all my files</a></div>
