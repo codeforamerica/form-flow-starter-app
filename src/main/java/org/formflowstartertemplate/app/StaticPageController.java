@@ -21,13 +21,11 @@ public class StaticPageController {
    * @return the static page template
    */
   @GetMapping("/")
-  ModelAndView getIndex(HttpSession httpSession) {
+  String getIndex(HttpSession httpSession) {
     httpSession.invalidate(); // For dev, reset session if you visit home
 
-    Map<String, Object> model = new HashMap<>();
-    model.put("screen", "/");
-
-    return new ModelAndView("index", model);  }
+    return "index";
+  }
 
   /**
    * Renders the website faq page.
@@ -35,11 +33,8 @@ public class StaticPageController {
    * @return the static page template
    */
   @GetMapping("/faq")
-  ModelAndView getFaq() {
-    Map<String, Object> model = new HashMap<>();
-    model.put("screen", "faq");
-
-    return new ModelAndView("faq", model);
+  String getFaq() {
+    return "faq";
   }
 
   /**
@@ -48,10 +43,7 @@ public class StaticPageController {
    * @return the static page template
    */
   @GetMapping("/privacy")
-  ModelAndView getPrivacy() {
-    Map<String, Object> model = new HashMap<>();
-    model.put("screen", "privacy");
-
-    return new ModelAndView("privacy", model);
+  String getPrivacy() {
+    return "privacy";
   }
 }

@@ -15,6 +15,12 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     testPage.clickButton("Apply now");
     // How this works
+    // Test language change on a flow screen
+    testPage.clickLink("Español");
+    assertThat(testPage.getTitle()).isEqualTo("Como funciona");
+    testPage.clickLink("English");
+    assertThat(testPage.getTitle()).isEqualTo("How this works");
+
     testPage.clickContinue();
     // Language preference
     testPage.clickContinue();
@@ -214,5 +220,12 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.goBack();
     testPage.goBack();
     assertThat(testPage.getTitle()).isEqualTo("Income");
+    testPage.clickLink("Add income");
+    assertThat(testPage.getTitle()).isEqualTo("Household Member Income");
+    // Test language change on a subflow screen
+    testPage.clickLink("Español");
+    assertThat(testPage.findElementById("back-link").getText()).isEqualTo("< Regresa");
+    testPage.clickLink("English");
+    assertThat(testPage.findElementById("back-link").getText()).isEqualTo("< Go Back");
   }
 }
