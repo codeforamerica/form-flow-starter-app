@@ -23,25 +23,24 @@ public class StaticPagesJourneyTest extends AbstractBasePageTest {
 
     // Test language change
     testPage.clickLink("Español");
-    assertThat(testPage.getCssSelectorText("body")).isEqualTo("");
-//    assertThat(testPage.getTitle()).isEqualTo("Solicitar beneficios de RBU fácilmente en línea.");
-//    testPage.clickLink("English");
-//    assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
+    assertThat(testPage.getTitle()).isEqualTo("Solicitar beneficios de RBU fácilmente en línea.");
+    testPage.clickLink("English");
+    assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     // Go to FAQ tab
-//    testPage.clickLink("FAQ");
-//    assertThat(driver.getWindowHandles().size()).isEqualTo(2);
-//    switchAwayFromOriginalWindow(originalWindow);
-//    assertThat(testPage.getTitle()).isEqualTo("Frequently Asked Questions");
-//    // Back on landing screen
-//    driver.close();
-//    driver.switchTo().window(originalWindow);
-//    assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
-//    assertThat(driver.getWindowHandles().size()).isEqualTo(1);
-//    // Go to privacy policy tab
-//    testPage.clickLink("Privacy Policy");
-//    assertThat(driver.getWindowHandles().size()).isEqualTo(2);
-//    switchAwayFromOriginalWindow(originalWindow);
-//    assertThat(testPage.getTitle()).isEqualTo("Privacy Policy");
+    testPage.clickLink("FAQ");
+    assertThat(driver.getWindowHandles().size()).isEqualTo(2);
+    switchAwayFromOriginalWindow(originalWindow);
+    assertThat(testPage.getTitle()).isEqualTo("Frequently Asked Questions");
+    // Back on landing screen
+    driver.close();
+    driver.switchTo().window(originalWindow);
+    assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
+    assertThat(driver.getWindowHandles().size()).isEqualTo(1);
+    // Go to privacy policy tab
+    testPage.clickLink("Privacy Policy");
+    assertThat(driver.getWindowHandles().size()).isEqualTo(2);
+    switchAwayFromOriginalWindow(originalWindow);
+    assertThat(testPage.getTitle()).isEqualTo("Privacy Policy");
   }
 
   void switchAwayFromOriginalWindow(String originalWindow) {
