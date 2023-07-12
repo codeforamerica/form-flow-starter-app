@@ -40,9 +40,6 @@ form-flow:
     show-stack-trace: true
     pretty-print-packages: formflow,formflowstartertemplate
 spring:
-  messages:
-    encoding: ISO-8859-1
-    basename: messages, messages-form-flow
   profiles:
     group:
       test:
