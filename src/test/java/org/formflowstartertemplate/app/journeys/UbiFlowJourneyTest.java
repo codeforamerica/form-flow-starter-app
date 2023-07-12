@@ -16,7 +16,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.clickButton("Apply now");
     // How this works
     // Test language change on a flow screen
-    testPage.clickLink("Español");
+    testPage.clickLink("Espa\u00F1ol");
     assertThat(testPage.getTitle()).isEqualTo("Como funciona");
     testPage.clickLink("English");
     assertThat(testPage.getTitle()).isEqualTo("How this works");
@@ -223,7 +223,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.clickLink("Add income");
     assertThat(testPage.getTitle()).isEqualTo("Household Member Income");
     // Test language change on a subflow screen
-    testPage.clickLink("Español");
+    testPage.clickLink("Espa\u00F1ol");
     assertThat(testPage.findElementById("back-link").getText()).isEqualTo("< Regresa");
     testPage.clickLink("English");
     assertThat(testPage.findElementById("back-link").getText()).isEqualTo("< Go Back");
