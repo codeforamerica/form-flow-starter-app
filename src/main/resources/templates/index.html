@@ -18,8 +18,12 @@
                class="button--primary button"></a>
           </div>
           <div class="spacing-below-35">
-            <a href="/flow/ubi/howThisWorks" th:text="#{index.aplica-ahora}"
-               class="button--small button"></a>
+            <a
+              th:with="otherLang=${#locale.getLanguage().equals('es') ? 'en' : 'es'}"
+              th:href="|/flow/ubi/howThisWorks?lang=${otherLang}|"
+              th:text="#{index.aplica-ahora}"
+              th:lang="${otherLang}"
+              class="button--small button"></a>
           </div>
         </div>
         <div class="width-one-half">
