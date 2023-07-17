@@ -214,5 +214,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.goBack();
     testPage.goBack();
     assertThat(testPage.getTitle()).isEqualTo("Income");
+    testPage.clickLink("Add income");
+    assertThat(testPage.getTitle()).isEqualTo("Household Member Income");
   }
 }
