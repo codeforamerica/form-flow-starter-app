@@ -278,7 +278,8 @@ datasource:
 
 ## Application won't run after IntelliJ update
 
-Sometimes an IntelliJ update will prevent the `StarterApplication` run context to fail. Here are some ways to attempt to fix it.
+Sometimes an IntelliJ update will cause the `StarterApplication` run context to fail. Here are some ways to attempt to fix it.
+
 
 1. Invalidate the cache
     * File -> Invalidate Caches...
@@ -289,4 +290,10 @@ Sometimes an IntelliJ update will prevent the `StarterApplication` run context t
     * Make a copy of this folder and save somewhere else
     * Delete this folder and all of its contents
     * Quit IntelliJ
-    * Open IntelliJ, hopefully modules are re-created from the application context
+    * Open IntelliJ, rebuild the project, hopefully modules are re-created from the application context
+3. If both of the above fail
+   * Make a copy of the entire `.idea` folder and save somewhere else.
+   * Delete the original `.idea` folder
+   * Quit IntelliJ
+   * Open IntelliJ, rebuild the project, hopefully modules are re-created from the application context and found
+

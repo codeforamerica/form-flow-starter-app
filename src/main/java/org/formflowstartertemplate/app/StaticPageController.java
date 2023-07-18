@@ -19,6 +19,7 @@ public class StaticPageController {
   @GetMapping("/")
   String getIndex(HttpSession httpSession) {
     httpSession.invalidate(); // For dev, reset session if you visit home
+
     return "index";
   }
 
@@ -32,6 +33,11 @@ public class StaticPageController {
     return "faq";
   }
 
+  /**
+   * Renders the website privacy page.
+   *
+   * @return the static page template
+   */
   @GetMapping("/privacy")
   String getPrivacy() {
     return "privacy";
