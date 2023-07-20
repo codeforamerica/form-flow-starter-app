@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
+
+<script>
+  function selectCheckboxFieldIfTextFieldIsNotEmpty(textFieldId, checkboxFieldId) {
+    let textField = document.getElementById(textFieldId);
+    let checkboxField = document.getElementById(checkboxFieldId);
+    textField.addEventListener("input", function() {
+      if (textField.value !== "") {
+        checkboxField.checked = true;
+        checkboxField.parentElement.classList.add("is-selected");
+      }  else {
+        checkboxField.checked = false;
+        checkboxField.parentElement.classList.remove("is-selected");
+      }
+    });
+  }
+
+  window.onload = function() {
+    selectCheckboxFieldIfTextFieldIsNotEmpty("email", "howToContactYou-email");
+    selectCheckboxFieldIfTextFieldIsNotEmpty("phoneNumber", "howToContactYou-phone");
+  }
+</script>
 <head th:replace="~{fragments/head :: head(title=#{contact-info.title})}"></head>
 <body>
 <div class="page-wrapper">
@@ -49,4 +70,5 @@
 </div>
 <th:block th:replace="~{fragments/footer :: footer}" />
 </body>
+
 </html>
