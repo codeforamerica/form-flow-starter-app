@@ -280,6 +280,7 @@ datasource:
 
 Sometimes an IntelliJ update will cause the `StarterApplication` run context to fail. Here are some ways to attempt to fix it.
 
+
 1. Invalidate the cache
     * File -> Invalidate Caches...
     * This will invalidate the caches and restart IntelliJ.
@@ -295,3 +296,4 @@ Sometimes an IntelliJ update will cause the `StarterApplication` run context to 
    * Delete the original `.idea` folder
    * Quit IntelliJ
    * Open IntelliJ, rebuild the project, hopefully modules are re-created from the application context and found
+
