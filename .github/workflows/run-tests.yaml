@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   pull_request:
   repository_dispatch:
-    types: [form-flow-published]
+    types: [form-flow-snapshot-updated]
 
 env:
   USERNAME: ${{ secrets.GPR_USER }}
