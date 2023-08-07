@@ -209,7 +209,7 @@ $> ./generate_migration.sh
 ```
 
 _Note: if it does not run on the command line, you may need to give the script executable
-permission first, by running `chmod u+x generate_migration.sh`.
+permission first, by running `chmod u+x generate_migration.sh`_
 
 ## AWS Setup
 
