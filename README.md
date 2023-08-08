@@ -18,10 +18,11 @@ Table of Contents
         * [Conditions](#conditions)
 * [Setup Instructions](#setup-instructions)
     * [Setup Environment](#setup-environment)
-        * [Setup Application](#setup-application)   
+        * [Setup Application](#setup-application)
         * [Contributing Live Templates to your App](#contributing-live-templates-to-your-app)
         * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
 * [Using this as a template repository](#using-this-as-a-template-repository)
+    * [Scripts](#scripts)
     * [AWS Setup](#aws-setup)
     * [Cloud Deployment](#cloud-deployment)
         * [Aptible Setup](#aptible-setup)
@@ -128,7 +129,9 @@ to see that the resulting date is actually valid.
 ### Conditions
 
 # Setup instructions
-Refer to the [setup instructions](https://github.com/codeforamerica/form-flow#developer-setup) in form-flow to get the dependencies necessary.
+
+Refer to the [setup instructions](https://github.com/codeforamerica/form-flow#developer-setup) in
+form-flow to get the dependencies necessary.
 
 ### Setup Environment
 
@@ -180,6 +183,34 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
 
 # Using this as a template repository
 
+## Scripts
+
+We provide a directory named `scripts` where we place small scripts we think are
+useful for people using our library. Below are descriptions of the scripts
+located in that directory.
+
+### generate_migration.sh
+
+This script will generate an empty migration file and place it in
+the following directory: `src/main/resources/db/migration`. If you'd like
+to change this location, you can edit the `generate_migration.sh` file
+and update the `migrations_paths` variable.
+
+The script will create the migration directory if it does not already exist.
+
+It will prompt you to enter a short description of what the migration will do.
+It will then generate the file, with a name based on that description. The script
+will then open up the migration file in IntelliJ for you.
+
+To run the script, simply type:
+
+```bash
+$> ./generate_migration.sh
+```
+
+_Note: if it does not run on the command line, you may need to give the script executable
+permission first, by running `chmod u+x generate_migration.sh`_
+
 ## AWS Setup
 
 1. Provision a new AWS bucket.
@@ -208,27 +239,38 @@ Here are the general steps to setup a new application in Aptible:
 ### Deployment in Aptible to a custom URL
 
 These instructions guide you through the process of creating resources in Aptible + AWS which will
-allow you to deploy your application to a custom domain with root domain forwarding. Please create the resources in the specified order, as there are
+allow you to deploy your application to a custom domain with root domain forwarding. Please create
+the resources in the specified order, as there are
 dependencies.
 
 #### Route53 setup
-1. Create a new hosted zone with the name corresponding to the root domain of your purchased domain name.
+
+1. Create a new hosted zone with the name corresponding to the root domain of your purchased domain
+   name.
 
 #### Aptible endpoint setup
+
 1. Create a new managed HTTPS endpoint for your root domain with subdomain (i.e. www)
 2. Follow the instructions to create managed HTTPS validation records in Route53
 
 #### Request public certificate
-1. Request certificate in AWS Certificate Manager (ACM) for your purchased domain name. If you would like to support directing non-www to www traffic, please use your root domain for the fully qualified domain name in the request.
+
+1. Request certificate in AWS Certificate Manager (ACM) for your purchased domain name. If you would
+   like to support directing non-www to www traffic, please use your root domain for the fully
+   qualified domain name in the request.
 2. Create records in AWS Route53
 
 #### S3 static hosting for redirect requests (non-www traffic -> www)
+
 1. Create a new S3 bucket with your root domain.
-2. Under the bucket properties, configure static website hosting with hosting type of `Redirect requests for an object`. Select Protocol of `none`.
+2. Under the bucket properties, configure static website hosting with hosting type
+   of `Redirect requests for an object`. Select Protocol of `none`.
 
 #### Cloudfront Distribution Setup
+
 1. Create a new CloudFront distribution with CNAME corresponding to your root domain
-2. Associate the certificate that you created for your root domain. All other settings can remain as defaults.
+2. Associate the certificate that you created for your root domain. All other settings can remain as
+   defaults.
 3. Create a Route53 Alias record for the root domain which points to your cloudfront distribution.
 
 ## Development Setup
@@ -257,8 +299,8 @@ dependencies.
 ```yaml 
 
 datasource:
-   url: jdbc:postgresql://localhost:5432/starter-app
-   username: starter-app
+  url: jdbc:postgresql://localhost:5432/starter-app
+  username: starter-app
 ```
 
 and should be updated to this
@@ -266,8 +308,8 @@ and should be updated to this
 ```yaml 
 
 datasource:
-   url: jdbc:postgresql://localhost:5432/childcare-illinois
-   username: childcare-illinois
+  url: jdbc:postgresql://localhost:5432/childcare-illinois
+  username: childcare-illinois
 ```
 
 5. To load the `.env` file in IntelliJ, you'll need to enable
@@ -278,8 +320,8 @@ datasource:
 
 ## Application won't run after IntelliJ update
 
-Sometimes an IntelliJ update will cause the `StarterApplication` run context to fail. Here are some ways to attempt to fix it.
-
+Sometimes an IntelliJ update will cause the `StarterApplication` run context to fail. Here are some
+ways to attempt to fix it.
 
 1. Invalidate the cache
     * File -> Invalidate Caches...
@@ -290,10 +332,12 @@ Sometimes an IntelliJ update will cause the `StarterApplication` run context to 
     * Make a copy of this folder and save somewhere else
     * Delete this folder and all of its contents
     * Quit IntelliJ
-    * Open IntelliJ, rebuild the project, hopefully modules are re-created from the application context
+    * Open IntelliJ, rebuild the project, hopefully modules are re-created from the application
+      context
 3. If both of the above fail
-   * Make a copy of the entire `.idea` folder and save somewhere else.
-   * Delete the original `.idea` folder
-   * Quit IntelliJ
-   * Open IntelliJ, rebuild the project, hopefully modules are re-created from the application context and found
+    * Make a copy of the entire `.idea` folder and save somewhere else.
+    * Delete the original `.idea` folder
+    * Quit IntelliJ
+    * Open IntelliJ, rebuild the project, hopefully modules are re-created from the application
+      context and found
 
