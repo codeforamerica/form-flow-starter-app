@@ -24,6 +24,8 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     // Personal info
     testPage.enter("firstName", "Testy");
     testPage.enter("lastName", "McTesterson");
+    // Test if follow up questions are disabled on page load
+    assertThat(testPage.getInputAttribute("movedFromCountry", "disabled")).isNotNull();
 
     // test bad date
     testPage.enter("birthDay", "1");
