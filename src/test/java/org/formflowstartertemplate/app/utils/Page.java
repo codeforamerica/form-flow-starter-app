@@ -185,6 +185,11 @@ public class Page {
         .getAttribute("value");
   }
 
+  public String getInputAttribute(String inputName, String attribute) {
+    return driver.findElement(By.cssSelector(String.format("input[name='%s']", inputName)))
+        .getAttribute(attribute);
+  }
+
   public String getElementText(String inputId) {
     return driver.findElement(By.id(inputId)).getText();
   }

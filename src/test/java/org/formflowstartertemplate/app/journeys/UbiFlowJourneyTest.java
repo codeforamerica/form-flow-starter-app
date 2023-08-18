@@ -24,6 +24,8 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     // Personal info
     testPage.enter("firstName", "Testy");
     testPage.enter("lastName", "McTesterson");
+    // Test if follow up questions are disabled on page load
+    assertThat(testPage.getInputAttribute("movedFromCountry", "disabled")).isNotNull();
 
     // test bad date
     testPage.enter("birthDay", "1");
@@ -63,6 +65,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
 
     // moved to USA date
     testPage.clickElementById("movedToUSA-No");
+    assertThat(testPage.getInputAttribute("movedFromCountry", "disabled")).isNotNull();
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Where are you currently living?");
     testPage.goBack();
@@ -73,9 +76,11 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("movedToUSADay", "65");
     testPage.enter("movedToUSAMonth", "3");
     testPage.enter("movedToUSAYear", "1987");
+    testPage.enter("movedFromCountry", "Canada");
     testPage.clickContinue();
     assertThat(testPage.hasErrorText("Please check the date entered. It is not a valid date.")).isTrue();
     assertThat(testPage.hasErrorText("Make sure to provide a day equal or below 31.")).isFalse();
+    assertThat(testPage.getInputAttribute("movedFromCountry", "disabled")).isNull();
 
     // movedToUSA - check correct date when movedToUSA=Yes
     testPage.clickElementById("movedToUSA-Yes");
