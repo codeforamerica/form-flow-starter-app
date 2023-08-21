@@ -22,6 +22,7 @@ Table of Contents
         * [Contributing Live Templates to your App](#contributing-live-templates-to-your-app)
         * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
 * [Using this as a template repository](#using-this-as-a-template-repository)
+    * [Actuator Endpoints](#actuator-endpoints)
     * [Scripts](#scripts)
     * [AWS Setup](#aws-setup)
     * [Cloud Deployment](#cloud-deployment)
