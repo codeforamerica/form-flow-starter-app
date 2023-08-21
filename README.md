@@ -183,6 +183,18 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
 
 # Using this as a template repository
 
+## Actuator Endpoints
+
+Actuator Endpoints are a feature Spring Boot provides to monitor and interact with your production
+ready application.
+
+**They can be a large security concern if certain endpoints are open.**
+
+Please read the following section in
+our [Form Flow Library's documentation](https://github.com/codeforamerica/form-flow#actuator-endpoints)
+as well as Spring Boot's documentation. It's extremely important that you understand the actuator
+and what it provides and the risks, so that you can configure the feature accordingly.
+
 ## Scripts
 
 We provide a directory named `scripts` where we place small scripts we think are
