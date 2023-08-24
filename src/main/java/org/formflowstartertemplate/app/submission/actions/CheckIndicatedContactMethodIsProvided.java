@@ -2,6 +2,7 @@ package org.formflowstartertemplate.app.submission.actions;
 
 import formflow.library.config.submission.Action;
 import formflow.library.data.FormSubmission;
+import formflow.library.data.Submission;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,10 +18,8 @@ public class CheckIndicatedContactMethodIsProvided implements Action {
   @Autowired
   MessageSource messageSource;
 
-  public Map<String, List<String>> runValidation(FormSubmission formSubmission) {
-
-    
-    
+  public Map<String, List<String>> runValidation(FormSubmission formSubmission, Submission submission) {
+    log.info("Running CheckIndicatedContactMethodIsProvided");
     String HOW_TO_CONTACT_YOU_INPUT = "howToContactYou[]";
     String PHONE_NUMBER_INPUT = "phoneNumber";
     String EMAIL_INPUT = "email";

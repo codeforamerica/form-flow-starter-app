@@ -1,6 +1,7 @@
 package org.formflowstartertemplate.app.submission.actions;
 
 import formflow.library.data.FormSubmission;
+import formflow.library.data.Submission;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,8 @@ public class ValidateMovedToUSADate extends VerifyDate {
 
   private final String INPUT_NAME = "movedToUSADate";
 
-  public Map<String, List<String>> runValidation(FormSubmission formSubmission) {
-    log.info("Running ValidateMovedToUSADate!");
+  public Map<String, List<String>> runValidation(FormSubmission formSubmission, Submission submission) {
+    log.info("Running ValidateMovedToUSADate");
     Map<String, List<String>> errorMessages = new HashMap<>();
     Map<String, Object> inputData = formSubmission.getFormData();
     String movedToUSA = (String) inputData.get("movedToUSA");

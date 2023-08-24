@@ -22,6 +22,7 @@ Table of Contents
         * [Contributing Live Templates to your App](#contributing-live-templates-to-your-app)
         * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
 * [Using this as a template repository](#using-this-as-a-template-repository)
+    * [Actuator Endpoints](#actuator-endpoints)
     * [Scripts](#scripts)
     * [AWS Setup](#aws-setup)
     * [Cloud Deployment](#cloud-deployment)
@@ -182,6 +183,22 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
  ```
 
 # Using this as a template repository
+
+## Actuator Endpoints
+
+The [Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html) is a
+feature Spring Boot provides to monitor and interact with your production
+ready application. It opens endpoints that can be queried to get information
+about your application, like health and build information.
+
+**This feature can be a large security concern if certain endpoints are open.**
+
+Please read the following section in
+our [Form Flow Library's documentation](https://github.com/codeforamerica/form-flow#actuator-endpoints)
+as well as Spring
+Boot's [documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html).
+It's extremely important that you understand the actuator and what it provides and the risks, so
+that you can configure the feature accordingly.
 
 ## Scripts
 
