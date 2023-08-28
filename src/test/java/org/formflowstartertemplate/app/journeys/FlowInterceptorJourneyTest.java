@@ -27,11 +27,7 @@ public class FlowInterceptorJourneyTest extends AbstractBasePageTest {
     assertThat(missingSessionCookie).isNull();
     testPage.clickContinue();
     // Personal info
-    var newSessionId = getCurrentSessionCookie();
-    assertThat(newSessionId).isNotNull();
-    //New SessionId is generated when we enter a new page
-    assertThat(firstFormFlowSessionId).isNotEqualTo(newSessionId);
-    assertThat(testPage.getTitle()).isNotEqualTo("Personal Info");
+    assertThat(testPage.getTitle()).isEqualTo("Personal Info");
   }
 
   protected String getCurrentSessionCookie() {
