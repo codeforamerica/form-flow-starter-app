@@ -18,6 +18,10 @@ form-flow:
     # If this is not set then the server values below for servlet max-file-size and tomcat max POST size will not be set
     # which will cause the server to use the default values of 1MB preventing uploads larger than that.
     max-file-size: '20'
+    virus-scanning:
+      enabled: true
+      service-url: ${CLAMAV_URL}
+      block-if-unreachable: true
   aws:
     region: 'us-west-1'
     s3_bucket_name: 'form-flow'
