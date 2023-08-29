@@ -12,7 +12,9 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 @Slf4j
 public class DataRequiredInterceptor implements HandlerInterceptor {
-    public static final String PATH_FORMAT = "/flow/{flow}/{screen}";
+    public static final String FLOW_PATH_FORMAT = "/flow/{flow}/{screen}";
+    public static final String NAVIGATION_FLOW_PATH_FORMAT = "/flow/{flow}/{screen}/navigation";
+
     //Required Data in this case is the session
     private final SubmissionRepositoryService submissionRepositoryService;
     public DataRequiredInterceptor(SubmissionRepositoryService submissionRepositoryService){
@@ -21,6 +23,7 @@ public class DataRequiredInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         try {
+            var PATH_FORMAT = request.getRequestURI().contains("navigation") ? NAVIGATION_FLOW_PATH_FORMAT : FLOW_PATH_FORMAT;
             var parsedUrl = new AntPathMatcher().extractUriTemplateVariables(PATH_FORMAT, request.getRequestURI());
             String redirect_url = "/";
             var screen = parsedUrl.get("screen");
