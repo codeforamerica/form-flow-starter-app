@@ -61,9 +61,6 @@ flow:
     nextScreens: null
   income:
     nextScreens:
-      - name: testPage
-  testPage:
-    nextScreens:
       - name: householdMemberIncome
   householdMemberIncome:
     subflow: income
