@@ -6,9 +6,8 @@ import java.util.Set;
 import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class FlowInterceptorJourneyTest extends AbstractBasePageTest {
+public class DataInterceptorJourneyTest extends AbstractBasePageTest {
 
   @Test
   void testInvalidatingSessionWhenSessionIsLost() {
@@ -27,6 +26,7 @@ public class FlowInterceptorJourneyTest extends AbstractBasePageTest {
     assertThat(testPage.getTitle()).isEqualTo("Personal Info");
 
     testPage.goBack();
+    
     deleteSessionCookie();
 //    var missingSessionCookie = getCurrentSessionCookie();
 //    assertThat(missingSessionCookie).isNull();
@@ -43,10 +43,6 @@ public class FlowInterceptorJourneyTest extends AbstractBasePageTest {
   }
 
   protected void deleteSessionCookie(){
-    System.out.println("SessionId before deletion: " + getCurrentSessionCookie());
     driver.manage().deleteCookieNamed("SESSION");
-    System.out.println("SessionId after deletion: " + getCurrentSessionCookie());
-    Set<Cookie> cookies = driver.manage().getCookies();
-    cookies.forEach(cookie -> System.out.println(cookie.getName() + ": " + cookie.getValue()));
   }
 }

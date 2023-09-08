@@ -129,6 +129,8 @@ flow:
       - name: success
   success:
     nextScreens: null
+landmarks:
+  firstScreen: howThisWorks
 subflows:
   household:
     entryScreen: housemates
@@ -148,3 +150,5 @@ flow:
       - name: success
   success:
     nextScreens: null
+landmarks:
+  firstScreen: uploadDocuments
