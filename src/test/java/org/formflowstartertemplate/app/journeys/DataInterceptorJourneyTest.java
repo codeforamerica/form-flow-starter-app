@@ -2,10 +2,8 @@ package org.formflowstartertemplate.app.journeys;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Set;
 import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Cookie;
 
 public class DataInterceptorJourneyTest extends AbstractBasePageTest {
 
@@ -24,14 +22,9 @@ public class DataInterceptorJourneyTest extends AbstractBasePageTest {
     assertThat(firstFormFlowSessionId).isEqualTo(secondFormFlowSessionId);
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Personal Info");
-
     testPage.goBack();
-    
     deleteSessionCookie();
-//    var missingSessionCookie = getCurrentSessionCookie();
-//    assertThat(missingSessionCookie).isNull();
     testPage.clickContinue();
-    // Personal info
     assertThat(testPage.getTitle()).isNotEqualTo("Personal Info");
   }
 
