@@ -22,7 +22,7 @@
   }
 </script>
 <head th:replace="~{fragments/head :: head(title=#{contact-info.title})}"></head>
-<body>
+<body hx-boost="true">
 <div class="page-wrapper">
   <div th:replace="~{fragments/toolbar :: toolbar}"></div>
   <section class="slab">

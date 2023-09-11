@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
 <head th:replace="~{fragments/head :: head(title=#{privacy.title})}"></head>
-<body>
+<body hx-boost="true">
 <div class="page-wrapper">
   <th:block th:replace="~{fragments/toolbar :: toolbar}"/>
   <section class="slab slab--grey">

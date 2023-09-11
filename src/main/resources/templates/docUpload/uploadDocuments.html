@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
 <head th:replace="~{fragments/head :: head(title=#{upload-documents.title})}"></head>
-<body 
+<body hx-boost="true"
     th:with="dzFormName='docUpload'">
 <div class="page-wrapper">
   <div th:replace="~{fragments/toolbar :: toolbar}"></div>

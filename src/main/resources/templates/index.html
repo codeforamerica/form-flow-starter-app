@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html th:lang="${#locale.language}">
 <head th:replace="~{fragments/head :: head(title=#{index.title})}"></head>
-<body class="template--static-page">
+<body class="template--static-page" hx-boost="true">
 <div class="page-wrapper">
   <th:block th:replace="~{fragments/toolbar :: toolbar}"/>
   <main id="content" role="main" class="slab slab--white spacing-below-0">
