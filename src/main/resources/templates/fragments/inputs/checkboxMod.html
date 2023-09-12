@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
-<body>
 <th:block
     th:fragment="checkboxMod"
     th:with="
@@ -50,5 +47,3 @@
         th:replace="~{fragments/inputError :: validationError(inputName=${inputName})}"></th:block>
   </div>
 </th:block>
-</body>
-</html>
