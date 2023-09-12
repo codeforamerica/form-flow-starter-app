@@ -143,6 +143,9 @@ subflows:
 ---
 name: docUpload
 flow:
+  textAreaScreen:
+    nextScreens:
+      - name: uploadDocuments
   uploadDocuments:
     nextScreens:
       - name: success

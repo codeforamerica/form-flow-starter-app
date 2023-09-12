@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}">
+<head th:replace="fragments/head :: head(title='Test Text Area Screen')"></head>
+<body>
+<div class="page-wrapper">
+  <div th:replace="fragments/toolbar :: toolbar"></div>
+  <section class="slab">
+    <div class="grid">
+      <div th:replace="fragments/goBack :: goBackLink"></div>
+      <main id="content" role="main" class="form-card spacing-above-35">
+        <th:block
+            th:replace="'fragments/cardHeader' :: cardHeader(header='This screen has a test text area')"/>
+          <th:block th:replace="'fragments/form' :: form(action=${formAction}, content=~{::textArea})">
+            <th:block th:ref="textArea">
+              <div class="form-card__content">
+                <th:block th:replace="'fragments/inputs/textArea' ::
+                  textArea(inputName='feedback',
+                  label='Please give us your feedback',
+                  helpText='Any feedback you have will be greatly appreciated',
+                  rows=5,
+                  maxLength=50)" />
+              </div>
+            <div class="form-card__footer">
+              <th:block th:replace="fragments/inputs/submitButton :: submitButton(
+                  text=#{general.inputs.continue})"/>
+            </div>
+          </th:block>
+        </th:block>
+      </main>
+    </div>
+  </section>
+</div>
+<th:block th:replace="fragments/footer :: footer" />
+</body>
+</html>
