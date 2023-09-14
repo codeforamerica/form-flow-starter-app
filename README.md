@@ -268,7 +268,7 @@ dependencies.
 #### Aptible endpoint setup
 
 1. Create a new managed HTTPS endpoint for your root domain with subdomain (i.e. www)
-2. Make sure to include the following variable in your application's configuration environment: [`FORCE_SSL=true`](https://www.aptible.com/docs/https-redirect). 
+2. In Aptible, be sure to include the following variable in your application's configuration environment: [`FORCE_SSL=true`](https://www.aptible.com/docs/https-redirect). 
 3. Follow the instructions to create managed HTTPS validation records in Route53
 
 #### Request public certificate
