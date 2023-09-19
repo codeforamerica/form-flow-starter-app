@@ -42,4 +42,7 @@ public class StaticPageController {
   String getPrivacy() {
     return "privacy";
   }
+
+  @GetMapping("/testing")
+  String getTesting() { return "testing"; }
 }

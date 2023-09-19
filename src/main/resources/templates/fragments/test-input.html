@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div id="input" th:fragment="input" aria-live="assertive">
+  <label
+      th:style="${error}? 'color: red;'"
+      for="custom">Only letters</label>
+  <input
+      th:style="${error}? 'border: 1px solid red;'"
+      type="text"
+      th:value="${value}? ${value}"
+      name="custom"
+      id="custom"
+      hx-post="/htmx/validation"
+      hx-trigger="keyup changed delay:500ms"
+      hx-select="#input"
+      hx-target="#input"
+      aria-describedby="#error-message"
+  >
+  <p
+      id="error-message"
+      style="color: red;"
+      th:text="${error}?: 'No error'"></p>
+</div>
+</body>
+</html>

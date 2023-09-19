@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(title=#{privacy.title})}"></head>
+<body hx-boost="true">
+<div class="page-wrapper">
+  <th:block th:replace="~{fragments/toolbar :: toolbar}"/>
+  <section class="slab slab--grey">
+    <div class="grid">
+      <div class="grid__item">
+        <h1 class="spacing-below-35" th:text="${'Testing 🎛️'}"></h1>
+      </div>
+    </div>
+  </section>
+  <main id="content" role="main" class="slab slab--white">
+    <div class="grid">
+      <div class="grid-item">
+        <th:block th:replace="~{fragments/form :: form(action='POST', content=~{::formContent})}">
+          <th:block th:ref="formContent">
+            <div class="form-card__content">
+              <th:block th:replace="~{fragments/test-input :: input}"></th:block>
+              <hr>
+              <div class="h2">Server, pick an emoji every 2 seconds:
+                <span hx-trigger="every 2s" hx-get="/htmx/emoji" hx-select="#emoji" hx-swap="innerHTML"></span>
+              </div>
+            </div>
+          </th:block>
+        </th:block>
+      </div>
+    </div>
+  </main>
+</div>
+<th:block th:replace="~{fragments/footer :: footer}"/>
+</body>
+</html>
