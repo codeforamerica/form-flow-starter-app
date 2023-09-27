@@ -18,6 +18,11 @@ public class UpdatePersonalInfoDates implements Action {
     datePrefixes.forEach(prefix -> {
       List<String> dateComponents = new ArrayList<>(3);
       if (formSubmission.formData.containsKey(prefix + "Month") && formSubmission.formData.get(prefix + "Month") != "") {
+        // Add padding zero if needed to month and day
+        formSubmission.formData.put(prefix + "Month", String.format("%02d", Integer.parseInt(formSubmission.formData.get(prefix + "Month").toString())));
+        formSubmission.formData.put(prefix + "Day", String.format("%02d", Integer.parseInt(formSubmission.formData.get(prefix + "Day").toString())));
+
+        // Combine into a single date field
         dateComponents.add((String) formSubmission.formData.get(prefix + "Month"));
         dateComponents.add((String) formSubmission.formData.get(prefix + "Day"));
         dateComponents.add((String) formSubmission.formData.get(prefix + "Year"));
