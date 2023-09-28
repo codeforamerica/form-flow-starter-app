@@ -48,7 +48,13 @@ if ! brew services list | grep postgresql@14 | grep started; then
   brew services restart postgresql@14
 fi
 
-# Create form-flow-test databases and users in postgres, if they don't exist
+# Create app database and user in postgres, if they don't exist
+if ! psql -lqt | cut -d \| -f 1 | grep -qw starter-app; then
+  createdb starter-app
+  createuser -s starter-app
+fi
+
+# Create test suite database and user in postgres, if they don't exist
 if ! psql -lqt | cut -d \| -f 1 | grep -qw starter-app-test; then
   createdb starter-app-test
   createuser -s starter-app-test
