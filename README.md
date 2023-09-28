@@ -131,8 +131,14 @@ to see that the resulting date is actually valid.
 
 # Setup instructions
 
-Refer to the [setup instructions](https://github.com/codeforamerica/form-flow#developer-setup) in
-form-flow to get the dependencies necessary.
+## Mac and Linux
+
+After cloning the repository, run `scripts/setup.sh` from the root of the repo's directory.
+
+## Windows
+
+Check the script `scripts/setup.sh` for the most up to date list of dependencies and steps you'll need to install
+manually.
 
 ### Setup Environment
 
@@ -205,6 +211,15 @@ that you can configure the feature accordingly.
 We provide a directory named `scripts` where we place small scripts we think are
 useful for people using our library. Below are descriptions of the scripts
 located in that directory.
+
+### setup.sh
+
+This script will ensure that all dependencies are installed (using `Homebrew`):
+- `jenv` to manage Java
+- The right `Java` version
+- `PostgreSQL`
+
+Next, it will create the database needed for running tests, and then run the tests.
 
 ### generate_migration.sh
 
@@ -358,4 +373,3 @@ ways to attempt to fix it.
     * Quit IntelliJ
     * Open IntelliJ, rebuild the project, hopefully modules are re-created from the application
       context and found
-
