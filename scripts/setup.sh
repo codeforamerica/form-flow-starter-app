@@ -48,14 +48,16 @@ if ! brew services list | grep postgresql@14 | grep started; then
   brew services restart postgresql@14
 fi
 
-# Create app database and user in postgres, if they don't exist
-if ! psql -lqt | cut -d \| -f 1 | grep -qw starter-app; then
+# Create starter-app database and user in postgres, if they don't exist
+if ! psql -lqt | cut -d \| -f 1 | tr -d ' ' | grep -qx starter-app; then
+  printf "Creating database starter-app\n"
   createdb starter-app
   createuser -s starter-app
 fi
 
-# Create test suite database and user in postgres, if they don't exist
-if ! psql -lqt | cut -d \| -f 1 | grep -qw starter-app-test; then
+# Create starter-app-test database and user in postgres, if they don't exist
+if ! psql -lqt | cut -d \| -f 1 | tr -d ' ' | grep -qx starter-app-test; then
+  printf "Creating database starter-app-test\n"
   createdb starter-app-test
   createuser -s starter-app-test
 fi
