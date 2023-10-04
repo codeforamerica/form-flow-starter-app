@@ -1,4 +1,6 @@
 form-flow:
+  design-system:
+    name: honeycrisp
   languages: en, es
   flow:
     ubi:
