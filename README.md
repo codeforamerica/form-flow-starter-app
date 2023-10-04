@@ -345,7 +345,7 @@ datasource:
   username: childcare-illinois
 ```
 
-5. To load the `.env` file in IntelliJ, you'll need to enable
+5. To load the `.env` file in IntelliJ, you'll need to install and enable
    the [EnvFile Plugin](https://plugins.jetbrains.com/plugin/7861-envfile).
 
 # Troubleshooting IntelliJ
