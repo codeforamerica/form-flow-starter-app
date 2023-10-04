@@ -29,7 +29,7 @@ Table of Contents
         * [Aptible Setup](#aptible-setup)
 * [Troubleshooting IntelliJ](#troubleshooting-intellij)
 
-This is a standard Spring Boot application that uses the `form-flows` Java package as a library. It
+This is a standard Spring Boot application that demonstrates the `form-flow` Java library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
 boring (but modern) Spring app that uses common, frequently-used libraries throughout.
 
@@ -38,11 +38,10 @@ can fill out screens with their basic info, upload supporting documents, then su
 Upon submission, they receive a simple SMS confirmation and a receipt email with a filled-in
 application PDF. The entire experience is in both English and Spanish.
 
-To power the form flow logic, this app depends on the `form-flows` Java library. That library is
-included in `build.gradle` along with all other dependencies. The codebase for the `form-flows`
+The `form-flow` Java library is included in `build.gradle` along with all other dependencies. The codebase for the `form-flow`
 package is [open source](https://github.com/codeforamerica/form-flow).
 
-A detailed explanation of form flow concepts can be found on in
+A detailed explanation of form flow concepts can be found in
 the [form flow library's readme](https://github.com/codeforamerica/form-flow).
 
 # Universal Basic Income (UBI) Form Flow
@@ -50,7 +49,7 @@ the [form flow library's readme](https://github.com/codeforamerica/form-flow).
 This chart below shows the flow created by the `flows-config.yaml` file in this repository.
 
 ```mermaid
-flowchart 
+flowchart
     A[UBI Flow] --> B(howThisWorks)
     B --> C(languagePreferences)
     C --> D(fa:fa-person gettingToKnowYou)
@@ -91,24 +90,25 @@ Actions can be run at specific points in a form submission's life cycle.
 
 ### Actions
 
-There are for types of actions that one can use.
+There are five types of actions that one can use.
 
 * `beforeSaveAction`
 * `onPostAction`
 * `crossFieldValidationAction`
 * `beforeDisplayAction`
+* `afterSaveAction`
 
 You can find more detailed information about each type of action in the Form Flow library's
 [readme](https://github.com/codeforamerica/form-flow#actions).
 
-#### ClearIncomeAmountsBeforeSaving
+#### UpdateIncomeAmountsBeforeSaving
 
 This action is a `beforeSaveAction` and is run after validation but before the data is
 stored in the database.
 The `UpdateIncomeAmountsBeforeSaving` will clear out any unused Income types, if they were
 updated. For example, a user fills out the income type page and submits values for their chosen
 input types. If they then decide to go back and change a value or add a new income type, this action
-will ensure that any previous values entered that the user then cleared out are cleared out in the
+will ensure that any previous values entered by the user are cleared out in the
 stored data as well.
 
 #### UpdatePersonalInfoDates
@@ -283,7 +283,7 @@ dependencies.
 #### Aptible endpoint setup
 
 1. Create a new managed HTTPS endpoint for your root domain with subdomain (i.e. www)
-2. In Aptible, be sure to include the following variable in your application's configuration environment: [`FORCE_SSL=true`](https://www.aptible.com/docs/https-redirect). 
+2. In Aptible, be sure to include the following variable in your application's configuration environment: [`FORCE_SSL=true`](https://www.aptible.com/docs/https-redirect).
 3. Follow the instructions to create managed HTTPS validation records in Route53
 
 #### Request public certificate
@@ -329,7 +329,7 @@ dependencies.
    For example, the datasource section of your application configuration would initially contain the
    details for the `starter-app` database as follows:
 
-```yaml 
+```yaml
 
 datasource:
   url: jdbc:postgresql://localhost:5432/starter-app
@@ -338,7 +338,7 @@ datasource:
 
 and should be updated to this
 
-```yaml 
+```yaml
 
 datasource:
   url: jdbc:postgresql://localhost:5432/childcare-illinois
@@ -346,8 +346,7 @@ datasource:
 ```
 
 5. To load the `.env` file in IntelliJ, you'll need to enable
-   the [EnvFile Plugin](https://plugins.jetbrains.com/plugin/7861-envfile). Then enable it for your
-   project.
+   the [EnvFile Plugin](https://plugins.jetbrains.com/plugin/7861-envfile).
 
 # Troubleshooting IntelliJ
 
