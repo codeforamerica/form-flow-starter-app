@@ -35,7 +35,7 @@ boring (but modern) Spring app that uses common, frequently-used libraries throu
 
 It contains example code for a simple, generic application for public benefits. An applicant
 can fill out screens with their basic info, upload supporting documents, then submit it all.
-Upon submission, they receive a simple SMS confirmation and a receipt email with a filled-in
+Upon submission, they receive an email with a filled-in
 application PDF. The entire experience is in both English and Spanish.
 
 The `form-flow` Java library is included in `build.gradle` along with all other dependencies. The codebase for the `form-flow`
