@@ -145,10 +145,13 @@ subflows:
 ---
 name: docUpload
 flow:
+  documentRecommendations:
+    nextScreens:
+      - name: uploadDocuments
   uploadDocuments:
     nextScreens:
       - name: success
   success:
     nextScreens: null
 landmarks:
-  firstScreen: uploadDocuments
+  firstScreen: documentRecommendations
