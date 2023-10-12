@@ -2,7 +2,7 @@
 <configuration>
   <appender name="LocalConsole" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>%boldCyan(%d{HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %boldMagenta(%logger{36}) %green(%X{sessionId}) %green(%X{submissionId}) %green(%X{xForwardedFor}) %green(%X{method}) %green(%X{request}) - %msg%n</pattern>
+      <pattern>%boldCyan(%d{HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %boldMagenta(%logger{36}) - %msg%n</pattern>
     </encoder>
   </appender>
 
