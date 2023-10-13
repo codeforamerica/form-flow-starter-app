@@ -11,15 +11,17 @@
         <th:block
             th:replace="~{fragments/cardHeader :: cardHeader(header='Success!', subtext='You have successfully completed your document upload!')}"/>
         <th:block th:ref="">
-          <div th:with="userFiles = ${session.userFiles.docUpload}" class="form-card__content">
+          <div class="form-card__content">
             <p>You uploaded the following files:</p>
             <ul>
-              <li th:each="userFile : ${userFiles.entrySet()}">
-                <span th:text="${userFile.value.originalFilename} + ' -'"></span>
-                <a th:href="@{'/file-download/' + ${submission.id} + '/' + ${userFile.key}}">Download</a>
+              <li th:each="userFile : ${userFiles}">
+                <span th:text="${userFile.originalName} + ' -'"></span>
+                <a th:href="@{'/file-download/' + ${flow} + '/' + ${submission.id} + '/' + ${userFile.fileId}}">Download</a>
               </li>
             </ul>
-            <div><a th:href="@{'/file-download/' + ${submission.id}}">Download all my files</a></div>
+            <div><a th:href="@{'/file-download/' + ${flow} + '/' + ${submission.id}}">Download all
+              my files</a>
+            </div>
             <p>Congratulations, you did it! 🎉</p>
           </div>
           <div class="form-card__footer">

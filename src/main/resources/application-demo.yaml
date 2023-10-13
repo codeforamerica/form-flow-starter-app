@@ -8,6 +8,8 @@ form-flow:
     s3_bucket_name: 'form-flow-demo'
   error:
     show-stack-trace: false
+  virus-scanning:
+    enabled: true
 management:
   endpoint:
     health:
