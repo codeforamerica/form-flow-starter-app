@@ -28,7 +28,7 @@
                                 <span
                                     class="grid__item width-one-third text--right padding-right-10"
                                     th:with="personsTotalIncome=${T(org.formflowstartertemplate.app.utils.SubmissionUtilities).getIndividualsTotalIncome(submission, personsIncome.uuid)}"
-                                    th:text="${'$' + personsTotalIncome}"></span>
+                                    th:text="${'$' + personsTotalIncome != null ? personsTotalIncome : '???'}"></span>
                                 <span
                                     class="grid__item width-one-third text--small spacing-below-0">
                                   <a th:href="'/flow/ubi/incomeTypes/' + ${personsIncome.uuid} + '/edit'"

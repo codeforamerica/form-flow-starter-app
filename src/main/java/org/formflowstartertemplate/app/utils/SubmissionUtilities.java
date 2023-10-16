@@ -46,19 +46,25 @@ public class SubmissionUtilities {
     DecimalFormat df = new DecimalFormat("0.00");
 
     if (submission.getInputData().containsKey(INCOME)) {
-      ArrayList<Map<String, Object>> incomeSubflow =
-          (ArrayList<Map<String, Object>>) submission.getInputData().get(INCOME);
-      Map<String, Object> individualsIncomeEntry =
-          incomeSubflow.stream()
+      // ArrayList<Map<String, Object>> incomeSubflow =
+      //     (ArrayList<Map<String, Object>>) submission.getInputData().get(INCOME);
+      Map<String, Object> individualsIncomeEntry = submission.getSubflowEntryByUuid(INCOME, uuid);
+      /*    incomeSubflow.stream()
               .filter(entry -> entry.get(ITERATION_UUID)
                   .equals(uuid))
               .toList()
               .get(0);
-      ArrayList<String> incomeTypes = (ArrayList<String>) individualsIncomeEntry.get("incomeTypes[]");
-      List<BigDecimal> incomeTypeAmounts = incomeTypes.stream()
-          .map(type -> new BigDecimal((String) individualsIncomeEntry.get(type + "Amount")))
-          .toList();
-      return df.format(incomeTypeAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+       */
+      if (individualsIncomeEntry != null) {
+        ArrayList<String> incomeTypes = (ArrayList<String>) individualsIncomeEntry.get("incomeTypes[]");
+        if (incomeTypes != null || !incomeTypes.isEmpty()) {
+          List<BigDecimal> incomeTypeAmounts = incomeTypes.stream()
+              .filter(type -> individualsIncomeEntry.get(type + "Amount") != null)
+              .map(type -> new BigDecimal((String) individualsIncomeEntry.get(type + "Amount")))
+              .toList();
+          return df.format(incomeTypeAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+        }
+      }
     }
 
     return null;
@@ -156,16 +162,15 @@ public class SubmissionUtilities {
   }
 
   /**
-   * This function returns a String of the formatted submitted_at date.   The
-   * method returns a date that looks like this: "February 7, 2023".
+   * This function returns a String of the formatted submitted_at date.   The method returns a date that looks like this:
+   * "February 7, 2023".
    *
-   * @param submission submssion contains the submittedAt instance variable that holds the
-   *                   date the application was submitted.
+   * @param submission submssion contains the submittedAt instance variable that holds the date the application was submitted.
    * @return a string containing the formatted date.
    */
   public static String getFormattedSubmittedAtDate(Submission submission) {
     String pattern = "MMMM d, yyyy";
-    SimpleDateFormat formatDate= new SimpleDateFormat(pattern);
+    SimpleDateFormat formatDate = new SimpleDateFormat(pattern);
     return formatDate.format(submission.getSubmittedAt());
   }
 }
