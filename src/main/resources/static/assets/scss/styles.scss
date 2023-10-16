@@ -1,0 +1,6 @@
+// This is a test to make sure scss is being compiled
+// NEXT TODO: Import scss from @codeforamerica/uswds
+* {
+  $red: #af121d;
+  color: $red;
+}
