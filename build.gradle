@@ -74,6 +74,67 @@ springBoot {
     buildInfo()
 }
 
+sass {
+    // Version of dart-sass: https://github.com/sass/dart-sass/releases
+    version = '1.69.3'
+}
+
+task moveNodeModulesToGenerated(type: Copy) {
+    println('🐸 moveNodeModulesToGenerated')
+    from 'node_modules'
+    into 'generated/main/resources/static'
+}
+
+task checkForNpm(type: Exec) {
+    println('💛 checkForNpm')
+    commandLine 'sh', './scripts/check_for_npm.sh'
+}
+
+task npmInstall(type: Exec) {
+    dependsOn 'checkForNpm'
+    println('🦺 npmInstall')
+    commandLine 'npm', 'install'
+}
+
+// Docs: https://github.com/EtienneMiret/sass-gradle-plugin#usage
+compileSass {
+    dependsOn 'npmInstall'
+    dependsOn 'moveNodeModulesToGenerated'
+    println('🦺 compileSass')
+
+    // For now, do not load source maps
+    sourceMap = none
+    // Load path
+    loadPath project.file("${projectDir}/generated/main/resources/static")
+    loadPath project.file("${projectDir}/generated/main/resources/static/@uswds/uswds/packages")
+    // Set the output style:
+    // Possible values are “expanded” and “compressed”, default is “expanded”.
+    style = expanded
+    // Source directory containing sass to compile:
+    sourceDir = project.file("${projectDir}/src/main/resources/static/assets/scss")
+    // Directory where to output generated CSS:
+    outputDir = project.file("${projectDir}/generated/main/resources/static/assets/css")
+    // TODO: make a separate task to put this watch
+    // Watch sass files in sourceDir for changes
+    // Here's an example: https://github.com/EtienneMiret/sass-gradle-plugin/blob/master/examples/watch/build.gradle
+    // (Default is to not to watch, compile once and terminate)
+//    if (profile == 'dev') {
+//        watch()
+//    }
+}
+
+// compileSass needs to run before processResources
+processResources {
+    dependsOn compileSass
+}
+
+// Need to extend clean to also delete the generated directory (created in compileSass)
+clean {
+    println('⚡ clean')
+    delete "generated"
+    delete "node_modules"
+}
+
 test {
     finalizedBy jacocoTestReport
     useJUnitPlatform()
