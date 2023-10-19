@@ -131,6 +131,7 @@ flow:
     nextScreens: null
 landmarks:
   firstScreen: howThisWorks
+  disabledFlowRedirect: "/"
 subflows:
   household:
     entryScreen: housemates
