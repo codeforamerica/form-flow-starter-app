@@ -1,12 +1,12 @@
 package org.formflowstartertemplate.app;
 
+import formflow.library.config.DisabledFlowPropertyConfiguration;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -14,9 +14,9 @@ import java.util.HashMap;
  */
 @Controller
 public class StaticPageController {
-
-  @Value("${form-flow.disabled-flows}")
-  String[] disabledFlows;
+  
+  @Autowired
+  DisabledFlowPropertyConfiguration disabledFlowPropertyConfiguration;
 
   /**
    * Renders the website index page.
@@ -29,8 +29,8 @@ public class StaticPageController {
     httpSession.invalidate(); // For dev, reset session if you visit home
 
     HashMap<String, Object> model = new HashMap<>();
-    model.put("ubiEnabled", !Arrays.asList(disabledFlows).contains("ubi"));
-    model.put("docUploadEnabled", !Arrays.asList(disabledFlows).contains("docUpload"));
+    model.put("ubiEnabled", !disabledFlowPropertyConfiguration.isFlowDisabled("ubi"));
+    model.put("docUploadEnabled", !disabledFlowPropertyConfiguration.isFlowDisabled("docUpload"));
     return new ModelAndView("index", model);
   }
 

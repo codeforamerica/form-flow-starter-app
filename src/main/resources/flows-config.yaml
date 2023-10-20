@@ -131,7 +131,6 @@ flow:
     nextScreens: null
 landmarks:
   firstScreen: howThisWorks
-  disabledFlowRedirect: "/"
 subflows:
   household:
     entryScreen: housemates
@@ -156,4 +155,3 @@ flow:
     nextScreens: null
 landmarks:
   firstScreen: documentRecommendations
-  disabledFlowRedirect: "/disabledFeature"
