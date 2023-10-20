@@ -1,14 +1,22 @@
 package org.formflowstartertemplate.app;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * A controller to render static pages that are not in any flow.
  */
 @Controller
 public class StaticPageController {
+
+  @Value("${form-flow.disabled-flows}")
+  String[] disabledFlows;
 
   /**
    * Renders the website index page.
@@ -17,10 +25,13 @@ public class StaticPageController {
    * @return the static page template
    */
   @GetMapping("/")
-  String getIndex(HttpSession httpSession) {
+  ModelAndView getIndex(HttpSession httpSession) {
     httpSession.invalidate(); // For dev, reset session if you visit home
 
-    return "index";
+    HashMap<String, Object> model = new HashMap<>();
+    model.put("ubiEnabled", !Arrays.asList(disabledFlows).contains("ubi"));
+    model.put("docUploadEnabled", !Arrays.asList(disabledFlows).contains("docUpload"));
+    return new ModelAndView("index", model);
   }
 
   /**
@@ -41,5 +52,15 @@ public class StaticPageController {
   @GetMapping("/privacy")
   String getPrivacy() {
     return "privacy";
+  }
+
+  /**
+   * Renders the page to redirect to when a flow is disabled.
+   *
+   * @return the static page template
+   */
+  @GetMapping("/disabledFeature")
+  String getDisabled() {
+    return "disabledFeature";
   }
 }

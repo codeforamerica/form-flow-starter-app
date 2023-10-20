@@ -156,3 +156,4 @@ flow:
     nextScreens: null
 landmarks:
   firstScreen: documentRecommendations
+  disabledFlowRedirect: "/disabledFeature"
