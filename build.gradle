@@ -107,6 +107,7 @@ compileSass {
     // Load path
     loadPath project.file("${projectDir}/generated/main/resources/static")
     loadPath project.file("${projectDir}/generated/main/resources/static/@uswds/uswds/packages")
+    loadPath project.file("${projectDir}/generated/main/resources/static/@codeforamerica/uswds/packages")
     // Set the output style:
     // Possible values are “expanded” and “compressed”, default is “expanded”.
     style = expanded

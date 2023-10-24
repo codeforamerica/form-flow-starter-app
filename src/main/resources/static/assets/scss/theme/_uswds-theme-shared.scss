@@ -1,0 +1,37 @@
+@use 'uswds-core' as *;
+
+// 5. Components
+$theme-form-elements-padding-y: 2;
+$theme-form-elements-padding-x: 2.5;
+$theme-form-elements-border-width: 2px;
+
+// - Input
+$theme-input-height: 8;
+
+// - Textarea
+$theme-textarea-height: 15;
+
+// - Select
+$theme-select-height: 8;
+
+// - Radio and Checkbox
+$theme-input-select-margin: units(1.5);
+$theme-input-select-width: units(2);
+$theme-input-select-height: units(2);
+$theme-input-select-padding-x: units(3);
+$theme-input-select-padding-y: units(2);
+$theme-input-select-gap: units(2);
+
+// - Form
+
+// - Alert
+
+// - Accordion
+$theme-accordion-border: units($theme-accordion-border-width) solid color($theme-accordion-border-color);
+
+// - Footer
+
+// - Button
+$theme-button-stroke: inset 0 0 0 units($theme-button-stroke-width);
+
+// - Header
