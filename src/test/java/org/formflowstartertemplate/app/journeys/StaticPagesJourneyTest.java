@@ -1,11 +1,13 @@
 package org.formflowstartertemplate.app.journeys;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
 
 import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
 import org.formflowstartertemplate.app.utils.Page;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
 @Tag("staticPagesJourney")
 public class StaticPagesJourneyTest extends AbstractBasePageTest {
@@ -25,6 +27,7 @@ public class StaticPagesJourneyTest extends AbstractBasePageTest {
     testPage.clickLink("FAQ");
     assertThat(driver.getWindowHandles().size()).isEqualTo(2);
     switchAwayFromOriginalWindow(originalWindow);
+    await().until(() -> driver.findElement(By.tagName("h1")).getText().contentEquals("Frequently Asked Questions"));
     assertThat(testPage.getTitle()).isEqualTo("Frequently Asked Questions");
     // Back on landing screen
     driver.close();
@@ -35,6 +38,7 @@ public class StaticPagesJourneyTest extends AbstractBasePageTest {
     testPage.clickLink("Privacy Policy");
     assertThat(driver.getWindowHandles().size()).isEqualTo(2);
     switchAwayFromOriginalWindow(originalWindow);
+    await().until(() -> driver.findElement(By.tagName("h1")).getText().contentEquals("Privacy Policy"));
     assertThat(testPage.getTitle()).isEqualTo("Privacy Policy");
   }
 
