@@ -2,8 +2,6 @@
 @forward 'uswds';
 @forward 'uswds-theme-custom-styles';
 
-@forward 'site';
-
 @forward '@codeforamerica/uswds/packages/cfa-accordion/_cfa-accordion.scss';
 @forward '@codeforamerica/uswds/packages/cfa-alert/_cfa-alert.scss';
 @forward '@codeforamerica/uswds/packages/cfa-button/_cfa-button.scss';
@@ -18,14 +16,7 @@
 @forward '@codeforamerica/uswds/packages/cfa-hint/_cfa-hint.scss';
 @forward '@codeforamerica/uswds/packages/cfa-input/_cfa-input.scss';
 @forward '@codeforamerica/uswds/packages/cfa-input-group/_cfa-input-group.scss';
-// TODO: Error: Can't find stylesheet to import.
-//  ╷
-//3 │ @use 'uswds-theme-shared' as *;
-//  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//  ╵
-//  @codeforamerica/uswds/packages/cfa-input-select/_cfa-input-select.scss 3:1  @forward
-//  src/main/resources/static/assets/scss/theme/styles.scss 21:1                root stylesheet
-//@forward '@codeforamerica/uswds/packages/cfa-input-select/_cfa-input-select.scss';
+@forward '@codeforamerica/uswds/packages/cfa-input-select/_cfa-input-select.scss';
 @forward '@codeforamerica/uswds/packages/cfa-label/_cfa-label.scss';
 @forward '@codeforamerica/uswds/packages/cfa-legend/_cfa-legend.scss';
 @forward '@codeforamerica/uswds/packages/cfa-memorable-date/_cfa-memorable-date.scss';
@@ -33,11 +24,4 @@
 @forward '@codeforamerica/uswds/packages/cfa-textarea/_cfa-textarea.scss';
 @forward '@codeforamerica/uswds/packages/cfa-typesetting/_cfa-typesetting.scss';
 @forward '@codeforamerica/uswds/packages/cfa-upload-documents/_cfa-upload-documents.scss';
-//TODO: Error: Can't find stylesheet to import.
-//  ╷
-//4 │ @use 'uswds/packages/uswds-utilities/src/styles/functions' as *;
-//  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//  ╵
-//  @codeforamerica/uswds/packages/cfa-utilities/_cfa-utilities.scss 4:1  @forward
-//  src/main/resources/static/assets/scss/theme/styles.scss 36:1          root stylesheet
-//@forward '@codeforamerica/uswds/packages/cfa-utilities/_cfa-utilities.scss';
+@forward '@codeforamerica/uswds/packages/cfa-utilities/_cfa-utilities.scss';

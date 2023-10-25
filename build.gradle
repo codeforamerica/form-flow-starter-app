@@ -79,10 +79,9 @@ sass {
     version = '1.69.3'
 }
 
-task moveNodeModulesToGenerated(type: Copy) {
-    println('🐸 moveNodeModulesToGenerated')
-    from 'node_modules'
-    into 'generated/main/resources/static'
+task cleanGenerated(type: Exec) {
+    println("🧼 cleanGenerated")
+    delete "generated"
 }
 
 task checkForNpm(type: Exec) {
@@ -96,9 +95,15 @@ task npmInstall(type: Exec) {
     commandLine 'npm', 'install'
 }
 
+task moveNodeModulesToGenerated(type: Copy) {
+    dependsOn 'npmInstall'
+    println('🐸 moveNodeModulesToGenerated')
+    from 'node_modules'
+    into 'generated/main/resources/static'
+}
+
 // Docs: https://github.com/EtienneMiret/sass-gradle-plugin#usage
 compileSass {
-    dependsOn 'npmInstall'
     dependsOn 'moveNodeModulesToGenerated'
     println('🦺 compileSass')
 
@@ -107,7 +112,6 @@ compileSass {
     // Load path
     loadPath project.file("${projectDir}/generated/main/resources/static")
     loadPath project.file("${projectDir}/generated/main/resources/static/@uswds/uswds/packages")
-    loadPath project.file("${projectDir}/generated/main/resources/static/@codeforamerica/uswds/packages")
     // Set the output style:
     // Possible values are “expanded” and “compressed”, default is “expanded”.
     style = expanded
