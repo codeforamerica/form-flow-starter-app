@@ -1,7 +1,5 @@
 set -e
 
-echo '--- checkForNPM ---'
-
 if ! npm --version | grep -q "^[0-9]"; then
   echo $(uname -a)
   echo $(uname -m)
