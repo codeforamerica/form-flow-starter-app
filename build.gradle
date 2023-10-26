@@ -96,8 +96,8 @@ sass {
     version = '1.69.3'
 }
 
-tasks.register('cleanGenerated', Exec) {
-    doLast {
+tasks.register('cleanGenerated') {
+    doFirst {
         delete "generated"
     }
 }
@@ -154,7 +154,7 @@ processResources {
 }
 
 clean {
-    doLast {
+    doFirst {
         delete "generated"
         delete "node_modules"
     }
