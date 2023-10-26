@@ -15,8 +15,12 @@ import java.util.HashMap;
 @Controller
 public class StaticPageController {
   
-  @Autowired
+//  @Autowired
   DisabledFlowPropertyConfiguration disabledFlowPropertyConfiguration;
+
+  public StaticPageController(DisabledFlowPropertyConfiguration disabledFlowPropertyConfiguration) {
+    this.disabledFlowPropertyConfiguration = disabledFlowPropertyConfiguration;
+  }
 
   /**
    * Renders the website index page.
@@ -29,8 +33,10 @@ public class StaticPageController {
     httpSession.invalidate(); // For dev, reset session if you visit home
 
     HashMap<String, Object> model = new HashMap<>();
-    model.put("ubiEnabled", !disabledFlowPropertyConfiguration.isFlowDisabled("ubi"));
-    model.put("docUploadEnabled", !disabledFlowPropertyConfiguration.isFlowDisabled("docUpload"));
+    model.put("ubiEnabled", disabledFlowPropertyConfiguration == null || 
+        !disabledFlowPropertyConfiguration.isFlowDisabled("ubi"));
+    model.put("docUploadEnabled", disabledFlowPropertyConfiguration == null || 
+        !disabledFlowPropertyConfiguration.isFlowDisabled("docUpload"));
     return new ModelAndView("index", model);
   }
 

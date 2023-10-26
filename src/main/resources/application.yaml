@@ -8,8 +8,8 @@ form-flow:
         confirmation:
           cc:
           bcc:
-  disabled-flows:
 # Uncomment to test disabling flows
+#  disabled-flows:
 #    - flow: docUpload
 #      staticRedirectScreen: '/disabledFeature'
 #    - flow: ubi
