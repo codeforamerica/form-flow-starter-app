@@ -83,6 +83,7 @@ class:
 * [index.html](src/main/resources/templates/index.html)
 * [faq.html](src/main/resources/templates/faq.html)
 * [privacy.html](src/main/resources/templates/privacy.html)
+* [disabledFeature.html](src/main/resources/templates/disabledFeature.html)
 
 ## Example Actions and Conditions
 
