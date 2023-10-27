@@ -19,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Tag("staticPagesJourney")
 @TestPropertySource(properties = {
     "form-flow.disabled-flows[0].flow=ubi",
-    "form-flow.disabled-flows[0].staticRedirectScreen=/",
+    "form-flow.disabled-flows[0].staticRedirectPage=/",
     "form-flow.disabled-flows[1].flow=docUpload",
-    "form-flow.disabled-flows[1].staticRedirectScreen=/disabledFeature",
+    "form-flow.disabled-flows[1].staticRedirectPage=/disabledFeature",
 })
 public class StaticHomepageDisabledFlowsJourneyTest extends AbstractBasePageTest {
 
