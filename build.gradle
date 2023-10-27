@@ -35,6 +35,20 @@ configurations.configureEach {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
+enum DesignSystem {
+    HONEYCRISP,
+    CFA_USWDS;
+
+    static DesignSystem fromString(String value) {
+        for (DesignSystem designSystem : values()) {
+            if (designSystem.name().replaceAll('_', '-').equalsIgnoreCase(value)) {
+                return designSystem;
+            }
+        }
+        throw new IllegalArgumentException("Unknown design system: " + value);
+    }
+}
+
 def props = new Properties()
 if (file(".env").exists()) {
     file(".env").withInputStream { props.load(it) }
@@ -53,8 +67,9 @@ def useLocalLibrary = System.getenv('USE_LOCAL_LIBRARY')
 
 def applicationYaml = file('src/main/resources/application.yaml')
 def applicationProps = new Yaml().load(applicationYaml.text)
-def designSystemName = applicationProps.get('form-flow')?.get('design-system')?.get('name')
-println "🎨 Using design system: ${designSystemName ?: 'honeycrisp'}"
+def designSystemNameString = applicationProps.get('form-flow')?.get('design-system')?.get('name')
+def designSystem = DesignSystem.fromString(designSystemNameString ?: 'HONEYCRISP')
+println "🎨 Using design system: $designSystem"
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -137,7 +152,7 @@ def sassConfiguration = { CompileSass task ->
 tasks.register('watchSass', CompileSass) { task ->
     dependsOn installSass
     sassConfiguration(task)
-    watch ()
+    watch()
 }
 
 // Docs: https://github.com/EtienneMiret/sass-gradle-plugin#usage
@@ -148,7 +163,7 @@ tasks.named('compileSass', CompileSass).configure { task ->
 
 // compileSass needs to run before processResources
 processResources {
-    if (designSystemName == 'cfa-uswds') {
+    if (designSystem == DesignSystem.CFA_USWDS) {
         dependsOn compileSass
     }
 }
