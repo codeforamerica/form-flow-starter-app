@@ -2,7 +2,6 @@ package org.formflowstartertemplate.app;
 
 import formflow.library.config.DisabledFlowPropertyConfiguration;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +14,6 @@ import java.util.HashMap;
 @Controller
 public class StaticPageController {
   
-//  @Autowired
   DisabledFlowPropertyConfiguration disabledFlowPropertyConfiguration;
 
   public StaticPageController(DisabledFlowPropertyConfiguration disabledFlowPropertyConfiguration) {
@@ -25,8 +23,8 @@ public class StaticPageController {
   /**
    * Renders the website index page.
    *
-   * @param httpSession The current HTTP session, not null
-   * @return the static page template
+   * @param httpSession The current HTTP session, not null.
+   * @return the static page template.
    */
   @GetMapping("/")
   ModelAndView getIndex(HttpSession httpSession) {
