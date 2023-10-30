@@ -1,10 +1,16 @@
 {
   "name": "form-flow-starter-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/main/resources/static/assets/js/index.js",
   "scripts": {},
   "license": "ISC",
   "dependencies": {
-    "@codeforamerica/uswds": "0.0.0-16"
+    "@codeforamerica/uswds": "0.0.0-17"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.4",
+    "rollup": "^4.1.4"
   }
 }

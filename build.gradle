@@ -161,10 +161,16 @@ tasks.named('compileSass', CompileSass).configure { task ->
     sassConfiguration(task)
 }
 
+tasks.register('compileJs', Exec) {
+    dependsOn 'moveNodeModulesToGenerated'
+    commandLine 'npx', 'rollup', '--config', 'rollup.config.cjs'
+}
+
 // compileSass needs to run before processResources
 processResources {
     if (designSystem == DesignSystem.CFA_USWDS) {
         dependsOn compileSass
+        dependsOn compileJs
     }
 }
 
