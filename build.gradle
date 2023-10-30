@@ -131,6 +131,13 @@ tasks.register('moveNodeModulesToGenerated', Copy) {
     dependsOn 'npmInstall'
     from 'node_modules'
     into 'generated/main/resources/static'
+    finalizedBy(moveUSWDSImagesToGenerated)
+}
+
+tasks.register('moveUSWDSImagesToGenerated', Copy) {
+    dependsOn 'moveNodeModulesToGenerated'
+    from 'node_modules/@uswds/uswds/dist/img'
+    into 'generated/main/resources/static/assets/css/img'
 }
 
 def sassConfiguration = { CompileSass task ->
