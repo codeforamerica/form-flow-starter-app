@@ -2,11 +2,6 @@
 
 window.uswdsPresent = true; // Indicate uswds.js has loaded in the DOM.
 
-// The 'polyfills' define key ECMAScript 5 methods that may be missing from older browsers (which?)
-// import polyfills from '@uswds/uswds/packages/uswds-core/src/js/polyfills';
-// Adds SVG support for (really) old browsers. If needed add after USWDS initialization svg4everybody();
-// import svg4everybody from '@uswds/uswds/packages/uswds-core/src/js/polyfills/svg4everybody';
-
 /**
  * USWDS packages
  */
