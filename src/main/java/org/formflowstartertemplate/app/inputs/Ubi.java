@@ -1,8 +1,8 @@
 package org.formflowstartertemplate.app.inputs;
 
 import formflow.library.data.FlowInputs;
-import formflow.library.data.validators.Money;
-import formflow.library.data.validators.Phone;
+import formflow.library.data.annotations.Money;
+import formflow.library.data.annotations.Phone;
 import formflow.library.utils.RegexUtils;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
