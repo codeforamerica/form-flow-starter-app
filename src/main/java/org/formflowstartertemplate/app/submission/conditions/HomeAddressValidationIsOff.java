@@ -2,7 +2,7 @@ package org.formflowstartertemplate.app.submission.conditions;
 
 import formflow.library.config.submission.Condition;
 import formflow.library.data.Submission;
-import formflow.library.inputs.UnvalidatedField;
+import formflow.library.inputs.FieldNameMarkers;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +18,7 @@ public class HomeAddressValidationIsOff implements Condition {
       return true;
     }
 
-    return submission.getInputData().get(UnvalidatedField.VALIDATE_ADDRESS + "residentialAddress").equals("false");
+    return submission.getInputData().get(FieldNameMarkers.UNVALIDATED_FIELD_MARKER_VALIDATE_ADDRESS + "residentialAddress")
+        .equals("false");
   }
 }
