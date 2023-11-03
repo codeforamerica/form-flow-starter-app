@@ -169,4 +169,6 @@ public class Ubi extends FlowInputs {
   private String email;
   @NotEmpty(message = "{contact-info.select-a-contact-method}")
   private ArrayList<String> howToContactYou;
+  
+  private String areYouCurrentlyInSchool;
 }

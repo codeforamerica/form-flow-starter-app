@@ -13,6 +13,12 @@ flow:
     onPostAction: UpdatePersonalInfoDates
     crossFieldValidationAction: ValidateMovedToUSADate
     nextScreens:
+      - name: areYouCurrentlyInSchoolBroken
+  areYouCurrentlyInSchoolBroken:
+    nextScreens:
+      - name: areYouCurrentlyInSchoolFixed
+  areYouCurrentlyInSchoolFixed:
+    nextScreens:
       - name: homeAddress
   homeAddress:
     nextScreens:
