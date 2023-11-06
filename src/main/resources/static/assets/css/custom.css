@@ -112,10 +112,15 @@
 .zero-flex-shrink svg{
   flex-shrink: 0;
 }
+
 .move-box-left {
   margin-left: -5px;
 }
 
 .help--header-spacing {
   margin-top: -35px;
+}
+
+.icon-person {
+  font-size: 3.2rem;
 }
