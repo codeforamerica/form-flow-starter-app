@@ -35,20 +35,6 @@ configurations.configureEach {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
-enum DesignSystem {
-    HONEYCRISP,
-    CFA_USWDS;
-
-    static DesignSystem fromString(String value) {
-        for (DesignSystem designSystem : values()) {
-            if (designSystem.name().replaceAll('_', '-').equalsIgnoreCase(value)) {
-                return designSystem;
-            }
-        }
-        throw new IllegalArgumentException("Unknown design system: " + value);
-    }
-}
-
 def props = new Properties()
 if (file(".env").exists()) {
     file(".env").withInputStream { props.load(it) }
@@ -64,12 +50,6 @@ repositories {
 def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
 def formFlowLibraryVersion = '0.0.16-SNAPSHOT'
 def useLocalLibrary = System.getenv('USE_LOCAL_LIBRARY')
-
-def applicationYaml = file('src/main/resources/application.yaml')
-def applicationProps = new Yaml().load(applicationYaml.text)
-def designSystemNameString = applicationProps.get('form-flow')?.get('design-system')?.get('name')
-def designSystem = DesignSystem.fromString(designSystemNameString ?: 'HONEYCRISP')
-println "🎨 Using design system: $designSystem"
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -106,6 +86,20 @@ springBoot {
     buildInfo()
 }
 
+test {
+    finalizedBy jacocoTestReport
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+// -------------------------------------
+// USWDS Tasks
+// -------------------------------------
 sass {
     // Version of dart-sass: https://github.com/sass/dart-sass/releases
     version = '1.69.3'
@@ -126,7 +120,6 @@ tasks.register('npmInstall', Exec) {
     commandLine 'npm', 'install'
 }
 
-
 tasks.register('moveNodeModulesToGenerated', Copy) {
     dependsOn 'npmInstall'
     from 'node_modules'
@@ -141,20 +134,19 @@ tasks.register('moveUSWDSImagesToGenerated', Copy) {
 }
 
 def sassConfiguration = { CompileSass task ->
-    // For now, do not load source maps
-    task.sourceMap = 'none'
     // Load path
     task.loadPath project.file("${projectDir}/generated/main/resources/static")
     task.loadPath project.file("${projectDir}/generated/main/resources/static/@uswds/uswds/packages")
     // Set the output style:
     // Possible values are “expanded” and “compressed”, default is “expanded”.
     task.style = 'expanded'
+    // For now, do not load source maps
+    task.sourceMap = 'none'
     // Source directory containing sass to compile:
     task.sourceDir = project.file("${projectDir}/src/main/resources/static/assets/scss")
     // Directory where to output generated CSS:
     task.outputDir = project.file("${projectDir}/generated/main/resources/static/assets/css")
 }
-
 
 tasks.register('watchSass', CompileSass) { task ->
     dependsOn installSass
@@ -162,7 +154,6 @@ tasks.register('watchSass', CompileSass) { task ->
     watch()
 }
 
-// Docs: https://github.com/EtienneMiret/sass-gradle-plugin#usage
 tasks.named('compileSass', CompileSass).configure { task ->
     dependsOn 'moveNodeModulesToGenerated'
     sassConfiguration(task)
@@ -173,14 +164,6 @@ tasks.register('compileJs', Exec) {
     commandLine 'npx', 'rollup', '--config', 'rollup.config.cjs'
 }
 
-// compileSass needs to run before processResources
-processResources {
-    if (designSystem == DesignSystem.CFA_USWDS) {
-        dependsOn compileSass
-        dependsOn compileJs
-    }
-}
-
 clean {
     doFirst {
         delete "generated"
@@ -188,13 +171,29 @@ clean {
     }
 }
 
-test {
-    finalizedBy jacocoTestReport
-    useJUnitPlatform()
+enum DesignSystem {
+    HONEYCRISP,
+    CFA_USWDS;
+
+    static DesignSystem fromString(String value) {
+        for (DesignSystem designSystem : values()) {
+            if (designSystem.name().replaceAll('_', '-').equalsIgnoreCase(value)) {
+                return designSystem;
+            }
+        }
+        throw new IllegalArgumentException("Unknown design system: " + value);
+    }
 }
 
-jacocoTestReport {
-    reports {
-        xml.required = true
+def applicationYaml = file('src/main/resources/application.yaml')
+def applicationProps = new Yaml().load(applicationYaml.text)
+def designSystemNameString = applicationProps.get('form-flow')?.get('design-system')?.get('name')
+def designSystem = DesignSystem.fromString(designSystemNameString ?: 'HONEYCRISP')
+println "🎨 Using design system: $designSystem"
+
+processResources {
+    if (designSystem == DesignSystem.CFA_USWDS) {
+        dependsOn compileSass
+        dependsOn compileJs
     }
 }
