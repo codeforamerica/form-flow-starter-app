@@ -1,0 +1,24 @@
+// Theme level configuration. Example of a theme setting override.
+// @use 'cfa-uswds-theme' with (
+//   $cfa-focus-color: 'blue-warm-60v',
+//   ...
+// );
+
+@forward 'cfa-uswds';
+
+// USWDS level configuration. Example of USWDS core setting override. The previous block must be omitted.
+// @use 'uswds-core' with (
+//   $theme-focus-color: 'blue-warm-60v',
+//   $theme-focus-offset: 2,
+//   ...
+// );
+
+@forward 'uswds';
+
+// Package level configuration. Example of a theme package setting override.
+// @use 'cfa-core' with (
+//   $cfa-form-elements-padding-y: 1,
+//   ...
+// );
+
+@forward 'cfa';

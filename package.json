@@ -5,7 +5,7 @@
   "scripts": {},
   "license": "ISC",
   "dependencies": {
-    "@codeforamerica/uswds": "0.0.0-17"
+    "@codeforamerica/uswds": "0.0.0-24"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",

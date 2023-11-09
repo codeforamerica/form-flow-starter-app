@@ -33,55 +33,31 @@ import tooltip from '@uswds/uswds/js/usa-tooltip';
  */
 
 import Copy from '@codeforamerica/uswds/packages/cfa-copy/cfa-copy.js';
-import FollowUpQuestion from '@codeforamerica/uswds/packages/cfa-follow-up-question/cfa-follow-up-question.js';
-import MaskDollars from '@codeforamerica/uswds/packages/cfa-mask/cfa-mask-dollars.js';
+import Details from '@codeforamerica/uswds/packages/cfa-details/cfa-details.js';
+import FollowUpQuestion
+  from '@codeforamerica/uswds/packages/cfa-follow-up-question/cfa-follow-up-question.js';
+import MaskDollars
+  from '@codeforamerica/uswds/packages/cfa-mask/cfa-mask-dollars.js';
 import MaskTel from '@codeforamerica/uswds/packages/cfa-mask/cfa-mask-tel.js';
 import MaskSSN from '@codeforamerica/uswds/packages/cfa-mask/cfa-mask-ssn.js';
-import UploadDocuments from '@codeforamerica/uswds/packages/cfa-upload-documents/cfa-upload-documents.js';
+import UploadDocuments
+  from '@codeforamerica/uswds/packages/cfa-upload-documents/cfa-upload-documents.js';
 
 /**
- * Initialize USWDS utilities and components
+ * Initialize USWDS and Code for America theme utilities and components
  */
-
-let components = {
-  accordion,
-  // banner,
-  button,
-  // characterCount,
-  // comboBox,
-  // datePicker,
-  // dateRangePicker,
-  // fileInput,
-  // footer,
-  // inPageNavigation,
-  // inputMask,
-  // languageSelector,
-  // modal,
-  navigation,
-  // password,
-  // search,
-  skipnav,
-  // table,
-  // timePicker,
-  tooltip,
-  // validator
-};
-
-Object.keys(components).forEach(key => {
-  const behavior = components[key];
-
-  behavior.on(document.body);
-});
-
-/**
- * Initialize Code for America theme utilities and components
- */
-
 new Copy();
+new Details();
+new FollowUpQuestion();
 new MaskDollars();
 new MaskTel();
 new MaskSSN();
-new FollowUpQuestion();
+
+skipnav.on(document.body);
+tooltip.on(document.body);
+navigation.on(document.body);
+accordion.on(document.body);
+button.on(document.body);
 
 /**
  * Upload Documents component
