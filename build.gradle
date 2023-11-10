@@ -105,22 +105,22 @@ sass {
     version = '1.69.3'
 }
 
-tasks.register('cleanGenerated') {
-    doFirst {
-        delete "generated"
-    }
-}
-
 tasks.register('checkForNpm', Exec) {
+    group 'cfa-uswds'
+    description = 'Check if npm is accessible and install it if not.'
     commandLine 'sh', './scripts/check_for_npm.sh'
 }
 
 tasks.register('npmInstall', Exec) {
+    group 'cfa-uswds'
+    description = 'Install frontend dependencies using npm.'
     dependsOn 'checkForNpm'
     commandLine 'npm', 'install'
 }
 
 tasks.register('moveNodeModulesToGenerated', Copy) {
+    group 'cfa-uswds'
+    description = 'Move Node Modules into Generated so that Spring Boot can use the assets.'
     dependsOn 'npmInstall'
     from 'node_modules'
     into 'generated/main/resources/static'
@@ -128,6 +128,8 @@ tasks.register('moveNodeModulesToGenerated', Copy) {
 }
 
 tasks.register('moveUSWDSImagesToGenerated', Copy) {
+    group 'cfa-uswds'
+    description = 'Move USWDS images into generated folder for Spring Boot to use it.'
     dependsOn 'moveNodeModulesToGenerated'
     from 'node_modules/@uswds/uswds/dist/img'
     into 'generated/main/resources/static/assets/css/img'
@@ -136,6 +138,7 @@ tasks.register('moveUSWDSImagesToGenerated', Copy) {
 def sassConfiguration = { CompileSass task ->
     // Load path
     task.loadPath project.file("${projectDir}/generated/main/resources/static")
+    task.loadPath project.file("${projectDir}/generated/main/resources/static/@codeforamerica/uswds/packages")
     task.loadPath project.file("${projectDir}/generated/main/resources/static/@uswds/uswds/packages")
     // Set the output style:
     // Possible values are “expanded” and “compressed”, default is “expanded”.
@@ -148,20 +151,41 @@ def sassConfiguration = { CompileSass task ->
     task.outputDir = project.file("${projectDir}/generated/main/resources/static/assets/css")
 }
 
-tasks.register('watchSass', CompileSass) { task ->
-    dependsOn installSass
-    sassConfiguration(task)
-    watch()
-}
-
 tasks.named('compileSass', CompileSass).configure { task ->
+    group 'cfa-uswds'
+    description = 'Compile Sass files into CSS.'
     dependsOn 'moveNodeModulesToGenerated'
     sassConfiguration(task)
 }
 
 tasks.register('compileJs', Exec) {
+    group 'cfa-uswds'
+    description = 'Compile CommonJS into JavaScript.'
     dependsOn 'moveNodeModulesToGenerated'
     commandLine 'npx', 'rollup', '--config', 'rollup.config.cjs'
+}
+
+tasks.register('watchCompileSass', CompileSass) { task ->
+    group 'cfa-uswds watch'
+    description = 'Infinate task to watch and recompile changes with SCSS.'
+    dependsOn installSass
+    sassConfiguration(task)
+    watch()
+}
+
+tasks.register('watchCompileJs', Exec) {
+    group 'cfa-uswds watch'
+    description = 'Infinate task to watch and recompile changes with JavaScript.'
+    dependsOn 'moveNodeModulesToGenerated'
+    commandLine 'npx', 'rollup', '--config', 'rollup.config.cjs', '--watch'
+}
+
+tasks.register('cleanGenerated') {
+    group 'cfa-uswds'
+    description = 'Delete the generated directory.'
+    doFirst {
+        delete "generated"
+    }
 }
 
 clean {
