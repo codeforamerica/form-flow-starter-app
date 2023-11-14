@@ -10,9 +10,6 @@
       <main
           th:with="completionDate=${T(org.formflowstartertemplate.app.utils.SubmissionUtilities).getFormattedSubmittedAtDate(submission)}"
           id="content" role="main" class="form-card spacing-above-35">
-        <div th:if="${lockedSubmissionMessage}" class="notice--warning">
-          <p th:text="${lockedSubmissionMessage}"></p>
-        </div>
         <div>
           <th:block th:replace="~{fragments/icons :: computerWithCheckmark}"></th:block>
         </div>

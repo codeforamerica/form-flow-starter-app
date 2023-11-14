@@ -131,9 +131,6 @@ flow:
     nextScreens: null
 landmarks:
   firstScreen: howThisWorks
-  afterSubmitPages:
-    - nextSteps
-    - success
 subflows:
   household:
     entryScreen: housemates
