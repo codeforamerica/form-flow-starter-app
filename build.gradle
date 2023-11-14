@@ -167,7 +167,7 @@ tasks.register('compileJs', Exec) {
 
 tasks.register('watchCompileSass', CompileSass) { task ->
     group 'cfa-uswds watch'
-    description = 'Infinate task to watch and recompile changes with SCSS.'
+    description = 'Infinite task to watch and recompile changes with SCSS.'
     dependsOn installSass
     sassConfiguration(task)
     watch()
@@ -175,7 +175,7 @@ tasks.register('watchCompileSass', CompileSass) { task ->
 
 tasks.register('watchCompileJs', Exec) {
     group 'cfa-uswds watch'
-    description = 'Infinate task to watch and recompile changes with JavaScript.'
+    description = 'Infinite task to watch and recompile changes with JavaScript.'
     dependsOn 'moveNodeModulesToGenerated'
     commandLine 'npx', 'rollup', '--config', 'rollup.config.cjs', '--watch'
 }
