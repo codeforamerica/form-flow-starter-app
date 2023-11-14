@@ -1,6 +1,6 @@
 package org.formflowstartertemplate.app;
 
-import formflow.library.config.FormFlowConfigurationProperties;
+import formflow.library.config.DisabledFlowPropertyConfiguration;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +14,10 @@ import java.util.HashMap;
 @Controller
 public class StaticPageController {
   
-  FormFlowConfigurationProperties formFlowConfigurationProperties;
+  DisabledFlowPropertyConfiguration disabledFlowPropertyConfiguration;
 
-  public StaticPageController(FormFlowConfigurationProperties formFlowConfigurationProperties) {
-    this.formFlowConfigurationProperties = formFlowConfigurationProperties;
+  public StaticPageController(DisabledFlowPropertyConfiguration disabledFlowPropertyConfiguration) {
+    this.disabledFlowPropertyConfiguration = disabledFlowPropertyConfiguration;
   }
 
   /**
@@ -31,10 +31,10 @@ public class StaticPageController {
     httpSession.invalidate(); // For dev, reset session if you visit home
 
     HashMap<String, Object> model = new HashMap<>();
-    model.put("ubiEnabled", formFlowConfigurationProperties == null || 
-        !formFlowConfigurationProperties.isFlowDisabled("ubi"));
-    model.put("docUploadEnabled", formFlowConfigurationProperties == null || 
-        !formFlowConfigurationProperties.isFlowDisabled("docUpload"));
+    model.put("ubiEnabled", disabledFlowPropertyConfiguration == null || 
+        !disabledFlowPropertyConfiguration.isFlowDisabled("ubi"));
+    model.put("docUploadEnabled", disabledFlowPropertyConfiguration == null || 
+        !disabledFlowPropertyConfiguration.isFlowDisabled("docUpload"));
     return new ModelAndView("index", model);
   }
 
