@@ -1,0 +1,42 @@
+//
+// Theme level configuration. Example of a CfA theme setting override.
+// The CfA theme includes a subset of the overall USWDS theme settings
+// that can be configured. All of these settings use the "CfA USWDS Sass
+// variable version" which is the same as their USWDS counterpart but
+// prefixed with "$cfa-".
+//
+// @reference https://docs.google.com/spreadsheets/d/1nVIAmi6pRDu5Z7II6ttwKryGrdYBhuJYmpO4YjXmuxQ/edit#gid=0
+//
+// @use 'cfa-uswds-theme' with (
+//   $cfa-focus-color: 'blue-warm-60v',
+//   ...
+// );
+
+@forward 'cfa-uswds';
+
+//
+// USWDS level configuration. Example of USWDS core setting override.
+// The previous block must be omitted if using this configuration method
+// to directly modify USWDS settings.
+//
+// @reference https://designsystem.digital.gov/documentation/settings
+//
+// @use 'uswds-core' with (
+//   $theme-focus-color: 'blue-warm-60v',
+//   $theme-focus-offset: 2,
+//   ...
+// );
+
+@forward 'uswds';
+
+//
+// Package level configuration. Example of a theme custom package setting override.
+//
+// @reference https://docs.google.com/spreadsheets/d/1nVIAmi6pRDu5Z7II6ttwKryGrdYBhuJYmpO4YjXmuxQ/edit#gid=1464502756
+//
+// @use 'cfa-core' with (
+//   $cfa-form-elements-padding-y: 1,
+//   ...
+// );
+
+@forward 'cfa';

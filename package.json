@@ -1,0 +1,10 @@
+{
+  "name": "form-flow-starter-app",
+  "version": "1.0.0",
+  "main": "src/main/resources/static/assets/js/index.js",
+  "scripts": {},
+  "license": "ISC",
+  "dependencies": {
+    "@codeforamerica/uswds": "0.0.0-24"
+  }
+}
