@@ -17,7 +17,11 @@ Table of Contents
         * [Actions](#actions)
         * [Conditions](#conditions)
 * [Setup Instructions](#setup-instructions)
+    * [Mac and Linux](#mac-and-linux)
+    * [Windows](#windows)
     * [Setup Environment](#setup-environment)
+        * [IntelliJ](#intellij) 
+            * [Setup Live Reload](#setup-live-reload)
         * [Setup Application](#setup-application)
         * [Contributing Live Templates to your App](#contributing-live-templates-to-your-app)
         * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
@@ -141,18 +145,36 @@ After cloning the repository, run `scripts/setup.sh` from the root of the repo's
 Check the script `scripts/setup.sh` for the most up to date list of dependencies and steps you'll need to install
 manually.
 
-### Setup Environment
+## Setup Environment
 
 Note that you'll need to provide some environment variables specified in [sample.env](sample.env) to
 your IDE/shell to run the application. We use IntelliJ and have provided setup instructions for
 convenience.
 
-#### IntelliJ
+### IntelliJ
 
 - `cp sample.env .env` (.env is marked as ignored by git)
 - Download the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) and follow the
   setup instructions[here](https://github.com/Ashald/EnvFile#usage) to setup Run Configurations with
   EnvFile.
+
+#### Setup Live Reload
+
+Live Reload is very helpful when making many changes to HTML templates, CSS, or JavaScript. Here are instructions on how to get IntelliJ to reload resources and have the LiveReload browser extension automatically reload the browser tab for you.
+
+* Download live reload extension in your browser of choice:
+    * [Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+    * [Chrome extension](https://chromewebstore.google.com/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
+* Restart your browser after install
+* Go to `http://localhost:8080/`
+* Check that the live reload extension is "turned on", it will either be a solid color or a filled dot in the middle of the icon
+* Now in IntelliJ, go to Edit configuration
+    * Modify options
+        * On Frame deactivation:
+            * Check - Update classes and resources
+* Now when you move focus away from IntelliJ it will trigger an update and will then trigger a browser refresh
+
+> 📹 Here's a [video going step by step through these instructions](https://www.loom.com/share/74183c76d45c416e870ccf7aa06dd8ee?sid=a3bf01f9-b22d-423a-b61c-050bb0620d02).
 
 ### Setup Application
 
