@@ -164,14 +164,15 @@ Live Reload is very helpful when making many changes to HTML templates, CSS, or 
 
 * Download live reload extension in your browser of choice:
     * [Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
-    * [Chrome extension](https://chromewebstore.google.com/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
+    * [Chrome extension - works with Chrome, Edge, Brave, Arc](https://chromewebstore.google.com/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
 * Restart your browser after install
-* Go to `http://localhost:8080/`
-* Check that the live reload extension is "turned on", it will either be a solid color or a filled dot in the middle of the icon
-* Now in IntelliJ, go to Edit configuration
+* In IntelliJ, go to Edit configuration
     * Modify options
         * On Frame deactivation:
             * Check - Update classes and resources
+* Run your application from IntelliJ
+* Go to `http://localhost:8080/`
+* Check that the live reload extension is "turned on", it will either be a solid color or a filled dot in the middle of the icon
 * Now when you move focus away from IntelliJ it will trigger an update and will then trigger a browser refresh
 
 > 📹 Here's a [video going step by step through these instructions](https://www.loom.com/share/74183c76d45c416e870ccf7aa06dd8ee?sid=a3bf01f9-b22d-423a-b61c-050bb0620d02).
