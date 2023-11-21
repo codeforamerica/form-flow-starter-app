@@ -60,15 +60,11 @@ spring:
         - demo
         - form-flow-library
   thymeleaf:
-    cache: false
     template-resolver-order: 0
     check-template-location: true
-  # TODO: move caching 0 to a dev only context?
   web:
     resources:
       static-locations: file:src/main/resources/static/, file:generated/main/resources/static
-      cache:
-        period: 0
   datasource:
     url: jdbc:postgresql://localhost:5432/starter-app
     username: starter-app
