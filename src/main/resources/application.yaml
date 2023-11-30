@@ -1,4 +1,7 @@
 form-flow:
+  lock-after-submitted:
+    - flow: ubi
+      redirect: success
   design-system:
     name: honeycrisp
   languages: en, es
