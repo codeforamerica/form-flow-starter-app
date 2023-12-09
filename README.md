@@ -9,9 +9,7 @@ Table of Contents
     a reasonable size.
 -->
 
-* [Form Flow Starter Application](#form-flow-starter-application)
-* [Table of Contents](#table-of-contents)
-* [Universal Basic Income (UBI) Form Flow](#universal-basic-income-ubi-form-flow)
+* [What is the Form Flow Starter App](#what-is-the-form-flow-starter-app)
     * [Static Pages](#static-pages)
     * [Example Actions and Conditions](#example-actions-and-conditions)
         * [Actions](#actions)
@@ -21,19 +19,24 @@ Table of Contents
     * [Windows](#windows)
     * [Setup Environment](#setup-environment)
         * [IntelliJ](#intellij) 
-            * [Setup Live Reload](#setup-live-reload)
         * [Setup Application](#setup-application)
-        * [Contributing Live Templates to your App](#contributing-live-templates-to-your-app)
-        * [Using a local version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
+        * [Contributing Live Templates to Your App](#contributing-live-templates-to-your-app)
+        * [Using a Local Version of the Form-Flow Library (For Form-Flow Library Developers)](#using-a-local-version-of-the-form-flow-library-for-form-flow-library-developers)
 * [Using this as a template repository](#using-this-as-a-template-repository)
     * [Actuator Endpoints](#actuator-endpoints)
     * [Scripts](#scripts)
+        * [setup.sh](#setupsh) 
+        * [generate_migration.sh](#generatemigrationsh)
     * [AWS Setup](#aws-setup)
     * [Cloud Deployment](#cloud-deployment)
         * [Aptible Setup](#aptible-setup)
+        * [Deployment in Aptible to a custom URL](#deployment-in-aptible-to-a-custom-url)
+    * [Development Setup](#development-setup)
 * [Troubleshooting IntelliJ](#troubleshooting-intellij)
 
-This is a standard Spring Boot application that demonstrates the `form-flow` Java library. It
+# What is the Form Flow Starter App
+
+The starter app is a Spring Boot application that demonstrates the `form-flow` Java library. It
 can be customized to meet the needs of a web app, and is meant to be built upon. It's a plain,
 boring (but modern) Spring app that uses common, frequently-used libraries throughout.
 
@@ -42,45 +45,23 @@ can fill out screens with their basic info, upload supporting documents, then su
 Upon submission, they receive an email with a filled-in
 application PDF. The entire experience is in both English and Spanish.
 
-The `form-flow` Java library is included in `build.gradle` along with all other dependencies. The codebase for the `form-flow`
-package is [open source](https://github.com/codeforamerica/form-flow).
+The `form-flow` Java library is included in the applications `build.gradle` along with all other 
+dependencies. The codebase for the `form-flow` library is [open source](https://github.com/codeforamerica/form-flow).
 
 A detailed explanation of form flow concepts can be found in
 the [form flow library's readme](https://github.com/codeforamerica/form-flow).
 
-# Universal Basic Income (UBI) Form Flow
-
-This chart below shows the flow created by the `flows-config.yaml` file in this repository.
-
-```mermaid
-flowchart
-    A[UBI Flow] --> B(howThisWorks)
-    B --> C(languagePreferences)
-    C --> D(fa:fa-person gettingToKnowYou)
-    D --> E(fa:fa-pen personalInfo)
-    E --> F(eligibility)
-    F --> G(fa:fa-house housemates)
-    G --> |Add Household Member| I(housemateInfo)
-    G --> |No Members| K(fa:fa-dollar income)
-    I --> J(householdList)
-    J -- Add Another Member --> I
-    J --> K
-    K --> L(householdMemberIncome)
-    L --subflow--> N(incomeTypes)
-    N --> O(incomeAmounts)
-    O --> P(annualHouseholdIncome)
-    P -- Add Member Income --> L
-    P --> Q(incomeComplete)
-    Q --> R(fa:fa-star success)
-```
+To experience the starter-app for yourself, you can visit:
+[https://forms-starter.cfa-platforms.org/](https://forms-starter.cfa-platforms.org/)
 
 ## Static Pages
 
-Unlike Screens, Static Pages are HTML content and are not part of a flow. Detailed information
-about static pages can be found in
-the [form-flow library documentation.](https://github.com/codeforamerica/form-flow#static-pages)
+The starter-app implements some purely static pages which defer from screens in that they take in
+no user input. They are purely for conveying information to the user, and they are not part of any 
+specific flow. For more information about static pages see the 
+[form-flow library documentation.](https://github.com/codeforamerica/form-flow#static-pages)
 
-This application has three static pages served up by
+This application has four static pages served up by
 the [StaticPageController](src/main/java/org/formflowstartertemplate/app/StaticPageController.java)
 class:
 
@@ -91,7 +72,9 @@ class:
 
 ## Example Actions and Conditions
 
-Actions can be run at specific points in a form submission's life cycle.
+The starter app provides some examples of both Actions and Conditions. To learn more about creating
+your own actions or conditions we recommend reading the library's documentation for each linked in 
+their respective sections below.
 
 ### Actions
 
@@ -116,6 +99,8 @@ input types. If they then decide to go back and change a value or add a new inco
 will ensure that any previous values entered by the user are cleared out in the
 stored data as well.
 
+You can view the [UpdateIncomeAmountsBeforeSaving action here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/formflowstartertemplate/app/submission/actions/UpdateIncomeAmountsBeforeSaving.java).
+
 #### UpdatePersonalInfoDates
 
 This is an `onPostAction` and is run just after the data is sent to the server, before any
@@ -123,6 +108,9 @@ validation is done on it. The `UpdatePersonalInfoDates` action will do the follo
 the `birth` and `movedToUSA` fields on the `Personal Info` page. It will take the three separate
 date fields associated with them (day, month, and year) and put an aggregated date string into a
 general date field (`birthDate` and `movedToUSADate`, respectively).
+
+You can view the [UpdatePersonalInfoDates action here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/formflowstartertemplate/app/submission/actions/UpdatePersonalInfoDates.java).
+
 
 #### ValidateMovedToUSADate
 
@@ -132,7 +120,70 @@ client has indicated that they moved to the USA in the last year. If they have, 
 will check to see that they've entered values for `movedToUSA` day, month and year, as well as check
 to see that the resulting date is actually valid.
 
+You can view the [ValidateMovedToUSADate action here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/formflowstartertemplate/app/submission/actions/ValidateMovedToUSADate.java).
+
 ### Conditions
+
+Conditions are used either to determine navigation between screens or to determine whether
+elements should be displayed on a screen. If you would like to learn more about creating your own 
+conditions, please see the [form-flow library documentation](https://github.com/codeforamerica/form-flow#conditions).
+
+#### HasHousehold
+
+The `HasHousehold` condition is an example of a condition that is used to determine navigation
+between screens. In the starter-app this condition is used to determine whether a user should be shown
+the `housemateInfo` screen if they have indicated that they have housemates. If they have indicated
+they do not have any housemates they will instead be taken to the `incomeInfo` essentially skipping
+the need to enter information about their housemates.
+
+Conditions that control screen navigation logic are configured in the `flows-config.yaml` file. This
+file defines navigational logic between screens. To learn more about configuring flows, please see
+the library documentation on [configuring flows](https://github.com/codeforamerica/form-flow#flow-and-subflow-configuration).
+
+You can view the [HasHousehold condition here](https://github.com/codeforamerica/form-flow-starter-app/blob/07bba8ce8cd5f70907f7098abe9b318b2bf69f50/src/main/java/org/formflowstartertemplate/app/submission/conditions/HasHousehold.java#L30).
+
+The corresponding YAML that indicates this condition should be used when determining what screen
+should follow the `housemates` screen looks like this:
+
+```yaml
+  housemates:
+    nextScreens:
+      - name: housemateInfo
+        condition: HasHousehold
+      - name: income
+```
+The above YAML inidicates that the `housemateInfo` screen should be shown if the `HasHousehold`
+evaluates to `true` and the `income` screen should be shown if the `HasHousehold` evaluates to `false`.
+
+#### IncomeSelectedSelf
+
+The `IncomeSelectedSelf` condition is an example of a condition that is used to determine what element
+to display in a screen. In the starter-app this condition is used to determine whether a user
+has indicated that they are entering income information about themselves or someone else. 
+
+If they have indicated that they are entering information about themselves, then the incomeTypes
+screen will show a header that says `What sources do you receive income from?`. If they 
+are entering income information for someone else, the header will instead read 
+`What sources does **persons name** receive income from?`.
+
+The condition is run within the incomeTypes screens thymeleaf template file and uses the
+ConditionManager to determine whether the condition evaluates to true or false.
+
+The corresponding thymeleaf template code looks like this:
+
+```html
+<th:block
+    <!-- Here we define the condition selectedSelf using the condition manager. -->
+    th:with="selectedSelf=${conditionManager.runCondition('IncomeSelectedSelf', submission, uuid)},
+             houseHoldMemberName=${fieldData.householdMember}">
+    ... other content ...
+    <!-- Here we use the condition to determine what header message to display. -->
+    header=${selectedSelf ? #messages.msg('income-types.headerYou') : #messages.msg('income-types.headerPerson', houseHoldMemberName)}
+```
+
+You can view the full [incomeTypes template here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/resources/templates/ubi/incomeTypes.html).
+
+You can view the [IncomeSelectedSelf condition here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/formflowstartertemplate/app/submission/conditions/IncomeSelectedSelf.java).
 
 # Setup instructions
 
@@ -142,8 +193,8 @@ After cloning the repository, run `scripts/setup.sh` from the root of the repo's
 
 ## Windows
 
-Check the script `scripts/setup.sh` for the most up to date list of dependencies and steps you'll need to install
-manually.
+Check the script `scripts/setup.sh` for the most up-to-date list of dependencies and steps you'll 
+need to install manually.
 
 ## Setup Environment
 
@@ -155,7 +206,7 @@ convenience.
 
 - `cp sample.env .env` (.env is marked as ignored by git)
 - Download the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) and follow the
-  setup instructions[here](https://github.com/Ashald/EnvFile#usage) to setup Run Configurations with
+  setup instructions[here](https://github.com/Ashald/EnvFile#usage) to set up Run Configurations with
   EnvFile.
 
 #### Setup Live Reload
@@ -184,17 +235,17 @@ Live Reload is very helpful when making many changes to HTML templates, CSS, or 
 - Run the application using the `StarterApplication` configuration (found
   in `org.formflowstartertemplate.app`)
 
-### Contributing Live Templates to your App
+### Contributing Live Templates to Your App
 
 If you have created live templates with fragments which are specific to your application based on a
 starter app template, you can commit them to your repository. You will follow a similar pattern to
 create templates to what is outlined
 [in the form-flow library here.](https://github.com/codeforamerica/form-flow#contribute-new-live-templates)
 
-An example template which was set up using this process, starting from an html snippet is available
+An example template which was set up using this process, starting from a html snippet is available
 [in this repository's IntelliJ settings folder](intellij-settings/StarterAppLiveTemplate.xml).
 
-### Using a local version of the Form-Flow Library (For Form-Flow Library Developers)
+### Using a Local Version of the Form-Flow Library (For Form-Flow Library Developers)
 
 To use a local version of the  [form-flow](https://github.com/codeforamerica/form-flow) library you
 can do the following:
@@ -212,16 +263,19 @@ app's [build.gradle](build.gradle) to pull in the local library, via this line:
  implementation fileTree(dir: "$rootDir/../form-flow/lib/build/libs", include: '*.jar')
  ```
 
-# Using this as a template repository
+# Using This as a Template Repository
 
 ## Actuator Endpoints
 
 The [Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html) is a
-feature Spring Boot provides to monitor and interact with your production
-ready application. It opens endpoints that can be queried to get information
+feature Spring Boot provides to monitor and interact with your application. It opens endpoints that can be queried to get information
 about your application, like health and build information.
 
-**This feature can be a large security concern if certain endpoints are open.**
+The starter-app, by default, enables full access to all actuator endpoints in the dev profile for
+local development. However, in other profiles, it restricts access, allowing only the health and
+build information endpoints to be available for use outside of local development.
+
+** ⚠️ This feature can be a large security concern if certain endpoints are open. ⚠️**
 
 Please read the following section in
 our [Form Flow Library's documentation](https://github.com/codeforamerica/form-flow#actuator-endpoints)
@@ -292,32 +346,32 @@ Here are the general steps to setup a new application in Aptible:
 3. Provision a database for your application in Aptible.
 4. Add repository secrets for the deploy github action.
 
-### Deployment in Aptible to a custom URL
+### Deployment in Aptible to a Custom URL
 
 These instructions guide you through the process of creating resources in Aptible + AWS which will
 allow you to deploy your application to a custom domain with root domain forwarding. Please create
 the resources in the specified order, as there are
 dependencies.
 
-#### Route53 setup
+#### Route53 Setup
 
 1. Create a new hosted zone with the name corresponding to the root domain of your purchased domain
    name.
 
-#### Aptible endpoint setup
+#### Aptible Endpoint Setup
 
 1. Create a new managed HTTPS endpoint for your root domain with subdomain (i.e. www)
 2. In Aptible, be sure to include the following variable in your application's configuration environment: [`FORCE_SSL=true`](https://www.aptible.com/docs/https-redirect).
 3. Follow the instructions to create managed HTTPS validation records in Route53
 
-#### Request public certificate
+#### Request Public Certificate
 
 1. Request certificate in AWS Certificate Manager (ACM) for your purchased domain name. If you would
    like to support directing non-www to www traffic, please use your root domain for the fully
    qualified domain name in the request.
 2. Create records in AWS Route53
 
-#### S3 static hosting for redirect requests (non-www traffic -> www)
+#### S3 Static Hosting for Redirect Requests (non-www traffic -> www)
 
 1. Create a new S3 bucket with your root domain.
 2. Under the bucket properties, configure static website hosting with hosting type
@@ -333,8 +387,7 @@ dependencies.
 ## Development Setup
 
 1. Create a
-   [new repository from the `form-flow-starter-app` template](https://github.com/codeforamerica/form-flow-starter-app/generate)
-   .
+   [new repository from the `form-flow-starter-app` template](https://github.com/codeforamerica/form-flow-starter-app/generate).
 2. Once the repository is created, clone it on your local machine.
 3. Create a new database and user for your project. Please use descriptive names which are unique to
    your project to avoid conflicts locally.
@@ -374,7 +427,7 @@ datasource:
 
 # Troubleshooting IntelliJ
 
-## Application won't run after IntelliJ update
+## Application Won't Run After IntelliJ Update
 
 Sometimes an IntelliJ update will cause the `StarterApplication` run context to fail. Here are some
 ways to attempt to fix it.
