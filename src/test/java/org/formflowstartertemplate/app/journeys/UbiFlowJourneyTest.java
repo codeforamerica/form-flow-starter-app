@@ -3,11 +3,24 @@ package org.formflowstartertemplate.app.journeys;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.YES;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
+import formflow.library.email.MailgunEmailClient;
+import java.util.List;
+import org.formflowstartertemplate.app.submission.actions.SendEmailConfirmation;
 import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 
 public class UbiFlowJourneyTest extends AbstractBasePageTest {
+  
+  @SpyBean
+  private SendEmailConfirmation sendEmailConfirmation;
+  
+  @SpyBean
+  private MailgunEmailClient mailgunEmailClient;
 
   @Test
   void fullUbiFlow() {
@@ -214,12 +227,38 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("reportedTotalAnnualHouseholdIncome", "125");
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Income Complete");
-    testPage.goBack();
-    testPage.goBack();
-    testPage.goBack();
-    testPage.goBack();
-    assertThat(testPage.getTitle()).isEqualTo("Income");
-    testPage.clickLink("Add income");
-    assertThat(testPage.getTitle()).isEqualTo("Household Member Income");
+    testPage.clickButton("Continue");
+    // economicHardship screen
+    testPage.enter("economicHardshipTypes", List.of(
+        "Hours or wages were reduced due to COVID-19",
+        "Business revenue declined significantly (business owner or self-employed)"
+    ));
+    testPage.clickButton("Submit");
+    // Adding documents screen
+    testPage.clickContinue();
+    // howToAddDocuments screen
+    testPage.clickContinue();
+    // documentRecommendations screen
+    testPage.clickLink("Upload documents now");
+    // uploadUBIFlowDocuments screen
+    uploadJpgFile("ubiFiles");
+    assertThat(testPage.getElementText("number-of-uploaded-files-ubiFiles")).isEqualTo("1 file added");
+    // docSubmitConfirmation Screen
+    testPage.clickButton("I'm finished uploading");
+    // Submitting screen
+    testPage.clickButton("Yes, submit and finish");
+    // legalStuff screen
+    testPage.clickContinue();
+    testPage.enter("agreesToLegalTerms", List.of("I agree"));
+    // signName screen
+    testPage.clickContinue();
+    testPage.enter("signature", "Testy McTesterson");
+    testPage.clickButton("Submit Application");
+    // Assert that SendEmailConfirmation was called
+    verify(sendEmailConfirmation, times(1)).run(any());
+    verify(mailgunEmailClient, times(2)).sendEmail(any(), any(), any(), any(), any(), any());
+    // nextSteps screen
+    testPage.clickContinue();
+    // success screen
   }
 }
