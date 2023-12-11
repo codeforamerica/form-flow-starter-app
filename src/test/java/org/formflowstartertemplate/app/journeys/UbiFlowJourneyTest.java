@@ -1,18 +1,26 @@
 package org.formflowstartertemplate.app.journeys;
 
+import formflow.library.email.MailgunEmailClient;
+import org.formflowstartertemplate.app.submission.actions.SendEmailConfirmation;
+import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.mock.mockito.SpyBean;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.YES;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
-import formflow.library.email.MailgunEmailClient;
-import java.util.List;
-import org.formflowstartertemplate.app.submission.actions.SendEmailConfirmation;
-import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.SpyBean;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class UbiFlowJourneyTest extends AbstractBasePageTest {
   
@@ -23,7 +31,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
   private MailgunEmailClient mailgunEmailClient;
 
   @Test
-  void fullUbiFlow() {
+  void fullUbiFlow() throws IOException, InterruptedException {
     // Landing screen
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     testPage.clickButton("Apply now");
@@ -244,6 +252,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     uploadJpgFile("ubiFiles");
     assertThat(testPage.getElementText("number-of-uploaded-files-ubiFiles")).isEqualTo("1 file added");
     // docSubmitConfirmation Screen
+    Thread.sleep(1000);
     testPage.clickButton("I'm finished uploading");
     // Submitting screen
     testPage.clickButton("Yes, submit and finish");
@@ -260,5 +269,15 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     // nextSteps screen
     testPage.clickContinue();
     // success screen
+    testPage.clickLink("Download your application");
+    Thread.sleep(1000);
+    File downloadedFile = getLatestDownloadedFile(path);
+    assertThat(downloadedFile).hasExtension("pdf");
+    assertThat(getFirstLine(downloadedFile)).startsWith("%PDF-"); // Standard PDF Magic
+  }
+
+  private String getFirstLine(File file) throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(file));
+    return reader.readLine();
   }
 }
