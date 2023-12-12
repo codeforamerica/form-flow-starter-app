@@ -45,18 +45,18 @@ can fill out screens with their basic info, upload supporting documents, then su
 Upon submission, they receive an email with a filled-in
 application PDF. The entire experience is in both English and Spanish.
 
-The `form-flow` Java library is included in the applications `build.gradle` along with all other 
+The `form-flow` Java library is included in the application's `build.gradle` along with all other 
 dependencies. The codebase for the `form-flow` library is [open source](https://github.com/codeforamerica/form-flow).
 
 A detailed explanation of form flow concepts can be found in
 the [form flow library's readme](https://github.com/codeforamerica/form-flow).
 
-To experience the starter-app for yourself, you can visit:
+To experience the starter app for yourself, you can visit:
 [https://forms-starter.cfa-platforms.org/](https://forms-starter.cfa-platforms.org/)
 
 ## Static Pages
 
-The starter-app implements some purely static pages which defer from screens in that they take in
+The starter app implements some purely static pages which differ from screens in that they take in
 no user input. They are purely for conveying information to the user, and they are not part of any 
 specific flow. For more information about static pages see the 
 [form-flow library documentation.](https://github.com/codeforamerica/form-flow#static-pages)
@@ -131,7 +131,7 @@ conditions, please see the [form-flow library documentation](https://github.com/
 #### HasHousehold
 
 The `HasHousehold` condition is an example of a condition that is used to determine navigation
-between screens. In the starter-app this condition is used to determine whether a user should be shown
+between screens. In the starter app this condition is used to determine whether a user should be shown
 the `housemateInfo` screen if they have indicated that they have housemates. If they have indicated
 they do not have any housemates they will instead be taken to the `incomeInfo` essentially skipping
 the need to enter information about their housemates.
@@ -152,13 +152,13 @@ should follow the `housemates` screen looks like this:
         condition: HasHousehold
       - name: income
 ```
-The above YAML inidicates that the `housemateInfo` screen should be shown if the `HasHousehold`
+The above YAML indicates that the `housemateInfo` screen should be shown if the `HasHousehold`
 evaluates to `true` and the `income` screen should be shown if the `HasHousehold` evaluates to `false`.
 
 #### IncomeSelectedSelf
 
 The `IncomeSelectedSelf` condition is an example of a condition that is used to determine what element
-to display in a screen. In the starter-app this condition is used to determine whether a user
+to display in a screen. In the starter app this condition is used to determine whether a user
 has indicated that they are entering income information about themselves or someone else. 
 
 If they have indicated that they are entering information about themselves, then the incomeTypes
@@ -166,7 +166,7 @@ screen will show a header that says `What sources do you receive income from?`. 
 are entering income information for someone else, the header will instead read 
 `What sources does **persons name** receive income from?`.
 
-The condition is run within the incomeTypes screens thymeleaf template file and uses the
+The condition is run within the incomeTypes screen's thymeleaf template file and uses the
 ConditionManager to determine whether the condition evaluates to true or false.
 
 The corresponding thymeleaf template code looks like this:
@@ -242,7 +242,7 @@ starter app template, you can commit them to your repository. You will follow a 
 create templates to what is outlined
 [in the form-flow library here.](https://github.com/codeforamerica/form-flow#contribute-new-live-templates)
 
-An example template which was set up using this process, starting from a html snippet is available
+An example template which was set up using this process, starting from an html snippet is available
 [in this repository's IntelliJ settings folder](intellij-settings/StarterAppLiveTemplate.xml).
 
 ### Using a Local Version of the Form-Flow Library (For Form-Flow Library Developers)
@@ -271,7 +271,7 @@ The [Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/ac
 feature Spring Boot provides to monitor and interact with your application. It opens endpoints that can be queried to get information
 about your application, like health and build information.
 
-The starter-app, by default, enables full access to all actuator endpoints in the dev profile for
+The starter app, by default, enables full access to all actuator endpoints in the dev profile for
 local development. However, in other profiles, it restricts access, allowing only the health and
 build information endpoints to be available for use outside of local development.
 
