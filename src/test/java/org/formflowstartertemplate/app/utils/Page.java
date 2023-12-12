@@ -103,7 +103,8 @@ public class Page {
 
   public void enter(String inputName, List<String> value) {
     checkForBadMessageKeys();
-    List<WebElement> formInputElements = driver.findElements(By.name(inputName + "[]"));
+    List<WebElement> formInputElements = driver.findElements(By.name(inputName + "[]")).stream()
+        .filter(element -> !element.getAttribute("type").equals("hidden")).toList();
     WebElement firstElement = formInputElements.get(0);
     FormInputHtmlTag formInputHtmlTag = FormInputHtmlTag.valueOf(firstElement.getTagName());
     if (formInputHtmlTag == FormInputHtmlTag.input) {

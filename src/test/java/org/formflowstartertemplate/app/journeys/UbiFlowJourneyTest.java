@@ -1,16 +1,37 @@
 package org.formflowstartertemplate.app.journeys;
 
+import formflow.library.email.MailgunEmailClient;
+import org.formflowstartertemplate.app.submission.actions.SendEmailConfirmation;
+import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.mock.mockito.SpyBean;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.YES;
-
-import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
-import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class UbiFlowJourneyTest extends AbstractBasePageTest {
+  
+  @SpyBean
+  private SendEmailConfirmation sendEmailConfirmation;
+  
+  @SpyBean
+  private MailgunEmailClient mailgunEmailClient;
 
   @Test
-  void fullUbiFlow() {
+  void fullUbiFlow() throws IOException, InterruptedException {
     // Landing screen
     assertThat(testPage.getTitle()).isEqualTo("Apply for UBI payments easily online.");
     testPage.clickButton("Apply now");
@@ -214,12 +235,49 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.enter("reportedTotalAnnualHouseholdIncome", "125");
     testPage.clickContinue();
     assertThat(testPage.getTitle()).isEqualTo("Income Complete");
-    testPage.goBack();
-    testPage.goBack();
-    testPage.goBack();
-    testPage.goBack();
-    assertThat(testPage.getTitle()).isEqualTo("Income");
-    testPage.clickLink("Add income");
-    assertThat(testPage.getTitle()).isEqualTo("Household Member Income");
+    testPage.clickButton("Continue");
+    // economicHardship screen
+    testPage.enter("economicHardshipTypes", List.of(
+        "Hours or wages were reduced due to COVID-19",
+        "Business revenue declined significantly (business owner or self-employed)"
+    ));
+    testPage.clickButton("Submit");
+    // Adding documents screen
+    testPage.clickContinue();
+    // howToAddDocuments screen
+    testPage.clickContinue();
+    // documentRecommendations screen
+    testPage.clickLink("Upload documents now");
+    // uploadUBIFlowDocuments screen
+    uploadJpgFile("ubiFiles");
+    assertThat(testPage.getElementText("number-of-uploaded-files-ubiFiles")).isEqualTo("1 file added");
+    // docSubmitConfirmation Screen
+    Thread.sleep(1000);
+    testPage.clickButton("I'm finished uploading");
+    // Submitting screen
+    testPage.clickButton("Yes, submit and finish");
+    // legalStuff screen
+    testPage.clickContinue();
+    testPage.enter("agreesToLegalTerms", List.of("I agree"));
+    // signName screen
+    testPage.clickContinue();
+    testPage.enter("signature", "Testy McTesterson");
+    testPage.clickButton("Submit Application");
+    // Assert that SendEmailConfirmation was called
+    verify(sendEmailConfirmation, times(1)).run(any());
+    verify(mailgunEmailClient, times(2)).sendEmail(any(), any(), any(), any(), any(), any());
+    // nextSteps screen
+    testPage.clickContinue();
+    // success screen
+    testPage.clickLink("Download your application");
+    Thread.sleep(1000);
+    File downloadedFile = getLatestDownloadedFile(path);
+    assertThat(downloadedFile).hasExtension("pdf");
+    assertThat(getFirstLine(downloadedFile)).startsWith("%PDF-"); // Standard PDF Magic
+  }
+
+  private String getFirstLine(File file) throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(file));
+    return reader.readLine();
   }
 }

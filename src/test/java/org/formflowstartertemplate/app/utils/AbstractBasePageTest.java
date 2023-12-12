@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Comparator;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -78,5 +80,12 @@ public abstract class AbstractBasePageTest {
     uploadFile(UPLOADED_JPG_FILE_NAME, dzName);
     assertThat(driver.findElement(By.id("dropzone-" + dzName)).getText().replace("\n", ""))
         .contains(UPLOADED_JPG_FILE_NAME);
+  }
+
+  protected File getLatestDownloadedFile(Path path) throws IOException {
+    return Files.list(path)
+        .filter(f -> !Files.isDirectory(f))
+        .max(Comparator.comparingLong(f -> f.toFile().lastModified())).get()
+        .toFile();
   }
 }
