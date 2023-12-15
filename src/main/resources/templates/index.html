@@ -57,6 +57,17 @@
     </th:block>
   </main>
 </div>
-<th:block th:replace="~{fragments/footer :: footer}"/>
+
+<th:block th:replace="~{fragments/footer :: footer(nav=~{::navContent})}">
+  <ul th:ref="navContent" class="grid-row grid-gap">
+    <li class="tablet:grid-col-auto margin-0 usa-footer__primary-content">
+      <a class="usa-footer__primary-link" th:classappend="usa-link--external" href="/faq" th:attr="rel='noopener nofollow', target='_blank'" th:text="#{footer.faq}"></a>
+    </li>
+    <li class="tablet:grid-col-auto margin-0 usa-footer__primary-content">
+      <a class="usa-footer__primary-link" th:classappend="usa-link--external" href="/privacy" th:attr="rel='noopener nofollow', target='_blank'" th:text="#{footer.privacy}"></a>
+    </li>
+  </ul>
+</th:block>
+
 </body>
 </html>
