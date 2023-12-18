@@ -4,6 +4,7 @@ import formflow.library.data.Submission;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 public class SubmissionUtilities {
 
   public static DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+  public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyy");
   public static final String APPLICANT = "applicant";
   public static final String REPORTED_TOTAL_ANNUAL_HOUSEHOLD_INCOME = "reportedTotalAnnualHouseholdIncome";
   public static final String HOUSEHOLD_MEMBER = "householdMember";
@@ -156,16 +158,12 @@ public class SubmissionUtilities {
   }
 
   /**
-   * This function returns a String of the formatted submitted_at date.   The
-   * method returns a date that looks like this: "February 7, 2023".
+   * Formats the date portion of {@code submittedAt} to look like "February 7, 2023".
    *
-   * @param submission submssion contains the submittedAt instance variable that holds the
-   *                   date the application was submitted.
-   * @return a string containing the formatted date.
+   * @param submission the submission from which the {@code submittedAt} is to be formatted
+   * @return the string formatted date
    */
   public static String getFormattedSubmittedAtDate(Submission submission) {
-    String pattern = "MMMM d, yyyy";
-    SimpleDateFormat formatDate= new SimpleDateFormat(pattern);
-    return formatDate.format(submission.getSubmittedAt());
+    return dateTimeFormatter.format(submission.getSubmittedAt());
   }
 }
