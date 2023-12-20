@@ -10,4 +10,4 @@ RUN ./gradlew assemble && \
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/opt/form-flow-starter-app/app.jar", "--spring.profiles.active=demo"]
+ENTRYPOINT ["java", "-jar", "/opt/form-flow-starter-app/app.jar"]
