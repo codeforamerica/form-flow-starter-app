@@ -209,10 +209,12 @@ enum DesignSystem {
     }
 }
 
-def applicationYaml = file('src/main/resources/application.yaml')
+def spring_profile = System.getenv('SPRING_PROFILES_ACTIVE')
+def applicationYaml = file(spring_profile == 'uswdsdemo'? 'src/main/resources/application-uswdsdemo.yaml':'src/main/resources/application.yaml' )
 def applicationProps = new Yaml().load(applicationYaml.text)
 def designSystemNameString = applicationProps.get('form-flow')?.get('design-system')?.get('name')
 def designSystem = DesignSystem.fromString(designSystemNameString ?: 'HONEYCRISP')
+println "Using profile: $spring_profile"
 println "🎨 Using design system: $designSystem"
 
 processResources {
