@@ -1,0 +1,46 @@
+<th:block th:fragment="footer" th:with="
+  modifier = '',
+  returnToTop = ${false},
+  home = ${ {modifier:'', href:'/'} },
+  logo = ${ {
+    alt: {modifier:'usa-sr-only',text:'Code for America'},
+    default: {modifier:'',href:'assets/site/svgs.svg#logo-cfa-stacked', style:'width: 101px; height: 82px;'},
+    tablet: {modifier:'',href:'assets/site/svgs.svg#logo-cfa-long', style:'width: 161px; height: 49px;'}
+  } },
+  navigation = ${ {
+    ariaLabel: 'Footer navigation',
+    items: {
+      { label: 'Site map', href: '#', rel: '', target:'', modifier:'' },
+      { label: 'Privacy policy', href: '/privacy', rel: 'noopener nofollow', target:'_blank', modifier:'usa-link--external' },
+      { label: 'FAQ', href: '/faq', rel: 'noopener nofollow', target:'_blank', modifier:'usa-link--external' }
+    }
+  } },
+  identifier = ${ {
+    modifier: 'cfa-font-smooth',
+    identity: {
+      'ariaLabel': 'Agency identifier',
+      'domain': 'domain.gov',
+      'disclaimer': 'This service was built by Code for America in partnership with Domain.gov on behalf of the people of the United States of America.'
+    },
+    requiredLinks: {
+      ariaLabel: 'Important links',
+      items: {
+        {label: 'About Code for America', href: 'https://codeforamerica.org', target: '_blank', rel: 'noopener nofollow', modifier: 'usa-link--external'},
+        {label: 'Diversity, Equity, & Inclusion', href: 'https://codeforamerica.org/about-us/diversity-equity-inclusion', target: '_blank', rel: 'noopener nofollow', modifier: 'usa-link--external'}
+      }
+    },
+    governmentSection: {
+    ariaLabel: 'Domain.gov government information and services',
+    description: 'Looking for government information and services?',
+    link: {
+      label: 'Visit domain.gov',
+      href: 'https://get.gov',
+      target: '_blank',
+      rel: 'noopener nofollow',
+      modifier: 'usa-link--external'
+    }
+  }
+  } }">
+  <th:block
+      th:replace="~{fragments/cfa-uswds/footer :: footer(${modifier}, ${returnToTop}, ${navigation}, ${logo}, ${home}, ${identifier})}"/>
+</th:block>

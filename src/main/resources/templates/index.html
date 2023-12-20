@@ -10,7 +10,8 @@
         <div class="width-one-half">
           <th:block th:replace="~{fragments/icons :: cursiveUbi}"></th:block>
           <th:block th:if="${!ubiEnabled}">
-            <div class="notice--warning" role="region" aria-labelledby="{{ }}" th:utext="#{index.disabled-flow-text}"></div>
+            <div class="notice--warning" role="region" aria-labelledby="{{ }}"
+                 th:utext="#{index.disabled-flow-text}"></div>
           </th:block>
           <h1 class="spacing-below-35 spacing-above-5" th:text="#{index.title}"></h1>
           <p th:text="#{index.apply-for-benefits-in-10}"></p>
@@ -20,17 +21,17 @@
           <th:block th:if="${ubiEnabled}">
             <div class="spacing-above-35">
               <a
-                th:href="|/flow/ubi/howThisWorks?lang=${#locale.getLanguage()}|"
-                th:text="#{index.apply-now}"
-                class="button--primary button"></a>
+                  th:href="|/flow/ubi/howThisWorks?lang=${#locale.getLanguage()}|"
+                  th:text="#{index.apply-now}"
+                  class="button--primary button"></a>
             </div>
             <div class="spacing-below-35">
               <a
-                th:with="otherLang=${#locale.getLanguage().equals('es') ? 'en' : 'es'}"
-                th:href="|/flow/ubi/howThisWorks?lang=${otherLang}|"
-                th:text="#{index.aplica-ahora}"
-                th:lang="${otherLang}"
-                class="button--small button"></a>
+                  th:with="otherLang=${#locale.getLanguage().equals('es') ? 'en' : 'es'}"
+                  th:href="|/flow/ubi/howThisWorks?lang=${otherLang}|"
+                  th:text="#{index.aplica-ahora}"
+                  th:lang="${otherLang}"
+                  class="button--small button"></a>
             </div>
           </th:block>
         </div>
@@ -51,23 +52,19 @@
         <div class="grid text--centered spacing-below-35">
           <th:block th:replace="~{fragments/icons :: uploadDocuments}"/>
           <h2 th:text="#{index.already-applied-additional}"></h2>
-            <a href="/flow/docUpload/documentRecommendations" th:text="#{index.upload-documents}" class="button"></a>
+          <a href="/flow/docUpload/documentRecommendations" th:text="#{index.upload-documents}"
+             class="button"></a>
         </div>
       </section>
     </th:block>
   </main>
 </div>
-
-<th:block th:replace="~{fragments/footer :: footer(nav=~{::navContent})}">
-  <ul th:ref="navContent" class="grid-row grid-gap">
-    <li class="tablet:grid-col-auto margin-0 usa-footer__primary-content">
-      <a class="usa-footer__primary-link" th:classappend="usa-link--external" href="/faq" th:attr="rel='noopener nofollow', target='_blank'" th:text="#{footer.faq}"></a>
-    </li>
-    <li class="tablet:grid-col-auto margin-0 usa-footer__primary-content">
-      <a class="usa-footer__primary-link" th:classappend="usa-link--external" href="/privacy" th:attr="rel='noopener nofollow', target='_blank'" th:text="#{footer.privacy}"></a>
-    </li>
-  </ul>
+<th:block
+    th:with="
+      pathToFooter = ${@environment.getProperty('form-flow.design-system.name') == 'cfa-uswds' ?
+      'fragments/starter-app/footer' :
+      'fragments/footer'}">
+  <th:block th:replace="~{(${pathToFooter}) :: footer}"/>
 </th:block>
-
 </body>
 </html>
