@@ -7,7 +7,8 @@ WORKDIR /opt/form-flow-starter-app
 
 ARG APTIBLE_ENV=/opt/form-flow-starter-app/.aptible.env
 RUN set -a  && \
-    apk add --update npm dart-sass && \
+    apk add --update npm && \
+    npm install -g sass && \
     if [ -e ${APTIBLE_ENV} ] ; then . ${APTIBLE_ENV} ; fi && \
     ./gradlew assemble && \
     cp /opt/form-flow-starter-app/build/libs/app.jar app.jar
