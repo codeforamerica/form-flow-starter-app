@@ -7,8 +7,10 @@ WORKDIR /opt/form-flow-starter-app
 
 ARG APTIBLE_ENV=/opt/form-flow-starter-app/.aptible.env
 RUN set -a  && \
+    echo https://dl-cdn.alpinelinux.org/alpine/edge/testing >>/etc/apk/repositories && \
+    apk update && \
     apk add --update npm && \
-    npm install -g sass && \
+    apk add dart-sdk icu-libs && \
     if [ -e ${APTIBLE_ENV} ] ; then . ${APTIBLE_ENV} ; fi && \
     ./gradlew assemble && \
     cp /opt/form-flow-starter-app/build/libs/app.jar app.jar
