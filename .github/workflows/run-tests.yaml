@@ -4,12 +4,11 @@ on:
   push:
     branches: [ main ]
   pull_request:
-  repository_dispatch:
-    types: [form-flow-snapshot-updated]
 
-env:
-  USERNAME: ${{ secrets.GPR_USER }}
-  TOKEN: ${{ secrets.GPR_KEY }}
+# What do these envs do?
+#env:
+#  USERNAME: ${{ secrets.GPR_USER }}
+#  TOKEN: ${{ secrets.GPR_KEY }}
 
 jobs:
   test:
@@ -21,9 +20,9 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_USER: starter-app-test
+          POSTGRES_USER: il-gcc-test
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: starter-app-test
+          POSTGRES_DB: il-gcc-test
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         ports:
           - 5432:5432
@@ -58,14 +57,15 @@ jobs:
           status: ${{ job.status }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      - name: Report results to DeepSource
-        continue-on-error: true
-        if: ${{ steps.test.conclusion == 'success' }}
-        run: |
-          curl https://deepsource.io/cli | sh
-          ./bin/deepsource report --analyzer test-coverage --key java --value-file ./build/reports/jacoco/test/jacocoTestReport.xml
-        env:
-          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+# Disabling for now as it's not critical, we couldn't get the repo added in Deepsource web app
+#      - name: Report results to DeepSource
+#        continue-on-error: true
+#        if: ${{ steps.test.conclusion == 'success' }}
+#        run: |
+#          curl https://deepsource.io/cli | sh
+#          ./bin/deepsource report --analyzer test-coverage --key java --value-file ./build/reports/jacoco/test/jacocoTestReport.xml
+#        env:
+#          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
