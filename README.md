@@ -62,7 +62,7 @@ specific flow. For more information about static pages see the
 [form-flow library documentation.](https://github.com/codeforamerica/form-flow#static-pages)
 
 This application has four static pages served up by
-the [StaticPageController](src/main/java/org/formflowstartertemplate/app/StaticPageController.java)
+the [StaticPageController](src/main/java/org/ilgcc/app/StaticPageController.java)
 class:
 
 * [index.html](src/main/resources/templates/index.html)
@@ -99,7 +99,7 @@ input types. If they then decide to go back and change a value or add a new inco
 will ensure that any previous values entered by the user are cleared out in the
 stored data as well.
 
-You can view the [UpdateIncomeAmountsBeforeSaving action here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/formflowstartertemplate/app/submission/actions/UpdateIncomeAmountsBeforeSaving.java).
+You can view the [UpdateIncomeAmountsBeforeSaving action here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/ilgcc/app/submission/actions/UpdateIncomeAmountsBeforeSaving.java).
 
 #### UpdatePersonalInfoDates
 
@@ -109,7 +109,7 @@ the `birth` and `movedToUSA` fields on the `Personal Info` page. It will take th
 date fields associated with them (day, month, and year) and put an aggregated date string into a
 general date field (`birthDate` and `movedToUSADate`, respectively).
 
-You can view the [UpdatePersonalInfoDates action here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/formflowstartertemplate/app/submission/actions/UpdatePersonalInfoDates.java).
+You can view the [UpdatePersonalInfoDates action here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/ilgcc/app/submission/actions/UpdatePersonalInfoDates.java).
 
 
 #### ValidateMovedToUSADate
@@ -120,7 +120,7 @@ client has indicated that they moved to the USA in the last year. If they have, 
 will check to see that they've entered values for `movedToUSA` day, month and year, as well as check
 to see that the resulting date is actually valid.
 
-You can view the [ValidateMovedToUSADate action here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/formflowstartertemplate/app/submission/actions/ValidateMovedToUSADate.java).
+You can view the [ValidateMovedToUSADate action here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/ilgcc/app/submission/actions/ValidateMovedToUSADate.java).
 
 ### Conditions
 
@@ -140,7 +140,7 @@ Conditions that control screen navigation logic are configured in the `flows-con
 file defines navigational logic between screens. To learn more about configuring flows, please see
 the library documentation on [configuring flows](https://github.com/codeforamerica/form-flow#flow-and-subflow-configuration).
 
-You can view the [HasHousehold condition here](https://github.com/codeforamerica/form-flow-starter-app/blob/07bba8ce8cd5f70907f7098abe9b318b2bf69f50/src/main/java/org/formflowstartertemplate/app/submission/conditions/HasHousehold.java#L30).
+You can view the [HasHousehold condition here](https://github.com/codeforamerica/form-flow-starter-app/blob/07bba8ce8cd5f70907f7098abe9b318b2bf69f50/src/main/java/org/ilgcc/app/submission/conditions/HasHousehold.java#L30).
 
 The corresponding YAML that indicates this condition should be used when determining what screen
 should follow the `housemates` screen looks like this:
@@ -183,7 +183,7 @@ The corresponding thymeleaf template code looks like this:
 
 You can view the full [incomeTypes template here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/resources/templates/ubi/incomeTypes.html).
 
-You can view the [IncomeSelectedSelf condition here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/formflowstartertemplate/app/submission/conditions/IncomeSelectedSelf.java).
+You can view the [IncomeSelectedSelf condition here](https://github.com/codeforamerica/form-flow-starter-app/blob/main/src/main/java/org/ilgcc/app/submission/conditions/IncomeSelectedSelf.java).
 
 # Setup instructions
 
@@ -233,7 +233,7 @@ Live Reload is very helpful when making many changes to HTML templates, CSS, or 
 - Use instructions from
   the [form-flow library here.](https://github.com/codeforamerica/form-flow#intellij-setup)
 - Run the application using the `StarterApplication` configuration (found
-  in `org.formflowstartertemplate.app`)
+  in `org.ilgcc.app`)
 
 ### Contributing Live Templates to Your App
 

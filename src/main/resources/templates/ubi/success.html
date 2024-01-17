@@ -8,7 +8,7 @@
     <div class="grid">
       <div th:replace="~{fragments/goBack :: goBackLink}"></div>
       <main
-          th:with="completionDate=${T(org.formflowstartertemplate.app.utils.SubmissionUtilities).getFormattedSubmittedAtDate(submission)}"
+          th:with="completionDate=${T(org.ilgcc.app.utils.SubmissionUtilities).getFormattedSubmittedAtDate(submission)}"
           id="content" role="main" class="form-card spacing-above-35">
         <div th:if="${lockedSubmissionMessage}" class="notice--warning">
           <p th:text="${lockedSubmissionMessage}"></p>
