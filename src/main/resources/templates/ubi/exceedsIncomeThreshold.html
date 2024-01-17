@@ -13,8 +13,8 @@
             th:replace="~{fragments/cardHeader :: cardHeader(header=#{exceeds-income-threshold.header})}"/>
         <div class="form-card__content">
           <div
-              th:with="familySize=${T(org.formflowstartertemplate.app.utils.SubmissionUtilities).getFamilySize(submission)},
-                     familyIncomeThreshold=${T(org.formflowstartertemplate.app.utils.SubmissionUtilities).getIncomeThresholdByFamilySize(submission)}"
+              th:with="familySize=${T(org.ilgcc.app.utils.SubmissionUtilities).getFamilySize(submission)},
+                     familyIncomeThreshold=${T(org.ilgcc.app.utils.SubmissionUtilities).getIncomeThresholdByFamilySize(submission)}"
               class="form-card__content">
             <p th:utext="#{exceeds-income-threshold.the-annual-household(${familySize}, ${familyIncomeThreshold})}"></p>
             <p th:text="#{exceeds-income-threshold.you-can-still-apply}"></p>

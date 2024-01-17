@@ -14,7 +14,7 @@ form-flow:
   session-continuity-interceptor:
     enabled: true
   encryption-key: '{"primaryKeyId":2135185311,"key":[{"keyData":{"typeUrl":"type.googleapis.com/google.crypto.tink.AesGcmKey","value":"GiCRKaXiJ/zlDHAZfRQf1rCIbIY4fFmLqLWYIPLNXpOx4A==","keyMaterialType":"SYMMETRIC"},"status":"ENABLED","keyId":2135185311,"outputPrefixType":"TINK"}]}"'
-  inputs: 'org.formflowstartertemplate.app.inputs.'
+  inputs: 'org.ilgcc.app.inputs.'
   uploads:
     accepted-file-types: '.jpeg,.jpg,.png,.pdf,.bmp,.gif,.doc,.docx,.odt,.ods,.odp'
     thumbnail-width: '64'
@@ -49,7 +49,7 @@ form-flow:
       sender-email: 'UBI Demo <demo@mail.forms-starter.cfa-platforms.org>'
   error:
     show-stack-trace: true
-    pretty-print-packages: formflow,formflowstartertemplate
+    pretty-print-packages: formflow,ilgcc
 spring:
   profiles:
     group:
@@ -69,8 +69,8 @@ spring:
     resources:
       static-locations: file:src/main/resources/static/, file:generated/main/resources/static
   datasource:
-    url: jdbc:postgresql://localhost:5432/starter-app
-    username: starter-app
+    url: jdbc:postgresql://localhost:5432/il-gcc
+    username: il-gcc
     password:
   servlet:
     multipart:
