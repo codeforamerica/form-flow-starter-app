@@ -30,8 +30,8 @@ form-flow:
       service-url: ${CLAMAV_URL}
       block-if-unreachable: true
   aws:
-    region: 'us-west-1'
-    s3_bucket_name: 'form-flow'
+    region: 'us-east-1'
+    s3_bucket_name: 'get-child-care-illinois-dev'
     access_key: ${AWS_ACCESS_KEY}
     secret_key: ${AWS_SECRET_KEY}
   address-validation:
