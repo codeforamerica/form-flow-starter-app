@@ -4,57 +4,93 @@
 <body class="template--static-page">
 <div class="page-wrapper">
   <th:block th:replace="~{fragments/toolbar :: toolbar}"/>
-  <main id="content" role="main" class="slab slab--white spacing-below-0">
-    <section class="slab">
+  <main id="content" role="main" class="slab slab--white padding-top-0 spacing-below-0">
+    <section class="slab slab--light-purple">
       <div class="grid">
+        <!-- TODO: add a max width size and center? -->
+        <div class="notice--warning spacing-below-35">
+          <p th:utext="'👋🏼 ' + #{index.notice-html}"></p>
+        </div>
         <div class="width-one-half">
-          <th:block th:replace="~{fragments/icons :: cursiveUbi}"></th:block>
-          <th:block th:if="${!ubiEnabled}">
-            <div class="notice--warning" role="region" aria-labelledby="{{ }}" th:utext="#{index.disabled-flow-text}"></div>
-          </th:block>
           <h1 class="spacing-below-35 spacing-above-5" th:text="#{index.title}"></h1>
           <p th:text="#{index.apply-for-benefits-in-10}"></p>
-          <th:block th:if="${docUploadEnabled}">
-            <a th:text="#{index.already-applied}" href="#docUpload"></a>
-          </th:block>
-          <th:block th:if="${ubiEnabled}">
-            <div class="spacing-above-35">
-              <a
-                th:href="|/flow/ubi/howThisWorks?lang=${#locale.getLanguage()}|"
-                th:text="#{index.apply-now}"
-                class="button--primary button"></a>
-            </div>
-            <div class="spacing-below-35">
-              <a
-                th:with="otherLang=${#locale.getLanguage().equals('es') ? 'en' : 'es'}"
-                th:href="|/flow/ubi/howThisWorks?lang=${otherLang}|"
-                th:text="#{index.aplica-ahora}"
-                th:lang="${otherLang}"
-                class="button--small button"></a>
-            </div>
-          </th:block>
+          <div class="spacing-above-35">
+            <a
+              th:href="|/flow/gcc/onboarding-getting-started?lang=${#locale.getLanguage()}|"
+              th:text="#{index.apply-now} + ' →'"
+              class="button--primary button"></a>
+          </div>
+          <div class="spacing-below-35">
+            <a
+              th:with="otherLang=${#locale.getLanguage().equals('es') ? 'en' : 'es'}"
+              th:href="|/flow/gcc/onboarding-getting-started?lang=${otherLang}|"
+              th:text="#{index.apply-now-other-language} + ' →'"
+              th:lang="${otherLang}"
+              class="button--small button"></a>
+          </div>
         </div>
         <div class="width-one-half">
-          <img src="/assets/images/ubi-landing-splash.png" alt="" class="nudge--large">
+          <!--TODO: make this image look better responsively-->
+          <img src="/assets/images/mother-reading-to-child.svg" alt="" class="nudge--large">
         </div>
       </div>
     </section>
-    <section class="slab slab--off-white">
+    <section class="slab slab--white">
       <div class="grid">
-        <h2 th:text="#{index.apply-for-cash-assistance}"></h2>
-        <h3 th:text="#{index.universal-basic-income}"></h3>
-        <p th:text="#{index.ubi-provides-750}"></p>
+        <div class="index-child-care-image-container">
+            <img src="/assets/images/seal-of-illinois.png" alt="" style="width: 110px; height: 110px;">
+            <img src="/assets/images/IDHS-logo.png" alt="">
+        </div>
+        <h2 th:text="#{index.child-care.title}"></h2>
+        <p th:text="#{index.child-care.paragraph}"></p>
+        <a
+            target="_blank" rel="noopener noreferrer"
+            href="https://www.inccrra.org/about/sdasearch">
+          <span th:text="#{index.child-care.link}"></span>
+          <i class="icon-">open_in_new</i>
+        </a>
       </div>
     </section>
-    <th:block th:if="${docUploadEnabled}">
-      <section class="slab" id="docUpload">
-        <div class="grid text--centered spacing-below-35">
-          <th:block th:replace="~{fragments/icons :: uploadDocuments}"/>
-          <h2 th:text="#{index.already-applied-additional}"></h2>
-            <a href="/flow/docUpload/documentRecommendations" th:text="#{index.upload-documents}" class="button"></a>
+    <section class="slab slab--light-purple">
+      <div class="grid">
+        <h2 th:text="#{index.eligibility.title}"></h2>
+        <table class="index-table">
+          <thead>
+          <tr>
+            <th scope="col" th:text="#{index.eligibility.table.column.header-1}"></th>
+            <th scope="col" th:text="#{index.eligibility.table.column.header-2}"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr scope="row" th:each="i : ${#numbers.sequence(1, 5)}">
+            <td th:text="#{'index.eligibility.table.row-' + ${i} + '.family'}"></td>
+            <td th:text="#{'index.eligibility.table.row-' + ${i} + '.income'}"></td>
+          </tr>
+          </tbody>
+        </table>
+        <p th:text="#{index.eligibility.paragraph}"></p>
+      </div>
+    </section>
+    <section class="slab slab--white">
+      <div class="grid">
+        <h2 th:text="#{index.gather-docs.title}"></h2>
+        <p th:text="#{index.gather-docs.first-paragraph}"></p>
+        <img src="/assets/images/woman-with-paperwork.svg" alt="" class="img-center">
+        <p th:text="#{index.gather-docs.second-paragraph}"></p>
+        <div class="index-icon-list spacing-below-15">
+          <th:block th:replace="~{fragments/gcc-icons :: blobWithPayStub}"></th:block>
+          <p th:text="#{index.gather-docs.icon-list.1}"></p>
         </div>
-      </section>
-    </th:block>
+        <div class="index-icon-list spacing-below-15">
+          <th:block th:replace="~{fragments/gcc-icons :: blobWithW2}"></th:block>
+          <p th:text="#{index.gather-docs.icon-list.2}"></p>
+        </div>
+        <div class="index-icon-list">
+          <th:block th:replace="~{fragments/gcc-icons :: blobWithSchedule}"></th:block>
+          <p th:text="#{index.gather-docs.icon-list.3}"></p>
+        </div>
+      </div>
+    </section>
   </main>
 </div>
 <th:block th:replace="~{fragments/footer :: footer}"/>
