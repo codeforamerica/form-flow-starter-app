@@ -40,7 +40,6 @@ form-flow:
       auth-token: ${SMARTY_AUTH_TOKEN}
       license: us-core-cloud
   pdf:
-    path: 'src/main/resources/pdfs/'
     map-file: pdf-map.yaml
   email-client:
     mailgun:
