@@ -132,7 +132,16 @@ tasks.register('moveUSWDSImagesToGenerated', Copy) {
     description = 'Move USWDS images into generated folder for Spring Boot to use it.'
     dependsOn 'moveNodeModulesToGenerated'
     from 'node_modules/@uswds/uswds/dist/img'
-    into 'generated/main/resources/static/assets/css/img'
+    into 'generated/main/resources/static/assets/img'
+    finalizedBy(moveUSWDSSvgsToGenerated)
+}
+
+tasks.register('moveUSWDSSvgsToGenerated', Copy) {
+    group 'cfa-uswds'
+    description = 'Move USWDS SVGs into generated folder for Spring Boot to use it.'
+    dependsOn 'moveNodeModulesToGenerated'
+    from 'node_modules/@codeforamerica/uswds/dist/assets/site'
+    into 'generated/main/resources/static/assets/site'
 }
 
 def sassConfiguration = { CompileSass task ->
