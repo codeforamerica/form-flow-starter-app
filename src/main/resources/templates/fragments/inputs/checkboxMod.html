@@ -3,6 +3,7 @@
     th:with="
       interiorElementHelp=${!#strings.isEmpty(interiorElementHelpText)},
       exteriorElementHelp=${!#strings.isEmpty(exteriorElementHelpText)},
+      isRequiredInput=${requiredInputs.getOrDefault(inputName, false) || required != null && required},
       hasIcon=${!#strings.isEmpty(checkboxIcon)},
       name=${inputName} + '[]',
       hasError=${
@@ -32,6 +33,7 @@
       </div>
       <div>
         <span th:text="${label}"></span>
+        <span th:if="${isRequiredInput}" class="required-input" th:text="#{general.required-field}"></span>
         <p th:if="${interiorElementHelp}"
            th:id="${name} + '-' + ${value} + '-help-text'"
            th:text="${interiorElementHelpText}"
@@ -42,7 +44,7 @@
     <p th:if="${exteriorElementHelp}"
        th:id="${name} + '-' + ${value} + '-help-text'"
        th:text="${exteriorElementHelpText}"
-       class="text--help with-no-padding"></p>
+       class="text--help"></p>
     <th:block
         th:replace="~{fragments/inputError :: validationError(inputName=${inputName})}"></th:block>
   </div>

@@ -8,6 +8,7 @@
     header=${selectedSelf ? #messages.msg('income-types.headerYou') : #messages.msg('income-types.headerPerson', houseHoldMemberName)},
     subtext=#{income-types.sub-header},
     formAction=${formAction},
+    inputName='incomeTypes',
     inputContent=~{::inputContent})}">
     <th:block th:ref="inputContent">
       <th:block th:replace="~{fragments/inputs/checkboxFieldset ::
