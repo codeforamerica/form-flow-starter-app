@@ -1,0 +1,45 @@
+<footer th:fragment="footer(modifier, returnToTop, navigation, logo, home, identifier)"
+        class="usa-footer usa-footer--slim" th:classappend="${modifier}">
+  <div th:if="${returnToTop}" class="grid-container usa-footer__return-to-top">
+    <a th:href="${returnToTop}">Return to top</a>
+  </div>
+  <div th:if="${navigation}" class="usa-footer__primary-section">
+    <div class="usa-footer__primary-container grid-row">
+      <div>
+        <nav class="usa-footer__nav padding-0" th:attr="aria-label=${navigation.ariaLabel}">
+          <ul class="grid-row grid-gap">
+            <li th:each="item: ${navigation.items}"
+                class="tablet:grid-col-auto margin-0 usa-footer__primary-content">
+              <a class="usa-footer__primary-link" th:href="${item.href}"
+                 th:classappend="${item.modifier}" th:attr="rel=${item.rel},target=${item.target}"
+                 th:text="${item.label}">Label</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div th:if="${logo}" class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="usa-footer__logo">
+        <a th:href="${home.href}" th:class="${home.modifier}">
+          <svg th:if="${logo.default}" th:attr="style=${logo.default.style}"
+               xmlns="http://www.w3.org/2000/svg" class="display-block tablet:display-none"
+               role="img" aria-hidden="true">
+            <use th:href="${logo.default.href}">
+          </svg>
+          <svg th:if="${logo.tablet}" th:attr="style=${logo.tablet.style}"
+               xmlns="http://www.w3.org/2000/svg" class="display-none tablet:display-block"
+               role="img" aria-hidden="true">
+            <use th:href="${logo.tablet.href}">
+          </svg>
+          <span th:if="${logo.alt}" th:class="${logo.alt.modifier}" th:text="${logo.alt.text}">Logo text</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div th:if="${identifier}">
+    <th:block
+        th:replace="~{fragments/cfa-uswds/identifier :: identifier(${identifier.modifier}, ${identifier.identity}, ${identifier.requiredLinks}, ${identifier.governmentSection})}"/>
+  </div>
+</footer>
