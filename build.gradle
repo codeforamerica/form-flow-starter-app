@@ -11,10 +11,10 @@ buildscript {
 }
 
 plugins {
-    id 'org.springframework.boot' version '3.2.4'
+    id 'org.springframework.boot' version '3.3.0'
     id 'io.spring.dependency-management' version '1.1.4'
     id 'java'
-    id 'com.gorylenko.gradle-git-properties' version '2.4.1'
+    id 'com.gorylenko.gradle-git-properties' version '2.4.2'
     id 'com.adarshr.test-logger' version '4.0.0'
     id 'jacoco'
     id "org.flywaydb.flyway" version "[9.+,10.0["
@@ -48,7 +48,7 @@ repositories {
 }
 
 def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
-def formFlowLibraryVersion = '1.3.3-SNAPSHOT'
+def formFlowLibraryVersion = '1.3.8-SNAPSHOT'
 def useLocalLibrary = System.getenv('USE_LOCAL_LIBRARY')
 
 dependencies {
@@ -76,7 +76,7 @@ dependencies {
     testImplementation 'io.percy:percy-java-selenium:2.0.5'
     testImplementation 'org.awaitility:awaitility'
     testImplementation 'org.apache.httpcomponents.client5:httpclient5:5.3.1'
-    testImplementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
     testImplementation 'com.h2database:h2'
 
     runtimeOnly 'org.postgresql:postgresql'
