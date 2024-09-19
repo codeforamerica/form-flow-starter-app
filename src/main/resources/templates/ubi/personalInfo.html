@@ -58,6 +58,7 @@
                 <div class="question-with-follow-up__follow-up" id="moved-to-usa-follow-up">
                   <th:block th:replace="~{fragments/inputs/date ::
                                             date(inputName='movedToUSA',
+                                            required=true,
                                             label=#{personal-info.moved-when-label},
                                             groupName='movedToUSADate')}"/>
                   <th:block th:replace="~{fragments/inputs/text ::
