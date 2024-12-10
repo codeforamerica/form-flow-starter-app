@@ -5,13 +5,13 @@ import org.formflowstartertemplate.app.submission.actions.SendEmailConfirmation;
 import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
@@ -22,10 +22,10 @@ import static org.mockito.Mockito.verify;
 
 public class UbiFlowJourneyTest extends AbstractBasePageTest {
   
-  @SpyBean
+  @MockitoSpyBean
   private SendEmailConfirmation sendEmailConfirmation;
   
-  @SpyBean
+  @MockitoSpyBean
   private MailgunEmailClient mailgunEmailClient;
 
   @Test
