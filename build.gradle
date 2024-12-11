@@ -48,13 +48,14 @@ repositories {
 }
 
 def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
-def formFlowLibraryVersion = '1.5.1-SNAPSHOT'
+def formFlowLibraryVersion = '1.6.1-SNAPSHOT'
 def useLocalLibrary = System.getenv('USE_LOCAL_LIBRARY')
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
     implementation 'ch.qos.logback.contrib:logback-jackson:0.1.5'
+    implementation 'org.springframework:spring-webmvc:6.1.13'
 
     if (profile == 'dev' || useLocalLibrary == 'true') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
@@ -75,7 +76,6 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-java'
     testImplementation 'io.percy:percy-java-selenium:2.1.0'
     testImplementation 'org.awaitility:awaitility'
-    testImplementation 'org.apache.httpcomponents.client5:httpclient5:5.3.1'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
     testImplementation 'com.h2database:h2'
 
