@@ -18,7 +18,8 @@ fi
 
 echo 'Installing brew packages'
 brew tap homebrew/cask-versions
-brew install temurin17 jenv gradle postgresql@14 node
+brew install --cask temurin@21
+brew install jenv gradle postgresql@14 node
 
 # Install jenv in either the .bashrc or zshrc, whichever is present
 if [ -f ~/.bashrc ]; then
@@ -38,9 +39,9 @@ if [[ $(uname -m) == 'arm64' ]]; then
   eval "$(jenv init -)"
 fi
 
-# Check if jenv can find java 17
-if ! jenv versions | grep -q 17; then
-  jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
+# Check if jenv can find java 21
+if ! jenv versions | grep -q 21; then
+  jenv add /Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
 fi
 
 # If the postgres service isn't running in brew, start it

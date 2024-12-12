@@ -6,19 +6,19 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.yaml:snakeyaml:2.2'
+        classpath 'org.yaml:snakeyaml:2.3'
     }
 }
 
 plugins {
-    id 'org.springframework.boot' version '3.1.5'
-    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.springframework.boot' version '3.4.0'
+    id 'io.spring.dependency-management' version '1.1.6'
     id 'java'
-    id 'com.gorylenko.gradle-git-properties' version '2.4.1'
+    id 'com.gorylenko.gradle-git-properties' version '2.4.2'
     id 'com.adarshr.test-logger' version '4.0.0'
     id 'jacoco'
-    id 'org.flywaydb.flyway' version '10.0.1'
-    id 'io.miret.etienne.sass' version '1.5.0'
+    id "org.flywaydb.flyway" version "[9.+,10.0["
+    id 'io.miret.etienne.sass' version '1.5.1'
 }
 
 jacoco {
@@ -48,13 +48,14 @@ repositories {
 }
 
 def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
-def formFlowLibraryVersion = '1.0.1-SNAPSHOT'
+def formFlowLibraryVersion = '1.6.1-SNAPSHOT'
 def useLocalLibrary = System.getenv('USE_LOCAL_LIBRARY')
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
     implementation 'ch.qos.logback.contrib:logback-jackson:0.1.5'
+    implementation 'org.springframework:spring-webmvc:6.2.1'
 
     if (profile == 'dev' || useLocalLibrary == 'true') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
@@ -73,10 +74,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.seleniumhq.selenium:selenium-java'
-    testImplementation 'io.percy:percy-java-selenium:2.0.2'
+    testImplementation 'io.percy:percy-java-selenium:2.1.0'
     testImplementation 'org.awaitility:awaitility'
-    testImplementation 'org.apache.httpcomponents.client5:httpclient5:5.3'
-    testImplementation 'io.github.bonigarcia:webdrivermanager:5.6.2'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
     testImplementation 'com.h2database:h2'
 
     runtimeOnly 'org.postgresql:postgresql'

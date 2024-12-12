@@ -4,16 +4,14 @@ import formflow.library.email.MailgunEmailClient;
 import org.formflowstartertemplate.app.submission.actions.SendEmailConfirmation;
 import org.formflowstartertemplate.app.utils.AbstractBasePageTest;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.openqa.selenium.By;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.List;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.formflowstartertemplate.app.utils.YesNoAnswer.NO;
@@ -24,10 +22,10 @@ import static org.mockito.Mockito.verify;
 
 public class UbiFlowJourneyTest extends AbstractBasePageTest {
   
-  @SpyBean
+  @MockitoSpyBean
   private SendEmailConfirmation sendEmailConfirmation;
   
-  @SpyBean
+  @MockitoSpyBean
   private MailgunEmailClient mailgunEmailClient;
 
   @Test
@@ -43,6 +41,9 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     testPage.clickContinue();
 
     // Personal info
+    assertThat(driver.findElement(By.cssSelector("label[for='firstName']")).getText()).contains("(required)");
+    assertThat(driver.findElement(By.cssSelector("label[for='lastName']")).getText()).contains("(required)");
+    assertThat(driver.findElement(By.cssSelector("legend[for='birth']")).getText()).contains("(required)");
     testPage.enter("firstName", "Testy");
     testPage.enter("lastName", "McTesterson");
     // Test if follow up questions are disabled on page load
@@ -94,6 +95,7 @@ public class UbiFlowJourneyTest extends AbstractBasePageTest {
     // movedToUSA - check invalid date when movedToUSA=Yes
     assertThat(testPage.getTitle()).isEqualTo("Personal Info");
     testPage.clickElementById("movedToUSA-Yes");
+    assertThat(driver.findElement(By.cssSelector("legend[for='movedToUSA']")).getText()).contains("(required)");
     testPage.enter("movedToUSADay", "65");
     testPage.enter("movedToUSAMonth", "3");
     testPage.enter("movedToUSAYear", "1987");

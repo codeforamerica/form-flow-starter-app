@@ -40,8 +40,9 @@ form-flow:
       auth-token: ${SMARTY_AUTH_TOKEN}
       license: us-core-cloud
   pdf:
-    path: 'src/main/resources/pdfs/'
     map-file: pdf-map.yaml
+    generate-flattened: false
+    read-only: true
   email-client:
     mailgun:
       key: ${MAILGUN_KEY:'no-key-set'}

@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
 
 RUN mkdir /opt/form-flow-starter-app /opt/pdf-fonts
 COPY . /opt/form-flow-starter-app
@@ -10,4 +10,4 @@ RUN ./gradlew assemble && \
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/opt/form-flow-starter-app/app.jar", "--spring.profiles.active=demo"]
+ENTRYPOINT ["java", "-jar", "/opt/form-flow-starter-app/app.jar"]
