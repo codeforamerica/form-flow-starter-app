@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id 'org.springframework.boot' version '3.4.0'
+    id 'org.springframework.boot' version '3.4.1'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'java'
     id 'com.gorylenko.gradle-git-properties' version '2.4.2'
@@ -48,7 +48,7 @@ repositories {
 }
 
 def profile = props.getProperty('SPRING_PROFILES_ACTIVE')
-def formFlowLibraryVersion = '1.6.2-SNAPSHOT'
+def formFlowLibraryVersion = '1.6.3-SNAPSHOT'
 def useLocalLibrary = System.getenv('USE_LOCAL_LIBRARY')
 
 dependencies {
