@@ -1,5 +1,8 @@
 FROM eclipse-temurin:21-jdk-alpine
 
+# Install LibreOffice (which includes soffice)
+RUN apk add --no-cache libreoffice libreoffice-common
+
 RUN mkdir /opt/form-flow-starter-app /opt/pdf-fonts
 COPY . /opt/form-flow-starter-app
 COPY src/main/resources/pdf-fonts/* /opt/pdf-fonts/
