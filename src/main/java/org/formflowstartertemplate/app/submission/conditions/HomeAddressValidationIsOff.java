@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class HomeAddressValidationIsOff implements Condition {
 
-  @Value("${form-flow.address-validation.disabled:false}")
-  private boolean isAddressValidationDisabled;
+  @Value("${form-flow.address-validation.enabled:true}")
+  private boolean isAddressValidationEnabled;
 
   @Override
   public Boolean run(Submission submission) {
-    if (isAddressValidationDisabled) {
+    if (!isAddressValidationEnabled) {
       return true;
     }
 
