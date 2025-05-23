@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class SubmissionUtilities {
@@ -27,11 +28,8 @@ public class SubmissionUtilities {
     if (inputData.containsKey(INCOME)) {
       ArrayList<Map<String, Object>> subflow =
           (ArrayList<Map<String, Object>>) submission.getInputData().get(INCOME);
-      Stream<Map<String, Object>> applicantEntry = subflow.stream()
-          .filter(entry -> entry.get(HOUSEHOLD_MEMBER).equals(APPLICANT));
-      Stream<Map<String, Object>> nonApplicantEntries = subflow.stream()
-          .filter(entry -> !entry.get(HOUSEHOLD_MEMBER).equals(APPLICANT));
-      return Stream.concat(applicantEntry, nonApplicantEntries).toList();
+
+      return subflow;
     }
 
     return null;
@@ -165,5 +163,17 @@ public class SubmissionUtilities {
    */
   public static String getFormattedSubmittedAtDate(Submission submission) {
     return dateTimeFormatter.format(submission.getSubmittedAt());
+  }
+  
+  public static String getPersonsFullNameFromIncomeIteration(Submission submission, String iterationId) {
+    List<Map<String, Object>> incomeSUbflow = (List<Map<String, Object>>) submission.getInputData().get(INCOME);
+    Map<String, Object> incomeIteration = incomeSUbflow.stream()
+            .filter(iteration -> iteration.get(ITERATION_UUID).equals(iterationId))
+            .findFirst().get();
+    List<Map<String, Object>> householdSubflow = (List<Map<String, Object>>) submission.getInputData().get(HOUSEHOLD);
+    Map<String, Object> householdMemberIncome = householdSubflow.stream()
+            .filter(iteration -> iteration.get(ITERATION_UUID).equals(incomeIteration.get("householdMemberIncome")))
+            .findFirst().get();
+    return householdMemberIncome.get("householdMemberFirstName") + " " + householdMemberIncome.get("householdMemberLastName");
   }
 }
