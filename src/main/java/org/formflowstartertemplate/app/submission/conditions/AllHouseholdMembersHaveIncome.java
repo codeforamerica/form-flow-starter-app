@@ -18,10 +18,8 @@ public class AllHouseholdMembersHaveIncome implements Condition {
       var incomeArr = (ArrayList<Map<String, Object>>) submission.getInputData().get("income");
 
       // household members + applicant
-      return (householdArr.size() + 1) == incomeArr.size();
-    } else if (!submission.getInputData().containsKey("household") && submission.getInputData().containsKey("income")) {
-      return true;
-    }
-    return false;
+      return (householdArr.size()) == incomeArr.size();
+    } else
+        return !submission.getInputData().containsKey("household") && submission.getInputData().containsKey("income");
   }
 }

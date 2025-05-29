@@ -1,11 +1,10 @@
 <th:block
-    th:with="selectedSelf=${conditionManager.runCondition('IncomeSelectedSelf', submission, uuid)},
-             houseHoldMemberName=${fieldData.householdMember}">
+    th:with="houseHoldMemberName=${relatedSubflowIteration.get('householdMemberFirstName') + ' ' + relatedSubflowIteration.get('householdMemberLastName')},">
   <th:block
       th:replace="~{fragments/screens/screenWithOneInput ::
   screenWithOneInput(
     title=#{income-types.title},
-    header=${selectedSelf ? #messages.msg('income-types.headerYou') : #messages.msg('income-types.headerPerson', houseHoldMemberName)},
+    header=${#messages.msg('income-types.headerPerson', houseHoldMemberName)},
     subtext=#{income-types.sub-header},
     inputName='incomeTypes',
     formAction=${formAction},
