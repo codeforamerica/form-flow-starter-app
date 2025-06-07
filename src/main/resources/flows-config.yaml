@@ -142,7 +142,7 @@ subflows:
       relationAlias: householdMemberIncome
       repeatFor:
         inputName: incomeTypes
-        saveDataAs: householdMemberIncome
+        saveDataAs: householdMemberIncomeByType
     entryScreen: income
     iterationStartScreen: incomeTypes
     reviewScreen: annualHouseholdIncome
