@@ -70,6 +70,10 @@ flow:
     beforeSaveAction: UpdateIncomeAmountsBeforeSaving
     subflow: income
     nextScreens:
+      - name: incomeAmounts2
+  incomeAmounts2:
+    subflow: income
+    nextScreens:
       - name: annualHouseholdIncome
   annualHouseholdIncome:
     nextScreens:
