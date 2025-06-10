@@ -8,19 +8,19 @@
         <div class="grid">
             <div th:replace="~{fragments/goBack :: goBackLink}"></div>
             <main id="content" role="main" class="form-card spacing-above-35"
-                  th:with="houseHoldMemberName=${relatedSubflowIteration.get('householdMemberFirstName') +' '+ relatedSubflowIteration.get('householdMemberLastName')}, incomeType=${nestedSubflowIteration.get('householdMemberIncomeByTypeValue')}">
+                  th:with="houseHoldMemberName=${relatedSubflowIteration.get('householdMemberFirstName') +' '+ relatedSubflowIteration.get('householdMemberLastName')}, incomeType=${repeatForIteration.get('householdMemberIncomeByTypeValue')}">
 <!--                <th:block-->
 <!--                        th:replace="~{fragments/cardHeader :: cardHeader(header=${#messages.msg('income-amounts.header', houseHoldMemberName, incomeType)}"/>-->
 
                 <p> Second Income Amounts Screen</p>
                 <th:block
-                        th:replace="~{fragments/cardHeader :: cardHeader(header=${#messages.msg('income-amounts.header', houseHoldMemberName, incomeType)})}"/>
+                        th:replace="~{fragments/cardHeader :: cardHeader(header=${'How often does ' + houseHoldMemberName +' get paid for '+ incomeType + '?'})}"/>
                 <th:block
                         th:replace="~{fragments/form :: form(action=${formAction}, content=~{::incomeAmounts})}">
                     <div th:ref="incomeAmounts">
 <!--                        <p th:text="${fieldData.get('income')}"></p>-->
-                        <p th:text="'NestedRelationshipData'"></p>
-                        <p th:text="${nestedSubflowIteration}"></p>
+<!--                        <p th:text="'NestedRelationshipData'"></p>-->
+<!--                        <p th:text="${repeatForIteration}"></p>-->
                         <!-- we need to handle three scenarios for this page:
                              1) first time through it -- no data yet
                              2) user clicked "go back" during subflow
@@ -28,8 +28,8 @@
                         -->
                         <div class="form-card__content">
                             <<th:block th:replace="~{fragments/inputs/text ::
-                              text(inputName='amount',
-                              label=#{income-amounts.title}
+                              text(inputName='frequency',
+                              ariaLabel='header'
                               )}" />
 <!--                            <th:block th:with="incomeData=${fieldData.getOrDefault('income', fieldData)}">-->
 <!--                                <th:block th:each="personsIncome: ${iterator}"-->
