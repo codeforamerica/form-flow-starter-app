@@ -29,7 +29,7 @@
                                                     th:text="${householdMemberIncome.get('amount')}"></span>
                                         </span>
                                         <span class="text--small spacing-below-0">
-                                          <a th:href="'/flow/ubi/incomeAmount/' + ${incomeSubflow.get('uuid')} +'/' + ${householdMemberIncome.get('uuid')} + '/edit'"
+                                          <a th:href="'/flow/ubi/incomeAmounts/' + ${incomeSubflow.get('uuid')} +'/' + ${householdMemberIncome.get('uuid')} + '/edit'"
                                              th:text="#{general.edit}"
                                              th:id="'edit-iteration-' + ${incomeSubflow.get('uuid')}"
                                              class="subflow-edit"></a>

@@ -150,7 +150,7 @@ subflows:
     entryScreen: income
     iterationStartScreen: incomeTypes
     reviewScreen: annualHouseholdIncome
-    deleteConfirmationScreen: incomeTypes
+    deleteConfirmationScreen: incomeDeleteConfirmation
 ---
 name: docUpload
 flow:
