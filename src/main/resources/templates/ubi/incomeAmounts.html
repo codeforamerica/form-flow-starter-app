@@ -26,21 +26,9 @@
                              3) user clicked on "edit" on the listing page
                         -->
                         <div class="form-card__content">
-                            <<th:block th:replace="~{fragments/inputs/text ::
-                              text(inputName='amount',
-                              label=#{income-amounts.title}
-                              )}" />
-<!--                            <th:block th:with="incomeData=${fieldData.getOrDefault('income', fieldData)}">-->
-<!--                                <th:block th:each="personsIncome: ${iterator}"-->
-<!--                                          th:if="${personsIncome.uuid.equals()}">-->
-<!--                                    <th:block th:each="incomeType: ${fieldData['incomeTypes[]']}">-->
-<!--                                        <th:block-->
-<!--                                                th:replace="~{fragments/inputs/money :: money(data=fieldData, inputName=${incomeType + 'Amount'},-->
-<!--                     label=#{'income-shared.' + ${incomeType}},-->
-<!--                    helpText=#{income-amounts.yearly})}"/>-->
-<!--                                    </th:block>-->
-<!--                            </th:block>-->
-
+                            <th:block th:replace="~{fragments/inputs/money :: money(data=fieldData, inputName='amount',
+                               ariaLabel='header',
+                               helpText=#{income-amounts.yearly})}"/>
                         </div>
                         <div class="form-card__footer">
                             <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(

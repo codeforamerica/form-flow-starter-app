@@ -13,6 +13,7 @@
                 <div class="form-card__content boxed-content text--centered">
                     <strong th:text="#{annual-household-income.box-header}"></strong>
                     <ul class="subflow-list list--bulleted padding-left-25">
+<!--                        <p th:text="${fieldData}"></p>-->
                         <th:block th:if="${fieldData.containsKey('income')}">
                             <th:block
                                     th:with="income=${fieldData.get('income')}, householdMembers=${relatedSubflowData}">
@@ -23,20 +24,18 @@
                                         class="spacing-below-15">
                                       <span class="space-between">
                                         <span>
-                                          <span
-                                                  th:text="${householdMemberIncome.get('uuid')}"></span>
-                                            <span
-                                                    th:text="${householdMemberIncome.get('amount')}"></span>
+                                          <p
+                                                  th:text="${householdMemberIncome.get('householdMemberIncomeByTypeValue')}"></p>
+                                            <p
+                                                    th:text="${householdMemberIncome.get('amount')}"></p>
+                                            <p
+                                                    th:text="${householdMemberIncome.get('frequency')}"></p>
                                         </span>
                                         <span class="text--small spacing-below-0">
                                           <a th:href="'/flow/ubi/incomeAmounts/' + ${incomeSubflow.get('uuid')} +'/' + ${householdMemberIncome.get('uuid')} + '/edit'"
                                              th:text="#{general.edit}"
                                              th:id="'edit-iteration-' + ${incomeSubflow.get('uuid')}"
                                              class="subflow-edit"></a>
-                                                      <a th:href="'/flow/ubi/income/' + ${incomeSubflow.get('uuid')} +'/' + ${householdMemberIncome.get('uuid')} + '/deleteConfirmation'"
-                                                         th:text="#{general.delete}"
-                                                         class="subflow-delete"
-                                                         th:id="'delete-iteration-' + ${incomeSubflow.get('uuid')} +'/' + ${householdMemberIncome.get('uuid')}"></a>
                                         </span>
                                       </span>
                                     </li>
