@@ -26,6 +26,11 @@ public class Ubi extends FlowInputs {
   // Personal Info Screen
   @NotBlank(message = "{personal-info.provide-first-name}")
   private String firstName;
+
+  @NotBlank(message = "{personal-info.provide-first-name}")
+  private String amount;
+
+  private String frequency;
   @NotBlank(message = "{personal-info.provide-last-name}")
   private String lastName;
   @NotBlank(message = "{personal-info.provide-birth-day}")
