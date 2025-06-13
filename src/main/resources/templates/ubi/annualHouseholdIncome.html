@@ -22,8 +22,7 @@
                               <span class="grid">
                                 <span class="grid__item width-one-third">
                                   <span
-                                      th:with="selectedSelf=${conditionManager.runCondition('IncomeSelectedSelf', submission, personsIncome.uuid)}"
-                                      th:text="${selectedSelf ? #messages.msg('general.you') : personsIncome.householdMember.split(' ')[0]}"></span>
+                                      th:text="${T(org.formflowstartertemplate.app.utils.SubmissionUtilities).getPersonsFullNameFromIncomeIteration(submission, personsIncome.uuid)}"></span>
                                 </span>
                                 <span
                                     class="grid__item width-one-third text--right padding-right-10"
