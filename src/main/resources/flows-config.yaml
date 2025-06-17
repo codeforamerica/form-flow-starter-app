@@ -61,10 +61,6 @@ flow:
     nextScreens: null
   income:
     nextScreens:
-      - name: householdMemberIncome
-  householdMemberIncome:
-    subflow: income
-    nextScreens:
       - name: incomeTypes
   incomeTypes:
     subflow: income
@@ -72,6 +68,10 @@ flow:
       - name: incomeAmounts
   incomeAmounts:
     beforeSaveAction: UpdateIncomeAmountsBeforeSaving
+    subflow: income
+    nextScreens:
+      - name: incomeAmounts2
+  incomeAmounts2:
     subflow: income
     nextScreens:
       - name: annualHouseholdIncome
@@ -141,8 +141,14 @@ subflows:
     reviewScreen: householdList
     deleteConfirmationScreen: householdDeleteConfirmation
   income:
+    relationship:
+      relatesTo: household
+      relationAlias: householdMemberIncome
+      repeatFor:
+        inputName: incomeTypes
+        saveDataAs: householdMemberIncomeByType
     entryScreen: income
-    iterationStartScreen: householdMemberIncome
+    iterationStartScreen: incomeTypes
     reviewScreen: annualHouseholdIncome
     deleteConfirmationScreen: incomeDeleteConfirmation
 ---
