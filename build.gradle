@@ -77,7 +77,7 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-java'
     testImplementation 'io.percy:percy-java-selenium:2.1.1'
     testImplementation 'org.awaitility:awaitility'
-    testImplementation 'io.github.bonigarcia:webdrivermanager:6.1.1'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:6.2.0'
     testImplementation 'com.h2database:h2'
 
     runtimeOnly 'org.postgresql:postgresql'
