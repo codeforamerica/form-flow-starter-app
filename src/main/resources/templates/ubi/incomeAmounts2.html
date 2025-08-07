@@ -12,13 +12,14 @@
 <!--                <th:block-->
 <!--                        th:replace="~{fragments/cardHeader :: cardHeader(header=${#messages.msg('income-amounts.header', houseHoldMemberName, incomeType)}"/>-->
 
+                <p> Second Income Amounts Screen</p>
                 <th:block
-                        th:replace="~{fragments/cardHeader :: cardHeader(header=${#messages.msg('income-amounts.header', houseHoldMemberName, incomeType)})}"/>
+                        th:replace="~{fragments/cardHeader :: cardHeader(header=${'How often does ' + houseHoldMemberName +' get paid for '+ incomeType + '?'})}"/>
                 <th:block
                         th:replace="~{fragments/form :: form(action=${formAction}, content=~{::incomeAmounts})}">
                     <div th:ref="incomeAmounts">
 <!--                        <p th:text="${fieldData.get('income')}"></p>-->
-<!--                        <p th:text="'repeatForIteration'"></p>-->
+<!--                        <p th:text="'NestedRelationshipData'"></p>-->
 <!--                        <p th:text="${repeatForIteration}"></p>-->
                         <!-- we need to handle three scenarios for this page:
                              1) first time through it -- no data yet
@@ -26,9 +27,21 @@
                              3) user clicked on "edit" on the listing page
                         -->
                         <div class="form-card__content">
-                            <th:block th:replace="~{fragments/inputs/money :: money(data=fieldData, inputName='amount',
-                               ariaLabel='header',
-                               helpText=#{income-amounts.yearly})}"/>
+                            <<th:block th:replace="~{fragments/inputs/text ::
+                              text(inputName='frequency',
+                              ariaLabel='header'
+                              )}" />
+<!--                            <th:block th:with="incomeData=${fieldData.getOrDefault('income', fieldData)}">-->
+<!--                                <th:block th:each="personsIncome: ${iterator}"-->
+<!--                                          th:if="${personsIncome.uuid.equals()}">-->
+<!--                                    <th:block th:each="incomeType: ${fieldData['incomeTypes[]']}">-->
+<!--                                        <th:block-->
+<!--                                                th:replace="~{fragments/inputs/money :: money(data=fieldData, inputName=${incomeType + 'Amount'},-->
+<!--                     label=#{'income-shared.' + ${incomeType}},-->
+<!--                    helpText=#{income-amounts.yearly})}"/>-->
+<!--                                    </th:block>-->
+<!--                            </th:block>-->
+
                         </div>
                         <div class="form-card__footer">
                             <th:block th:replace="~{fragments/inputs/submitButton :: submitButton(
