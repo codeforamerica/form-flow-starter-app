@@ -19,7 +19,7 @@ fi
 echo 'Installing brew packages'
 brew tap homebrew/cask-versions
 brew install --cask temurin@21
-brew install jenv gradle postgresql@14 node
+brew install jenv gradle postgresql@16 node
 
 # Install jenv in either the .bashrc or zshrc, whichever is present
 if [ -f ~/.bashrc ]; then
@@ -45,8 +45,8 @@ if ! jenv versions | grep -q 21; then
 fi
 
 # If the postgres service isn't running in brew, start it
-if ! brew services list | grep postgresql@14 | grep started; then
-  brew services restart postgresql@14
+if ! brew services list | grep postgresql@16 | grep started; then
+  brew services restart postgresql@16
 fi
 
 # Create starter-app database and user in postgres, if they don't exist
