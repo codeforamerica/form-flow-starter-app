@@ -57,8 +57,8 @@ dependencies {
     implementation 'ch.qos.logback.contrib:logback-jackson:0.1.5'
     implementation 'org.springframework:spring-webmvc:6.2.11'
     implementation 'joda-time:joda-time:2.14.0'
-    implementation 'org.flywaydb:flyway-core:11.13.2'
-    implementation 'org.flywaydb:flyway-database-postgresql:11.13.2'
+    implementation 'org.flywaydb:flyway-core:11.14.0'
+    implementation 'org.flywaydb:flyway-database-postgresql:11.14.0'
 
     if (profile == 'dev' || useLocalLibrary == 'true') {
         implementation fileTree(dir: "$rootDir/../form-flow/build/libs", include: '*.jar')
